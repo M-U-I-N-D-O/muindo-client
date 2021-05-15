@@ -21,7 +21,9 @@
 
     | 분류 | Tools | 목적 |
     | ------ | ------ | ------ |
-    | 예시) Server | Flask | 웹 서버 구동 |
+    |  Server | Flask | 웹 서버 구동 |
+    |  Client | React | 프론트엔드 |
+    |  AI model | pytorch | AI |
 
 
 

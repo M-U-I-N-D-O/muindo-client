@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 function Intro() {
   const classes = useStyles();
 
-  return <div className={classes.root}>베이커가의 옷장</div>;
+  return <div className={classes.root}>셜록 옷즈 Sherlock Odds</div>;
 }
 
 export default Intro;

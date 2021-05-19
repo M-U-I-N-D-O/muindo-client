@@ -11,10 +11,9 @@ const useStyles = makeStyles((theme) => ({
   },
   container: {
     display: 'flex',
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
-    // height: '200px',
   },
   signBox: {
     display: 'flex',

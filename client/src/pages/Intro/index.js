@@ -52,7 +52,7 @@ function Intro() {
 
   return (
     <div className={classes.root}>
-      <Link className={classes.introElements} to="/">
+      <Link className={classes.introElements} to="/main">
         <div className={classes.signBox}>
           <h1 className={classes.signText}>Sherlock Odd</h1>
           <img

@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
   },
-  introElements: {
+  container: {
     display: 'flex',
     backgroundColor: 'white',
     justifyContent: 'center',
@@ -52,9 +52,9 @@ function Intro() {
 
   return (
     <div className={classes.root}>
-      <Link className={classes.introElements} to="/main">
+      <Link className={classes.container} to="/main">
         <div className={classes.signBox}>
-          <h1 className={classes.signText}>Sherlock Odd</h1>
+          <h1 className={classes.signText}>Sherlock Odds</h1>
           <img
             className={classes.door}
             alt=""

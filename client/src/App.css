@@ -1,38 +1,34 @@
+/* 기본 폰트 */
+@font-face {
+  font-family: 'NanumSquare_acB';
+  src: local('NanumSquare_acB'),
+    url('./fonts/NanumSquare_acB.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Sherlock Odds Intro Page 간판 폰트 */
 @font-face {
   font-family: 'Lobster';
-  src: url('//db.onlinewebfonts.com/t/051a058864c07ad03bd2950f3cdca8db.eot');
-  src: url('//db.onlinewebfonts.com/t/051a058864c07ad03bd2950f3cdca8db.eot?#iefix')
-      format('embedded-opentype'),
-    url('//db.onlinewebfonts.com/t/051a058864c07ad03bd2950f3cdca8db.woff2')
-      format('woff2'),
-    url('//db.onlinewebfonts.com/t/051a058864c07ad03bd2950f3cdca8db.woff')
-      format('woff'),
-    url('//db.onlinewebfonts.com/t/051a058864c07ad03bd2950f3cdca8db.ttf')
-      format('truetype'),
-    url('//db.onlinewebfonts.com/t/051a058864c07ad03bd2950f3cdca8db.svg#Lobster')
-      format('svg');
-}
-
-@font-face {
-  font-family: 'twaysky';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twaysky.woff')
-    format('woff');
+  src: local('Lobster'), url('./fonts/Lobster.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
+/* 셜록 옷즈 NavBar 폰트 */
 @font-face {
-  font-family: 'NEXON Lv1 Gothic OTF';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff')
-    format('woff');
+  font-family: '국립박물관문화재단클래식B';
+  src: local('국립박물관문화재단클래식B'),
+    url('./fonts/국립박물관문화재단클래식B.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
+/* Footer 폰트 */
 @font-face {
-  font-family: 'Eulyoo1945-SemiBold';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2102-01@1.0/Eulyoo1945-SemiBold.woff')
-    format('woff');
+  font-family: 'NotoSerifCJKkr-Regular';
+  src: local('NotoSerifCJKkr-Regular'),
+    url('./fonts/NotoSerifCJKkr-Regular.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -43,7 +39,8 @@
 }
 
 * {
-  font-family: 'twaysky', 'NEXON Lv1 Gothic OTF';
+  font-family: 'NanumSquare_acB', 'Lobster', '국립박물관문화재단클래식B',
+    'NotoSerifCJKkr-Regular';
   padding: 0;
   margin: 0;
 }

@@ -58,14 +58,13 @@ function Intro() {
   };
   return (
     <div className={classes.root}>
-      <Link className={classes.container} to="/home">
+      <Link className={classes.container} onClick={handleNavbarMode} to="/home">
         <div className={classes.signBox}>
           <h1 className={classes.signText}>Sherlock Odds</h1>
           <img
             className={classes.door}
             alt=""
             src="/images/intro/intro_door.jpg"
-            onClick={handleNavbarMode}
           />
           <div className={classes.doorBottom}></div>
         </div>

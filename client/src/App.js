@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
-
+import { useSelector } from 'react-redux';
 import Intro from './pages/Intro';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -9,6 +9,8 @@ import AnalysisColor from './pages/AnalysisColor';
 import Closet from './pages/Closet';
 import Community from './pages/Community';
 import Solution from './pages/Solution';
+import Login from './pages/Login';
+import SignUp from './pages/SignUp';
 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -16,9 +18,10 @@ import Footer from './components/Footer';
 import './App.css';
 
 function App() {
+  const navMode = useSelector((state) => state.navbar.switch);
   return (
     <Router>
-      <Navbar />
+      {navMode === 1 && <Navbar />}
       <Switch>
         <Route exact path="/" component={Intro} />
         <Route exact path="/home" component={Home} />
@@ -28,8 +31,10 @@ function App() {
         <Route exact path="/closet" component={Closet} />
         <Route exact path="/community" component={Community} />
         <Route exact path="/solution" component={Solution} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/signup" component={SignUp} />
       </Switch>
-      <Footer />
+      {navMode === 1 && <Footer />}
     </Router>
   );
 }

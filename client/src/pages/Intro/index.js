@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { navbarMode } from '../../actions';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -49,16 +51,24 @@ const useStyles = makeStyles((theme) => ({
 
 function Intro() {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
+  const handleNavbarMode = () => {
+    dispatch(navbarMode(1));
+  };
   return (
     <div className={classes.root}>
-      <Link className={classes.introElements} to="/">
+      <Link className={classes.introElements} to="/home">
         <div className={classes.signBox}>
-          <h1 className={classes.signText}>Sherlock Odd</h1>
+          <h1 className={classes.signText} onClick={handleNavbarMode}>
+            Sherlock Odd
+          </h1>
+
           <img
             className={classes.door}
             alt=""
             src="/images/intro/intro_door.jpg"
+            onClick={handleNavbarMode}
           />
           <div className={classes.doorBottom}></div>
         </div>

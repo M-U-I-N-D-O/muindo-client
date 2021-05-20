@@ -33,9 +33,21 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'DX-Montblanc';
+  src: url('fonts/DXMobrRExtraBold-KSCpc-EUC-H.ttf') format('truetype');
+}
+
 * {
   font-family: 'NanumSquare_acB', 'Lobster', '국립박물관문화재단클래식B',
     'NotoSerifCJKkr-Regular';
   padding: 0;
   margin: 0;
+}
+
+#root {
+  /* margin-bottom: 3.5rem;
+  margin-top: 5rem; */
+  /* border-top: 10px solid black;
+  border-bottom: 10px solid black; */
 }

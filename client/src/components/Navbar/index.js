@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import { NavLink as Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { navbarMode } from '../../actions';
 import styled from 'styled-components';
@@ -15,16 +16,20 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import LockOpenIcon from '@material-ui/icons/LockOpen';
+import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
+import NoMeetingRoomIcon from '@material-ui/icons/NoMeetingRoom';
 import ListItem from '@material-ui/core/ListItem';
-import { Typography } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
 
 const NavTitle = styled.h1`
   flex-grow: 1;
   color: #e2b063;
   font-size: 2rem;
   margin: 3px;
+  text-align: center;
 `;
 const NavList = styled.ul`
   list-style: none;
@@ -49,15 +54,27 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
+  sidebarBox: {
+    height: 100,
+  },
+
   list: {
     width: 300,
+  },
+  navbar: {
+    display: 'flex',
+    flexFlow: 'row wrap',
+    justifyContent: 'space-between',
+    width: '100vw',
   },
 }));
 
 function Navbar() {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(0);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleNavbarMode = (mode) => {
     dispatch(navbarMode(mode));
@@ -76,9 +93,37 @@ function Navbar() {
   const drawerList = (
     <div
       className={classes.list}
-      onClick={toggleDrawer('right', false)}
-      onKeyDown={toggleDrawer('right', false)}
+      onClick={toggleDrawer('left', false)}
+      onKeyDown={toggleDrawer('left', false)}
     >
+      <BottomNavigation
+        value={value}
+        onChange={(event, newValue) => {
+          setValue(newValue);
+        }}
+        showLabels
+        className={classes.sidebarBox}
+      >
+        {/* 지금은 버튼 [로그인,로그아웃,회원가입] 3개인데, google oauth 토큰을 받았을 경우, 아닌경우로
+        로그인 버튼 or 로그아웃 버튼이 나와야 함 */}
+        <BottomNavigationAction
+          onClick={() => {
+            history.push('/login');
+          }}
+          label="Login"
+          icon={<MeetingRoomIcon />}
+        />
+
+        {/* 로그아웃 버튼을 누를 시는, 1.토큰만료, 2.메인페이지로 전환 */}
+        <BottomNavigationAction label="Logout" icon={<NoMeetingRoomIcon />} />
+        <BottomNavigationAction
+          onClick={() => {
+            history.push('/signup');
+          }}
+          label="Sign up"
+          icon={<LockOpenIcon />}
+        />
+      </BottomNavigation>
       <Divider />
       <List>
         {[
@@ -113,6 +158,7 @@ function Navbar() {
   return (
     <div className={classes.root}>
       <AppBar
+        // className={classes.navbar}
         position="fixed"
         style={{
           backgroundColor: '#323B48',
@@ -120,9 +166,26 @@ function Navbar() {
         }}
       >
         <Toolbar>
-          <Link to="/" onClick={() => handleNavbarMode(0)}>
-            <img src="/images/navbar/logoImg.png" alt="logoImg" width="80vh" />
-          </Link>
+          <ThemeProvider theme={theme}>
+            <IconButton
+              edge="start"
+              className={clsx(open && classes.hide)}
+              color="primary"
+              aria-label="menu"
+              onClick={toggleDrawer('left', !open)}
+            >
+              <MenuIcon style={{ fontSize: 50 }} />
+              <SwipeableDrawer
+                anchor={'left'}
+                open={open}
+                onClose={toggleDrawer('left', false)}
+                onOpen={toggleDrawer('left', true)}
+              >
+                {drawerList}
+              </SwipeableDrawer>
+            </IconButton>
+          </ThemeProvider>
+
           <NavTitle>
             <Link
               to="/"
@@ -133,7 +196,10 @@ function Navbar() {
             </Link>
           </NavTitle>
 
-          <NavList>
+          <Link to="/about" onClick={() => handleNavbarMode(1)}>
+            <img src="/images/navbar/logoImg.png" alt="logoImg" width="80vh" />
+          </Link>
+          {/* <NavList>
             <Link to="/about" style={{ textDecoration: 'none' }}>
               <NavListItem>소개</NavListItem>
             </Link>
@@ -143,27 +209,7 @@ function Navbar() {
             <Link to="/about" style={{ textDecoration: 'none' }}>
               <NavListItem>회원가입</NavListItem>
             </Link>
-          </NavList>
-
-          <ThemeProvider theme={theme}>
-            <IconButton
-              edge="start"
-              className={clsx(open && classes.hide)}
-              color="primary"
-              aria-label="menu"
-              onClick={toggleDrawer('right', !open)}
-            >
-              <MenuIcon style={{ fontSize: 50 }} />
-              <SwipeableDrawer
-                anchor={'right'}
-                open={open}
-                onClose={toggleDrawer('right', false)}
-                onOpen={toggleDrawer('right', true)}
-              >
-                {drawerList}
-              </SwipeableDrawer>
-            </IconButton>
-          </ThemeProvider>
+          </NavList> */}
         </Toolbar>
       </AppBar>
     </div>

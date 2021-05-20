@@ -3,12 +3,12 @@ import styled from 'styled-components';
 import { makeStyles } from '@material-ui/core/styles';
 
 const FooterBox = styled.div`
-  position: Fixed;
+  position: absolute;
   display: flex;
   width: 100%;
   height: 3.5rem;
   background-color: #323b48;
-  bottom: 0px;
+  bottom: 0;
   text-align: center;
   justify-content: center;
   align-items: center;

@@ -60,7 +60,9 @@ function Intro() {
     <div className={classes.root}>
       <Link className={classes.introElements} to="/home">
         <div className={classes.signBox}>
-          <h1 className={classes.signText}>Sherlock Odd</h1>
+          <h1 className={classes.signText} onClick={handleNavbarMode}>
+            Sherlock Odd
+          </h1>
 
           <img
             className={classes.door}

@@ -43,6 +43,14 @@
     'NotoSerifCJKkr-Regular';
   padding: 0;
   margin: 0;
+  /* box-sizing: border-box; */
+}
+
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
 }
 
 #root {
@@ -50,4 +58,7 @@
   margin-top: 5rem;
   border-top: 10px solid black;
   border-bottom: 10px solid black; */
+
+  position: relative;
+  min-height: 100%;
 }

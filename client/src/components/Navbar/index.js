@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import { NavLink as Link } from 'react-router-dom';
-
+import { useDispatch } from 'react-redux';
+import { navbarMode } from '../../actions';
 import styled from 'styled-components';
 import { makeStyles } from '@material-ui/core/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -56,7 +57,11 @@ const useStyles = makeStyles((theme) => ({
 function Navbar() {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
 
+  const handleNavbarMode = (mode) => {
+    dispatch(navbarMode(mode));
+  };
   const toggleDrawer = (anchor, open) => (event) => {
     if (
       event &&
@@ -77,18 +82,19 @@ function Navbar() {
       <Divider />
       <List>
         {[
-          ['홈', '/home'],
-          ['인트로', '/'],
-          ['셜록의 돋보기', '/analysis_clothes'],
-          ['왓슨의 믹스매치', '/analysis_color'],
-          ['베이커가 옷장', '/closet'],
-          ['옷장 커뮤니티', '/community'],
-          ['모리아티 솔루션', '/solution'],
+          ['홈', '/home', 1],
+          ['인트로', '/', 0],
+          ['셜록의 돋보기', '/analysis_clothes', 1],
+          ['왓슨의 믹스매치', '/analysis_color', 1],
+          ['베이커가 옷장', '/closet', 1],
+          ['옷장 커뮤니티', '/community', 1],
+          ['모리아티 솔루션', '/solution', 1],
         ].map((text, index) => (
           <Link
             key={index.toString()}
             to={`${text[1]}`}
             style={{ textDecoration: 'none' }}
+            onClick={() => handleNavbarMode(text[2])}
           >
             <ListItem button>
               <Typography
@@ -114,11 +120,15 @@ function Navbar() {
         }}
       >
         <Toolbar>
-          <Link to="/">
+          <Link to="/" onClick={() => handleNavbarMode(0)}>
             <img src="/images/navbar/logoImg.png" alt="logoImg" width="80vh" />
           </Link>
           <NavTitle>
-            <Link to="/" style={{ textDecoration: 'none', color: '#e2b063' }}>
+            <Link
+              to="/"
+              onClick={() => handleNavbarMode(0)}
+              style={{ textDecoration: 'none', color: '#e2b063' }}
+            >
               셜록옷즈
             </Link>
           </NavTitle>

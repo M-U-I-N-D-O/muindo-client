@@ -19,16 +19,18 @@ const useStyles = makeStyles((theme) => ({
   contentsBox: {
     display: 'flex',
     backgroundColor: 'white',
-    width: '768px',
+    width: '80vw',
+    maxWidth: '768px',
     alignItems: 'center',
     justifyContent: 'center',
     overflow: 'hidden',
+    paddingTop: '20px',
   },
   menuButton: {
     width: '220px',
     height: '220px',
     backgroundColor: 'blue',
-    margin: '60px 30px',
+    margin: '50px 30px',
   },
 }));
 

@@ -14,6 +14,7 @@ import SignUp from './pages/SignUp';
 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import Progress from './components/Progress';
 
 import './App.css';
 
@@ -33,6 +34,7 @@ function App() {
         <Route exact path="/solution" component={Solution} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={SignUp} />
+        <Route exact path="/loading" component={Progress} />
       </Switch>
       {navMode === 1 && <Footer />}
     </Router>

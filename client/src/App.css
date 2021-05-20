@@ -1,4 +1,56 @@
+@font-face {
+  font-family: 'Lobster';
+  src: url('//db.onlinewebfonts.com/t/051a058864c07ad03bd2950f3cdca8db.eot');
+  src: url('//db.onlinewebfonts.com/t/051a058864c07ad03bd2950f3cdca8db.eot?#iefix')
+      format('embedded-opentype'),
+    url('//db.onlinewebfonts.com/t/051a058864c07ad03bd2950f3cdca8db.woff2')
+      format('woff2'),
+    url('//db.onlinewebfonts.com/t/051a058864c07ad03bd2950f3cdca8db.woff')
+      format('woff'),
+    url('//db.onlinewebfonts.com/t/051a058864c07ad03bd2950f3cdca8db.ttf')
+      format('truetype'),
+    url('//db.onlinewebfonts.com/t/051a058864c07ad03bd2950f3cdca8db.svg#Lobster')
+      format('svg');
+}
+
+@font-face {
+  font-family: 'twaysky';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twaysky.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NEXON Lv1 Gothic OTF';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Eulyoo1945-SemiBold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2102-01@1.0/Eulyoo1945-SemiBold.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'DX-Montblanc';
+  src: url('fonts/DXMobrRExtraBold-KSCpc-EUC-H.ttf') format('truetype');
+}
+
 * {
+  font-family: 'twaysky', 'NEXON Lv1 Gothic OTF';
   padding: 0;
   margin: 0;
+}
+
+#root {
+  margin-bottom: 3.5rem;
+  margin-top: 5rem;
+  border-top: 10px solid black;
+  border-bottom: 10px solid black;
 }

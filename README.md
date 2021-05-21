@@ -1,10 +1,8 @@
->**※기획서 작성 양식입니다.**  
-**기획서 작성 시, 설명된 부분은 제거하고 기입해주세요.**
-
 ## 1. 웹 서비스 소개
 - 웹 서비스 주제에 대한 프로젝트명과 상세 설명(선정 배경 및 문제 정의)을 작성합니다.
-    - 예시) 오늘 뭐 입지? : 사용자의 이미지 업로드를 통한 스타일링 제시 서비스
 
+셜록 옷즈
+ 무신사를 활용한 패션 정보 제공 및 정보 교류 서비스
 
 
 ## 2. 스토리보드
@@ -15,7 +13,8 @@ https://www.figma.com/team_invite/redeem/bVTVmrw5JbqSa2dRVMeNPj
 
 ## 3. 프로젝트 구성
 1. 필요한 데이터셋
-    - 주제를 웹 서비스로 구현하기 위해 필요한 데이터셋을 수집합니다.
+    무신사 상품정보
+
 2. 기술 스택 및 라이브러리
     - 웹 서비스 제작을 위해 필요한 tool을 정리합니다.
 
@@ -30,6 +29,7 @@ https://www.figma.com/team_invite/redeem/bVTVmrw5JbqSa2dRVMeNPj
 ## 4. 구현 기능
 - 구현해야 하는 세부 기능들을 명세하고, 우선순위를 설정합니다. 이후 우선순위를 바탕으로 개발을 진행합니다.
 - 이후 구현된 기능에 알맞는 스크린샷, 영상 등을 추가합니다.
+
 1. **필수 구현**
     - 1순위 :
     - 2순위 :
@@ -43,7 +43,7 @@ https://www.figma.com/team_invite/redeem/bVTVmrw5JbqSa2dRVMeNPj
 
 ## 5. 와이어프레임
 - 디자인 혹은 개발을 시작하기 전, 발생될 문제를 미리 확인하기 위해 각 페이지별로 세부적으로 어떤 정보가 어떻게 들어갈지(구성 방식, 콘텐츠, 기능 등) 구성합니다.
-- 파워 포인트, [Moqups](https://moqups.com/), [UXPin](https://www.uxpin.com/) 등을 활용하여 작성할 수 있습니다.
+https://www.figma.com/team_invite/redeem/bVTVmrw5JbqSa2dRVMeNPj
 
 
 
@@ -57,11 +57,10 @@ https://www.figma.com/team_invite/redeem/bVTVmrw5JbqSa2dRVMeNPj
 
 | 이름 | 역할 |
 | ------ | ------ |
-| 정성헌 | PM & Back-End |
+| 정성헌 |  Back-End & AI |
 | 김수람  | Back-End |
-| 민유지 | Front-End |
+| 민유지 | PM &Front-End |
 | 위영민 | Front-End |
-| 이수민 | AI |
 
 
 

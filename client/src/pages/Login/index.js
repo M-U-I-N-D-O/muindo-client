@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
+import LogIn from './logIn';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,7 +34,18 @@ function Login() {
   return (
     <div className={classes.root}>
       <div className={classes.container}>
-        <div className={classes.contentsBox}></div>
+        <div className={classes.contentsBox}>
+          <form>
+            <input type="text" placeholder="아이디를 입력하세요" />
+            <input type="password" placeholder="비밀번호를 입력하세요" />
+            <div>
+              <button type="submit">로그인</button>
+            </div>
+            <div>
+              <LogIn />
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

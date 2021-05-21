@@ -1,8 +1,8 @@
 import React from 'react';
 
-function Abuot() {
+function About() {
   return (
-    <div>
+    <div style={{ paddingBottom: '3.5rem', paddingTop: '5rem' }}>
       <h1>This is About Page</h1>
       <h1>This is About Page</h1>
       <h1>This is About Page</h1>
@@ -40,4 +40,4 @@ function Abuot() {
   );
 }
 
-export default Abuot;
+export default About;

@@ -9,6 +9,8 @@ import AnalysisColor from './pages/AnalysisColor';
 import Closet from './pages/Closet';
 import Community from './pages/Community';
 import Solution from './pages/Solution';
+import Login from './pages/Login';
+import SignUp from './pages/SignUp';
 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -29,6 +31,8 @@ function App() {
         <Route exact path="/closet" component={Closet} />
         <Route exact path="/community" component={Community} />
         <Route exact path="/solution" component={Solution} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/signup" component={SignUp} />
       </Switch>
       {navMode === 1 && <Footer />}
     </Router>

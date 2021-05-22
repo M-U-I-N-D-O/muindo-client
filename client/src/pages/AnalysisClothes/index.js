@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
+import { useDropzone } from 'react-dropzone';
+import axios from 'axios';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import TopComment from '../../components/AnalysisClothes/topComment';
@@ -11,13 +13,51 @@ function AnalysisClothes() {
   const [fileUrl, setFileUrl] = useState(null);
   const [imgFile, setImgFile] = useState(null);
 
+  const onDrop = useCallback(async (acceptedFiles) => {
+    // 이미지 미리보기 처리(썸네일)
+    const imageFile = acceptedFiles[0];
+    setImgFile(imageFile);
+    const imageUrl = URL.createObjectURL(imageFile);
+    console.log('imageFile :', imageFile);
+    console.log('fileUrl :', imageUrl);
+    setFileUrl(imageUrl);
+
+    // ★ 아래에, handleFilePost() 실행하도록 할 것
+    // 사용자가 올린 정보를 확인해야 하므로 일단 서버로 전송합니다.
+    // 제목 같은 건 폼을 제출한 이후에 달아주도록 합시다.
+    // 폼데이터 구성
+    // const formData = new FormData();
+    // const config = {
+    //   header: {
+    //     'content-type': 'multipart/form-data',
+    //   },
+    // };
+    // formData.append('file', acceptedFiles[0]);
+    // // 배포시에는 지워줘야 합니다.
+    // axios.defaults.baseURL = 'http://localhost:5000/';
+    // await axios.post('/api/image/upload', formData, config).then((res) => {
+    //   console.log(res);
+    // });
+  }, []);
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+
+  const InputProps = {
+    ...getInputProps(),
+    multiple: false,
+    accept: 'image/gif, image/jpg, image/jpeg, image/png',
+  };
+  const RootProps = {
+    ...getRootProps(),
+  };
+
   function processImage(event) {
     if (event.target.files.length !== 0) {
       const imageFile = event.target.files[0];
       setImgFile(imageFile);
       const imageUrl = URL.createObjectURL(imageFile);
-      console.log('imageFile :', imageFile);
-      console.log(imageUrl);
+      //   console.log('imageFile :', imageFile);
+      //   console.log(imageUrl);
       setFileUrl(imageUrl);
     }
   }
@@ -36,9 +76,24 @@ function AnalysisClothes() {
   return (
     <Container>
       <TopComment />
+
       <ImageContainer>
         <ImageBox>
-          {fileUrl && <img src={fileUrl} alt={`${fileUrl}`} />}
+          {fileUrl ? (
+            <img src={fileUrl} alt={`${fileUrl}`} />
+          ) : (
+            <div
+              {...RootProps}
+              multiple={false}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+              }}
+            >
+              <input {...InputProps} />
+              <div>이미지를 드래그해서 놓아보세요.</div>
+            </div>
+          )}
         </ImageBox>
       </ImageContainer>
 
@@ -46,7 +101,7 @@ function AnalysisClothes() {
         {fileUrl === null && (
           <div style={{ padding: '2vh' }}>
             <LuxuryLabelBtn htmlFor="input-file">
-              이미지 등록하기
+              이미지 업로드하기
             </LuxuryLabelBtn>
             <input
               type="file"

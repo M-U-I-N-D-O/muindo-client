@@ -47,6 +47,7 @@ const LogIn = () => {
   });
 
   console.log('user', user);
+  console.log(firebase.auth());
 
   if (user) {
     return (

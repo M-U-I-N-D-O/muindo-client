@@ -16,14 +16,12 @@ const useStyles = makeStyles((theme) => ({
   },
   contentsBox: {
     display: 'flex',
-
     backgroundColor: 'white',
     width: '80vw',
     maxWidth: '768px',
     alignItems: 'center',
     justifyContent: 'center',
     overflow: 'hidden',
-    // paddingTop: '20px',
     paddingBottom: '3.5rem',
     paddingTop: '5rem',
   },

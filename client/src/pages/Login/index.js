@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import clsx from 'clsx';
 import { Link } from 'react-router-dom';
-import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -11,6 +9,7 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { makeStyles } from '@material-ui/core/styles';
 import LogIn from './logIn';
+import styled from 'styled-components';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -134,15 +133,15 @@ function Password() {
           />
         </FormControl>
         <br />
-
-        <button
+        <LuxuryBtn
+          htmlFor="submit"
           className={classes.logInBtn}
           type="submit"
           onClick={handleClick}
           disabled={!values.id || !values.password}
         >
           로그인
-        </button>
+        </LuxuryBtn>
       </form>
     </div>
   );
@@ -172,3 +171,43 @@ function Login() {
 }
 
 export default Login;
+
+const LuxuryBtn = styled.button`
+  display: inline-block;
+  box-sizing: border-box;
+  width: 13vw;
+  background: transparent;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 0.625rem;
+  letter-spacing: 0.3em;
+  color: rgba(223, 190, 106, 0.7);
+  border-radius: 0;
+  padding: 15px 20px 15px 20px;
+  transition: all 0.7s ease-out;
+  background: linear-gradient(
+    270deg,
+    rgba(223, 190, 106, 0.8),
+    rgba(146, 111, 52, 0.8),
+    rgba(34, 34, 34, 0),
+    rgba(34, 34, 34, 0)
+  );
+  background-position: 1% 50%;
+  background-size: 300% 300%;
+  text-decoration: none;
+  margin: 0.625rem;
+  border: none;
+  border: 1px solid rgba(223, 190, 106, 0.3);
+  :hover {
+    color: #fff;
+    border: 1px solid rgba(223, 190, 106, 0);
+    color: $white;
+    background-position: 99% 50%;
+  }
+  :disabled {
+    background-position: 1% 50%;
+    color: rgba(223, 190, 106, 0.7);
+    border: 1px solid rgba(223, 190, 106, 0.3);
+  }
+`;

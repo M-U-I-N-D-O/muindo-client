@@ -22,8 +22,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     overflow: 'hidden',
-    paddingBottom: '3.5rem',
-    paddingTop: '5rem',
   },
   menuButton: {
     display: 'flex',

@@ -31,17 +31,6 @@ const NavTitle = styled.h1`
   margin: 3px;
   text-align: center;
 `;
-const NavList = styled.ul`
-  list-style: none;
-`;
-const NavListItem = styled.li`
-  flex-grow: 1;
-  float: left;
-  margin-right: 2rem;
-  color: #e2b063;
-  font-size: 1.2rem;
-  cursor: pointer;
-`;
 
 const theme = createMuiTheme({
   palette: {
@@ -114,8 +103,14 @@ function Navbar() {
           icon={<MeetingRoomIcon />}
         />
 
-        {/* 로그아웃 버튼을 누를 시는, 1.토큰만료, 2.메인페이지로 전환 */}
-        <BottomNavigationAction label="Logout" icon={<NoMeetingRoomIcon />} />
+        {/* 로그아웃 버튼을 누를 시는, 1.토큰만료, 2.메인페이지(Home)로 전환 */}
+        <BottomNavigationAction
+          label="Logout"
+          onClick={() => {
+            history.push('/home');
+          }}
+          icon={<NoMeetingRoomIcon />}
+        />
         <BottomNavigationAction
           onClick={() => {
             history.push('/signup');
@@ -158,7 +153,6 @@ function Navbar() {
   return (
     <div className={classes.root}>
       <AppBar
-        // className={classes.navbar}
         position="fixed"
         style={{
           backgroundColor: '#323B48',
@@ -188,8 +182,8 @@ function Navbar() {
 
           <NavTitle>
             <Link
-              to="/"
-              onClick={() => handleNavbarMode(0)}
+              to="/home"
+              onClick={() => handleNavbarMode(1)}
               style={{ textDecoration: 'none', color: '#e2b063' }}
             >
               셜록옷즈
@@ -197,19 +191,8 @@ function Navbar() {
           </NavTitle>
 
           <Link to="/about" onClick={() => handleNavbarMode(1)}>
-            <img src="/images/navbar/logoImg.png" alt="logoImg" width="80vh" />
+            <img src="/images/navbar/logoImg.png" alt="logoImg" width="70vh" />
           </Link>
-          {/* <NavList>
-            <Link to="/about" style={{ textDecoration: 'none' }}>
-              <NavListItem>소개</NavListItem>
-            </Link>
-            <Link to="/about" style={{ textDecoration: 'none' }}>
-              <NavListItem>로그인</NavListItem>
-            </Link>
-            <Link to="/about" style={{ textDecoration: 'none' }}>
-              <NavListItem>회원가입</NavListItem>
-            </Link>
-          </NavList> */}
         </Toolbar>
       </AppBar>
     </div>

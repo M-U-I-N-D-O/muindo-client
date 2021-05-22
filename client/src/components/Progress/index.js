@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const ContainerBox = styled.div`
   display: flex;
   padding-bottom: 3.5rem;
-  padding-top: 20rem;
+  padding-top: 25vh;
   justify-content: center;
   align-items: center;
 `;

@@ -33,11 +33,11 @@ const signOut = () => {
       console.log('Successfully Signed Out');
     })
     .catch(function () {
-      console.log('Errror!');
+      console.log('Error!');
     });
 };
 
-const LogIn = () => {
+const FirebaseLogIn = () => {
   const [user, setUser] = useState(null);
   useEffect(() => {
     const authObserver = firebase.auth().onAuthStateChanged((user) => {
@@ -72,4 +72,4 @@ const LogIn = () => {
   }
 };
 
-export default LogIn;
+export default FirebaseLogIn;

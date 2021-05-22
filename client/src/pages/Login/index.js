@@ -8,7 +8,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { makeStyles } from '@material-ui/core/styles';
-import LogIn from './logIn';
+import FirebaseLogIn from './logIn';
 import styled from 'styled-components';
 
 const useStyles = makeStyles((theme) => ({
@@ -80,9 +80,14 @@ const useStyles = makeStyles((theme) => ({
   signInContents: {
     display: 'inline-block',
   },
+  subLink: {
+    textDecoration: 'none',
+    fontSize: '13px',
+    color: 'grey',
+  },
 }));
 
-function Password() {
+function SelfLogin() {
   const classes = useStyles();
 
   const [values, setValues] = useState({
@@ -132,6 +137,18 @@ function Password() {
             className={classes.password}
           />
         </FormControl>
+        <div>
+          <Link to="/home" className={classes.subLink}>
+            아이디/
+          </Link>
+          <Link to="/" className={classes.subLink}>
+            비밀번호 찾기
+          </Link>
+          &nbsp;&nbsp;
+          <Link to="/signup" className={classes.subLink}>
+            회원가입
+          </Link>
+        </div>
         <br />
         <LuxuryBtn
           htmlFor="submit"
@@ -159,10 +176,18 @@ function Login() {
             alt=""
             src="/images/login/login_logo.png"
           />
-          <div>
-            <Password />
+          <br />
+          <br />
+          <br />
 
-            <LogIn />
+          <div>
+            <SelfLogin />
+          </div>
+          <br />
+          <br />
+          <br />
+          <div>
+            <FirebaseLogIn />
           </div>
         </div>
       </div>
@@ -175,17 +200,21 @@ export default Login;
 const LuxuryBtn = styled.button`
   display: inline-block;
   box-sizing: border-box;
-  width: 13vw;
+  max-width: 240px;
+  min-width: 190px;
+  width: 15vw;
   background: transparent;
   text-transform: uppercase;
   font-weight: 500;
   font-style: normal;
-  font-size: 0.625rem;
+  font-size: 15px;
   letter-spacing: 0.3em;
   color: rgba(223, 190, 106, 0.7);
   border-radius: 0;
   padding: 15px 20px 15px 20px;
   transition: all 0.7s ease-out;
+  cursor: pointer;
+
   background: linear-gradient(
     270deg,
     rgba(223, 190, 106, 0.8),
@@ -209,5 +238,6 @@ const LuxuryBtn = styled.button`
     background-position: 1% 50%;
     color: rgba(223, 190, 106, 0.7);
     border: 1px solid rgba(223, 190, 106, 0.3);
+    cursor: default;
   }
 `;

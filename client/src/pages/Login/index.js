@@ -13,28 +13,32 @@ import styled from 'styled-components';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: '100vh',
-    backgroundImage: `url(${'/images/home/sherlock_wall.png'})`,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-  },
-  container: {
-    display: 'flex',
-    height: '100%',
-    justifyContent: 'center',
-  },
-  contentsBox: {
+    // height: '100vh',
+    // backgroundImage: `url(${'/images/home/sherlock_wall.png'})`,
+    // backgroundRepeat: 'no-repeat',
+    // backgroundSize: 'cover',
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
     justifyContent: 'center',
-    paddingBottom: '3.5rem',
-    paddingTop: '5rem',
-    backgroundColor: 'white',
-    width: '80vw',
-    maxWidth: '1024px',
-    overflow: 'auto',
+    alignItems: 'center',
   },
+  // container: {
+  //   display: 'flex',
+  //   height: '100%',
+  //   justifyContent: 'center',
+  // },
+  // contentsBox: {
+  //   display: 'flex',
+  //   flexDirection: 'column',
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  //   paddingBottom: '3.5rem',
+  //   paddingTop: '5rem',
+  //   backgroundColor: 'white',
+  //   width: '80vw',
+  //   maxWidth: '1024px',
+  //   overflow: 'auto',
+  // },
   logoImg: {
     minHeight: '90px',
     minWidth: '70px',
@@ -157,25 +161,27 @@ function Login() {
 
   return (
     <div className={classes.root}>
-      <div className={classes.container}>
-        <div className={classes.contentsBox}>
-          <img className={classes.logoImg} alt="" src="/images/login/login_logo.png" />
-          <br />
-          <br />
-          <br />
+      <img className={classes.logoImg} alt="" src="/images/login/login_logo.png" />
+      <br />
+      <br />
+      <br />
 
-          <div>
-            <SelfLogin />
-          </div>
-          <br />
-          <br />
-          <br />
-          <div>
-            <FirebaseLogIn />
-          </div>
-        </div>
+      <div>
+        <SelfLogin />
+      </div>
+      <br />
+      <br />
+      <br />
+      <div>
+        <FirebaseLogIn />
       </div>
     </div>
+    // <div className={classes.root}>
+    //   <div className={classes.container}>
+    //     <div className={classes.contentsBox}>
+    //     </div>
+    //   </div>
+    // </div>
   );
 }
 

@@ -20,11 +20,7 @@ function Progress() {
   return (
     <ContainerBox>
       <LoadingBox>
-        <img
-          src="/images/progress/loading.gif"
-          alt="progress-gif"
-          style={{ backgroundColor: 'none' }}
-        />
+        <img src="/images/progress/loading.gif" alt="progress-gif" style={{ backgroundColor: 'none' }} />
         <LoadingText>분석중...🕵️‍♂️</LoadingText>
       </LoadingBox>
     </ContainerBox>

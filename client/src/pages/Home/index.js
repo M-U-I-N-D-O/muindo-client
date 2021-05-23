@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     backgroundColor: 'white',
     width: '80vw',
-    maxWidth: '768px',
+    maxWidth: '1024px',
     alignItems: 'center',
     justifyContent: 'center',
     overflow: 'hidden',

@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: '5rem',
     backgroundColor: 'white',
     width: '80vw',
-    maxWidth: '768px',
+    maxWidth: '1024px',
     overflow: 'auto',
   },
   logoImg: {
@@ -114,11 +114,7 @@ function SelfLogin() {
       <form className={classes.logInForm}>
         <FormControl>
           <InputLabel>ID</InputLabel>
-          <Input
-            value={values.id}
-            onChange={handleChange('id')}
-            className={classes.id}
-          />
+          <Input value={values.id} onChange={handleChange('id')} className={classes.id} />
         </FormControl>
 
         <FormControl>
@@ -129,9 +125,7 @@ function SelfLogin() {
             onChange={handleChange('password')}
             endAdornment={
               <InputAdornment position="end">
-                <IconButton onClick={handleClickShowPassword}>
-                  {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
+                <IconButton onClick={handleClickShowPassword}>{values.showPassword ? <Visibility /> : <VisibilityOff />}</IconButton>
               </InputAdornment>
             }
             className={classes.password}
@@ -150,13 +144,7 @@ function SelfLogin() {
           </Link>
         </div>
         <br />
-        <LuxuryBtn
-          htmlFor="submit"
-          className={classes.logInBtn}
-          type="submit"
-          onClick={handleClick}
-          disabled={!values.id || !values.password}
-        >
+        <LuxuryBtn htmlFor="submit" className={classes.logInBtn} type="submit" onClick={handleClick} disabled={!values.id || !values.password}>
           로그인
         </LuxuryBtn>
       </form>
@@ -171,11 +159,7 @@ function Login() {
     <div className={classes.root}>
       <div className={classes.container}>
         <div className={classes.contentsBox}>
-          <img
-            className={classes.logoImg}
-            alt=""
-            src="/images/login/login_logo.png"
-          />
+          <img className={classes.logoImg} alt="" src="/images/login/login_logo.png" />
           <br />
           <br />
           <br />
@@ -215,13 +199,7 @@ const LuxuryBtn = styled.button`
   transition: all 0.7s ease-out;
   cursor: pointer;
 
-  background: linear-gradient(
-    270deg,
-    rgba(223, 190, 106, 0.8),
-    rgba(146, 111, 52, 0.8),
-    rgba(34, 34, 34, 0),
-    rgba(34, 34, 34, 0)
-  );
+  background: linear-gradient(270deg, rgba(223, 190, 106, 0.8), rgba(146, 111, 52, 0.8), rgba(34, 34, 34, 0), rgba(34, 34, 34, 0));
   background-position: 1% 50%;
   background-size: 300% 300%;
   text-decoration: none;

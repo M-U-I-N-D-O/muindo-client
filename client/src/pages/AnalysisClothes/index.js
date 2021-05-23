@@ -1,13 +1,18 @@
 import React, { useState, useCallback } from 'react';
+import { useHistory } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { analysisResultImg } from '../../actions';
+import axios from 'axios';
+
 import { useDropzone } from 'react-dropzone';
 import { Gluejar } from '@charliewilco/gluejar';
-import axios from 'axios';
-import { useHistory } from 'react-router';
+
 import styled from 'styled-components';
 import TopComment from '../../components/AnalysisClothes/topComment';
 
 function AnalysisClothes() {
   const history = useHistory();
+  const dispatch = useDispatch();
   // fileUrl = 파일객체
   // imgFile = file이라는 이름의 arument에 file객체를 담고, API서버(flask)로 POST요청
   // 두 정보모두 state, redux에 저장할 필요가 있다면, 변경할 것
@@ -29,6 +34,7 @@ function AnalysisClothes() {
     console.log('드래그 앤 드랍 imageFile :', imageFile);
     console.log('드래그 앤 드랍 fileUrl :', imageUrl);
     setFileUrl(imageUrl);
+    dispatch(analysisResultImg(`${imageUrl}`));
 
     // ★ 아래에, handleFilePost() 실행하도록 할 것
     // 사용자가 올린 정보를 확인해야 하므로 일단 서버로 전송합니다.
@@ -68,6 +74,7 @@ function AnalysisClothes() {
       console.log('첨부하기 imageFile :', imageFile);
       console.log('첨부하기 imageUrl :', imageUrl);
       setFileUrl(imageUrl);
+      dispatch(analysisResultImg(`${imageUrl}`));
     }
   }
 
@@ -110,7 +117,7 @@ function AnalysisClothes() {
 
   return (
     <Container>
-      <TopComment />
+      <TopComment comment={'당신의 스타일을 분석해보겠습니다.'} />
       <ImageContainer>
         {modeButton && (
           <ImageBox>
@@ -141,12 +148,7 @@ function AnalysisClothes() {
                 }}
                 onError={(err) => console.error(err)}
               >
-                {({ images }) =>
-                  images.length > 0 &&
-                  images.map((image) => (
-                    <img src={image} key={image} alt={`Pasted: ${image}`} />
-                  ))
-                }
+                {({ images }) => images.length > 0 && images.map((image) => <img src={image} key={image} alt={`Pasted: ${image}`} />)}
               </Gluejar>
             ) : (
               <div
@@ -167,16 +169,8 @@ function AnalysisClothes() {
           <div style={{ padding: '2vh' }}>
             {modeButton && (
               <div>
-                <LuxuryLabelBtn htmlFor="input-file">
-                  이미지 업로드하기
-                </LuxuryLabelBtn>
-                <input
-                  type="file"
-                  id="input-file"
-                  accept="image/*"
-                  onChange={processImage}
-                  style={{ display: 'none' }}
-                />
+                <LuxuryLabelBtn htmlFor="input-file">이미지 업로드하기</LuxuryLabelBtn>
+                <input type="file" id="input-file" accept="image/*" onChange={processImage} style={{ display: 'none' }} />
               </div>
             )}
             <div>
@@ -260,13 +254,7 @@ const LuxuryLabelBtn = styled.label`
   border-radius: 0;
   padding: 15px 20px 15px 20px;
   transition: all 0.7s ease-out;
-  background: linear-gradient(
-    270deg,
-    rgba(223, 190, 106, 0.8),
-    rgba(146, 111, 52, 0.8),
-    rgba(34, 34, 34, 0),
-    rgba(34, 34, 34, 0)
-  );
+  background: linear-gradient(270deg, rgba(223, 190, 106, 0.8), rgba(146, 111, 52, 0.8), rgba(34, 34, 34, 0), rgba(34, 34, 34, 0));
   background-position: 1% 50%;
   background-size: 300% 300%;
   text-decoration: none;
@@ -295,13 +283,7 @@ const LuxuryBtn = styled.button`
   border-radius: 0;
   padding: 15px 20px 15px 20px;
   transition: all 0.7s ease-out;
-  background: linear-gradient(
-    270deg,
-    rgba(223, 190, 106, 0.8),
-    rgba(146, 111, 52, 0.8),
-    rgba(34, 34, 34, 0),
-    rgba(34, 34, 34, 0)
-  );
+  background: linear-gradient(270deg, rgba(223, 190, 106, 0.8), rgba(146, 111, 52, 0.8), rgba(34, 34, 34, 0), rgba(34, 34, 34, 0));
   background-position: 1% 50%;
   background-size: 300% 300%;
   text-decoration: none;

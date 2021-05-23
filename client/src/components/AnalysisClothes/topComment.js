@@ -14,19 +14,14 @@ const TopText = styled.h1`
   text-align: center;
 `;
 
-function TopComment() {
+function TopComment(props) {
   return (
     <ContainerBox>
       <div>
-        <img
-          src="/images/common/sherlock_icon.jpg"
-          alt="sherlock_icon"
-          style={{ width: '4vw' }}
-        />
+        <img src="/images/common/sherlock_icon.jpg" alt="sherlock_icon" style={{ width: '4vw' }} />
       </div>
       <div style={{ margin: 'auto 0' }}>
-        <TopText>당신이 스타일을 분석해보겠습니다.</TopText>
-        <TopText>이미지를 첨부해주세요.</TopText>
+        <TopText>{props.comment}</TopText>
       </div>
     </ContainerBox>
   );

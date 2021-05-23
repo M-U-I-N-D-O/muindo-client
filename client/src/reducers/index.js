@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import navbarReducer from './navbar';
+import analysisClothesReducer from './analysisClothes';
 
 const persistConfig = {
   key: 'root',
@@ -14,6 +15,7 @@ const persistConfig = {
 
 const allReducer = combineReducers({
   navbar: navbarReducer,
+  analysisClothes: analysisClothesReducer,
 });
 
 export default persistReducer(persistConfig, allReducer);

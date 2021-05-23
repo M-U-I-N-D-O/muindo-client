@@ -38,11 +38,7 @@ function App() {
           <Route exact path="/home" component={Home} />
           <Route exact path="/about" component={About} />
           <Route exact path="/analysis_clothes" component={AnalysisClothes} />
-          <Route
-            exact
-            path="/analysis_clothes/result"
-            component={AnalysisClothesResult}
-          />
+          <Route exact path="/analysis_clothes/result" component={AnalysisClothesResult} />
           <Route exact path="/analysis_color" component={AnalysisColor} />
           <Route exact path="/closet" component={Closet} />
           <Route exact path="/community" component={Community} />

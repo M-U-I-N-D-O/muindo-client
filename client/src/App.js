@@ -17,6 +17,8 @@ import SignUp from './pages/SignUp';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Progress from './components/Progress';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import './App.css';
 
 // 중앙 영역 max-width를 768px로 설정할 경우
@@ -42,6 +44,7 @@ const ContentsBox = styled.div`
   width: 80vw;
   max-width: 1024px;
   justify-content: center;
+  overflow: auto;
 `;
 
 // 수정 전 원본
@@ -50,7 +53,6 @@ const Container = styled.div`
   padding-top: 5rem;
   padding-bottom: 3.5rem;
   justify-content: center;
-  align-items: center;
 `;
 
 function App() {
@@ -79,7 +81,7 @@ function App() {
           </Container1>
         </Root> */}
 
-        {/* <Container>
+        <Container>
           <Route exact path="/home" component={Home} />
           <Route exact path="/about" component={About} />
           <Route exact path="/analysis_clothes" component={AnalysisClothes} />
@@ -91,8 +93,8 @@ function App() {
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/loading" component={Progress} />
-        </Container> */}
-        <Root>
+        </Container>
+        {/* <Root>
           <Container1>
             <ContentsBox>
               <Route exact path="/home" component={Home} />
@@ -108,7 +110,7 @@ function App() {
               <Route exact path="/loading" component={Progress} />
             </ContentsBox>
           </Container1>
-        </Root>
+        </Root> */}
       </Switch>
 
       {navMode === 1 && <Footer />}

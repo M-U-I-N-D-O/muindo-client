@@ -16,13 +16,15 @@ const useStyles = makeStyles((theme) => ({
   // },
   contentsBox: {
     display: 'flex',
-    backgroundColor: 'white',
-    width: '80vw',
-    maxWidth: '1024px',
+
+    // backgroundColor: 'white',
+    // width: '80vw',
+    // maxWidth: '1024px',
     alignItems: 'center',
     justifyContent: 'center',
     overflow: 'hidden',
   },
+  box: { display: 'flex' },
   menuButton: {
     display: 'flex',
     maxWidth: '250px',
@@ -82,9 +84,9 @@ function Home() {
     // <div className={classes.root}>
     // <div className={classes.container}>
     //
-    <>
-      <div className={classes.contentsBox}>
-        <div>
+    <div className={classes.contentsBox}>
+      <div className={classes.box}>
+        <div className={classes.box1}>
           <Link to="/analysis_clothes" style={{ textDecoration: 'none' }}>
             <MenuButton imgUrl={sherlockImg} menuName={sherlockMenuName} />
           </Link>
@@ -92,7 +94,7 @@ function Home() {
             <MenuButton imgUrl={bakerImg} menuName={bakerMenuName} />
           </Link>
         </div>
-        <div>
+        <div className={classes.box1}>
           <Link to="/analysis_color" style={{ textDecoration: 'none' }}>
             <MenuButton imgUrl={watsonImg} menuName={watsonMenuName} />
           </Link>
@@ -102,7 +104,7 @@ function Home() {
           </Link>
         </div>
       </div>
-    </>
+    </div>
     // </div>
     // </div>
     // </div>

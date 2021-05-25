@@ -123,40 +123,56 @@ const useStyles = makeStyles((theme) => ({
 function Closet() {
   const classes = useStyles();
   const { openModal, setOpenModal } = useContext(ModalContext);
-  console.log({ openModal });
+  const { modalMode, setModalMode } = useContext(ModalContext);
   // const handleOpen = () => {
   //   setOpenModal(true);
   // };
+
+  const handleClick = (event) => {
+    setModalMode(event.target.id);
+    setOpenModal(true);
+  };
+
   return (
     <div className={classes.root}>
-      <ClosetModal />
+      <ClosetModal data={modalMode} />
 
       <div className={classes.title}>
         <TopComment comment={'옷장에 옷을 넣어보세요.'} />
       </div>
       <div className={classes.closetContainer}>
         <div className={classes.leftClothesContainer}>
-          <div className={classes.hatContainer} onClick={() => setOpenModal(true)}>
+          <div className={classes.hatContainer} onClick={handleClick} id="hat">
             {/* <img style={{ maxHeight: '90px', width: '8.5vw', minWidth: '65px' }} alt="" src="../images/closet/closet_closed.jpg" /> */}
-            <div className={classes.clothesText}>모자</div>
+            <div className={classes.clothesText} id="hat">
+              모자
+            </div>
           </div>
-          <div className={classes.topContainer} onClick={() => setOpenModal(true)}>
+          <div className={classes.topContainer} onClick={handleClick} id="top">
             {/* <img style={{ maxHeight: '230px', width: '9vw', minWidth: '90px' }} alt="" src="../images/closet/closet_closed.jpg" /> */}
-            <div className={classes.clothesText}>상의</div>
+            <div className={classes.clothesText} id="top">
+              상의
+            </div>
           </div>
-          <div className={classes.bottomContainer} onClick={() => setOpenModal(true)}>
+          <div className={classes.bottomContainer} onClick={handleClick} id="bottom">
             {/* <img style={{ maxHeight: '260px', width: '9vw', minWidth: '90px' }} alt="" src="../images/closet/closet_closed.jpg" /> */}
-            <div className={classes.clothesText}>하의</div>
+            <div className={classes.clothesText} id="bottom">
+              하의
+            </div>
           </div>
-          <div className={classes.shoesContainer} onClick={() => setOpenModal(true)}>
+          <div className={classes.shoesContainer} onClick={handleClick} id="shoes">
             {/* <img style={{ maxHeight: '140px', width: '9vw', minWidth: '70px' }} alt="" src="../images/closet/closet_closed.jpg" /> */}
-            <div className={classes.clothesText}>신발</div>
+            <div className={classes.clothesText} id="shoes">
+              신발
+            </div>
           </div>
         </div>
         <div className={classes.rightClothesContainer}>
-          <div className={classes.bagContainer} onClick={() => setOpenModal(true)}>
+          <div className={classes.bagContainer} onClick={handleClick} id="bag">
             {/* <img style={{ maxHeight: '190px', width: '9vw', minWidth: '85px' }} alt="" src="../images/closet/closet_closed.jpg" /> */}
-            <div className={classes.clothesText}>가방</div>
+            <div className={classes.clothesText} id="bag">
+              가방
+            </div>
           </div>
         </div>
       </div>

@@ -56,6 +56,7 @@ const Container2 = styled.div`
 function App() {
   const navMode = useSelector((state) => state.navbar.switch);
   const [openModal, setOpenModal] = useState(false);
+  const [modalMode, setModalMode] = useState('');
 
   return (
     //  <Container>
@@ -72,7 +73,7 @@ function App() {
     //   <Route exact path="/loading" component={Progress} />
     // </Container>
     <div>
-      <ModalContext.Provider value={{ openModal, setOpenModal }}>
+      <ModalContext.Provider value={{ openModal, setOpenModal, modalMode, setModalMode }}>
         <Router>
           {navMode === 1 && <Navbar />}
 

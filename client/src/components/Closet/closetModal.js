@@ -46,9 +46,11 @@ const useStyles = makeStyles((theme) => ({
 function ModalCloseBtn() {
   const classes = useStyles();
   const { setOpenModal } = useContext(ModalContext);
+  const { setModalMode } = useContext(ModalContext);
   const handleClose = () => {
     setOpenModal(false);
   };
+  //   console.log({ modalMode });
 
   return (
     <ThemeProvider theme={theme}>
@@ -62,6 +64,7 @@ function ModalCloseBtn() {
 export default function ClosetModal({ data }) {
   const classes = useStyles();
   const { openModal, setOpenModal } = useContext(ModalContext);
+  const { modalMode, setModalMode } = useContext(ModalContext);
 
   //   const [openModal, setOpenModal] = useState(false);
   //   const handleOpen = () => {
@@ -85,7 +88,7 @@ export default function ClosetModal({ data }) {
       >
         {/* <Fade in={openModal}> */}
         <div className={classes.modal}>
-          <div>{}</div>
+          <div>{modalMode}</div>
           <div className={classes.modalCloseBtn}>
             <ModalCloseBtn />
           </div>

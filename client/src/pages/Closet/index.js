@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import TopComment from '../../components/AnalysisClothes/topComment';
 import styled from 'styled-components';
+import Modal from '@material-ui/core/Modal';
+import IconButton from '@material-ui/core/IconButton';
+
+import CloseIcon from '@material-ui/icons/Close';
+import Fade from '@material-ui/core/Fade';
+import Backdrop from '@material-ui/core/Backdrop';
+import ClosetModal from '../../components/Closet/closetModal';
+
+import { ModalContext } from '../../App';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
     width: '80vw',
     maxWidth: '1024px',
     minHeight: ' calc(100vh - 8.5rem)',
-    backgroundColor: '#ececec',
     // height: '80vw',
   },
   title: {
@@ -34,8 +42,6 @@ const useStyles = makeStyles((theme) => ({
     minWidth: '90px',
     width: '66vw',
     border: 'solid 1px',
-    // maxHeight: '600px',
-    // minHeight: '100px',
     minHeight: '57vh',
   },
   btnBox: {
@@ -43,163 +49,6 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: 'wrap',
     justifyContent: 'center',
   },
-  // clothesContainer: {
-  //   display: 'flex',
-  //   maxWidth: '200px',
-  //   minWidth: '155px',
-  //   // maxHeight: '',
-  //   // minHeight: '100px',
-  //   width: '10vw',
-  //   minHeight: '80px',
-  //   alignItems: 'center',
-  //   border: 'solid 2px',
-  //   margin: '20px',
-
-  //   // padding: '3px',
-  //   justifyContent: 'center',
-  // },
-
-  // clothesContainer1: {
-  //   display: 'flex',
-  //   maxWidth: '200px',
-  //   minWidth: '100px',
-  //   // maxHeight: '',
-  //   // minHeight: '100px',
-  //   width: '10vw',
-  //   minHeight: '80px',
-  //   alignItems: 'center',
-  //   border: 'solid 2px',
-  //   margin: '20px',
-  //   fontSize: '30px',
-  //   // padding: '3px',
-  //   justifyContent: 'center',
-  // },
-  // clothesContainer2: {
-  //   display: 'flex',
-  //   maxWidth: '200px',
-  //   minWidth: '100px',
-  //   // maxHeight: '',
-  //   // minHeight: '100px',
-  //   width: '10vw',
-  //   minHeight: '150px',
-  //   alignItems: 'center',
-  //   border: 'solid 2px',
-  //   margin: '20px',
-  //   fontSize: '30px',
-
-  //   // padding: '3px',
-  //   justifyContent: 'center',
-  // },
-
-  // clothesContainer3: {
-  //   display: 'flex',
-  //   maxWidth: '200px',
-  //   minWidth: '100px',
-  //   // maxHeight: '',
-  //   // minHeight: '100px',
-  //   width: '10vw',
-  //   minHeight: '200px',
-  //   alignItems: 'center',
-  //   border: 'solid 2px',
-  //   margin: '20px',
-  //   fontSize: '30px',
-
-  //   // padding: '3px',
-  //   justifyContent: 'center',
-  // },
-
-  // clothesContainer4: {
-  //   display: 'flex',
-  //   maxWidth: '200px',
-  //   minWidth: '100px',
-  //   // maxHeight: '',
-  //   // minHeight: '100px',
-  //   width: '10vw',
-  //   minHeight: '100px',
-  //   alignItems: 'center',
-  //   border: 'solid 2px',
-  //   margin: '20px',
-  //   fontSize: '30px',
-
-  //   // padding: '3px',
-  //   justifyContent: 'center',
-  // },
-  // clothesContainer5: {
-  //   display: 'flex',
-  //   maxWidth: '200px',
-  //   minWidth: '100px',
-  //   // maxHeight: '',
-  //   // minHeight: '100px',
-  //   width: '10vw',
-  //   minHeight: '160px',
-  //   alignItems: 'center',
-  //   border: 'solid 2px',
-  //   margin: '20px',
-  //   fontSize: '30px',
-
-  //   // padding: '3px',
-  //   justifyContent: 'center',
-  // },
-
-  // clothesBox: {
-  //   margin: '40px',
-  //   fontSize: '2vw',
-  //   border: 'solid 1px',
-  // },
-  // clothesHat: {
-  //   display: 'flex',
-  //   justifyContent: 'center',
-  //   // padding: '20px 40px',
-  //   // width: '100%',
-  //   // width: '10vw',
-  //   height: '10vw',
-  //   maxHeight: '130px',
-  //   // minHeight: '50px',
-  //   // alignItems: 'center',
-  //   minHeight: '80px',
-  //   // border: 'solid 1px',
-  //   // textAlign: 'center',
-  // },
-  // clothesTop: {
-  //   display: 'flex',
-  //   justifyContent: 'center',
-  //   height: '18vw',
-
-  //   // padding: '60px 50px',
-  //   maxHeight: '250px',
-
-  //   // border: 'solid 1px',
-  // },
-  // clothesBottom: {
-  //   display: 'flex',
-  //   justifyContent: 'center',
-
-  //   // padding: '60px 50px',
-  //   maxHeight: '300px',
-
-  //   // border: 'solid 1px',
-  // },
-  // clothesShoes: {
-  //   display: 'flex',
-  //   justifyContent: 'center',
-
-  //   // padding: '20px 60px',
-  //   maxHeight: '130px',
-
-  //   // border: 'solid 1px',
-  // },
-  // clothesBag: {
-  //   display: 'flex',
-  //   justifyContent: 'center',
-
-  //   // padding: '20px 60px',
-  //   maxHeight: '180px',
-
-  //   // border: 'solid 1px',
-  // },
-  // d: {
-  //   // display: 'flex',
-  // },
   leftClothesContainer: {
     display: 'flex',
     flexDirection: 'column',
@@ -210,6 +59,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     // maxWidth: '200px',
+
     minWidth: '70px',
     minHeight: '70px',
     width: '10vw',
@@ -265,40 +115,48 @@ const useStyles = makeStyles((theme) => ({
     border: 'solid 2px',
     margin: '20px 0px',
   },
+  clothesText: {
+    fontSize: '23.5px',
+  },
 }));
 
 function Closet() {
   const classes = useStyles();
-
+  const { openModal, setOpenModal } = useContext(ModalContext);
+  console.log({ openModal });
+  // const handleOpen = () => {
+  //   setOpenModal(true);
+  // };
   return (
     <div className={classes.root}>
+      <ClosetModal />
+
       <div className={classes.title}>
         <TopComment comment={'옷장에 옷을 넣어보세요.'} />
       </div>
-
       <div className={classes.closetContainer}>
         <div className={classes.leftClothesContainer}>
-          <div className={classes.hatContainer}>
-            <img style={{ maxHeight: '90px', width: '8.5vw', minWidth: '65px' }} alt="" src="../images/closet/closet_closed.jpg" />
-            {/* <div>모자</div> */}
+          <div className={classes.hatContainer} onClick={() => setOpenModal(true)}>
+            {/* <img style={{ maxHeight: '90px', width: '8.5vw', minWidth: '65px' }} alt="" src="../images/closet/closet_closed.jpg" /> */}
+            <div className={classes.clothesText}>모자</div>
           </div>
-          <div className={classes.topContainer}>
-            <img style={{ maxHeight: '230px', width: '9vw', minWidth: '90px' }} alt="" src="../images/closet/closet_closed.jpg" />
-            {/* <div>상의</div> */}
+          <div className={classes.topContainer} onClick={() => setOpenModal(true)}>
+            {/* <img style={{ maxHeight: '230px', width: '9vw', minWidth: '90px' }} alt="" src="../images/closet/closet_closed.jpg" /> */}
+            <div className={classes.clothesText}>상의</div>
           </div>
-          <div className={classes.bottomContainer}>
-            <img style={{ maxHeight: '260px', width: '9vw', minWidth: '90px' }} alt="" src="../images/closet/closet_closed.jpg" />
-            {/* <div>상의</div> */}
+          <div className={classes.bottomContainer} onClick={() => setOpenModal(true)}>
+            {/* <img style={{ maxHeight: '260px', width: '9vw', minWidth: '90px' }} alt="" src="../images/closet/closet_closed.jpg" /> */}
+            <div className={classes.clothesText}>하의</div>
           </div>
-          <div className={classes.shoesContainer}>
-            <img style={{ maxHeight: '140px', width: '9vw', minWidth: '70px' }} alt="" src="../images/closet/closet_closed.jpg" />
-            {/* <div>상의</div> */}
+          <div className={classes.shoesContainer} onClick={() => setOpenModal(true)}>
+            {/* <img style={{ maxHeight: '140px', width: '9vw', minWidth: '70px' }} alt="" src="../images/closet/closet_closed.jpg" /> */}
+            <div className={classes.clothesText}>신발</div>
           </div>
         </div>
         <div className={classes.rightClothesContainer}>
-          <div className={classes.bagContainer}>
-            <img style={{ maxHeight: '190px', width: '9vw', minWidth: '85px' }} alt="" src="../images/closet/closet_closed.jpg" />
-            {/* <div>가방</div> */}
+          <div className={classes.bagContainer} onClick={() => setOpenModal(true)}>
+            {/* <img style={{ maxHeight: '190px', width: '9vw', minWidth: '85px' }} alt="" src="../images/closet/closet_closed.jpg" /> */}
+            <div className={classes.clothesText}>가방</div>
           </div>
         </div>
       </div>

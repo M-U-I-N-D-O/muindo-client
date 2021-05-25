@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { createContext, useState } from 'react';
+
 import Intro from './pages/Intro';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -19,6 +21,7 @@ import Footer from './components/Footer';
 import Progress from './components/Progress';
 import './App.css';
 
+const ModalContext = createContext({});
 // 중앙 영역 max-width를 1024px 설정할 경우
 
 const Container = styled.div`
@@ -52,6 +55,8 @@ const Container2 = styled.div`
 
 function App() {
   const navMode = useSelector((state) => state.navbar.switch);
+  const [openModal, setOpenModal] = useState(false);
+
   return (
     //  <Container>
     //   <Route exact path="/home" component={Home} />
@@ -66,32 +71,36 @@ function App() {
     //   <Route exact path="/signup" component={SignUp} />
     //   <Route exact path="/loading" component={Progress} />
     // </Container>
+    <div>
+      <ModalContext.Provider value={{ openModal, setOpenModal }}>
+        <Router>
+          {navMode === 1 && <Navbar />}
 
-    <Router>
-      {navMode === 1 && <Navbar />}
+          <Switch>
+            <Route exact path="/" component={Intro} />
+            <Container>
+              <Container2>
+                <Route exact path="/home" component={Home} />
+                <Route exact path="/about" component={About} />
+                <Route exact path="/analysis_clothes" component={AnalysisClothes} />
+                <Route exact path="/analysis_clothes/result" component={AnalysisClothesResult} />
+                <Route exact path="/analysis_color" component={AnalysisColor} />
+                <Route exact path="/closet" component={Closet} />
+                <Route exact path="/community" component={Community} />
+                <Route exact path="/solution" component={Solution} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/signup" component={SignUp} />
+                <Route exact path="/loading" component={Progress} />
+              </Container2>
+            </Container>
+          </Switch>
 
-      <Switch>
-        <Route exact path="/" component={Intro} />
-        <Container>
-          <Container2>
-            <Route exact path="/home" component={Home} />
-            <Route exact path="/about" component={About} />
-            <Route exact path="/analysis_clothes" component={AnalysisClothes} />
-            <Route exact path="/analysis_clothes/result" component={AnalysisClothesResult} />
-            <Route exact path="/analysis_color" component={AnalysisColor} />
-            <Route exact path="/closet" component={Closet} />
-            <Route exact path="/community" component={Community} />
-            <Route exact path="/solution" component={Solution} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/signup" component={SignUp} />
-            <Route exact path="/loading" component={Progress} />
-          </Container2>
-        </Container>
-      </Switch>
-
-      {navMode === 1 && <Footer />}
-    </Router>
+          {navMode === 1 && <Footer />}
+        </Router>
+      </ModalContext.Provider>
+    </div>
   );
 }
+export { ModalContext };
 
 export default App;

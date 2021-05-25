@@ -8,6 +8,17 @@ import Backdrop from '@material-ui/core/Backdrop';
 import styled from 'styled-components';
 import { ModalContext } from '../../App';
 
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#e2b063',
+    },
+  },
+});
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -40,9 +51,11 @@ function ModalCloseBtn() {
   };
 
   return (
-    <IconButton aria-label="close" className={classes.closeButton} onClick={handleClose}>
-      <CloseIcon />
-    </IconButton>
+    <ThemeProvider theme={theme}>
+      <IconButton aria-label="close" className={classes.closeButton} onClick={handleClose}>
+        <CloseIcon />
+      </IconButton>
+    </ThemeProvider>
   );
 }
 

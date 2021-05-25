@@ -161,7 +161,7 @@ function SelfLogin() {
           </Link>
         </div>
         <br />
-        <LuxuryBtn htmlFor="submit" className={classes.logInBtn} type="submit" onClick={handleClick} disabled={!values.id || !values.password}>
+        <LuxuryBtn htmlFor="submit" type="submit" onClick={handleClick} disabled={!values.id || !values.password}>
           로그인
         </LuxuryBtn>
       </form>

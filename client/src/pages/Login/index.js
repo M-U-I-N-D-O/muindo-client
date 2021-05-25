@@ -11,6 +11,17 @@ import { makeStyles } from '@material-ui/core/styles';
 import FirebaseLogIn from './logIn';
 import styled from 'styled-components';
 
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#e2b063',
+    },
+  },
+});
+
 const useStyles = makeStyles((theme) => ({
   root: {
     // height: '100vh',
@@ -129,7 +140,9 @@ function SelfLogin() {
             onChange={handleChange('password')}
             endAdornment={
               <InputAdornment position="end">
-                <IconButton onClick={handleClickShowPassword}>{values.showPassword ? <Visibility /> : <VisibilityOff />}</IconButton>
+                <ThemeProvider theme={theme}>
+                  <IconButton onClick={handleClickShowPassword}>{values.showPassword ? <Visibility /> : <VisibilityOff />}</IconButton>
+                </ThemeProvider>
               </InputAdornment>
             }
             className={classes.password}

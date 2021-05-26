@@ -9,8 +9,6 @@ import Slider from 'react-slick';
 import TopComment from '../../components/AnalysisClothes/topComment';
 import StylesSelecter from '../../components/Solution/stylesSelecter';
 
-import './carousel.css';
-
 function Solution() {
   const comment = '당신의 스타일 취향기반으로 멋있는 룩을 추천해보겠습니다.';
   const dispatch = useDispatch();
@@ -20,6 +18,7 @@ function Solution() {
   const sliderRef = useRef(null);
   const settings = {
     dots: true,
+    arrows: false,
     Infinite: false,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -113,7 +112,7 @@ export default Solution;
 
 const Container = styled.div``;
 const SliderContainer = styled.div`
-  height: 50vh;
+  height: 450px;
   /* border: 2px solid black; */
   overflow: auto;
 `;

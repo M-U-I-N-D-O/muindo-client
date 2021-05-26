@@ -11,6 +11,7 @@ import AnalysisColor from './pages/AnalysisColor';
 import Closet from './pages/Closet';
 import Community from './pages/Community';
 import Solution from './pages/Solution';
+import SolutionResult from './pages/Solution/solutionResult';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 
@@ -90,6 +91,7 @@ function App() {
           <Route exact path="/closet" component={Closet} />
           <Route exact path="/community" component={Community} />
           <Route exact path="/solution" component={Solution} />
+          <Route exact path="/solution/result" component={SolutionResult} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/loading" component={Progress} />

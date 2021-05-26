@@ -124,13 +124,27 @@ function Closet() {
   const classes = useStyles();
   const { openModal, setOpenModal } = useContext(ModalContext);
   const { modalMode, setModalMode } = useContext(ModalContext);
+  const { closetImg, setClosetImg } = useContext(ModalContext);
+
   // const handleOpen = () => {
   //   setOpenModal(true);
   // };
 
-  const handleClick = (event) => {
+  const handleClothesContainerClick = (event) => {
     setModalMode(event.target.id);
     setOpenModal(true);
+    console.log(modalMode);
+    console.log(closetImg);
+  };
+
+  const handleEraseAllButtonClick = () => {
+    setClosetImg({
+      hat: '',
+      top: '',
+      bottom: '',
+      shoes: '',
+      bag: '',
+    });
   };
 
   return (
@@ -142,42 +156,57 @@ function Closet() {
       </div>
       <div className={classes.closetContainer}>
         <div className={classes.leftClothesContainer}>
-          <div className={classes.hatContainer} onClick={handleClick} id="hat">
-            {/* <img style={{ maxHeight: '90px', width: '8.5vw', minWidth: '65px' }} alt="" src="../images/closet/closet_closed.jpg" /> */}
-            <div className={classes.clothesText} id="hat">
-              모자
-            </div>
+          <div className={classes.hatContainer} onClick={handleClothesContainerClick} id="hat">
+            {closetImg['hat'] ? (
+              <img style={{ maxHeight: '90px', width: '8.5vw', minWidth: '65px' }} alt="" src={closetImg['hat']} id="hat" />
+            ) : (
+              <div className={classes.clothesText} id="hat">
+                모자
+              </div>
+            )}
           </div>
-          <div className={classes.topContainer} onClick={handleClick} id="top">
-            {/* <img style={{ maxHeight: '230px', width: '9vw', minWidth: '90px' }} alt="" src="../images/closet/closet_closed.jpg" /> */}
-            <div className={classes.clothesText} id="top">
-              상의
-            </div>
+          <div className={classes.topContainer} onClick={handleClothesContainerClick} id="top">
+            {closetImg['top'] ? (
+              <img style={{ maxHeight: '230px', width: '9vw', minWidth: '90px' }} alt="" src={closetImg['top']} id="top" />
+            ) : (
+              <div className={classes.clothesText} id="top">
+                상의
+              </div>
+            )}
           </div>
-          <div className={classes.bottomContainer} onClick={handleClick} id="bottom">
-            {/* <img style={{ maxHeight: '260px', width: '9vw', minWidth: '90px' }} alt="" src="../images/closet/closet_closed.jpg" /> */}
-            <div className={classes.clothesText} id="bottom">
-              하의
-            </div>
+          <div className={classes.bottomContainer} onClick={handleClothesContainerClick} id="bottom">
+            {closetImg['bottom'] ? (
+              <img style={{ maxHeight: '260px', width: '9vw', minWidth: '90px' }} alt="" src={closetImg['bottom']} id="bottom" />
+            ) : (
+              <div className={classes.clothesText} id="bottom">
+                하의
+              </div>
+            )}
           </div>
-          <div className={classes.shoesContainer} onClick={handleClick} id="shoes">
-            {/* <img style={{ maxHeight: '140px', width: '9vw', minWidth: '70px' }} alt="" src="../images/closet/closet_closed.jpg" /> */}
-            <div className={classes.clothesText} id="shoes">
-              신발
-            </div>
+          <div className={classes.shoesContainer} onClick={handleClothesContainerClick} id="shoes">
+            {closetImg['shoes'] ? (
+              <img style={{ maxHeight: '140px', width: '9vw', minWidth: '70px' }} alt="" src={closetImg['shoes']} id="shoes" />
+            ) : (
+              <div className={classes.clothesText} id="shoes">
+                신발
+              </div>
+            )}
           </div>
         </div>
         <div className={classes.rightClothesContainer}>
-          <div className={classes.bagContainer} onClick={handleClick} id="bag">
-            {/* <img style={{ maxHeight: '190px', width: '9vw', minWidth: '85px' }} alt="" src="../images/closet/closet_closed.jpg" /> */}
-            <div className={classes.clothesText} id="bag">
-              가방
-            </div>
+          <div className={classes.bagContainer} onClick={handleClothesContainerClick} id="bag">
+            {closetImg['bag'] ? (
+              <img style={{ maxHeight: '190px', width: '9vw', minWidth: '85px' }} alt="" src={closetImg['bag']} id="bag" />
+            ) : (
+              <div className={classes.clothesText} id="bag">
+                가방
+              </div>
+            )}
           </div>
         </div>
       </div>
       <div className={classes.btnBox}>
-        <LuxuryBtn>모두 지우기</LuxuryBtn>
+        <LuxuryBtn onClick={handleEraseAllButtonClick}>모두 지우기</LuxuryBtn>
         <LuxuryBtn>{'이미지 \n 다운로드'}</LuxuryBtn>
         <LuxuryBtn>{'커뮤니티 \n등록'}</LuxuryBtn>
         <LuxuryBtn>{'카카오톡 \n공유하기'}</LuxuryBtn>

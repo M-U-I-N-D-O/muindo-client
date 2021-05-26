@@ -11,6 +11,10 @@ import { ModalContext } from '../../App';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 
+import { Data } from '../../data/data.json';
+// import { Data } from '../../../public/images/closet/closet_bag.jpg';
+// import {  } from '../Closet/closet_bag.jpg';
+
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -65,13 +69,23 @@ export default function ClosetModal({ data }) {
   const classes = useStyles();
   const { openModal, setOpenModal } = useContext(ModalContext);
   const { modalMode, setModalMode } = useContext(ModalContext);
+  const { closetImg, setClosetImg } = useContext(ModalContext);
 
+  // console.log(Data[modalMode]);
   //   const [openModal, setOpenModal] = useState(false);
   //   const handleOpen = () => {
   //     setOpenModal(true);
   //   };
   const handleClose = () => {
     setOpenModal(false);
+  };
+  console.log(modalMode);
+  const handleImageSelect = (event) => {
+    setClosetImg({
+      ...closetImg,
+      [modalMode]: event.target.src,
+    });
+    console.log(closetImg);
   };
 
   return (
@@ -89,6 +103,15 @@ export default function ClosetModal({ data }) {
         {/* <Fade in={openModal}> */}
         <div className={classes.modal}>
           <div>{modalMode}</div>
+          <div>{Data[modalMode]}</div>
+          {modalMode ? (
+            <div>
+              <img alt="" src={Data[modalMode][0]} style={{ width: '50px', height: '50px' }} onClick={handleImageSelect} />
+              <img alt="" src={Data[modalMode][1]} style={{ width: '50px', height: '50px' }} onClick={handleImageSelect} />
+            </div>
+          ) : (
+            <div>ㅎㅇㅎㅇ</div>
+          )}
           <div className={classes.modalCloseBtn}>
             <ModalCloseBtn />
           </div>

@@ -57,6 +57,13 @@ function App() {
   const navMode = useSelector((state) => state.navbar.switch);
   const [openModal, setOpenModal] = useState(false);
   const [modalMode, setModalMode] = useState('');
+  const [closetImg, setClosetImg] = useState({
+    hat: '',
+    top: '',
+    bottom: '',
+    shoes: '',
+    bag: '',
+  });
 
   return (
     //  <Container>
@@ -73,7 +80,7 @@ function App() {
     //   <Route exact path="/loading" component={Progress} />
     // </Container>
     <div>
-      <ModalContext.Provider value={{ openModal, setOpenModal, modalMode, setModalMode }}>
+      <ModalContext.Provider value={{ openModal, setOpenModal, modalMode, setModalMode, closetImg, setClosetImg }}>
         <Router>
           {navMode === 1 && <Navbar />}
 

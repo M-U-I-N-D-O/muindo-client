@@ -1,6 +1,9 @@
 .thumbnail-slider-wrap {
   margin-top: 15px;
   height: 85px;
+  padding: 0 1vw;
+  margin-left: 7vw;
+  margin-right: 7vw;
 }
 .thumbnail-slider-wrap .slick-track .slick-slide {
   text-align: center;

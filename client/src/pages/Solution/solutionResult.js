@@ -1,19 +1,48 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink as Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { solutionModalMode } from '../../actions';
 import styled from 'styled-components';
 
 import TopComment from '../../components/AnalysisClothes/topComment';
 import ResultSlider from '../../components/Solution/resultSlider';
+import AllItemsModal from '../../components/Solution/allItemsModal';
+import DetailItemModal from '../../components/Solution/detailItemModal';
+import axios from 'axios';
 
 function SolutionResult() {
+  const modalMode = useSelector((state) => state.solution.modalMode);
+  const dispatch = useDispatch();
+  const [allItems, setAllItems] = useState([]);
+
+  useEffect(() => {
+    try {
+      axios.get('http://localhost:3000/data/solution.json').then((response) => {
+        setAllItems(response.data.data);
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
+
+  if (allItems.length === 0) return null;
   return (
     <div>
       <TopComment comment="당신의 취향을 분석한 추천 룩입니다." />
+
       <ResultSlider />
 
+      {modalMode === 1 && <AllItemsModal allItems={allItems} />}
+      {modalMode === 2 && <DetailItemModal />}
       <ButtonContainer>
         <div>
-          <LuxuryBtn>한번에 보기</LuxuryBtn>
+          <LuxuryBtn
+            onClick={() => {
+              dispatch(solutionModalMode(1));
+            }}
+          >
+            한번에 보기
+          </LuxuryBtn>
         </div>
         <div>
           <Link to="/solution">

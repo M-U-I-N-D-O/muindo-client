@@ -33,3 +33,9 @@ export const solutionCounter = (count) => {
     count,
   };
 };
+export const solutionModalMode = (mode) => {
+  return {
+    type: 'USER_MODAL_MODE',
+    mode,
+  };
+};

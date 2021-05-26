@@ -18,9 +18,10 @@ function ResultSlider() {
     ['/images/solution/man.png', 'man3'],
     ['/images/solution/girl.png', 'girl3'],
     ['/images/solution/man.png', 'man4'],
-    ['/images/solution/girl.png', 'girl4'],
-    ['/images/solution/man.png', 'man5'],
-    ['/images/solution/girl.png', 'girl5'],
+    ['/images/solution/solutionresult.png', 'test-image'],
+    ['/images/solution/solutionresult.png', 'test-image'],
+    ['/images/solution/solutionresult.png', 'test-image'],
+    ['/images/solution/solutionresult.png', 'test-image'],
   ];
   useEffect(() => {
     setNav1(slider1);
@@ -55,21 +56,15 @@ function ResultSlider() {
               <SlideBox>
                 <SlideButton onClick={() => console.log('클릭')}>
                   <SlideItemBox>
-                    <div>
-                      <img src={`${slide[0]}`} alt={`${slide[1]}`} />
-                      <label className="slick-slide-label">{slide[1]}</label>
-                    </div>
+                    <img src={`${slide[0]}`} alt={`${slide[1]}`} />
+
                     {/* <h2 className="slick-slide-title">{slide.title}</h2> */}
                   </SlideItemBox>
+                  <label className="slick-slide-label">{slide[1]}</label>
                 </SlideButton>
               </SlideBox>
             </SlideContainer>
           ))}
-          <SlideButton onClick={() => console.log('클릭')}>
-            <SlideContainer>
-              <h1>LAST</h1>
-            </SlideContainer>
-          </SlideButton>
         </Slider>
         <div className="thumbnail-slider-wrap">
           <Slider {...settingsThumbs} asNavFor={nav1} ref={(slider) => setSlider2(slider)}>
@@ -147,27 +142,29 @@ const SlideBox = styled.div`
 `;
 const SlideItemBox = styled.div`
   display: flex;
-  width: 220px;
-  height: 330px;
-  /* border: 2px solid black; */
+  width: 235px;
+  height: 335px;
+  /* border: 10px solid black; */
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+  overflow: hidden;
 `;
 const SlideButton = styled.button`
   background-color: white;
-  width: 225px;
-  height: 335px;
-  border: 2px solid black;
-  &:hover {
-    background-color: #e2b063;
+  width: 250px;
+  height: 350px;
+  border: 7px solid black;
+  z-index: 1;
+  :hover {
+    border-color: red;
   }
 `;
 const ThumbnailSlideBox = styled.div`
   display: flex;
   width: 220px;
-  height: 100px;
-  border: 2px solid black;
+  height: 130px;
+  /* border: 2px solid black; */
   justify-content: center;
   align-items: center;
-  overflow: hidden;
 `;

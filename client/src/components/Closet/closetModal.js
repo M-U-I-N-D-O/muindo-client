@@ -1,4 +1,4 @@
-import React, { useState, createContext, useContext } from 'react';
+import React, { useState, createContext, useContext, useLocation } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import IconButton from '@material-ui/core/IconButton';
@@ -6,6 +6,8 @@ import CloseIcon from '@material-ui/icons/Close';
 import Fade from '@material-ui/core/Fade';
 import Backdrop from '@material-ui/core/Backdrop';
 import styled from 'styled-components';
+import TopComment from '../../components/AnalysisClothes/topComment';
+
 import { ModalContext } from '../../App';
 
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -39,12 +41,57 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: 'white',
     maxWidth: '800px',
     minWidth: '70px',
-    minHeight: '68vh',
+    minHeight: '73vh',
+    height: '78vh',
     width: '66vw',
-    // marginRight: '25px',
+    flexDirection: 'column',
     marginTop: '50px',
+    border: 'solid 3px',
+    borderRadius: '25px',
+    // overflow: 'auto',
   },
-  modalCloseBtn: {},
+  modalCloseBtn: {
+    width: '5vw',
+    height: '5vh',
+  },
+  modalTopContents: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  hiddenBtn: {
+    visibility: 'hidden',
+  },
+  modalBtnContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+  },
+  modalBottomContent: {
+    display: 'flex',
+    flexDirection: 'column',
+    // overflow: 'auto',
+    height: '62vh',
+
+    // justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalClothesContainer: {
+    display: 'flex',
+    overflow: 'auto',
+    width: '37vw',
+    // height: '70vh',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    marginTop: '20px',
+    justifyContent: 'center',
+    // width: '100%',
+    // flexDirection: 'column',
+  },
+  modalImg: {
+    width: '8vw',
+    height: '11vh',
+    margin: '10px 40px',
+  },
 }));
 
 function ModalCloseBtn() {
@@ -58,8 +105,8 @@ function ModalCloseBtn() {
 
   return (
     <ThemeProvider theme={theme}>
-      <IconButton aria-label="close" className={classes.closeButton} onClick={handleClose}>
-        <CloseIcon />
+      <IconButton onClick={handleClose}>
+        <CloseIcon className={classes.modalCloseBtn} />
       </IconButton>
     </ThemeProvider>
   );
@@ -86,6 +133,7 @@ export default function ClosetModal({ data }) {
       [modalMode]: event.target.src,
     });
     console.log(closetImg);
+    setOpenModal(false);
   };
 
   return (
@@ -100,24 +148,83 @@ export default function ClosetModal({ data }) {
           timeout: 500,
         }}
       >
-        {/* <Fade in={openModal}> */}
-        <div className={classes.modal}>
-          <div>{modalMode}</div>
-          <div>{Data[modalMode]}</div>
-          {modalMode ? (
-            <div>
-              <img alt="" src={Data[modalMode][0]} style={{ width: '50px', height: '50px' }} onClick={handleImageSelect} />
-              <img alt="" src={Data[modalMode][1]} style={{ width: '50px', height: '50px' }} onClick={handleImageSelect} />
+        <Fade in={openModal}>
+          <div className={classes.modal}>
+            {/* <div>{modalMode}</div>
+            <div>{Data[modalMode]}</div> */}
+
+            <div className={classes.modalTopContents}>
+              <div className={classes.hiddenBtn}>
+                <ModalCloseBtn />
+              </div>
+              <TopComment comment={'마음에 드는 옷을 골라보세요.'} />
+              <div>
+                <ModalCloseBtn />
+              </div>
             </div>
-          ) : (
-            <div>ㅎㅇㅎㅇ</div>
-          )}
-          <div className={classes.modalCloseBtn}>
-            <ModalCloseBtn />
+
+            {modalMode ? (
+              <div className={classes.modalBottomContent}>
+                <div className={classes.modalBtnContainer}>
+                  <LuxuryBtn>소분류</LuxuryBtn>
+                  <LuxuryBtn>가격</LuxuryBtn>
+                  <LuxuryBtn>색상</LuxuryBtn>
+                  <LuxuryBtn>브랜드</LuxuryBtn>
+                </div>
+                <div className={classes.modalClothesContainer}>
+                  {Data[modalMode].map(function (image, i) {
+                    return <img className={classes.modalImg} alt="" src={Data[modalMode][i]} onClick={handleImageSelect} />;
+                  })}
+                </div>
+                {/* <img alt="" src={Data[modalMode][0]} style={{ width: '50px', height: '50px' }} onClick={handleImageSelect} />
+                <img alt="" src={Data[modalMode][1]} style={{ width: '50px', height: '50px' }} onClick={handleImageSelect} /> */}
+              </div>
+            ) : (
+              <div></div>
+            )}
           </div>
-        </div>
-        {/* </Fade> */}
+        </Fade>
       </Modal>
     </div>
   );
 }
+
+const LuxuryBtn = styled.button`
+  display: inline-block;
+  box-sizing: border-box;
+  max-width: 160px;
+  min-width: 100px;
+  width: 5vw;
+  background: transparent;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 15px;
+  letter-spacing: 0.3em;
+  color: rgba(223, 190, 106, 0.7);
+  border-radius: 0;
+  padding: 15px 20px 15px 20px;
+  transition: all 0.7s ease-out;
+  cursor: pointer;
+  white-space: pre-wrap;
+  text-align: center;
+  background: linear-gradient(270deg, rgba(223, 190, 106, 0.8), rgba(146, 111, 52, 0.8), rgba(34, 34, 34, 0), rgba(34, 34, 34, 0));
+  background-position: 1% 50%;
+  background-size: 300% 300%;
+  text-decoration: none;
+  margin: 5px 15px 5px 15px;
+  border: none;
+  border: 1px solid rgba(223, 190, 106, 0.3);
+  :hover {
+    color: #fff;
+    border: 1px solid rgba(223, 190, 106, 0);
+    color: $white;
+    background-position: 99% 50%;
+  }
+  :disabled {
+    background-position: 1% 50%;
+    color: rgba(223, 190, 106, 0.7);
+    border: 1px solid rgba(223, 190, 106, 0.3);
+    cursor: default;
+  }
+`;

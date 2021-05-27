@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { solutionModalMode } from '../../actions';
+import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -9,10 +10,37 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
+const PAGE_NUMBER = 1;
+
 function AllItemsModal(props) {
   const modalMode = useSelector((state) => state.solution.modalMode);
   const dispatch = useDispatch();
 
+  const [page, setPage] = useState(PAGE_NUMBER);
+
+  useEffect(() => {
+    try {
+      // axios.get('http://localhost:3000/data/solution.json').then((response) => {
+      //   setAllItems(response.data.data);
+      // });
+      console.log(page);
+    } catch (err) {
+      console.log(err);
+    }
+  }, [page]);
+
+  // const scrollToEnd = () => {
+  //   setPage(page + 1);
+  // };
+  // window.onscroll = function () {
+  //   // 스크롤 최하단에 도달했을 때, 적용
+  //   if (
+  //     document.querySelector('#scroll-dialog-description').innerHeight + document.querySelector('#scroll-dialog-description').scrollTop >=
+  //     document.querySelector('#scroll-dialog-description').offsetHeight * 0.95
+  //   ) {
+  //     scrollToEnd();
+  //   }
+  // };
   // const handleClose = () => {
   //   dispatch(solutionModalMode(0));
   // };
@@ -24,6 +52,7 @@ function AllItemsModal(props) {
         scroll={'paper'}
         aria-labelledby="scroll-dialog-title"
         aria-describedby="scroll-dialog-description"
+        maxWidth="md"
       >
         <DialogTitle style={{ textAlign: 'center' }} id="scroll-dialog-title">
           추천 룩(Look) 리스트

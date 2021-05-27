@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { solutionModalMode } from '../../actions';
 import Slider from 'react-slick';
 import './resultslider.css';
 
 function ResultSlider() {
+  const dispatch = useDispatch();
   const [nav1, setNav1] = useState(null);
   const [nav2, setNav2] = useState(null);
   const [slider1, setSlider1] = useState(null);
@@ -54,7 +56,12 @@ function ResultSlider() {
           {slidesData.map((slide, index) => (
             <SlideContainer key={index}>
               <SlideBox>
-                <SlideButton onClick={() => console.log('클릭')}>
+                <SlideButton
+                  onClick={() => {
+                    console.log('클릭');
+                    dispatch(solutionModalMode(2));
+                  }}
+                >
                   <SlideItemBox>
                     <img src={`${slide[0]}`} alt={`${slide[1]}`} />
 

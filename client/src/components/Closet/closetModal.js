@@ -126,7 +126,7 @@ export default function ClosetModal({ data }) {
   const handleClose = () => {
     setOpenClosetModal(false);
   };
-  console.log(modalMode);
+  // console.log(modalMode);
   const handleImageSelect = (event) => {
     setClosetImg({
       ...closetImg,

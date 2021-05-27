@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   closetContainer: {
-    backgroundColor: '#ced3e3',
+    // backgroundColor: '#ced3e3',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -93,6 +93,7 @@ const useStyles = makeStyles((theme) => ({
 function ClosetLookBook() {
   const classes = useStyles();
   const history = useHistory();
+  const { lookBookColorSelect, setLookBookColorSelect } = useContext(ModalContext);
 
   const { openClosetModal, setOpenClosetModal } = useContext(ModalContext);
   const { lookBookColorModal, setLookBookColorModal } = useContext(ModalContext);
@@ -107,6 +108,7 @@ function ClosetLookBook() {
   const handleColorChangeClick = (event) => {
     // setModalMode(event.target.id);
     setLookBookColorModal(true);
+    // console.log(lookBookColorModal);
     // console.log(modalMode);
     // console.log(closetImg);
   };
@@ -147,13 +149,13 @@ function ClosetLookBook() {
 
   return (
     <div className={classes.root}>
-      <ClosetModal data={modalMode} />
+      {/* <ClosetModal data={modalMode} /> */}
       <ColorChangeModal />
 
       <div className={classes.title}>
         <TopComment comment={'옷장에 옷을 넣어보세요.'} />
       </div>
-      <div className={classes.closetContainer} ref={captureRef}>
+      <div className={classes.closetContainer} style={{ backgroundColor: lookBookColorSelect }} ref={captureRef}>
         <div className={classes.modalImgContainer}>
           <div className={classes.modalImgHat}>
             {closetImg['hat'] ? <img style={{ width: '8vw', height: '11vh' }} alt="" src={closetImg['hat']} id="hat" /> : <div></div>}

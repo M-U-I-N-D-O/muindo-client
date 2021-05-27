@@ -8,15 +8,11 @@ import Backdrop from '@material-ui/core/Backdrop';
 import styled from 'styled-components';
 import TopComment from '../AnalysisClothes/topComment';
 
+import ColorSelect from './colorPalette';
 import { ModalContext } from '../../App';
 
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
-import html2canvas from 'html2canvas';
-
-import { Data } from '../../data/data.json';
-// import { Data } from '../../../public/images/closet/closet_bag.jpg';
-// import {  } from '../Closet/closet_bag.jpg';
 
 const theme = createMuiTheme({
   palette: {
@@ -62,78 +58,40 @@ const useStyles = makeStyles((theme) => ({
   hiddenBtn: {
     visibility: 'hidden',
   },
-  modalBtnContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    flexWrap: 'wrap',
-  },
-  modalBottomContent: {
+  modalMiddleContents: {
     display: 'flex',
     flexDirection: 'column',
-    // overflow: 'auto',
+    overflow: 'auto',
     // width: '40vw',
-    height: '55vh',
-    border: 'solid 1px',
+    height: '50vh',
+    // border: 'solid 1px',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  modalImgContainer: {
-    border: 'solid 5px',
-    width: '30vw',
-    height: '48vh',
-    position: 'relative',
-  },
-  modalImgHat: {
-    width: '6vw',
-    height: '9vh',
-    position: 'absolute',
-    top: '6vh',
-    left: '6vw',
-    // zIndex: 10,
-  },
-  modalImgTop: {
-    width: '9vw',
-    height: '16vh',
-    position: 'absolute',
-    top: '11vh',
-    left: '10.5vw',
-    // margin: '0 0 0 100px',
-  },
-  modalImgBottom: {
-    width: '7vw',
-    height: '20vh',
-    position: 'absolute',
-    bottom: '4vh',
-    left: '5vw',
-  },
-  modalImgShoes: {
-    width: '7vw',
-    height: '10vh',
-    position: 'absolute',
-    bottom: '6.5vh',
-    right: '8vw',
-  },
-  modalImgBag: {
-    width: '6.5vw',
-    height: '13vh',
-    position: 'absolute',
-    top: '19vh',
-    right: '4.5vw',
+  modalBottomContents: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: '2vw',
   },
 }));
 
 function ModalCloseBtn() {
   const classes = useStyles();
-  const { lookBookColorModal, setLookBookColorModal } = useContext(ModalContext);
-  const { setModalMode } = useContext(ModalContext);
+  const { lookBookColorSelect, setLookBookColorSelect } = useContext(ModalContext);
 
-  const handleClose = () => {
+  const { lookBookColorModal, setLookBookColorModal } = useContext(ModalContext);
+  // const { setModalMode } = useContext(ModalContext);
+
+  const handleLookBookColorClose = () => {
     setLookBookColorModal(false);
+    console.log(lookBookColorModal);
+    console.log(lookBookColorSelect);
   };
 
   return (
     <ThemeProvider theme={theme}>
-      <IconButton onClick={handleClose}>
+      <IconButton onClick={handleLookBookColorClose}>
         <CloseIcon className={classes.modalCloseBtn} />
       </IconButton>
     </ThemeProvider>
@@ -143,10 +101,12 @@ function ModalCloseBtn() {
 export default function ColorChangeModal({ data }) {
   const classes = useStyles();
   const { lookBookColorModal, setLookBookColorModal } = useContext(ModalContext);
+  const { lookBookColorSelect, setLookBookColorSelect } = useContext(ModalContext);
   const { closetImg, setClosetImg } = useContext(ModalContext);
 
-  const handleClose = () => {
+  const handleLookBookColorClose = () => {
     setLookBookColorModal(false);
+    console.log(lookBookColorModal);
   };
 
   return (
@@ -154,7 +114,7 @@ export default function ColorChangeModal({ data }) {
       <Modal
         className={classes.root}
         open={lookBookColorModal}
-        onClose={handleClose}
+        onClose={handleLookBookColorClose}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
@@ -173,8 +133,11 @@ export default function ColorChangeModal({ data }) {
               </div>
             </div>
 
-            <div className={classes.modalBottomContent}>
-              <div className={classes.modalImgContainer}></div>
+            <div className={classes.modalMiddleContents}>
+              <ColorSelect />
+            </div>
+            <div className={classes.modalBottomContents}>
+              <LuxuryBtn onClick={handleLookBookColorClose}>결정</LuxuryBtn>
             </div>
           </div>
         </Fade>
@@ -188,7 +151,8 @@ const LuxuryBtn = styled.button`
   box-sizing: border-box;
   max-width: 160px;
   min-width: 100px;
-  width: 5vw;
+  width: 8vw;
+  /* height: 5vh; */
   background: transparent;
   text-transform: uppercase;
   font-weight: 500;

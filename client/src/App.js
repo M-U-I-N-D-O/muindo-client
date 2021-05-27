@@ -58,6 +58,7 @@ function App() {
   const navMode = useSelector((state) => state.navbar.switch);
   const [openClosetModal, setOpenClosetModal] = useState(false);
   const [lookBookColorModal, setLookBookColorModal] = useState(false);
+  const [lookBookColorSelect, setLookBookColorSelect] = useState('');
   const [modalMode, setModalMode] = useState('');
   const [closetImg, setClosetImg] = useState({
     hat: '',
@@ -92,6 +93,8 @@ function App() {
           setClosetImg,
           lookBookColorModal,
           setLookBookColorModal,
+          lookBookColorSelect,
+          setLookBookColorSelect,
         }}
       >
         <Router>

@@ -112,7 +112,7 @@ function ModalCloseBtn() {
   );
 }
 
-export default function ClosetModal({ data }) {
+export default function ImageDownloadModal({ data }) {
   const classes = useStyles();
   const { openModal, setOpenModal } = useContext(ModalContext);
   const { modalMode, setModalMode } = useContext(ModalContext);

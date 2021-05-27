@@ -32,7 +32,7 @@ function SolutionResult() {
 
       <ResultSlider />
 
-      {modalMode === 1 && <AllItemsModal allItems={allItems} />}
+      {modalMode === 1 && <AllItemsModal />}
       {modalMode === 2 && <DetailItemModal />}
       <ButtonContainer>
         <div>

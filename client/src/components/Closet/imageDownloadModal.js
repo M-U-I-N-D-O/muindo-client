@@ -1,4 +1,4 @@
-import React, { useState, createContext, useContext, useLocation } from 'react';
+import React, { useState, useCallback, useContext, useEffect, useRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import IconButton from '@material-ui/core/IconButton';
@@ -12,6 +12,7 @@ import { ModalContext } from '../../App';
 
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
+import html2canvas from 'html2canvas';
 
 import { Data } from '../../data/data.json';
 // import { Data } from '../../../public/images/closet/closet_bag.jpg';
@@ -70,27 +71,54 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     // overflow: 'auto',
-    height: '62vh',
-
-    // justifyContent: 'center',
-    alignItems: 'center',
-  },
-  modalClothesContainer: {
-    display: 'flex',
-    overflow: 'auto',
-    width: '37vw',
-    // height: '70vh',
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    marginTop: '20px',
+    // width: '40vw',
+    height: '55vh',
+    border: 'solid 1px',
     justifyContent: 'center',
-    // width: '100%',
-    // flexDirection: 'column',
+    alignItems: 'center',
   },
-  modalImg: {
-    width: '8vw',
-    height: '11vh',
-    margin: '10px 40px',
+  modalImgContainer: {
+    // border: 'solid 5px',
+    width: '30vw',
+    height: '48vh',
+    position: 'relative',
+  },
+  modalImgHat: {
+    width: '6vw',
+    height: '9vh',
+    position: 'absolute',
+    top: '6vh',
+    left: '6vw',
+    // zIndex: 10,
+  },
+  modalImgTop: {
+    width: '9vw',
+    height: '16vh',
+    position: 'absolute',
+    top: '11vh',
+    left: '10.5vw',
+    // margin: '0 0 0 100px',
+  },
+  modalImgBottom: {
+    width: '7vw',
+    height: '20vh',
+    position: 'absolute',
+    bottom: '4vh',
+    left: '5vw',
+  },
+  modalImgShoes: {
+    width: '7vw',
+    height: '10vh',
+    position: 'absolute',
+    bottom: '6.5vh',
+    right: '8vw',
+  },
+  modalImgBag: {
+    width: '6.5vw',
+    height: '13vh',
+    position: 'absolute',
+    top: '19vh',
+    right: '4.5vw',
   },
 }));
 
@@ -117,6 +145,9 @@ function ModalCloseBtn() {
 export default function ImageDownloadModal({ data }) {
   const classes = useStyles();
   const { openImgDownloadModal, setOpenImgDownloadModal } = useContext(ModalContext);
+  const { closetImg, setClosetImg } = useContext(ModalContext);
+  const captureRef = useRef();
+  const [button, setbutton] = useState(false);
   //   const { modalMode, setModalMode } = useContext(ModalContext);
   //   const { closetImg, setClosetImg } = useContext(ModalContext);
 
@@ -137,6 +168,23 @@ export default function ImageDownloadModal({ data }) {
   //     console.log(closetImg);
   //     setOpenImgDownloadModal(false);
   //   };
+  const captureImg = async () => {
+    function downloadURI(uri, name) {
+      var link = document.createElement('a');
+      link.download = name;
+      link.href = uri;
+      document.body.appendChild(link);
+      link.click();
+      console.log(link);
+    }
+    window.scrollTo(0, 0);
+    let url = '';
+    await html2canvas(captureRef.current).then(async (canvas) => {
+      url = await canvas.toDataURL('image/jpg');
+      console.log(url);
+      downloadURI(url, 'baker_closet.jpg');
+    });
+  };
 
   return (
     <div>
@@ -164,24 +212,31 @@ export default function ImageDownloadModal({ data }) {
                 <ModalCloseBtn />
               </div>
             </div>
+            <LuxuryBtn onClick={captureImg}>{'커뮤니티 \n등록'}</LuxuryBtn>
 
-            {/* {modalMode ? (
-              <div className={classes.modalBottomContent}>
-                <div className={classes.modalBtnContainer}>
-                  <LuxuryBtn>소분류</LuxuryBtn>
-                  <LuxuryBtn>가격</LuxuryBtn>
-                  <LuxuryBtn>색상</LuxuryBtn>
-                  <LuxuryBtn>브랜드</LuxuryBtn>
+            <div className={classes.modalBottomContent}>
+              <div className={classes.modalImgContainer}>
+                <div className={classes.modalImgHat}>
+                  {closetImg['hat'] ? <img style={{ width: '6vw', height: '9vh' }} alt="" src={closetImg['hat']} id="hat" /> : <div>모자</div>}
                 </div>
-                <div className={classes.modalClothesContainer}>
-                  {Data[modalMode].map(function (image, i) {
-                    return <img className={classes.modalImg} alt="" src={Data[modalMode][i]} onClick={handleImageSelect} />;
-                  })}
+                <div className={classes.modalImgTop}>
+                  {closetImg['top'] ? <img style={{ width: '9vw', height: '16vh' }} alt="" src={closetImg['top']} id="top" /> : <div>모자</div>}
+                </div>
+                <div className={classes.modalImgBottom}>
+                  {closetImg['bottom'] ? (
+                    <img style={{ width: '7vw', height: '20vh' }} alt="" src={closetImg['bottom']} id="bottom" />
+                  ) : (
+                    <div>모자</div>
+                  )}
+                </div>
+                <div className={classes.modalImgShoes}>
+                  {closetImg['shoes'] ? <img style={{ width: '7vw', height: '10vh' }} alt="" src={closetImg['shoes']} id="shoes" /> : <div>모자</div>}
+                </div>
+                <div className={classes.modalImgBag}>
+                  {closetImg['bag'] ? <img style={{ width: '6.5vw', height: '13vh' }} alt="" src={closetImg['bag']} id="bag" /> : <div>모자</div>}
                 </div>
               </div>
-            ) : (
-              <div></div>
-            )} */}
+            </div>
           </div>
         </Fade>
       </Modal>

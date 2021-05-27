@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import ClosetModal from '../../components/Closet/closetModal';
 import ImageDownloadModal from '../../components/Closet/imageDownloadModal';
 import axios from 'axios';
+import { useHistory } from 'react-router';
 
 import { ModalContext } from '../../App';
 
@@ -118,6 +119,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Closet() {
+  const history = useHistory();
+
   const classes = useStyles();
 
   const { openClosetModal, setOpenClosetModal } = useContext(ModalContext);
@@ -149,9 +152,11 @@ function Closet() {
   };
 
   const handleImageDownloadClick = async () => {
-    setOpenImgDownloadModal(true);
-    console.log(openImgDownloadModal);
-
+    // setOpenImgDownloadModal(true);
+    // console.log(captureRef.current);
+    // setTimeout(function () {
+    //   setOpenImgDownloadModal(false);
+    // }, 3500);
     // function downloadURI(uri, name) {
     //   var link = document.createElement('a');
     //   link.download = name;
@@ -177,7 +182,7 @@ function Closet() {
       <div className={classes.title}>
         <TopComment comment={'옷장에 옷을 넣어보세요.'} />
       </div>
-      <div className={classes.closetContainer} ref={captureRef}>
+      <div className={classes.closetContainer}>
         <div className={classes.leftClothesContainer}>
           <div className={classes.hatContainer} onClick={handleClothesContainerClick} id="hat">
             {closetImg['hat'] ? (
@@ -231,7 +236,16 @@ function Closet() {
 
       <div className={classes.btnBox}>
         <LuxuryBtn onClick={handleEraseAllButtonClick}>모두 지우기</LuxuryBtn>
-        <LuxuryBtn onClick={handleImageDownloadClick}>{'이미지 \n 다운로드'}</LuxuryBtn>
+        <LuxuryBtn
+          onClick={() => {
+            history.push('/loading');
+            setTimeout(function () {
+              history.push('/closet/look_book');
+            }, 2000);
+          }}
+        >
+          {'LOOKBOOK \n만들기'}
+        </LuxuryBtn>
         <LuxuryBtn>{'커뮤니티 \n등록'}</LuxuryBtn>
         <LuxuryBtn>{'카카오톡 \n공유하기'}</LuxuryBtn>
       </div>

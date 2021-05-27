@@ -96,10 +96,12 @@ const useStyles = makeStyles((theme) => ({
 
 function ModalCloseBtn() {
   const classes = useStyles();
-  const { setOpenModal } = useContext(ModalContext);
+  const { openImgDownloadModal, setOpenImgDownloadModal } = useContext(ModalContext);
   const { setModalMode } = useContext(ModalContext);
+
   const handleClose = () => {
-    setOpenModal(false);
+    setOpenImgDownloadModal(false);
+    console.log(openImgDownloadModal);
   };
   //   console.log({ modalMode });
 
@@ -114,9 +116,9 @@ function ModalCloseBtn() {
 
 export default function ImageDownloadModal({ data }) {
   const classes = useStyles();
-  const { openModal, setOpenModal } = useContext(ModalContext);
-  const { modalMode, setModalMode } = useContext(ModalContext);
-  const { closetImg, setClosetImg } = useContext(ModalContext);
+  const { openImgDownloadModal, setOpenImgDownloadModal } = useContext(ModalContext);
+  //   const { modalMode, setModalMode } = useContext(ModalContext);
+  //   const { closetImg, setClosetImg } = useContext(ModalContext);
 
   // console.log(Data[modalMode]);
   //   const [openModal, setOpenModal] = useState(false);
@@ -124,23 +126,23 @@ export default function ImageDownloadModal({ data }) {
   //     setOpenModal(true);
   //   };
   const handleClose = () => {
-    setOpenModal(false);
+    setOpenImgDownloadModal(false);
   };
-  console.log(modalMode);
-  const handleImageSelect = (event) => {
-    setClosetImg({
-      ...closetImg,
-      [modalMode]: event.target.src,
-    });
-    console.log(closetImg);
-    setOpenModal(false);
-  };
+  //   console.log(modalMode);
+  //   const handleImageSelect = (event) => {
+  //     setClosetImg({
+  //       ...closetImg,
+  //       [modalMode]: event.target.src,
+  //     });
+  //     console.log(closetImg);
+  //     setOpenImgDownloadModal(false);
+  //   };
 
   return (
     <div>
       <Modal
         className={classes.root}
-        open={openModal}
+        open={openImgDownloadModal}
         onClose={handleClose}
         closeAfterTransition
         BackdropComponent={Backdrop}
@@ -148,7 +150,7 @@ export default function ImageDownloadModal({ data }) {
           timeout: 500,
         }}
       >
-        <Fade in={openModal}>
+        <Fade in={openImgDownloadModal}>
           <div className={classes.modal}>
             {/* <div>{modalMode}</div>
             <div>{Data[modalMode]}</div> */}
@@ -163,7 +165,7 @@ export default function ImageDownloadModal({ data }) {
               </div>
             </div>
 
-            {modalMode ? (
+            {/* {modalMode ? (
               <div className={classes.modalBottomContent}>
                 <div className={classes.modalBtnContainer}>
                   <LuxuryBtn>소분류</LuxuryBtn>
@@ -176,12 +178,10 @@ export default function ImageDownloadModal({ data }) {
                     return <img className={classes.modalImg} alt="" src={Data[modalMode][i]} onClick={handleImageSelect} />;
                   })}
                 </div>
-                {/* <img alt="" src={Data[modalMode][0]} style={{ width: '50px', height: '50px' }} onClick={handleImageSelect} />
-                <img alt="" src={Data[modalMode][1]} style={{ width: '50px', height: '50px' }} onClick={handleImageSelect} /> */}
               </div>
             ) : (
               <div></div>
-            )}
+            )} */}
           </div>
         </Fade>
       </Modal>

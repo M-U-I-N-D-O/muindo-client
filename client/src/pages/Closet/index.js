@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TopComment from '../../components/AnalysisClothes/topComment';
 import styled from 'styled-components';
 import ClosetModal from '../../components/Closet/closetModal';
-import ImageDownloadModal from '../../components/Closet/closetModal';
+import ImageDownloadModal from '../../components/Closet/imageDownloadModal';
 import axios from 'axios';
 
 import { ModalContext } from '../../App';
@@ -120,7 +120,8 @@ const useStyles = makeStyles((theme) => ({
 function Closet() {
   const classes = useStyles();
 
-  const { openModal, setOpenModal } = useContext(ModalContext);
+  const { openClosetModal, setOpenClosetModal } = useContext(ModalContext);
+  const { openImgDownloadModal, setOpenImgDownloadModal } = useContext(ModalContext);
   const { modalMode, setModalMode } = useContext(ModalContext);
   const { closetImg, setClosetImg } = useContext(ModalContext);
   const captureRef = useRef();
@@ -132,7 +133,7 @@ function Closet() {
 
   const handleClothesContainerClick = (event) => {
     setModalMode(event.target.id);
-    setOpenModal(true);
+    setOpenClosetModal(true);
     console.log(modalMode);
     console.log(closetImg);
   };
@@ -147,61 +148,31 @@ function Closet() {
     });
   };
 
-  function downloadURI(uri, name) {
-    var link = document.createElement('a');
-    link.download = name;
-    link.href = uri;
-    document.body.appendChild(link);
-    link.click();
-    console.log(link);
-  }
+  const handleImageDownloadClick = async () => {
+    setOpenImgDownloadModal(true);
+    console.log(openImgDownloadModal);
 
-  const copyDOM = async () => {
-    window.scrollTo(0, 0);
-    let url = '';
-    await html2canvas(captureRef.current).then(async (canvas) => {
-      url = await canvas.toDataURL('image/jpg');
-      console.log(url);
-      downloadURI(url, 'baker_closet.jpg');
-    });
+    // function downloadURI(uri, name) {
+    //   var link = document.createElement('a');
+    //   link.download = name;
+    //   link.href = uri;
+    //   document.body.appendChild(link);
+    //   link.click();
+    //   console.log(link);
+    // }
+    // window.scrollTo(0, 0);
+    // let url = '';
+    // await html2canvas(captureRef.current).then(async (canvas) => {
+    //   url = await canvas.toDataURL('image/jpg');
+    //   console.log(url);
+    //   downloadURI(url, 'baker_closet.jpg');
+    // });
   };
-
-  // const handleImageDownloadClick = (event) => {
-  //   setModalMode(event.target.id);
-  //   setOpenModal(true);
-  //   console.log(modalMode);
-  //   console.log(closetImg);
-  // };
-
-  // const uploadImgur = (url) => {
-  //   const apiBase = 'https://api.imgur.com/3/image';
-  //   axios
-  //     .post(
-  //       apiBase,
-  //       {
-  //         image: url,
-  //         type: 'base64',
-  //       },
-  //       {
-  //         headers: {
-  //           Authorization: 'Client-ID 1ae5cb778bea1b6',
-  //         },
-  //       },
-  //     )
-  //     .then((res) => {
-  //       setShareImg(res.data.data.link);
-  //       console.log(shareImg);
-  //     })
-  //     .catch((e) => {
-  //       console.log(e);
-  //     });
-
-  //   console.log(shareImg);
-  // };
 
   return (
     <div className={classes.root}>
       <ClosetModal data={modalMode} />
+      <ImageDownloadModal />
 
       <div className={classes.title}>
         <TopComment comment={'옷장에 옷을 넣어보세요.'} />
@@ -257,9 +228,10 @@ function Closet() {
           </div>
         </div>
       </div>
+
       <div className={classes.btnBox}>
         <LuxuryBtn onClick={handleEraseAllButtonClick}>모두 지우기</LuxuryBtn>
-        <LuxuryBtn onClick={copyDOM}>{'이미지 \n 다운로드'}</LuxuryBtn>
+        <LuxuryBtn onClick={handleImageDownloadClick}>{'이미지 \n 다운로드'}</LuxuryBtn>
         <LuxuryBtn>{'커뮤니티 \n등록'}</LuxuryBtn>
         <LuxuryBtn>{'카카오톡 \n공유하기'}</LuxuryBtn>
       </div>

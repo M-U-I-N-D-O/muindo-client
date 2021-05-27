@@ -96,10 +96,10 @@ const useStyles = makeStyles((theme) => ({
 
 function ModalCloseBtn() {
   const classes = useStyles();
-  const { setOpenModal } = useContext(ModalContext);
+  const { setOpenClosetModal } = useContext(ModalContext);
   const { setModalMode } = useContext(ModalContext);
   const handleClose = () => {
-    setOpenModal(false);
+    setOpenClosetModal(false);
   };
   //   console.log({ modalMode });
 
@@ -114,7 +114,7 @@ function ModalCloseBtn() {
 
 export default function ClosetModal({ data }) {
   const classes = useStyles();
-  const { openModal, setOpenModal } = useContext(ModalContext);
+  const { openClosetModal, setOpenClosetModal } = useContext(ModalContext);
   const { modalMode, setModalMode } = useContext(ModalContext);
   const { closetImg, setClosetImg } = useContext(ModalContext);
 
@@ -124,7 +124,7 @@ export default function ClosetModal({ data }) {
   //     setOpenModal(true);
   //   };
   const handleClose = () => {
-    setOpenModal(false);
+    setOpenClosetModal(false);
   };
   console.log(modalMode);
   const handleImageSelect = (event) => {
@@ -133,14 +133,14 @@ export default function ClosetModal({ data }) {
       [modalMode]: event.target.src,
     });
     console.log(closetImg);
-    setOpenModal(false);
+    setOpenClosetModal(false);
   };
 
   return (
     <div>
       <Modal
         className={classes.root}
-        open={openModal}
+        open={openClosetModal}
         onClose={handleClose}
         closeAfterTransition
         BackdropComponent={Backdrop}
@@ -148,7 +148,7 @@ export default function ClosetModal({ data }) {
           timeout: 500,
         }}
       >
-        <Fade in={openModal}>
+        <Fade in={openClosetModal}>
           <div className={classes.modal}>
             {/* <div>{modalMode}</div>
             <div>{Data[modalMode]}</div> */}

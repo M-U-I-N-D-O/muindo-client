@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import TopComment from '../../components/AnalysisClothes/topComment';
 import styled from 'styled-components';
 import ClosetModal from '../../components/Closet/closetModal';
-import ImageDownloadModal from '../../components/Closet/imageDownloadModal';
 import axios from 'axios';
 import { useHistory } from 'react-router';
 
@@ -139,6 +138,7 @@ function Closet() {
     setOpenClosetModal(true);
     console.log(modalMode);
     console.log(closetImg);
+    console.log(Object.values(closetImg));
   };
 
   const handleEraseAllButtonClick = () => {
@@ -177,7 +177,6 @@ function Closet() {
   return (
     <div className={classes.root}>
       <ClosetModal data={modalMode} />
-      <ImageDownloadModal />
 
       <div className={classes.title}>
         <TopComment comment={'옷장에 옷을 넣어보세요.'} />
@@ -243,11 +242,10 @@ function Closet() {
               history.push('/closet/look_book');
             }, 2000);
           }}
+          disabled={!(closetImg['hat'] || closetImg['top'] || closetImg['bottom'] || closetImg['shoes'] || closetImg['bag'])}
         >
           {'LOOKBOOK \n만들기'}
         </LuxuryBtn>
-        <LuxuryBtn>{'커뮤니티 \n등록'}</LuxuryBtn>
-        <LuxuryBtn>{'카카오톡 \n공유하기'}</LuxuryBtn>
       </div>
     </div>
   );

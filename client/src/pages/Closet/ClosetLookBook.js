@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TopComment from '../../components/AnalysisClothes/topComment';
 import styled from 'styled-components';
 import ClosetModal from '../../components/Closet/closetModal';
-import ImageDownloadModal from '../../components/Closet/imageDownloadModal';
+import ColorChangeModal from '../../components/Closet/lookBookColorModal';
 import axios from 'axios';
 import { useHistory } from 'react-router';
 
@@ -33,13 +33,13 @@ const useStyles = makeStyles((theme) => ({
   },
 
   closetContainer: {
-    backgroundColor: 'black',
+    backgroundColor: '#ced3e3',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     maxWidth: '600px',
     minWidth: '90px',
-    width: '66vw',
+    width: '50vw',
     border: 'solid 1px',
     minHeight: '57vh',
   },
@@ -47,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
+    width: '40vw',
   },
   leftClothesContainer: {
     display: 'flex',
@@ -94,81 +95,80 @@ function ClosetLookBook() {
   const history = useHistory();
 
   const { openClosetModal, setOpenClosetModal } = useContext(ModalContext);
-  const { openImgDownloadModal, setOpenImgDownloadModal } = useContext(ModalContext);
+  const { lookBookColorModal, setLookBookColorModal } = useContext(ModalContext);
   const { modalMode, setModalMode } = useContext(ModalContext);
   const { closetImg, setClosetImg } = useContext(ModalContext);
   const captureRef = useRef();
-  const [shareImg, setShareImg] = useState('');
 
   // const handleOpen = () => {
   //   setOpenModal(true);
   // };
 
-  const handleClothesContainerClick = (event) => {
-    setModalMode(event.target.id);
-    setOpenClosetModal(true);
-    console.log(modalMode);
-    console.log(closetImg);
+  const handleColorChangeClick = (event) => {
+    // setModalMode(event.target.id);
+    setLookBookColorModal(true);
+    // console.log(modalMode);
+    // console.log(closetImg);
   };
 
-  const handleEraseAllButtonClick = () => {
-    setClosetImg({
-      hat: '',
-      top: '',
-      bottom: '',
-      shoes: '',
-      bag: '',
-    });
-  };
+  //   const handleEraseAllButtonClick = () => {
+  //     setClosetImg({
+  //       hat: '',
+  //       top: '',
+  //       bottom: '',
+  //       shoes: '',
+  //       bag: '',
+  //     });
+  //   };
 
   const handleImageDownloadClick = async () => {
-    setOpenImgDownloadModal(true);
+    // setOpenImgDownloadModal(true);
     console.log(captureRef.current);
 
     // setTimeout(function () {
     //   setOpenImgDownloadModal(false);
     // }, 3500);
-    // function downloadURI(uri, name) {
-    //   var link = document.createElement('a');
-    //   link.download = name;
-    //   link.href = uri;
-    //   document.body.appendChild(link);
-    //   link.click();
-    //   console.log(link);
-    // }
-    // window.scrollTo(0, 0);
-    // let url = '';
-    // await html2canvas(captureRef.current).then(async (canvas) => {
-    //   url = await canvas.toDataURL('image/jpg');
-    //   console.log(url);
-    //   downloadURI(url, 'baker_closet.jpg');
-    // });
+    function downloadURI(uri, name) {
+      var link = document.createElement('a');
+      link.download = name;
+      link.href = uri;
+      document.body.appendChild(link);
+      link.click();
+      console.log(link);
+    }
+    window.scrollTo(0, 0);
+    let url = '';
+    await html2canvas(captureRef.current).then(async (canvas) => {
+      url = await canvas.toDataURL('image/jpg');
+      console.log(url);
+      downloadURI(url, 'baker_closet.jpg');
+    });
   };
 
   return (
     <div className={classes.root}>
       <ClosetModal data={modalMode} />
-      <ImageDownloadModal />
+      <ColorChangeModal />
 
       <div className={classes.title}>
         <TopComment comment={'옷장에 옷을 넣어보세요.'} />
       </div>
-      <div className={classes.closetContainer}>
+      <div className={classes.closetContainer} ref={captureRef}>
         <div className={classes.modalImgContainer}>
           <div className={classes.modalImgHat}>
-            {closetImg['hat'] ? <img style={{ width: '8vw', height: '11vh' }} alt="" src={closetImg['hat']} id="hat" /> : <div>모자</div>}
+            {closetImg['hat'] ? <img style={{ width: '8vw', height: '11vh' }} alt="" src={closetImg['hat']} id="hat" /> : <div></div>}
           </div>
           <div className={classes.modalImgTop}>
-            {closetImg['top'] ? <img style={{ width: '13vw', height: '21vh' }} alt="" src={closetImg['top']} id="top" /> : <div>상의</div>}
+            {closetImg['top'] ? <img style={{ width: '13vw', height: '21vh' }} alt="" src={closetImg['top']} id="top" /> : <div></div>}
           </div>
           <div className={classes.modalImgBottom}>
-            {closetImg['bottom'] ? <img style={{ width: '10vw', height: '23vh' }} alt="" src={closetImg['bottom']} id="bottom" /> : <div>하의</div>}
+            {closetImg['bottom'] ? <img style={{ width: '10vw', height: '23vh' }} alt="" src={closetImg['bottom']} id="bottom" /> : <div></div>}
           </div>
           <div className={classes.modalImgShoes}>
-            {closetImg['shoes'] ? <img style={{ width: '8vw', height: '12vh' }} alt="" src={closetImg['shoes']} id="shoes" /> : <div>신발</div>}
+            {closetImg['shoes'] ? <img style={{ width: '8vw', height: '12vh' }} alt="" src={closetImg['shoes']} id="shoes" /> : <div></div>}
           </div>
           <div className={classes.modalImgBag}>
-            {closetImg['bag'] ? <img style={{ width: '8vw', height: '17vh' }} alt="" src={closetImg['bag']} id="bag" /> : <div>가방</div>}
+            {closetImg['bag'] ? <img style={{ width: '8vw', height: '17vh' }} alt="" src={closetImg['bag']} id="bag" /> : <div></div>}
           </div>
         </div>
       </div>
@@ -181,7 +181,8 @@ function ClosetLookBook() {
         >
           수정하기
         </LuxuryBtn>
-        <LuxuryBtn onClick={handleImageDownloadClick}>{'LOOKBOOK \n만들기'}</LuxuryBtn>
+        <LuxuryBtn onClick={handleImageDownloadClick}>{'이미지 \n 다운로드'}</LuxuryBtn>
+        <LuxuryBtn onClick={handleColorChangeClick}>{'배경 색상 \n 변경하기'}</LuxuryBtn>
         <LuxuryBtn>{'커뮤니티 \n등록'}</LuxuryBtn>
         <LuxuryBtn>{'카카오톡 \n공유하기'}</LuxuryBtn>
       </div>

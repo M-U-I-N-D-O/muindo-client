@@ -57,7 +57,7 @@ const Container2 = styled.div`
 function App() {
   const navMode = useSelector((state) => state.navbar.switch);
   const [openClosetModal, setOpenClosetModal] = useState(false);
-  const [openImgDownloadModal, setOpenImgDownloadModal] = useState(false);
+  const [lookBookColorModal, setLookBookColorModal] = useState(false);
   const [modalMode, setModalMode] = useState('');
   const [closetImg, setClosetImg] = useState({
     hat: '',
@@ -90,8 +90,8 @@ function App() {
           setModalMode,
           closetImg,
           setClosetImg,
-          openImgDownloadModal,
-          setOpenImgDownloadModal,
+          lookBookColorModal,
+          setLookBookColorModal,
         }}
       >
         <Router>

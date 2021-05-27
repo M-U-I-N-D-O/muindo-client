@@ -6,7 +6,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import Fade from '@material-ui/core/Fade';
 import Backdrop from '@material-ui/core/Backdrop';
 import styled from 'styled-components';
-import TopComment from '../../components/AnalysisClothes/topComment';
+import TopComment from '../AnalysisClothes/topComment';
 
 import { ModalContext } from '../../App';
 
@@ -78,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   modalImgContainer: {
-    // border: 'solid 5px',
+    border: 'solid 5px',
     width: '30vw',
     height: '48vh',
     position: 'relative',
@@ -124,14 +124,12 @@ const useStyles = makeStyles((theme) => ({
 
 function ModalCloseBtn() {
   const classes = useStyles();
-  const { openImgDownloadModal, setOpenImgDownloadModal } = useContext(ModalContext);
+  const { lookBookColorModal, setLookBookColorModal } = useContext(ModalContext);
   const { setModalMode } = useContext(ModalContext);
 
   const handleClose = () => {
-    setOpenImgDownloadModal(false);
-    console.log(openImgDownloadModal);
+    setLookBookColorModal(false);
   };
-  //   console.log({ modalMode });
 
   return (
     <ThemeProvider theme={theme}>
@@ -142,55 +140,20 @@ function ModalCloseBtn() {
   );
 }
 
-export default function ImageDownloadModal({ data }) {
+export default function ColorChangeModal({ data }) {
   const classes = useStyles();
-  const { openImgDownloadModal, setOpenImgDownloadModal } = useContext(ModalContext);
+  const { lookBookColorModal, setLookBookColorModal } = useContext(ModalContext);
   const { closetImg, setClosetImg } = useContext(ModalContext);
-  const captureRef = useRef();
-  const [button, setbutton] = useState(false);
-  //   const { modalMode, setModalMode } = useContext(ModalContext);
-  //   const { closetImg, setClosetImg } = useContext(ModalContext);
 
-  // console.log(Data[modalMode]);
-  //   const [openModal, setOpenModal] = useState(false);
-  //   const handleOpen = () => {
-  //     setOpenModal(true);
-  //   };
   const handleClose = () => {
-    setOpenImgDownloadModal(false);
-  };
-  //   console.log(modalMode);
-  //   const handleImageSelect = (event) => {
-  //     setClosetImg({
-  //       ...closetImg,
-  //       [modalMode]: event.target.src,
-  //     });
-  //     console.log(closetImg);
-  //     setOpenImgDownloadModal(false);
-  //   };
-  const captureImg = async () => {
-    function downloadURI(uri, name) {
-      var link = document.createElement('a');
-      link.download = name;
-      link.href = uri;
-      document.body.appendChild(link);
-      link.click();
-      console.log(link);
-    }
-    window.scrollTo(0, 0);
-    let url = '';
-    await html2canvas(captureRef.current).then(async (canvas) => {
-      url = await canvas.toDataURL('image/jpg');
-      console.log(url);
-      downloadURI(url, 'baker_closet.jpg');
-    });
+    setLookBookColorModal(false);
   };
 
   return (
     <div>
       <Modal
         className={classes.root}
-        open={openImgDownloadModal}
+        open={lookBookColorModal}
         onClose={handleClose}
         closeAfterTransition
         BackdropComponent={Backdrop}
@@ -198,44 +161,20 @@ export default function ImageDownloadModal({ data }) {
           timeout: 500,
         }}
       >
-        <Fade in={openImgDownloadModal}>
+        <Fade in={lookBookColorModal}>
           <div className={classes.modal}>
-            {/* <div>{modalMode}</div>
-            <div>{Data[modalMode]}</div> */}
-
             <div className={classes.modalTopContents}>
               <div className={classes.hiddenBtn}>
                 <ModalCloseBtn />
               </div>
-              <TopComment comment={'마음에 드는 옷을 골라보세요.'} />
+              <TopComment comment={'마음에 드는 배경 색상을 골라보세요.'} />
               <div>
                 <ModalCloseBtn />
               </div>
             </div>
-            <LuxuryBtn onClick={captureImg}>{'커뮤니티 \n등록'}</LuxuryBtn>
 
             <div className={classes.modalBottomContent}>
-              <div className={classes.modalImgContainer}>
-                <div className={classes.modalImgHat}>
-                  {closetImg['hat'] ? <img style={{ width: '6vw', height: '9vh' }} alt="" src={closetImg['hat']} id="hat" /> : <div>모자</div>}
-                </div>
-                <div className={classes.modalImgTop}>
-                  {closetImg['top'] ? <img style={{ width: '9vw', height: '16vh' }} alt="" src={closetImg['top']} id="top" /> : <div>모자</div>}
-                </div>
-                <div className={classes.modalImgBottom}>
-                  {closetImg['bottom'] ? (
-                    <img style={{ width: '7vw', height: '20vh' }} alt="" src={closetImg['bottom']} id="bottom" />
-                  ) : (
-                    <div>모자</div>
-                  )}
-                </div>
-                <div className={classes.modalImgShoes}>
-                  {closetImg['shoes'] ? <img style={{ width: '7vw', height: '10vh' }} alt="" src={closetImg['shoes']} id="shoes" /> : <div>모자</div>}
-                </div>
-                <div className={classes.modalImgBag}>
-                  {closetImg['bag'] ? <img style={{ width: '6.5vw', height: '13vh' }} alt="" src={closetImg['bag']} id="bag" /> : <div>모자</div>}
-                </div>
-              </div>
+              <div className={classes.modalImgContainer}></div>
             </div>
           </div>
         </Fade>

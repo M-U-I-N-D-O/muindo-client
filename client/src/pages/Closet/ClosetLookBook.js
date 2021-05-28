@@ -143,7 +143,7 @@ export default function ClosetLookBook() {
     await html2canvas(captureRef.current).then(async (canvas) => {
       url = await canvas.toDataURL('image/jpg');
       console.log(url);
-      downloadURI(url, 'baker_closet.jpg');
+      downloadURI(url, 'sherlock_Odds_baker_closet.jpg');
     });
   };
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { navbarMode } from '../../actions';
@@ -56,16 +56,16 @@ function Intro() {
   const handleNavbarMode = () => {
     dispatch(navbarMode(1));
   };
+
+  useEffect(() => {
+    dispatch(navbarMode(0));
+  });
   return (
     <div className={classes.root}>
       <Link className={classes.container} onClick={handleNavbarMode} to="/home">
         <div className={classes.signBox}>
           <h1 className={classes.signText}>Sherlock Odds</h1>
-          <img
-            className={classes.door}
-            alt=""
-            src="/images/intro/intro_door.jpg"
-          />
+          <img className={classes.door} alt="" src="/images/intro/intro_door.jpg" />
           <div className={classes.doorBottom}></div>
         </div>
       </Link>

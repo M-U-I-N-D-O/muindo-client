@@ -242,7 +242,8 @@ const ButtonContainer = styled.div`
 `;
 const LuxuryLabelBtn = styled.label`
   display: inline-block;
-  width: 15vw;
+  width: 220px;
+  /* width: 15vw; */
   box-sizing: border-box;
   background: transparent;
   text-transform: uppercase;
@@ -250,7 +251,8 @@ const LuxuryLabelBtn = styled.label`
   font-style: normal;
   font-size: 0.625rem;
   letter-spacing: 0.3em;
-  color: rgba(223, 190, 106, 0.7);
+  color: #323b48;
+  /* color: rgba(223, 190, 106, 0.7); */
   border-radius: 0;
   padding: 15px 20px 15px 20px;
   transition: all 0.7s ease-out;
@@ -260,7 +262,8 @@ const LuxuryLabelBtn = styled.label`
   text-decoration: none;
   margin: 0.625rem;
   border: none;
-  border: 1px solid rgba(223, 190, 106, 0.3);
+  border: 1px solid #323b48;
+  /* border: 1px solid rgba(223, 190, 106, 0.3); */
   :hover {
     color: #fff;
     border: 1px solid rgba(223, 190, 106, 0);
@@ -272,14 +275,16 @@ const LuxuryLabelBtn = styled.label`
 const LuxuryBtn = styled.button`
   display: inline-block;
   box-sizing: border-box;
-  width: 15vw;
+  width: 220px;
+  /* width: 15vw; */
   background: transparent;
   text-transform: uppercase;
   font-weight: 500;
   font-style: normal;
   font-size: 0.625rem;
   letter-spacing: 0.3em;
-  color: rgba(223, 190, 106, 0.7);
+  color: #323b48;
+  /* color: rgba(223, 190, 106, 0.7); */
   border-radius: 0;
   padding: 15px 20px 15px 20px;
   transition: all 0.7s ease-out;
@@ -289,7 +294,8 @@ const LuxuryBtn = styled.button`
   text-decoration: none;
   margin: 0.625rem;
   border: none;
-  border: 1px solid rgba(223, 190, 106, 0.3);
+  border: 1px solid #323b48;
+  /* border: 1px solid rgba(223, 190, 106, 0.3); */
   :hover {
     color: #fff;
     border: 1px solid rgba(223, 190, 106, 0);

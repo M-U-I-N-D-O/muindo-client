@@ -1,8 +1,7 @@
 /* 기본 폰트 */
 @font-face {
   font-family: 'NanumSquare_acB';
-  src: local('NanumSquare_acB'),
-    url('./fonts/NanumSquare_acB.ttf') format('truetype');
+  src: local('NanumSquare_acB'), url('./fonts/NanumSquare_acB.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -18,8 +17,7 @@
 /* 셜록 옷즈 NavBar 폰트 */
 @font-face {
   font-family: '국립박물관문화재단클래식B';
-  src: local('국립박물관문화재단클래식B'),
-    url('./fonts/국립박물관문화재단클래식B.ttf') format('truetype');
+  src: local('국립박물관문화재단클래식B'), url('./fonts/국립박물관문화재단클래식B.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -27,8 +25,7 @@
 /* Footer 폰트 */
 @font-face {
   font-family: 'NotoSerifCJKkr-Regular';
-  src: local('NotoSerifCJKkr-Regular'),
-    url('./fonts/NotoSerifCJKkr-Regular.otf') format('truetype');
+  src: local('NotoSerifCJKkr-Regular'), url('./fonts/NotoSerifCJKkr-Regular.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -39,8 +36,7 @@
 }
 
 * {
-  font-family: 'NanumSquare_acB', 'Lobster', '국립박물관문화재단클래식B',
-    'NotoSerifCJKkr-Regular';
+  font-family: 'NanumSquare_acB', 'Lobster', '국립박물관문화재단클래식B', 'NotoSerifCJKkr-Regular';
   padding: 0;
   margin: 0;
   /* box-sizing: border-box; */
@@ -61,4 +57,12 @@ body {
 
   position: relative;
   min-height: 100%;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: #323b48;
+}
+.slick-slide-label {
+  border: none;
 }

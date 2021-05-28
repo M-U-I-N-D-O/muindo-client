@@ -151,29 +151,6 @@ function Closet() {
     });
   };
 
-  const handleImageDownloadClick = async () => {
-    // setOpenImgDownloadModal(true);
-    // console.log(captureRef.current);
-    // setTimeout(function () {
-    //   setOpenImgDownloadModal(false);
-    // }, 3500);
-    // function downloadURI(uri, name) {
-    //   var link = document.createElement('a');
-    //   link.download = name;
-    //   link.href = uri;
-    //   document.body.appendChild(link);
-    //   link.click();
-    //   console.log(link);
-    // }
-    // window.scrollTo(0, 0);
-    // let url = '';
-    // await html2canvas(captureRef.current).then(async (canvas) => {
-    //   url = await canvas.toDataURL('image/jpg');
-    //   console.log(url);
-    //   downloadURI(url, 'baker_closet.jpg');
-    // });
-  };
-
   return (
     <div className={classes.root}>
       <ClosetModal data={modalMode} />

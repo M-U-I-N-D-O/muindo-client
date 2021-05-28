@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef } from 'react';
+import React, { useState, useContext, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import TopComment from '../../components/AnalysisClothes/topComment';
@@ -132,6 +132,15 @@ function Closet() {
   // const handleOpen = () => {
   //   setOpenModal(true);
   // };
+  useEffect(() => {
+    setClosetImg({
+      hat: '',
+      top: '',
+      bottom: '',
+      shoes: '',
+      bag: '',
+    });
+  }, []);
 
   const handleClothesContainerClick = (event) => {
     setModalMode(event.target.id);

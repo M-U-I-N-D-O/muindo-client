@@ -39,7 +39,7 @@ function DetailItemModal() {
         </DialogTitle>
         <DialogContent dividers={true}>
           <MainContainer>
-            <img src="/images/solution/detailMainImg.png" alt="/images/solution/detailMainImg.png" width="80%" height="80%" />
+            <img src="/images/solution/detailMainImg.png" alt="/images/solution/detailMainImg.png" width="70%" height="auto" />
           </MainContainer>
 
           <div className="thumbnail-slider-wrap-detail">

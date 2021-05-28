@@ -16,10 +16,10 @@ function ResultListBox(props) {
   return (
     <Container>
       {resultList.map((item, index) => (
-        <div>
-          <div style={{ display: 'inline-block', marginRight: '2vw' }}>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <ListImgBox>
             <img src={item[0]} alt={`${item[0]}`} style={{ display: 'inline' }} />
-          </div>
+          </ListImgBox>
           <div style={{ display: 'inline-block' }}>
             <ListText>카테고리 : {item[1]}</ListText>
             <ListText>컬러 : {item[2]}</ListText>
@@ -39,10 +39,18 @@ export default ResultListBox;
 const Container = styled.div`
   display: inline-block;
   margin: auto 0;
-  padding-top: 10px;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
 `;
 const ListText = styled.p`
   font-size: 0.6vw;
+`;
+const ListImgBox = styled.div`
+  display: inline-block;
+  margin-right: 2vw;
+  @media (min-width: 320px) and (max-width: 480px) {
+    margin-right: 4vw;
+  }
 `;
 const LuxuryLinkBtn = styled.a`
   display: block;
@@ -76,5 +84,8 @@ const LuxuryLinkBtn = styled.a`
     border: 1px solid rgba(223, 190, 106, 0);
     color: $white;
     background-position: 99% 50%;
+  }
+  @media (min-width: 320px) and (max-width: 480px) {
+    width: 100px;
   }
 `;

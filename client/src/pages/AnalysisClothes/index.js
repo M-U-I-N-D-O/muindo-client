@@ -233,6 +233,13 @@ const ImageBox = styled.div`
   height: 50vh;
   border: 2px solid black;
   overflow: hidden;
+  img {
+    width: 100%;
+    height: auto;
+  }
+  @media (min-width: 320px) and (max-width: 480px) {
+    width: 250px;
+  }
 `;
 const ButtonContainer = styled.div`
   display: block;

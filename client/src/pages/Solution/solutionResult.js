@@ -18,6 +18,7 @@ function SolutionResult() {
   useEffect(() => {
     try {
       axios.get('http://localhost:3000/data/solution.json').then((response) => {
+        console.log(response.data.data);
         setAllItems(response.data.data);
       });
     } catch (err) {

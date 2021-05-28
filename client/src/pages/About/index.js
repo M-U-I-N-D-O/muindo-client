@@ -2,7 +2,7 @@ import React from 'react';
 
 function About() {
   return (
-    <>
+    <div>
       <h1>This is About Page</h1>
       <h1>This is About Page</h1>
       <h1>This is About Page</h1>
@@ -25,7 +25,7 @@ function About() {
       <h1>This is About Page</h1>
       <h1>This is About Page</h1>
       <h1>This is About Page</h1>
-    </>
+    </div>
   );
 }
 

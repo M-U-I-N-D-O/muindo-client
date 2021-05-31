@@ -71,6 +71,8 @@ function App() {
     shoes: '',
     bag: '',
   });
+
+  // const [condition, setCondition] = useState({});
   const [clothesList, setClothesList] = useState('');
 
   return (
@@ -102,6 +104,8 @@ function App() {
           setLookBookColorSelect,
           clothesList,
           setClothesList,
+          // condition,
+          // setCondition,
         }}
       >
         <Router>

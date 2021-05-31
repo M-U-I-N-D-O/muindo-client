@@ -7,6 +7,7 @@ import Fade from '@material-ui/core/Fade';
 import Backdrop from '@material-ui/core/Backdrop';
 import styled from 'styled-components';
 import TopComment from '../../components/AnalysisClothes/topComment';
+import axios from 'axios';
 
 import { ModalContext } from '../../App';
 
@@ -116,7 +117,24 @@ export default function ClosetModal({ data }) {
   const { modalMode, setModalMode } = useContext(ModalContext);
   const { closetImg, setClosetImg } = useContext(ModalContext);
   const { clothesList, setClothesList } = useContext(ModalContext);
+  const [condition, setCondition] = useState({
+    // category: '캡/야구 모자',
+    color: '오렌지색',
+  });
 
+  const fetch = useEffect(() => {
+    try {
+      axios.get('http://localhost:3000/data/closet.json').then((res) => {
+        let result = res.data.data;
+        console.log(result);
+        setClothesList(result);
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
+
+  // const [filteredClothes, setFilteredClothes] = useState([]);
   // const [clothesList, setClothesList] = useState('');
   // console.log(Data[modalMode]);
   //   const [openModal, setOpenModal] = useState(false);
@@ -136,6 +154,89 @@ export default function ClosetModal({ data }) {
     console.log(closetImg);
     setOpenClosetModal(false);
   };
+
+  // var current = clothesList[modalMode];
+  // useEffect(() => {
+  //   setFilteredClothes(() => {
+  //     if (clothesList[modalMode]) {
+  //       clothesList[modalMode].filter(function (item) {
+  //         for (var key in condition) {
+  //           if (item[key] === undefined || item[key] !== condition[key]) return false;
+  //         }
+  //         return true;
+  //       });
+  //     } else {
+  //       return clothesList[modalMode];
+  //     }
+  //   });
+  // }, [modalMode]);
+
+  var filteredClothes = clothesList[modalMode]
+    ? clothesList[modalMode].filter(function (item) {
+        for (var key in condition) {
+          if (item[key] === undefined || item[key] !== condition[key]) return false;
+        }
+        return true;
+      })
+    : false;
+
+  // const filtering = () => {
+  //   if (Object.keys(condition).length === 0){
+  //     return filteredClothes
+  //   } else {
+  //     if (filteredClothes.length === 0){
+  //       return
+  //     }
+  //     else {
+
+  //     }
+  //   }
+  // }
+
+  // if (filteredClothes === []) {
+  //   filteredClothes = clothesList[modalMode];
+  // }
+
+  // if(condition.length === 0) {
+  //   clothesList[modalMode].map(function (image, i) {
+  //     console.log(image);
+  //     return <img className={classes.modalImg} alt="" src={clothesList[modalMode][i]['img_url']} onClick={handleImageSelect} />;
+  //   }
+
+  console.log(filteredClothes);
+  console.log(Object.keys(condition).length);
+  // setFilteredClothes(() => {
+  //   if (clothesList[modalMode]) {
+  //     clothesList[modalMode].filter(function (item) {
+  //       for (var key in condition) {
+  //         if (item[key] === undefined || item[key] !== condition[key]) return false;
+  //       }
+  //       return true;
+  //     });
+  //   } else {
+  //     return clothesList[modalMode];
+  //   }
+  // });
+
+  // useEffect(() => {
+  //   if (clothesList[modalMode]) {
+  //     setFilteredClothes(
+  //       clothesList[modalMode]
+  //         .map(function (image, i) {
+  //           return image;
+  //         })
+  //         .filter(function (current) {
+  //           return condition.category
+  //             ? current['category'] === condition['category']
+  //             : true && condition.brand
+  //             ? current.brand === condition.brand
+  //             : true;
+  //         }),
+  //     );
+  //   } else {
+  //     return;
+  //   }
+  // }, [condition]);
 
   return (
     <div>
@@ -173,12 +274,48 @@ export default function ClosetModal({ data }) {
                   <LuxuryBtn>브랜드</LuxuryBtn>
                 </div>
                 <div className={classes.modalClothesContainer}>
-                  {clothesList[modalMode].map(function (image, i) {
+                  {/* {() => {
+                    if (Object.keys(condition).length === 0)
+                      // 조건이 안 걸려 있으면 (필터링 필요 X -> 모두 보여줘야 함)
+                      return filteredClothes.map(function (image, i) {
+                        console.log(image);
+                        return <img className={classes.modalImg} alt="" src={filteredClothes[i]['img_url']} onClick={handleImageSelect} />;
+                      });
+                    else if ((Object.keys(condition).length !== 0) & (filteredClothes.length === 0)) return <div> 결과가 없습니다. </div>;
+                    else
+                      return filteredClothes.map(function (image, i) {
+                        console.log(image);
+                        return <img className={classes.modalImg} alt="" src={filteredClothes[i]['img_url']} onClick={handleImageSelect} />;
+                      });
+                  }} */}
+
+                  {/* {Object.keys(condition) ? (
+                    filtered
+                  ) : ()} */}
+
+                  {Object.keys(condition) !== 0
+                    ? filteredClothes.map(function (image, i) {
+                        // if (image === null) {
+                        //   return <div>결과가 없습니다.</div>;
+                        // }
+                        console.log('jo');
+                        return <img className={classes.modalImg} alt="" src={filteredClothes[i]['img_url']} onClick={handleImageSelect} />;
+                      })
+                    : clothesList[modalMode].map(function (image, i) {
+                        console.log(image);
+                        return <img className={classes.modalImg} alt="" src={clothesList[modalMode][i]['img_url']} onClick={handleImageSelect} />;
+                      })}
+                  {filteredClothes.length === 0 ? <div>결과가 없습니다</div> : <></>}
+                  {/* {clothesList[modalMode].map(function (image, i) {
+                    console.log(image);
                     return <img className={classes.modalImg} alt="" src={clothesList[modalMode][i]['img_url']} onClick={handleImageSelect} />;
-                  })}
+                  })}{' '} */}
+                  {/* 
+                  {filteredClothes.map(function (image, i) {
+                    console.log(image);
+                    return <img className={classes.modalImg} alt="" src={clothesList[modalMode][i]['img_url']} onClick={handleImageSelect} />;
+                  })}  */}
                 </div>
-                {/* <img alt="" src={Data[modalMode][0]} style={{ width: '50px', height: '50px' }} onClick={handleImageSelect} />
-                <img alt="" src={Data[modalMode][1]} style={{ width: '50px', height: '50px' }} onClick={handleImageSelect} /> */}
               </div>
             ) : (
               <div></div>

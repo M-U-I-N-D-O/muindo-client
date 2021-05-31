@@ -71,6 +71,7 @@ function App() {
     shoes: '',
     bag: '',
   });
+  const [clothesList, setClothesList] = useState('');
 
   return (
     //  <Container>
@@ -99,6 +100,8 @@ function App() {
           setLookBookColorModal,
           lookBookColorSelect,
           setLookBookColorSelect,
+          clothesList,
+          setClothesList,
         }}
       >
         <Router>

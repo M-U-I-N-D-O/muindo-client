@@ -1,4 +1,4 @@
-import React, { useState, createContext, useContext, useLocation } from 'react';
+import React, { useState, createContext, useContext, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import IconButton from '@material-ui/core/IconButton';
@@ -12,10 +12,6 @@ import { ModalContext } from '../../App';
 
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
-
-import { Data } from '../../data/data.json';
-// import { Data } from '../../../public/images/closet/closet_bag.jpg';
-// import {  } from '../Closet/closet_bag.jpg';
 
 const theme = createMuiTheme({
   palette: {
@@ -78,7 +74,9 @@ const useStyles = makeStyles((theme) => ({
   modalClothesContainer: {
     display: 'flex',
     overflow: 'auto',
-    width: '37vw',
+    width: '63vw',
+    maxWidth: '800px',
+
     // height: '70vh',
     flexWrap: 'wrap',
     alignItems: 'center',
@@ -90,7 +88,7 @@ const useStyles = makeStyles((theme) => ({
   modalImg: {
     width: '8vw',
     height: '11vh',
-    margin: '10px 40px',
+    margin: '30px 40px',
   },
 }));
 
@@ -117,12 +115,15 @@ export default function ClosetModal({ data }) {
   const { openClosetModal, setOpenClosetModal } = useContext(ModalContext);
   const { modalMode, setModalMode } = useContext(ModalContext);
   const { closetImg, setClosetImg } = useContext(ModalContext);
+  const { clothesList, setClothesList } = useContext(ModalContext);
 
+  // const [clothesList, setClothesList] = useState('');
   // console.log(Data[modalMode]);
   //   const [openModal, setOpenModal] = useState(false);
   //   const handleOpen = () => {
   //     setOpenModal(true);
   //   };
+
   const handleClose = () => {
     setOpenClosetModal(false);
   };
@@ -172,8 +173,8 @@ export default function ClosetModal({ data }) {
                   <LuxuryBtn>브랜드</LuxuryBtn>
                 </div>
                 <div className={classes.modalClothesContainer}>
-                  {Data[modalMode].map(function (image, i) {
-                    return <img className={classes.modalImg} alt="" src={Data[modalMode][i]} onClick={handleImageSelect} />;
+                  {clothesList[modalMode].map(function (image, i) {
+                    return <img className={classes.modalImg} alt="" src={clothesList[modalMode][i]['img_url']} onClick={handleImageSelect} />;
                   })}
                 </div>
                 {/* <img alt="" src={Data[modalMode][0]} style={{ width: '50px', height: '50px' }} onClick={handleImageSelect} />

@@ -1,0 +1,414 @@
+{
+  "data": {
+    "hat": [
+      {
+        "img_url": "/images/closet/closet_hat.jpg",
+        "item_name": "모자A(이름)",
+        "category": "캡/야구 모자",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "엠엘비"
+      },
+      {
+        "img_url": "/images/closet/closet_hat1.jpg",
+        "item_name": "모자B(이름)",
+        "category": "버킷/사파리햇",
+        "price": 25000,
+        "color": "파란색",
+        "brand": "나이키"
+      },
+      {
+        "img_url": "/images/closet/closet_hat.jpg",
+        "item_name": "모자A(이름)",
+        "category": "캡/야구 모자",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "엠엘비"
+      },
+      {
+        "img_url": "/images/closet/closet_hat1.jpg",
+        "item_name": "모자B(이름)",
+        "category": "버킷/사파리햇",
+        "price": 25000,
+        "color": "파란색",
+        "brand": "나이키"
+      },
+      {
+        "img_url": "/images/closet/closet_hat.jpg",
+        "item_name": "모자A(이름)",
+        "category": "캡/야구 모자",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "엠엘비"
+      },
+      {
+        "img_url": "/images/closet/closet_hat1.jpg",
+        "item_name": "모자B(이름)",
+        "category": "버킷/사파리햇",
+        "price": 25000,
+        "color": "파란색",
+        "brand": "나이키"
+      },
+      {
+        "img_url": "/images/closet/closet_hat.jpg",
+        "item_name": "모자A(이름)",
+        "category": "캡/야구 모자",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "엠엘비"
+      },
+      {
+        "img_url": "/images/closet/closet_hat1.jpg",
+        "item_name": "모자B(이름)",
+        "category": "버킷/사파리햇",
+        "price": 25000,
+        "color": "파란색",
+        "brand": "나이키"
+      },
+      {
+        "img_url": "/images/closet/closet_hat.jpg",
+        "item_name": "모자A(이름)",
+        "category": "캡/야구 모자",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "엠엘비"
+      },
+      {
+        "img_url": "/images/closet/closet_hat1.jpg",
+        "item_name": "모자B(이름)",
+        "category": "버킷/사파리햇",
+        "price": 25000,
+        "color": "파란색",
+        "brand": "나이키"
+      }
+    ],
+    "top": [
+      {
+        "img_url": "/images/closet/closet_top.jpg",
+        "item_name": "상의A(이름)",
+        "category": "반팔 티셔츠",
+        "price": 20000,
+        "color": "흰색",
+        "brand": "마크 곤잘레스"
+      },
+      {
+        "img_url": "/images/closet/closet_top1.jpg",
+        "item_name": "상의B(이름)",
+        "category": "맨투맨/스웨트셔츠",
+        "price": 55000,
+        "color": "네이비",
+        "brand": "디스이즈네버댓"
+      },
+      {
+        "img_url": "/images/closet/closet_top.jpg",
+        "item_name": "상의A(이름)",
+        "category": "반팔 티셔츠",
+        "price": 20000,
+        "color": "흰색",
+        "brand": "마크 곤잘레스"
+      },
+      {
+        "img_url": "/images/closet/closet_top1.jpg",
+        "item_name": "상의B(이름)",
+        "category": "맨투맨/스웨트셔츠",
+        "price": 55000,
+        "color": "네이비",
+        "brand": "디스이즈네버댓"
+      },
+      {
+        "img_url": "/images/closet/closet_top.jpg",
+        "item_name": "상의A(이름)",
+        "category": "반팔 티셔츠",
+        "price": 20000,
+        "color": "흰색",
+        "brand": "마크 곤잘레스"
+      },
+      {
+        "img_url": "/images/closet/closet_top1.jpg",
+        "item_name": "상의B(이름)",
+        "category": "맨투맨/스웨트셔츠",
+        "price": 55000,
+        "color": "네이비",
+        "brand": "디스이즈네버댓"
+      },
+      {
+        "img_url": "/images/closet/closet_top.jpg",
+        "item_name": "상의A(이름)",
+        "category": "반팔 티셔츠",
+        "price": 20000,
+        "color": "흰색",
+        "brand": "마크 곤잘레스"
+      },
+      {
+        "img_url": "/images/closet/closet_top1.jpg",
+        "item_name": "상의B(이름)",
+        "category": "맨투맨/스웨트셔츠",
+        "price": 55000,
+        "color": "네이비",
+        "brand": "디스이즈네버댓"
+      },
+      {
+        "img_url": "/images/closet/closet_top.jpg",
+        "item_name": "상의A(이름)",
+        "category": "반팔 티셔츠",
+        "price": 20000,
+        "color": "흰색",
+        "brand": "마크 곤잘레스"
+      },
+      {
+        "img_url": "/images/closet/closet_top1.jpg",
+        "item_name": "상의B(이름)",
+        "category": "맨투맨/스웨트셔츠",
+        "price": 55000,
+        "color": "네이비",
+        "brand": "디스이즈네버댓"
+      }
+    ],
+    "bottom": [
+      {
+        "img_url": "/images/closet/closet_bottom.jpg",
+        "item_name": "하의A(이름)",
+        "category": "데님 팬츠",
+        "price": 45000,
+        "color": "아이보리",
+        "brand": "토피"
+      },
+      {
+        "img_url": "/images/closet/closet_bottom1.jpg",
+        "item_name": "하의B(이름)",
+        "category": "롱스커트",
+        "price": 54000,
+        "color": "라이트 핑크",
+        "brand": "슬로우무브"
+      },
+      {
+        "img_url": "/images/closet/closet_bottom.jpg",
+        "item_name": "하의A(이름)",
+        "category": "데님 팬츠",
+        "price": 45000,
+        "color": "아이보리",
+        "brand": "토피"
+      },
+      {
+        "img_url": "/images/closet/closet_bottom1.jpg",
+        "item_name": "하의B(이름)",
+        "category": "롱스커트",
+        "price": 54000,
+        "color": "라이트 핑크",
+        "brand": "슬로우무브"
+      },
+      {
+        "img_url": "/images/closet/closet_bottom.jpg",
+        "item_name": "하의A(이름)",
+        "category": "데님 팬츠",
+        "price": 45000,
+        "color": "아이보리",
+        "brand": "토피"
+      },
+      {
+        "img_url": "/images/closet/closet_bottom1.jpg",
+        "item_name": "하의B(이름)",
+        "category": "롱스커트",
+        "price": 54000,
+        "color": "라이트 핑크",
+        "brand": "슬로우무브"
+      },
+      {
+        "img_url": "/images/closet/closet_bottom.jpg",
+        "item_name": "하의A(이름)",
+        "category": "데님 팬츠",
+        "price": 45000,
+        "color": "아이보리",
+        "brand": "토피"
+      },
+      {
+        "img_url": "/images/closet/closet_bottom1.jpg",
+        "item_name": "하의B(이름)",
+        "category": "롱스커트",
+        "price": 54000,
+        "color": "라이트 핑크",
+        "brand": "슬로우무브"
+      },
+      {
+        "img_url": "/images/closet/closet_bottom.jpg",
+        "item_name": "하의A(이름)",
+        "category": "데님 팬츠",
+        "price": 45000,
+        "color": "아이보리",
+        "brand": "토피"
+      },
+      {
+        "img_url": "/images/closet/closet_bottom1.jpg",
+        "item_name": "하의B(이름)",
+        "category": "롱스커트",
+        "price": 54000,
+        "color": "라이트 핑크",
+        "brand": "슬로우무브"
+      }
+    ],
+    "shoes": [
+      {
+        "img_url": "/images/closet/closet_shoes.jpg",
+        "item_name": "신발A(이름)",
+        "category": "캔버스/단화",
+        "price": 56000,
+        "color": "회색",
+        "brand": "반스"
+      },
+      {
+        "img_url": "/images/closet/closet_shoes1.jpg",
+        "item_name": "신발B(이름)",
+        "category": "구두",
+        "price": 66000,
+        "color": "검정색",
+        "brand": "닥터마틴"
+      },
+      {
+        "img_url": "/images/closet/closet_shoes.jpg",
+        "item_name": "신발A(이름)",
+        "category": "캔버스/단화",
+        "price": 56000,
+        "color": "회색",
+        "brand": "반스"
+      },
+      {
+        "img_url": "/images/closet/closet_shoes1.jpg",
+        "item_name": "신발B(이름)",
+        "category": "구두",
+        "price": 66000,
+        "color": "검정색",
+        "brand": "닥터마틴"
+      },
+      {
+        "img_url": "/images/closet/closet_shoes.jpg",
+        "item_name": "신발A(이름)",
+        "category": "캔버스/단화",
+        "price": 56000,
+        "color": "회색",
+        "brand": "반스"
+      },
+      {
+        "img_url": "/images/closet/closet_shoes1.jpg",
+        "item_name": "신발B(이름)",
+        "category": "구두",
+        "price": 66000,
+        "color": "검정색",
+        "brand": "닥터마틴"
+      },
+      {
+        "img_url": "/images/closet/closet_shoes.jpg",
+        "item_name": "신발A(이름)",
+        "category": "캔버스/단화",
+        "price": 56000,
+        "color": "회색",
+        "brand": "반스"
+      },
+      {
+        "img_url": "/images/closet/closet_shoes1.jpg",
+        "item_name": "신발B(이름)",
+        "category": "구두",
+        "price": 66000,
+        "color": "검정색",
+        "brand": "닥터마틴"
+      },
+      {
+        "img_url": "/images/closet/closet_shoes.jpg",
+        "item_name": "신발A(이름)",
+        "category": "캔버스/단화",
+        "price": 56000,
+        "color": "회색",
+        "brand": "반스"
+      },
+      {
+        "img_url": "/images/closet/closet_shoes1.jpg",
+        "item_name": "신발B(이름)",
+        "category": "구두",
+        "price": 66000,
+        "color": "검정색",
+        "brand": "닥터마틴"
+      }
+    ],
+    "bag": [
+      {
+        "img_url": "/images/closet/closet_bag.jpg",
+        "item_name": "가방A(이름)",
+        "category": "백팩",
+        "price": 57000,
+        "color": "다크 그레이",
+        "brand": "커버낫"
+      },
+      {
+        "img_url": "/images/closet/closet_bag1.jpg",
+        "item_name": "가방B(이름)",
+        "category": "메신저/크로스 백",
+        "price": 45000,
+        "color": "검정색",
+        "brand": "잔스포츠"
+      },
+      {
+        "img_url": "/images/closet/closet_bag.jpg",
+        "item_name": "가방A(이름)",
+        "category": "백팩",
+        "price": 57000,
+        "color": "다크 그레이",
+        "brand": "커버낫"
+      },
+      {
+        "img_url": "/images/closet/closet_bag1.jpg",
+        "item_name": "가방B(이름)",
+        "category": "메신저/크로스 백",
+        "price": 45000,
+        "color": "검정색",
+        "brand": "잔스포츠"
+      },
+      {
+        "img_url": "/images/closet/closet_bag.jpg",
+        "item_name": "가방A(이름)",
+        "category": "백팩",
+        "price": 57000,
+        "color": "다크 그레이",
+        "brand": "커버낫"
+      },
+      {
+        "img_url": "/images/closet/closet_bag1.jpg",
+        "item_name": "가방B(이름)",
+        "category": "메신저/크로스 백",
+        "price": 45000,
+        "color": "검정색",
+        "brand": "잔스포츠"
+      },
+      {
+        "img_url": "/images/closet/closet_bag.jpg",
+        "item_name": "가방A(이름)",
+        "category": "백팩",
+        "price": 57000,
+        "color": "다크 그레이",
+        "brand": "커버낫"
+      },
+      {
+        "img_url": "/images/closet/closet_bag1.jpg",
+        "item_name": "가방B(이름)",
+        "category": "메신저/크로스 백",
+        "price": 45000,
+        "color": "검정색",
+        "brand": "잔스포츠"
+      },
+      {
+        "img_url": "/images/closet/closet_bag.jpg",
+        "item_name": "가방A(이름)",
+        "category": "백팩",
+        "price": 57000,
+        "color": "다크 그레이",
+        "brand": "커버낫"
+      },
+      {
+        "img_url": "/images/closet/closet_bag1.jpg",
+        "item_name": "가방B(이름)",
+        "category": "메신저/크로스 백",
+        "price": 45000,
+        "color": "검정색",
+        "brand": "잔스포츠"
+      }
+    ]
+  }
+}

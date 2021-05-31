@@ -128,7 +128,19 @@ function Closet() {
   const { closetImg, setClosetImg } = useContext(ModalContext);
   const captureRef = useRef();
   const [shareImg, setShareImg] = useState('');
+  const { clothesList, setClothesList } = useContext(ModalContext);
 
+  const fetch = useEffect(() => {
+    try {
+      axios.get('http://localhost:3000/data/closet.json').then((res) => {
+        let result = res.data.data;
+        console.log(result);
+        setClothesList(result);
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
   // const handleOpen = () => {
   //   setOpenModal(true);
   // };

@@ -72,7 +72,10 @@ function App() {
     bag: '',
   });
 
-  // const [condition, setCondition] = useState({});
+  const [condition, setCondition] = useState({
+    color: '검정색',
+    // price: 33000,
+  });
   const [clothesList, setClothesList] = useState('');
 
   return (
@@ -104,8 +107,8 @@ function App() {
           setLookBookColorSelect,
           clothesList,
           setClothesList,
-          // condition,
-          // setCondition,
+          condition,
+          setCondition,
         }}
       >
         <Router>

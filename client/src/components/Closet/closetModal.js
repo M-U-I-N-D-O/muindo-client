@@ -145,13 +145,15 @@ export default function ClosetModal() {
   const handleClose = () => {
     setOpenClosetModal(false);
   };
-  // const change = () => {
-  //   setCondition((current) => {
-  //     console.log(condition);
-  //     current['color'] = '검정색';
-  //   });
-  // };
-  // console.log(modalMode);
+
+  const handleClick = () => {
+    setCondition((current) => {
+      current['color'] = '파란색';
+
+      console.log(condition);
+    });
+  };
+
   const handleImageSelect = (event) => {
     setClosetImg({
       ...closetImg,
@@ -170,10 +172,6 @@ export default function ClosetModal() {
       })
     : [];
 
-  // useEffect(() => {
-  //   console.log(condition);
-  // }, [condition]);
-
   return (
     <div>
       <Modal
@@ -188,9 +186,6 @@ export default function ClosetModal() {
       >
         <Fade in={openClosetModal}>
           <div className={classes.modal}>
-            {/* <div>{modalMode}</div>
-            <div>{Data[modalMode]}</div> */}
-
             <div className={classes.modalTopContents}>
               <div className={classes.hiddenBtn}>
                 <ModalCloseBtn />
@@ -204,14 +199,14 @@ export default function ClosetModal() {
             {modalMode ? (
               <div className={classes.modalBottomContent}>
                 <div className={classes.modalBtnContainer}>
-                  {/* <LuxuryBtn>소분류</LuxuryBtn>
+                  <LuxuryBtn onClick={handleClick}>소분류</LuxuryBtn>
                   <LuxuryBtn>가격</LuxuryBtn>
                   <LuxuryBtn>색상</LuxuryBtn>
-                  <LuxuryBtn>브랜드</LuxuryBtn> */}
+                  <LuxuryBtn>브랜드</LuxuryBtn>
                   <GroupSelector category="color" />
                 </div>
                 <div className={classes.modalClothesContainer}>
-                  {Object.keys(condition).length !== 0
+                  {condition
                     ? filteredClothes.map(function (image, i) {
                         return <img className={classes.modalImg} alt="" src={filteredClothes[i]['img_url']} onClick={handleImageSelect} />;
                       })
@@ -221,15 +216,6 @@ export default function ClosetModal() {
                       })}
 
                   {/* {(Object.keys(condition).length === 0) & (filteredClothes.length === 0) ? <div>결과가 없습니다</div> : <></>} */}
-                  {/* <div>{condition}</div> */}
-                  {/* {clothesList[modalMode].map(function (image, i) {
-                    console.log(image);
-                    return <img className={classes.modalImg} alt="" src={clothesList[modalMode][i]['img_url']} onClick={handleImageSelect} />;
-                  })}{' '}
-                  {filteredClothes.map(function (image, i) {
-                    console.log(image);
-                    return <img className={classes.modalImg} alt="" src={clothesList[modalMode][i]['img_url']} onClick={handleImageSelect} />;
-                  })} */}
                 </div>
               </div>
             ) : (

@@ -18,10 +18,7 @@ export default function GroupSelector({ category }) {
 
   const handleChange = (event) => {
     setCondition((current) => {
-      //   if (category in Object.keys(condition)) {
-
       current[category] = event.target.value;
-
       console.log(condition);
     });
   };

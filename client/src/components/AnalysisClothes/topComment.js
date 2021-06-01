@@ -10,23 +10,27 @@ const TopText = styled.h1`
   margin-top: auto;
   margin-bottom: auto;
   margin-left: 8px;
-  font-size: 1.5vw;
+  font-size: 1.6vw;
   text-align: center;
+  @media (min-width: 320px) and (max-width: 480px) {
+    font-size: 3.5vw;
+  }
+`;
+const TopImg = styled.img`
+  width: 4vw;
+  @media (min-width: 320px) and (max-width: 480px) {
+    width: 7vw;
+  }
 `;
 
-function TopComment() {
+function TopComment(props) {
   return (
     <ContainerBox>
       <div>
-        <img
-          src="/images/common/sherlock_icon.jpg"
-          alt="sherlock_icon"
-          style={{ width: '4vw' }}
-        />
+        <TopImg src="/images/common/sherlock_icon.jpg" alt="sherlock_icon" />
       </div>
       <div style={{ margin: 'auto 0' }}>
-        <TopText>당신이 스타일을 분석해보겠습니다.</TopText>
-        <TopText>이미지를 첨부해주세요.</TopText>
+        <TopText>{props.comment}</TopText>
       </div>
     </ContainerBox>
   );

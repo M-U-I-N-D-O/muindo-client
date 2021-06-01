@@ -69,22 +69,14 @@ function Navbar() {
     dispatch(navbarMode(mode));
   };
   const toggleDrawer = (anchor, open) => (event) => {
-    if (
-      event &&
-      event.type === 'keydown' &&
-      (event.key === 'Tab' || event.key === 'Shift')
-    ) {
+    if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
     setOpen(open);
   };
 
   const drawerList = (
-    <div
-      className={classes.list}
-      onClick={toggleDrawer('left', false)}
-      onKeyDown={toggleDrawer('left', false)}
-    >
+    <div className={classes.list} onClick={toggleDrawer('left', false)} onKeyDown={toggleDrawer('left', false)}>
       <BottomNavigation
         value={value}
         onChange={(event, newValue) => {
@@ -130,17 +122,9 @@ function Navbar() {
           ['옷장 커뮤니티', '/community', 1],
           ['모리아티 솔루션', '/solution', 1],
         ].map((text, index) => (
-          <Link
-            key={index.toString()}
-            to={`${text[1]}`}
-            style={{ textDecoration: 'none' }}
-            onClick={() => handleNavbarMode(text[2])}
-          >
+          <Link key={index.toString()} to={`${text[1]}`} style={{ textDecoration: 'none' }} onClick={() => handleNavbarMode(text[2])}>
             <ListItem button>
-              <Typography
-                variant="h5"
-                style={{ fontWeight: 'bold', color: '#323B48' }}
-              >
+              <Typography variant="h5" style={{ fontWeight: 'bold', color: '#323B48' }}>
                 {text[0]}
               </Typography>
             </ListItem>
@@ -161,31 +145,16 @@ function Navbar() {
       >
         <Toolbar>
           <ThemeProvider theme={theme}>
-            <IconButton
-              edge="start"
-              className={clsx(open && classes.hide)}
-              color="primary"
-              aria-label="menu"
-              onClick={toggleDrawer('left', !open)}
-            >
+            <IconButton edge="start" className={clsx(open && classes.hide)} color="primary" aria-label="menu" onClick={toggleDrawer('left', !open)}>
               <MenuIcon style={{ fontSize: 50 }} />
-              <SwipeableDrawer
-                anchor={'left'}
-                open={open}
-                onClose={toggleDrawer('left', false)}
-                onOpen={toggleDrawer('left', true)}
-              >
+              <SwipeableDrawer anchor={'left'} open={open} onClose={toggleDrawer('left', false)} onOpen={toggleDrawer('left', true)}>
                 {drawerList}
               </SwipeableDrawer>
             </IconButton>
           </ThemeProvider>
 
           <NavTitle>
-            <Link
-              to="/home"
-              onClick={() => handleNavbarMode(1)}
-              style={{ textDecoration: 'none', color: '#e2b063' }}
-            >
+            <Link to="/home" onClick={() => handleNavbarMode(1)} style={{ textDecoration: 'none', color: '#e2b063' }}>
               셜록옷즈
             </Link>
           </NavTitle>

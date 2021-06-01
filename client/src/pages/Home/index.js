@@ -3,26 +3,28 @@ import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    height: '100vh',
-    backgroundImage: `url(${'/images/home/sherlock_wall.png'})`,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-  },
-  container: {
-    display: 'flex',
-    height: '100%',
-    justifyContent: 'center',
-  },
+  // root: {
+  //   height: '100vh',
+  //   backgroundImage: `url(${'/images/home/sherlock_wall.png'})`,
+  //   backgroundRepeat: 'no-repeat',
+  //   backgroundSize: 'cover',
+  // },
+  // container: {
+  //   display: 'flex',
+  //   height: '100%',
+  //   justifyContent: 'center',
+  // },
   contentsBox: {
     display: 'flex',
-    backgroundColor: 'white',
-    width: '80vw',
-    maxWidth: '768px',
+
+    // backgroundColor: 'white',
+    // width: '80vw',
+    // maxWidth: '1024px',
     alignItems: 'center',
     justifyContent: 'center',
     overflow: 'hidden',
   },
+  box: { display: 'flex' },
   menuButton: {
     display: 'flex',
     maxWidth: '250px',
@@ -79,29 +81,33 @@ function Home() {
   const moriartyMenuName = '모리아티의 솔루션';
 
   return (
-    <div className={classes.root}>
-      <div className={classes.container}>
-        <div className={classes.contentsBox}>
-          <div>
-            <Link to="/analysis_clothes" style={{ textDecoration: 'none' }}>
-              <MenuButton imgUrl={sherlockImg} menuName={sherlockMenuName} />
-            </Link>
-            <Link to="/closet" style={{ textDecoration: 'none' }}>
-              <MenuButton imgUrl={bakerImg} menuName={bakerMenuName} />
-            </Link>
-          </div>
-          <div>
-            <Link to="/analysis_color" style={{ textDecoration: 'none' }}>
-              <MenuButton imgUrl={watsonImg} menuName={watsonMenuName} />
-            </Link>
+    // <div className={classes.root}>
+    // <div className={classes.container}>
+    //
+    <div className={classes.contentsBox}>
+      <div className={classes.box}>
+        <div className={classes.box1}>
+          <Link to="/analysis_clothes" style={{ textDecoration: 'none' }}>
+            <MenuButton imgUrl={sherlockImg} menuName={sherlockMenuName} />
+          </Link>
+          <Link to="/closet" style={{ textDecoration: 'none' }}>
+            <MenuButton imgUrl={bakerImg} menuName={bakerMenuName} />
+          </Link>
+        </div>
+        <div className={classes.box1}>
+          <Link to="/analysis_color" style={{ textDecoration: 'none' }}>
+            <MenuButton imgUrl={watsonImg} menuName={watsonMenuName} />
+          </Link>
 
-            <Link to="/solution" style={{ textDecoration: 'none' }}>
-              <MenuButton imgUrl={moriartyImg} menuName={moriartyMenuName} />
-            </Link>
-          </div>
+          <Link to="/solution" style={{ textDecoration: 'none' }}>
+            <MenuButton imgUrl={moriartyImg} menuName={moriartyMenuName} />
+          </Link>
         </div>
       </div>
     </div>
+    // </div>
+    // </div>
+    // </div>
   );
 }
 

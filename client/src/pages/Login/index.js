@@ -11,30 +11,45 @@ import { makeStyles } from '@material-ui/core/styles';
 import FirebaseLogIn from './logIn';
 import styled from 'styled-components';
 
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#e2b063',
+    },
+  },
+});
+
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: '100vh',
-    backgroundImage: `url(${'/images/home/sherlock_wall.png'})`,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-  },
-  container: {
-    display: 'flex',
-    height: '100%',
-    justifyContent: 'center',
-  },
-  contentsBox: {
+    // height: '100vh',
+    // backgroundImage: `url(${'/images/home/sherlock_wall.png'})`,
+    // backgroundRepeat: 'no-repeat',
+    // backgroundSize: 'cover',
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
     justifyContent: 'center',
-    paddingBottom: '3.5rem',
-    paddingTop: '5rem',
-    backgroundColor: 'white',
-    width: '80vw',
-    maxWidth: '768px',
-    overflow: 'auto',
+    alignItems: 'center',
   },
+  // container: {
+  //   display: 'flex',
+  //   height: '100%',
+  //   justifyContent: 'center',
+  // },
+  // contentsBox: {
+  //   display: 'flex',
+  //   flexDirection: 'column',
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  //   paddingBottom: '3.5rem',
+  //   paddingTop: '5rem',
+  //   backgroundColor: 'white',
+  //   width: '80vw',
+  //   maxWidth: '1024px',
+  //   overflow: 'auto',
+  // },
   logoImg: {
     minHeight: '90px',
     minWidth: '70px',
@@ -114,11 +129,7 @@ function SelfLogin() {
       <form className={classes.logInForm}>
         <FormControl>
           <InputLabel>ID</InputLabel>
-          <Input
-            value={values.id}
-            onChange={handleChange('id')}
-            className={classes.id}
-          />
+          <Input value={values.id} onChange={handleChange('id')} className={classes.id} />
         </FormControl>
 
         <FormControl>
@@ -129,9 +140,9 @@ function SelfLogin() {
             onChange={handleChange('password')}
             endAdornment={
               <InputAdornment position="end">
-                <IconButton onClick={handleClickShowPassword}>
-                  {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
+                <ThemeProvider theme={theme}>
+                  <IconButton onClick={handleClickShowPassword}>{values.showPassword ? <Visibility /> : <VisibilityOff />}</IconButton>
+                </ThemeProvider>
               </InputAdornment>
             }
             className={classes.password}
@@ -150,13 +161,7 @@ function SelfLogin() {
           </Link>
         </div>
         <br />
-        <LuxuryBtn
-          htmlFor="submit"
-          className={classes.logInBtn}
-          type="submit"
-          onClick={handleClick}
-          disabled={!values.id || !values.password}
-        >
+        <LuxuryBtn htmlFor="submit" type="submit" onClick={handleClick} disabled={!values.id || !values.password}>
           로그인
         </LuxuryBtn>
       </form>
@@ -169,29 +174,27 @@ function Login() {
 
   return (
     <div className={classes.root}>
-      <div className={classes.container}>
-        <div className={classes.contentsBox}>
-          <img
-            className={classes.logoImg}
-            alt=""
-            src="/images/login/login_logo.png"
-          />
-          <br />
-          <br />
-          <br />
+      <img className={classes.logoImg} alt="" src="/images/login/login_logo.png" />
+      <br />
+      <br />
+      <br />
 
-          <div>
-            <SelfLogin />
-          </div>
-          <br />
-          <br />
-          <br />
-          <div>
-            <FirebaseLogIn />
-          </div>
-        </div>
+      <div>
+        <SelfLogin />
+      </div>
+      <br />
+      <br />
+      <br />
+      <div>
+        <FirebaseLogIn />
       </div>
     </div>
+    // <div className={classes.root}>
+    //   <div className={classes.container}>
+    //     <div className={classes.contentsBox}>
+    //     </div>
+    //   </div>
+    // </div>
   );
 }
 
@@ -215,13 +218,7 @@ const LuxuryBtn = styled.button`
   transition: all 0.7s ease-out;
   cursor: pointer;
 
-  background: linear-gradient(
-    270deg,
-    rgba(223, 190, 106, 0.8),
-    rgba(146, 111, 52, 0.8),
-    rgba(34, 34, 34, 0),
-    rgba(34, 34, 34, 0)
-  );
+  background: linear-gradient(270deg, rgba(223, 190, 106, 0.8), rgba(146, 111, 52, 0.8), rgba(34, 34, 34, 0), rgba(34, 34, 34, 0));
   background-position: 1% 50%;
   background-size: 300% 300%;
   text-decoration: none;

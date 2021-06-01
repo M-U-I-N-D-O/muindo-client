@@ -14,7 +14,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
-import GroupSelector from './groupSelector';
+import GroupSelector1 from './groupSelector1';
+import GroupSelector2 from './groupSelector2';
 import { ModalContext } from '../../App';
 
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -124,12 +125,17 @@ export default function ClosetModal() {
   const { closetImg, setClosetImg } = useContext(ModalContext);
   const { clothesList, setClothesList } = useContext(ModalContext);
   const { condition, setCondition } = useContext(ModalContext);
+  const [filteredClothes, setFilteredClothes] = useState({});
+
   // const [condition, setCondition] = useState({
   //   // category: '캡/야구 모자',
   //   color: '검정색',
   //   price: 33000,
   // });
-  // const [filteredClothes, setFilteredClothes] = useState({});
+  useEffect(() => {
+    setCondition({});
+  }, [modalMode]);
+
   const fetch = useEffect(() => {
     try {
       axios.get('http://localhost:3000/data/closet.json').then((res) => {
@@ -147,11 +153,7 @@ export default function ClosetModal() {
   };
 
   const handleClick = () => {
-    setCondition((current) => {
-      current['color'] = '파란색';
-
-      console.log(condition);
-    });
+    setCondition({});
   };
 
   const handleImageSelect = (event) => {
@@ -163,14 +165,26 @@ export default function ClosetModal() {
     setOpenClosetModal(false);
   };
 
-  var filteredClothes = clothesList[modalMode]
-    ? clothesList[modalMode].filter(function (item) {
-        for (var key in condition) {
-          if (item[key] === undefined || item[key] !== condition[key]) return false;
-        }
-        return true;
-      })
-    : [];
+  // var filteredClothes = clothesList[modalMode]
+  //   ? clothesList[modalMode].filter(function (item) {
+  //       for (var key in condition) {
+  //         if (item[key] === undefined || item[key] !== condition[key]) return false;
+  //       }
+  //       return true;
+  //     })
+  //   : [];
+
+  useEffect(() => {
+    var subFilteredClothes = clothesList[modalMode]
+      ? clothesList[modalMode].filter(function (item) {
+          for (var key in condition) {
+            if (item[key] === undefined || item[key] !== condition[key]) return false;
+          }
+          return true;
+        })
+      : [];
+    setFilteredClothes(subFilteredClothes);
+  }, [clothesList[modalMode], condition]);
 
   return (
     <div>
@@ -199,19 +213,22 @@ export default function ClosetModal() {
             {modalMode ? (
               <div className={classes.modalBottomContent}>
                 <div className={classes.modalBtnContainer}>
-                  <LuxuryBtn onClick={handleClick}>소분류</LuxuryBtn>
-                  <LuxuryBtn>가격</LuxuryBtn>
+                  <LuxuryBtn onClick={handleClick}>초기화</LuxuryBtn>
+                  {/* <LuxuryBtn>가격</LuxuryBtn>
                   <LuxuryBtn>색상</LuxuryBtn>
-                  <LuxuryBtn>브랜드</LuxuryBtn>
-                  <GroupSelector category="color" />
+                  <LuxuryBtn>브랜드</LuxuryBtn> */}
+                  <GroupSelector1 kind="category" />
+                  {/* <GroupSelector2 kind="sub_category" /> */}
+                  {/* <GroupSelector2 kind="price" />
+                  <GroupSelector2 kind="brand" /> */}
                 </div>
                 <div className={classes.modalClothesContainer}>
-                  {condition
+                  {Object.keys(condition).length !== 0
                     ? filteredClothes.map(function (image, i) {
                         return <img className={classes.modalImg} alt="" src={filteredClothes[i]['img_url']} onClick={handleImageSelect} />;
                       })
                     : clothesList[modalMode].map(function (image, i) {
-                        console.log(image);
+                        // console.log(image);
                         return <img className={classes.modalImg} alt="" src={clothesList[modalMode][i]['img_url']} onClick={handleImageSelect} />;
                       })}
 

@@ -73,7 +73,7 @@ function App() {
   });
 
   const [condition, setCondition] = useState({
-    color: '검정색',
+    // color: '검정색',
     // price: 33000,
   });
   const [clothesList, setClothesList] = useState('');

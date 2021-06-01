@@ -15,12 +15,12 @@ function AnalysisClothesResult() {
       <TopComment comment={'제가 분석한 결과는 다음과 같습니다.'} />
 
       <ImageContainer>
-        <ImageBox style={{ overflow: 'hidden', width: '380px' }}>
+        <ImageBox>
           <img src={imgSrc} alt={`${imgSrc}`} />
         </ImageBox>
-        <ImageBox style={{ overflow: 'auto', width: '380px' }}>
+        <ListBox>
           <ResultListBox />
-        </ImageBox>
+        </ListBox>
       </ImageContainer>
       <ButtonContainer>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -43,15 +43,48 @@ const ImageContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 2vh;
+  @media (min-width: 320px) and (max-width: 480px) {
+    display: block;
+  }
 `;
 const ImageBox = styled.div`
   display: flex;
   justify-content: center;
   width: 300px;
-  height: 50vh;
+  height: auto;
   border: 2px solid black;
   margin-left: 1vw;
   margin-right: 1vw;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+  @media (min-width: 320px) and (max-width: 480px) {
+    margin: 0 auto;
+    margin-bottom: 1vw;
+    width: 250px;
+  }
+`;
+
+const ListBox = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 380px;
+  height: auto;
+  border: 2px solid black;
+  margin-left: 1vw;
+  margin-right: 1vw;
+  overflow: 'auto';
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+  @media (min-width: 320px) and (max-width: 480px) {
+    margin: 0 auto;
+    width: 250px;
+  }
 `;
 const LuxuryBtn = styled.button`
   display: block;

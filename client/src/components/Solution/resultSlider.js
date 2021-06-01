@@ -50,7 +50,7 @@ function ResultSlider() {
   };
 
   return (
-    <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+    <Container>
       <div className="slider-wrapper">
         <Slider {...settingsMain} asNavFor={nav2} ref={(slider) => setSlider1(slider)}>
           {slidesData.map((slide, index) => (
@@ -85,7 +85,7 @@ function ResultSlider() {
           </Slider>
         </div>
       </div>
-    </div>
+    </Container>
   );
   //   const settings = {
   //     customPaging: function () {
@@ -140,6 +140,13 @@ function ResultSlider() {
 
 export default ResultSlider;
 
+const Container = styled.div`
+  max-width: 900px;
+  margin: 0 auto;
+  @media (min-width: 320px) and (max-width: 480px) {
+    max-width: 300px;
+  }
+`;
 const SlideContainer = styled.div`
   height: 380px;
 `;

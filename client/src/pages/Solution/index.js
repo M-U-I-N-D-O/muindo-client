@@ -9,6 +9,11 @@ import Slider from 'react-slick';
 import TopComment from '../../components/AnalysisClothes/topComment';
 import StylesSelecter from '../../components/Solution/stylesSelecter';
 
+import InfiniteScroll from 'react-infinite-scroll-component';
+import axios from 'axios';
+
+const PAGE_NUMBER = 1;
+
 function Solution() {
   const comment = '당신의 스타일 취향기반으로 멋있는 룩을 추천해보겠습니다.';
   const dispatch = useDispatch();
@@ -17,7 +22,7 @@ function Solution() {
   const [slider, setSlider] = useState(null);
   const sliderRef = useRef(null);
   const settings = {
-    dots: true,
+    dots: false,
     arrows: false,
     Infinite: false,
     slidesToShow: 1,
@@ -25,6 +30,27 @@ function Solution() {
     // focusOnSelect: true,
     // swipe: false,
     speed: 500,
+  };
+
+  const [styleList, setStyleList] = useState([]);
+  const [page, setPage] = useState(PAGE_NUMBER);
+
+  useEffect(() => {
+    try {
+      axios.get('http://localhost:3000/data/solution.json').then((response) => {
+        console.log('page :', page);
+        setStyleList([...styleList, ...response.data.data]);
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }, [page]);
+
+  const scrollToEnd = () => {
+    console.log('마지막');
+    setTimeout(() => {
+      setPage(page + 1);
+    }, 1000);
   };
 
   useEffect(() => {
@@ -78,11 +104,19 @@ function Solution() {
               </ContentButton>
             </SlideBox>
           </SliderContainer>
-          <SliderContainer>
-            <ContentsText>선호하는 스타일을 골라주세요.</ContentsText>
-            <SlideBox>
-              <StylesSelecter />
-            </SlideBox>
+          <SliderContainer id="scrollableDiv">
+            <InfiniteScroll
+              dataLength={styleList.length}
+              next={() => scrollToEnd()}
+              hasMore={true}
+              loader={<h1 style={{ textAlign: 'center' }}>Loading..🕵️‍♂️</h1>}
+              scrollableTarget="scrollableDiv"
+            >
+              <ContentsText>선호하는 스타일을 골라주세요.</ContentsText>
+              <SlideBox>
+                <StylesSelecter styleList={styleList} />
+              </SlideBox>
+            </InfiniteScroll>
           </SliderContainer>
           <SliderContainer>
             <h1>Hi~</h1>

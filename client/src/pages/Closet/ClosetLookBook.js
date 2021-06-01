@@ -142,7 +142,11 @@ export default function ClosetLookBook() {
     let url = '';
     await html2canvas(captureRef.current).then(async (canvas) => {
       url = await canvas.toDataURL('image/jpg');
-      console.log(url);
+      var img = url.replace('data:image/png;base64,', '');
+      console.log(img);
+      // const imageUrl = window.URL.createObjectURL(url);
+      // console.log(imageUrl);
+
       downloadURI(url, 'sherlock_Odds_baker_closet.jpg');
     });
   };

@@ -134,7 +134,7 @@ export default function ClosetModal() {
   // });
   useEffect(() => {
     setCondition({});
-  }, [modalMode]);
+  }, [modalMode, openClosetModal]);
 
   const fetch = useEffect(() => {
     try {
@@ -152,6 +152,7 @@ export default function ClosetModal() {
     setOpenClosetModal(false);
   };
 
+  console.log(condition);
   const handleClick = () => {
     setCondition({});
   };
@@ -217,7 +218,7 @@ export default function ClosetModal() {
                   {/* <LuxuryBtn>가격</LuxuryBtn>
                   <LuxuryBtn>색상</LuxuryBtn>
                   <LuxuryBtn>브랜드</LuxuryBtn> */}
-                  <GroupSelector1 kind="category" />
+                  <GroupSelector1 />
                   {/* <GroupSelector2 kind="sub_category" /> */}
                   {/* <GroupSelector2 kind="price" />
                   <GroupSelector2 kind="brand" /> */}

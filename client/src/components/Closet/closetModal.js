@@ -1,4 +1,4 @@
-import React, { useState, createContext, useContext, useLocation } from 'react';
+import React, { useState, createContext, useContext, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import IconButton from '@material-ui/core/IconButton';
@@ -7,15 +7,19 @@ import Fade from '@material-ui/core/Fade';
 import Backdrop from '@material-ui/core/Backdrop';
 import styled from 'styled-components';
 import TopComment from '../../components/AnalysisClothes/topComment';
+import axios from 'axios';
 
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+
+import GroupSelector1 from './groupSelector1';
+import GroupSelector2 from './groupSelector2';
 import { ModalContext } from '../../App';
 
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
-
-import { Data } from '../../data/data.json';
-// import { Data } from '../../../public/images/closet/closet_bag.jpg';
-// import {  } from '../Closet/closet_bag.jpg';
 
 const theme = createMuiTheme({
   palette: {
@@ -78,7 +82,9 @@ const useStyles = makeStyles((theme) => ({
   modalClothesContainer: {
     display: 'flex',
     overflow: 'auto',
-    width: '37vw',
+    width: '63vw',
+    maxWidth: '800px',
+
     // height: '70vh',
     flexWrap: 'wrap',
     alignItems: 'center',
@@ -90,7 +96,7 @@ const useStyles = makeStyles((theme) => ({
   modalImg: {
     width: '8vw',
     height: '11vh',
-    margin: '10px 40px',
+    margin: '30px 40px',
   },
 }));
 
@@ -112,21 +118,44 @@ function ModalCloseBtn() {
   );
 }
 
-export default function ClosetModal({ data }) {
+export default function ClosetModal() {
   const classes = useStyles();
   const { openClosetModal, setOpenClosetModal } = useContext(ModalContext);
   const { modalMode, setModalMode } = useContext(ModalContext);
   const { closetImg, setClosetImg } = useContext(ModalContext);
+  const { clothesList, setClothesList } = useContext(ModalContext);
+  const { condition, setCondition } = useContext(ModalContext);
+  const [filteredClothes, setFilteredClothes] = useState({});
 
-  // console.log(Data[modalMode]);
-  //   const [openModal, setOpenModal] = useState(false);
-  //   const handleOpen = () => {
-  //     setOpenModal(true);
-  //   };
+  // const [condition, setCondition] = useState({
+  //   // category: '캡/야구 모자',
+  //   color: '검정색',
+  //   price: 33000,
+  // });
+  useEffect(() => {
+    setCondition({});
+  }, [modalMode]);
+
+  const fetch = useEffect(() => {
+    try {
+      axios.get('http://localhost:3000/data/closet.json').then((res) => {
+        let result = res.data.data;
+        console.log(result);
+        setClothesList(result);
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
+
   const handleClose = () => {
     setOpenClosetModal(false);
   };
-  // console.log(modalMode);
+
+  const handleClick = () => {
+    setCondition({});
+  };
+
   const handleImageSelect = (event) => {
     setClosetImg({
       ...closetImg,
@@ -135,6 +164,27 @@ export default function ClosetModal({ data }) {
     console.log(closetImg);
     setOpenClosetModal(false);
   };
+
+  // var filteredClothes = clothesList[modalMode]
+  //   ? clothesList[modalMode].filter(function (item) {
+  //       for (var key in condition) {
+  //         if (item[key] === undefined || item[key] !== condition[key]) return false;
+  //       }
+  //       return true;
+  //     })
+  //   : [];
+
+  useEffect(() => {
+    var subFilteredClothes = clothesList[modalMode]
+      ? clothesList[modalMode].filter(function (item) {
+          for (var key in condition) {
+            if (item[key] === undefined || item[key] !== condition[key]) return false;
+          }
+          return true;
+        })
+      : [];
+    setFilteredClothes(subFilteredClothes);
+  }, [clothesList[modalMode], condition]);
 
   return (
     <div>
@@ -150,9 +200,6 @@ export default function ClosetModal({ data }) {
       >
         <Fade in={openClosetModal}>
           <div className={classes.modal}>
-            {/* <div>{modalMode}</div>
-            <div>{Data[modalMode]}</div> */}
-
             <div className={classes.modalTopContents}>
               <div className={classes.hiddenBtn}>
                 <ModalCloseBtn />
@@ -166,18 +213,27 @@ export default function ClosetModal({ data }) {
             {modalMode ? (
               <div className={classes.modalBottomContent}>
                 <div className={classes.modalBtnContainer}>
-                  <LuxuryBtn>소분류</LuxuryBtn>
-                  <LuxuryBtn>가격</LuxuryBtn>
+                  <LuxuryBtn onClick={handleClick}>초기화</LuxuryBtn>
+                  {/* <LuxuryBtn>가격</LuxuryBtn>
                   <LuxuryBtn>색상</LuxuryBtn>
-                  <LuxuryBtn>브랜드</LuxuryBtn>
+                  <LuxuryBtn>브랜드</LuxuryBtn> */}
+                  <GroupSelector1 kind="category" />
+                  {/* <GroupSelector2 kind="sub_category" /> */}
+                  {/* <GroupSelector2 kind="price" />
+                  <GroupSelector2 kind="brand" /> */}
                 </div>
                 <div className={classes.modalClothesContainer}>
-                  {Data[modalMode].map(function (image, i) {
-                    return <img className={classes.modalImg} alt="" src={Data[modalMode][i]} onClick={handleImageSelect} />;
-                  })}
+                  {Object.keys(condition).length !== 0
+                    ? filteredClothes.map(function (image, i) {
+                        return <img className={classes.modalImg} alt="" src={filteredClothes[i]['img_url']} onClick={handleImageSelect} />;
+                      })
+                    : clothesList[modalMode].map(function (image, i) {
+                        // console.log(image);
+                        return <img className={classes.modalImg} alt="" src={clothesList[modalMode][i]['img_url']} onClick={handleImageSelect} />;
+                      })}
+
+                  {/* {(Object.keys(condition).length === 0) & (filteredClothes.length === 0) ? <div>결과가 없습니다</div> : <></>} */}
                 </div>
-                {/* <img alt="" src={Data[modalMode][0]} style={{ width: '50px', height: '50px' }} onClick={handleImageSelect} />
-                <img alt="" src={Data[modalMode][1]} style={{ width: '50px', height: '50px' }} onClick={handleImageSelect} /> */}
               </div>
             ) : (
               <div></div>

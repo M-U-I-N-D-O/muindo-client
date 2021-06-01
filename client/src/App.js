@@ -72,6 +72,12 @@ function App() {
     bag: '',
   });
 
+  const [condition, setCondition] = useState({
+    // color: '검정색',
+    // price: 33000,
+  });
+  const [clothesList, setClothesList] = useState('');
+
   return (
     //  <Container>
     //   <Route exact path="/home" component={Home} />
@@ -99,6 +105,10 @@ function App() {
           setLookBookColorModal,
           lookBookColorSelect,
           setLookBookColorSelect,
+          clothesList,
+          setClothesList,
+          condition,
+          setCondition,
         }}
       >
         <Router>

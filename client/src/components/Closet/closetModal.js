@@ -139,7 +139,6 @@ export default function ClosetModal() {
     try {
       axios.get('http://localhost:3000/data/closet.json').then((res) => {
         let result = res.data.data;
-        console.log(result);
         setClothesList(result);
       });
     } catch (err) {
@@ -151,28 +150,13 @@ export default function ClosetModal() {
     setOpenClosetModal(false);
   };
 
-  console.log(condition);
-  const handleClick = () => {
-    setCondition({});
-  };
-
   const handleImageSelect = (event) => {
     setClosetImg({
       ...closetImg,
       [modalMode]: event.target.src,
     });
-    console.log(closetImg);
     setOpenClosetModal(false);
   };
-
-  // var filteredClothes = clothesList[modalMode]
-  //   ? clothesList[modalMode].filter(function (item) {
-  //       for (var key in condition) {
-  //         if (item[key] === undefined || item[key] !== condition[key]) return false;
-  //       }
-  //       return true;
-  //     })
-  //   : [];
 
   useEffect(() => {
     var subFilteredClothes = clothesList[modalMode]
@@ -213,26 +197,33 @@ export default function ClosetModal() {
             {modalMode ? (
               <div className={classes.modalBottomContent}>
                 <div className={classes.modalBtnContainer}>
-                  <LuxuryBtn onClick={handleClick}>초기화</LuxuryBtn>
-                  {/* <LuxuryBtn>가격</LuxuryBtn>
-                  <LuxuryBtn>색상</LuxuryBtn>
-                  <LuxuryBtn>브랜드</LuxuryBtn> */}
+                  {/* <LuxuryBtn onClick={handleInitializeClick}>초기화</LuxuryBtn> */}
                   <GroupSelector />
-                  {/* <GroupSelector2 kind="sub_category" /> */}
-                  {/* <GroupSelector2 kind="price" />
-                  <GroupSelector2 kind="brand" /> */}
                 </div>
                 <div className={classes.modalClothesContainer}>
                   {Object.keys(condition).length !== 0
                     ? filteredClothes.map(function (image, i) {
-                        return <img className={classes.modalImg} alt="" src={filteredClothes[i]['img_url']} onClick={handleImageSelect} />;
+                        return (
+                          <div>
+                            <img className={classes.modalImg} alt="" src={filteredClothes[i]['img_url']} onClick={handleImageSelect} />
+                            <div>{filteredClothes[i]['brand']}</div>
+
+                            <div>{filteredClothes[i]['item_name']}</div>
+                            <div>{filteredClothes[i]['price']}</div>
+                          </div>
+                        );
                       })
                     : clothesList[modalMode].map(function (image, i) {
-                        // console.log(image);
-                        return <img className={classes.modalImg} alt="" src={clothesList[modalMode][i]['img_url']} onClick={handleImageSelect} />;
+                        return (
+                          <div>
+                            <img className={classes.modalImg} alt="" src={clothesList[modalMode][i]['img_url']} onClick={handleImageSelect} />
+                            <div>{clothesList[modalMode][i]['brand']}</div>
+                            <div>{clothesList[modalMode][i]['item_name']}</div>
+                            <div>{clothesList[modalMode][i]['price']}</div>
+                          </div>
+                        );
                       })}
-
-                  {/* {(Object.keys(condition).length === 0) & (filteredClothes.length === 0) ? <div>결과가 없습니다</div> : <></>} */}
+                  {filteredClothes.length === 0 ? <div>결과가 없습니다</div> : <></>}
                 </div>
               </div>
             ) : (

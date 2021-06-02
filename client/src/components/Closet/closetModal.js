@@ -122,6 +122,7 @@ export default function ClosetModal() {
   const { openClosetModal, setOpenClosetModal } = useContext(ModalContext);
   const { modalMode, setModalMode } = useContext(ModalContext);
   const { closetImg, setClosetImg } = useContext(ModalContext);
+  const { closetClothesShopUrl, setClosetClothesShopUrl } = useContext(ModalContext);
   const { clothesList, setClothesList } = useContext(ModalContext);
   const { condition, setCondition } = useContext(ModalContext);
   const [filteredClothes, setFilteredClothes] = useState({});
@@ -170,7 +171,8 @@ export default function ClosetModal() {
       ...closetImg,
       [modalMode]: event.target.src,
     });
-    console.log(event.target.alt);
+    setClosetClothesShopUrl({ ...closetClothesShopUrl, [modalMode]: event.target.alt });
+    console.log(closetClothesShopUrl);
     console.log(event.target);
     setOpenClosetModal(false);
   };
@@ -179,9 +181,22 @@ export default function ClosetModal() {
     console.log(event.target);
   };
 
+  // const fetchFilteredClothesData = useCallback(async () => {
+  //   try {
+  //     await axios.get(`http://localhost:3000/items/?middle-category=${condition.category}&sub-category=${condition.sub_category}&brand=${condition.brand}`).then((res) => {
+  //       let result = res.data.data;
+  //       setClothesList(result);
+  //     });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }, []);
+
   useEffect(() => {
     var subFilteredClothes = clothesList[modalMode]
-      ? clothesList[modalMode].filter(function (item) {
+      ? // ?
+
+        clothesList[modalMode].filter(function (item) {
           for (var key in condition) {
             if (item[key] === undefined || item[key] !== condition[key]) return false;
           }
@@ -190,6 +205,20 @@ export default function ClosetModal() {
       : [];
     setFilteredClothes(subFilteredClothes);
   }, [clothesList[modalMode], condition]);
+
+  // useEffect(() => {
+  //   var subFilteredClothes = clothesList[modalMode]
+  //     // ?
+
+  //     ?  clothesList[modalMode].filter(function (item) {
+  //         for (var key in condition) {
+  //           if (item[key] === undefined || item[key] !== condition[key]) return false;
+  //         }
+  //         return true;
+  //       })
+  //     : [];
+  //   setFilteredClothes(subFilteredClothes);
+  // }, [clothesList[modalMode], condition]);
 
   return (
     <div>

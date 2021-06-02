@@ -126,6 +126,7 @@ function Closet() {
   const { openImgDownloadModal, setOpenImgDownloadModal } = useContext(ModalContext);
   const { modalMode, setModalMode } = useContext(ModalContext);
   const { closetImg, setClosetImg } = useContext(ModalContext);
+
   const captureRef = useRef();
   const [shareImg, setShareImg] = useState('');
   const { clothesList, setClothesList } = useContext(ModalContext);

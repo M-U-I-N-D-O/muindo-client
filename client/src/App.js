@@ -72,6 +72,14 @@ function App() {
     bag: '',
   });
 
+  const [closetClothesShopUrl, setClosetClothesShopUrl] = useState({
+    hat: '',
+    top: '',
+    bottom: '',
+    shoes: '',
+    bag: '',
+  });
+
   const [condition, setCondition] = useState({
     // color: '검정색',
     // price: 33000,
@@ -101,6 +109,8 @@ function App() {
           setModalMode,
           closetImg,
           setClosetImg,
+          closetClothesShopUrl,
+          setClosetClothesShopUrl,
           lookBookColorModal,
           setLookBookColorModal,
           lookBookColorSelect,

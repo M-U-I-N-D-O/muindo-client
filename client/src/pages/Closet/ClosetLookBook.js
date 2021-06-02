@@ -99,37 +99,17 @@ export default function ClosetLookBook() {
   const { lookBookColorModal, setLookBookColorModal } = useContext(ModalContext);
   const { modalMode, setModalMode } = useContext(ModalContext);
   const { closetImg, setClosetImg } = useContext(ModalContext);
+  const { closetClothesShopUrl, setClosetClothesShopUrl } = useContext(ModalContext);
+
   const captureRef = useRef();
 
-  // const handleOpen = () => {
-  //   setOpenModal(true);
-  // };
-
   const handleColorChangeClick = (event) => {
-    // setModalMode(event.target.id);
     setLookBookColorModal(true);
-    // console.log(lookBookColorModal);
-    // console.log(modalMode);
-    // console.log(closetImg);
   };
 
-  //   const handleEraseAllButtonClick = () => {
-  //     setClosetImg({
-  //       hat: '',
-  //       top: '',
-  //       bottom: '',
-  //       shoes: '',
-  //       bag: '',
-  //     });
-  //   };
-
   const handleImageDownloadClick = async () => {
-    // setOpenImgDownloadModal(true);
     console.log(captureRef.current);
 
-    // setTimeout(function () {
-    //   setOpenImgDownloadModal(false);
-    // }, 3500);
     function downloadURI(uri, name) {
       var link = document.createElement('a');
       link.download = name;
@@ -151,7 +131,20 @@ export default function ClosetLookBook() {
     });
   };
 
-  const handleSubmitClick = () => {
+  // const handleSubmitClick = async () => {
+  //   const res = await axios.post(
+  //     apiPostUrl,
+  //     {
+  //       lookBookImgUrl: img (<- 바로 위에 있는 img 변수에 담긴 값, img를 변수가 아닌 state로 저장해야 할 듯),
+  //       shopUrl: closetClothesShopUrl (<-해당 룩북 이미지 구성하고 있는 상품들의 무신사 링크, {hat: 'url1', top: 'url2'...} 형식으로 저장되어 있음)
+  //     },
+  //     {headers: {"Content-Type": "application/json"}}
+  //   );
+  //   const id = 해당 사용자 id
+  //   history.push('/my_page/' + id);
+  // };
+
+  const handleSubmitClick = async () => {
     history.push('/closet');
   };
 

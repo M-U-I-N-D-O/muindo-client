@@ -84,7 +84,7 @@ function App() {
     // color: '검정색',
     // price: 33000,
   });
-  const [clothesList, setClothesList] = useState('');
+  const [clothesList, setClothesList] = useState([]);
 
   return (
     //  <Container>

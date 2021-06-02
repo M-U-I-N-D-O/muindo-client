@@ -8,6 +8,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 import styled from 'styled-components';
 import TopComment from '../../components/AnalysisClothes/topComment';
 import axios from 'axios';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -119,6 +120,8 @@ function ModalCloseBtn() {
 
 export default function ClosetModal() {
   const classes = useStyles();
+  const PAGE_NUMBER = 1;
+
   const { openClosetModal, setOpenClosetModal } = useContext(ModalContext);
   const { modalMode, setModalMode } = useContext(ModalContext);
   const { closetImg, setClosetImg } = useContext(ModalContext);
@@ -126,20 +129,47 @@ export default function ClosetModal() {
   const { clothesList, setClothesList } = useContext(ModalContext);
   const { condition, setCondition } = useContext(ModalContext);
   const [filteredClothes, setFilteredClothes] = useState({});
+  const [page, setPage] = useState(PAGE_NUMBER);
 
   // const [condition, setCondition] = useState({
   //   // category: '캡/야구 모자',
   //   color: '검정색',
   //   price: 33000,
   // });
-  useEffect(() => {
-    setCondition({});
-  }, [modalMode, openClosetModal]);
+  // useEffect(() => {
+  //   setCondition({});
+  // }, [modalMode, openClosetModal]);
 
-  // const fetch = useEffect(() => {
+  useEffect(() => {
+    try {
+      axios.get('http://localhost:3000/data/closet.json').then((res) => {
+        let result = res.data.data;
+        // console.log(modalMode);
+
+        // console.log(res.data.data['bag']);
+        console.log(res.data.data[modalMode]);
+        setClothesList(res.data.data[modalMode]);
+      });
+    } catch (err) {
+      console.log(err);
+    }
+    return clothesList;
+  }, [modalMode, page]);
+  // console.log(typeof modalMode);
+  // console.log(clothesList[0]);
+
+  // const fetchClothesData = useCallback(async () => {
   //   try {
-  //     axios.get('http://localhost:3000/data/closet.json').then((res) => {
+  //     await axios.get('http://localhost:3000/data/closet.json').then((res) => {
   //       let result = res.data.data;
+  //       // console.log(modalMode);
+  //       // console.log(result[modalMode]);
+  //       // let arr = [];
+  //       // for (var i = 0; i < result[modalMode]; i++) {
+  //       //   console.log(result[modalMode[i]]);
+  //       //   //   var newArray = appendObjTo(arr, result[modalMode[i]])
+  //       // }
+  //       // console.log(arr);
   //       setClothesList(result);
   //     });
   //   } catch (err) {
@@ -147,20 +177,34 @@ export default function ClosetModal() {
   //   }
   // }, []);
 
-  const fetchClothesData = useCallback(async () => {
-    try {
-      await axios.get('http://localhost:3000/data/closet.json').then((res) => {
-        let result = res.data.data;
-        setClothesList(result);
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  }, []);
+  // console.log(modalMode);
 
-  useEffect(() => {
-    fetchClothesData();
-  }, [fetchClothesData]);
+  // useEffect(() => {
+  //   fetchClothesData();
+  // }, [fetchClothesData, modalMode]);
+
+  // if (modalMode) {
+  //   fetchClothesData();
+  // }
+
+  // console.log(clothesList[modalMode]);
+  // useEffect(() => {
+  //   try {
+  //     axios.get('http://localhost:3000/data/closet.json').then((response) => {
+  //       console.log('page :', page);
+  //       setClothesList([...clothesList, ...response.data.data]);
+  //     });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }, [page]);
+
+  const scrollToEnd = () => {
+    console.log('마지막');
+    setTimeout(() => {
+      setPage(page + 1);
+    }, 1000);
+  };
 
   const handleClose = () => {
     setOpenClosetModal(false);
@@ -183,20 +227,22 @@ export default function ClosetModal() {
 
   // const fetchFilteredClothesData = useCallback(async () => {
   //   try {
-  //     await axios.get(`http://localhost:3000/items/?middle-category=${condition.category}&sub-category=${condition.sub_category}&brand=${condition.brand}`).then((res) => {
-  //       let result = res.data.data;
-  //       setClothesList(result);
-  //     });
+  //     await axios
+  //       .get(`http://localhost:3000/items/?middle-category=${condition.category}&sub-category=${condition.sub_category}&brand=${condition.brand}`)
+  //       .then((res) => {
+  //         let result = res.data.data;
+  //         setClothesList(result);
+  //       });
   //   } catch (err) {
   //     console.log(err);
   //   }
   // }, []);
 
   useEffect(() => {
-    var subFilteredClothes = clothesList[modalMode]
+    var subFilteredClothes = clothesList
       ? // ?
 
-        clothesList[modalMode].filter(function (item) {
+        clothesList.filter(function (item) {
           for (var key in condition) {
             if (item[key] === undefined || item[key] !== condition[key]) return false;
           }
@@ -204,7 +250,7 @@ export default function ClosetModal() {
         })
       : [];
     setFilteredClothes(subFilteredClothes);
-  }, [clothesList[modalMode], condition]);
+  }, [clothesList, condition]);
 
   // useEffect(() => {
   //   var subFilteredClothes = clothesList[modalMode]
@@ -252,41 +298,59 @@ export default function ClosetModal() {
                 </div>
                 <div className={classes.modalClothesContainer}>
                   {Object.keys(condition).length !== 0
-                    ? filteredClothes.map(function (image, i) {
+                    ? Array.isArray(filteredClothes) &&
+                      filteredClothes.map(function (image, i) {
                         return (
-                          <div>
-                            <div className={filteredClothes[i]['item_url']} onClick={a}>
-                              <img
-                                className={classes.modalImg}
-                                alt={filteredClothes[i]['shop_url']}
-                                src={filteredClothes[i]['img_url']}
-                                onClick={handleImageSelect}
-                              />
-                            </div>
-                            <a href={filteredClothes[i]['shop_url']} target="_blank" title="무신사에서 상품 보기" rel="noreferrer">
-                              <div>{filteredClothes[i]['brand']}</div>
-                              <div>{filteredClothes[i]['item_name']}</div>
-                              <div>{filteredClothes[i]['price']}</div>
-                            </a>
+                          <div id="scrollableDiv">
+                            <InfiniteScroll
+                              dataLength={filteredClothes.length}
+                              next={() => scrollToEnd()}
+                              hasMore={true}
+                              loader={<h1 style={{ textAlign: 'center' }}>Loading..🕵️‍♂️</h1>}
+                              scrollableTarget="scrollableDiv"
+                            >
+                              <div className={filteredClothes[i]['item_url']} onClick={a}>
+                                <img
+                                  className={classes.modalImg}
+                                  alt={filteredClothes[i]['shop_url']}
+                                  src={filteredClothes[i]['img_url']}
+                                  onClick={handleImageSelect}
+                                />
+                              </div>
+                              <a href={filteredClothes[i]['shop_url']} target="_blank" title="무신사에서 상품 보기" rel="noreferrer">
+                                <div>{filteredClothes[i]['brand']}</div>
+                                <div>{filteredClothes[i]['item_name']}</div>
+                                <div>{filteredClothes[i]['price']}</div>
+                              </a>
+                            </InfiniteScroll>
                           </div>
                         );
                       })
-                    : clothesList[modalMode].map(function (image, i) {
+                    : Array.isArray(clothesList) &&
+                      clothesList.map(function (image, i) {
                         return (
-                          <div>
-                            <div className={clothesList[modalMode][i]['item_url']} onClick={a}>
-                              <img
-                                className={classes.modalImg}
-                                alt={clothesList[modalMode][i]['shop_url']}
-                                src={clothesList[modalMode][i]['img_url']}
-                                onClick={handleImageSelect}
-                              />
-                            </div>
-                            <a href={clothesList[modalMode][i]['shop_url']} target="_blank" title="무신사에서 상품 보기" rel="noreferrer">
-                              <div>{clothesList[modalMode][i]['brand']}</div>
-                              <div>{clothesList[modalMode][i]['item_name']}</div>
-                              <div>{clothesList[modalMode][i]['price']}</div>
-                            </a>
+                          <div id="scrollableDiv">
+                            <InfiniteScroll
+                              dataLength={clothesList.length}
+                              next={() => scrollToEnd()}
+                              hasMore={true}
+                              loader={<h1 style={{ textAlign: 'center' }}>Loading..🕵️‍♂️</h1>}
+                              scrollableTarget="scrollableDiv"
+                            >
+                              <div className={clothesList[i]['item_url']} onClick={a}>
+                                <img
+                                  className={classes.modalImg}
+                                  alt={clothesList[i]['shop_url']}
+                                  src={clothesList[i]['img_url']}
+                                  onClick={handleImageSelect}
+                                />
+                              </div>
+                              <a href={clothesList[i]['shop_url']} target="_blank" title="무신사에서 상품 보기" rel="noreferrer">
+                                <div>{clothesList[i]['brand']}</div>
+                                <div>{clothesList[i]['item_name']}</div>
+                                <div>{clothesList[i]['price']}</div>
+                              </a>
+                            </InfiniteScroll>
                           </div>
                         );
                       })}

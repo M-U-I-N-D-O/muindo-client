@@ -5,10 +5,7 @@ import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 var uiConfig = {
   signInFlow: 'popup',
 
-  signInOptions: [
-    firebase.auth.EmailAuthProvider.PROVIDER_ID,
-    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-  ],
+  signInOptions: [firebase.auth.EmailAuthProvider.PROVIDER_ID, firebase.auth.GoogleAuthProvider.PROVIDER_ID],
   callbacks: {
     signInSuccessWithAuthResult: async (authResult) => {
       const userInfo = authResult.additionalUserInfo;
@@ -46,9 +43,6 @@ const FirebaseLogIn = () => {
     return authObserver;
   });
 
-  console.log('user', user);
-  console.log(firebase.auth());
-
   if (user) {
     return (
       <>
@@ -63,10 +57,7 @@ const FirebaseLogIn = () => {
   } else {
     return (
       <>
-        <StyledFirebaseAuth
-          uiConfig={uiConfig}
-          firebaseAuth={firebase.auth()}
-        />
+        <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
       </>
     );
   }

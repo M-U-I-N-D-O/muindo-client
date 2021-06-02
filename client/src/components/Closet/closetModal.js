@@ -170,7 +170,13 @@ export default function ClosetModal() {
       ...closetImg,
       [modalMode]: event.target.src,
     });
+    console.log(event.target.alt);
+    console.log(event.target);
     setOpenClosetModal(false);
+  };
+
+  const a = (event) => {
+    console.log(event.target);
   };
 
   useEffect(() => {
@@ -220,7 +226,14 @@ export default function ClosetModal() {
                     ? filteredClothes.map(function (image, i) {
                         return (
                           <div>
-                            <img className={classes.modalImg} alt="" src={filteredClothes[i]['img_url']} onClick={handleImageSelect} />
+                            <div className={filteredClothes[i]['item_url']} onClick={a}>
+                              <img
+                                className={classes.modalImg}
+                                alt={filteredClothes[i]['shop_url']}
+                                src={filteredClothes[i]['img_url']}
+                                onClick={handleImageSelect}
+                              />
+                            </div>
                             <a href={filteredClothes[i]['shop_url']} target="_blank" title="무신사에서 상품 보기" rel="noreferrer">
                               <div>{filteredClothes[i]['brand']}</div>
                               <div>{filteredClothes[i]['item_name']}</div>
@@ -232,7 +245,14 @@ export default function ClosetModal() {
                     : clothesList[modalMode].map(function (image, i) {
                         return (
                           <div>
-                            <img className={classes.modalImg} alt="" src={clothesList[modalMode][i]['img_url']} onClick={handleImageSelect} />
+                            <div className={clothesList[modalMode][i]['item_url']} onClick={a}>
+                              <img
+                                className={classes.modalImg}
+                                alt={clothesList[modalMode][i]['shop_url']}
+                                src={clothesList[modalMode][i]['img_url']}
+                                onClick={handleImageSelect}
+                              />
+                            </div>
                             <a href={clothesList[modalMode][i]['shop_url']} target="_blank" title="무신사에서 상품 보기" rel="noreferrer">
                               <div>{clothesList[modalMode][i]['brand']}</div>
                               <div>{clothesList[modalMode][i]['item_name']}</div>

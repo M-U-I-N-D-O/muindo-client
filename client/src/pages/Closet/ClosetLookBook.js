@@ -151,6 +151,10 @@ export default function ClosetLookBook() {
     });
   };
 
+  const handleSubmitClick = () => {
+    history.push('/closet');
+  };
+
   return (
     <div className={classes.root}>
       {/* <ClosetModal data={modalMode} /> */}
@@ -189,13 +193,7 @@ export default function ClosetLookBook() {
         </LuxuryBtn>
         <LuxuryBtn onClick={handleImageDownloadClick}>{'이미지 \n 다운로드'}</LuxuryBtn>
         <LuxuryBtn onClick={handleColorChangeClick}>{'배경 색상 \n 변경하기'}</LuxuryBtn>
-        <LuxuryBtn
-          onClick={() => {
-            history.push('/closet/form');
-          }}
-        >
-          {'커뮤니티 \n등록'}
-        </LuxuryBtn>
+        <LuxuryBtn onClick={handleSubmitClick}>{'커뮤니티 \n등록'}</LuxuryBtn>
         <LuxuryBtn>{'카카오톡 \n공유하기'}</LuxuryBtn>
       </div>
     </div>

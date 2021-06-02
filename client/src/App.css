@@ -1,63 +1,101 @@
 /* 기본 폰트 */
-@font-face {
+/* @font-face {
   font-family: 'NanumSquare_acB';
   src: local('NanumSquare_acB'), url('./fonts/NanumSquare_acB.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
-}
+} */
 
 /* Sherlock Odds Intro Page 간판 폰트 */
-@font-face {
+/* @font-face {
   font-family: 'Lobster';
   src: local('Lobster'), url('./fonts/Lobster.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
-}
+} */
 
 /* 셜록 옷즈 NavBar 폰트 */
-@font-face {
+/* @font-face {
   font-family: '국립박물관문화재단클래식B';
   src: local('국립박물관문화재단클래식B'), url('./fonts/국립박물관문화재단클래식B.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
-}
+} */
 
 /* Footer 폰트 */
-@font-face {
+/* @font-face {
   font-family: 'NotoSerifCJKkr-Regular';
   src: local('NotoSerifCJKkr-Regular'), url('./fonts/NotoSerifCJKkr-Regular.otf') format('truetype');
   font-weight: normal;
   font-style: normal;
-}
+} */
 
-@font-face {
+/* @font-face {
   font-family: 'DX-Montblanc';
   src: url('fonts/DXMobrRExtraBold-KSCpc-EUC-H.ttf') format('truetype');
-}
+} */
 
-* {
+/* * {
   font-family: 'NanumSquare_acB', 'Lobster', '국립박물관문화재단클래식B', 'NotoSerifCJKkr-Regular';
   padding: 0;
   margin: 0;
-  /* box-sizing: border-box; */
+  box-sizing: border-box;
+} */
+
+@font-face {
+  font-family: 'NanumSquare';
+  src: url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+}
+@font-face {
+  font-family: 'GmarketSansLight';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'GmarketSansMedium';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'GmarketSansBold';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
-html {
-  height: 100%;
-}
+html,
 body {
-  height: 100%;
+  padding: 0;
+  margin: 0;
 }
 
-#root {
-  /* margin-bottom: 3.5rem;
-  margin-top: 5rem; */
-  /* border-top: 10px solid black;
-  border-bottom: 10px solid black; */
+h1,
+span {
+  font-family: GmarketSansBold, sans-serif;
+}
+h2 {
+  font-family: GmarketSansMedium, sans-serif;
+}
+h3 {
+  font-family: GmarketSansLight, sans-serif;
+}
+p,
+text {
+  font-family: 'NanumSquare', sans-serif;
+}
+
+/* #root {
+  margin-bottom: 3.5rem;
+  margin-top: 5rem;
+  border-top: 10px solid black;
+  border-bottom: 10px solid black; 
 
   position: relative;
   min-height: 100%;
 }
+
 
 .slick-prev:before,
 .slick-next:before {
@@ -65,4 +103,4 @@ body {
 }
 .slick-slide-label {
   border: none;
-}
+} */

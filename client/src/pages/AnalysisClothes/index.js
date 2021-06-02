@@ -69,6 +69,7 @@ function AnalysisClothes() {
   function processImage(event) {
     if (event.target.files.length !== 0) {
       const imageFile = event.target.files[0];
+      console.log('files :', event.target.files);
       setImgFile(imageFile);
       const imageUrl = URL.createObjectURL(imageFile);
       console.log('첨부하기 imageFile :', imageFile);

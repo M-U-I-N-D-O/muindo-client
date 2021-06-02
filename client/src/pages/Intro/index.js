@@ -1,76 +1,84 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { navbarMode } from '../../actions';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    height: '100vh',
-    backgroundImage: `url(${'/images/intro/white_brick6_3.png'})`,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-  },
-  container: {
-    display: 'flex',
-    // backgroundColor: 'white',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  signBox: {
-    display: 'flex',
-    // marginTop: '70px',
-    width: '35vw',
-    height: '15vh',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#323B48',
-    position: 'fixed',
-    top: '9vh',
-  },
-  signText: {
-    fontFamily: 'Lobster',
-    fontSize: '5vw',
-    color: '#E2B063',
-  },
-  door: {
-    // flexGrow: 1,
-    width: '26vw',
-    height: '65vh',
-    position: 'fixed',
-    bottom: '4vh',
-  },
-  doorBottom: {
-    width: '35vw',
-    height: '4vh',
-    backgroundColor: '#29303A',
-    position: 'fixed',
-    bottom: '0',
-  },
-}));
 
 function Intro() {
-  const classes = useStyles();
   const dispatch = useDispatch();
-
-  const handleNavbarMode = () => {
-    dispatch(navbarMode(1));
-  };
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(navbarMode(0));
+    setTimeout(() => {
+      dispatch(navbarMode(1));
+      history.push('/main');
+    }, 3000);
   });
+
   return (
-    <div className={classes.root}>
-      <Link className={classes.container} onClick={handleNavbarMode} to="/home">
-        <div className={classes.signBox}>
-          <h1 className={classes.signText}>Sherlock Odds</h1>
-          <img className={classes.door} alt="" src="/images/intro/intro_door.jpg" />
-          <div className={classes.doorBottom}></div>
+    <Container>
+      <TextContainer>
+        <div>
+          <IntroMainText>
+            무<IntroSubText>지하게 패션</IntroSubText>
+          </IntroMainText>
         </div>
-      </Link>
-    </div>
+        <div>
+          <IntroMainText>
+            인 <IntroSubText>싸되고 싶은 사람들</IntroSubText>
+          </IntroMainText>
+        </div>
+        <div>
+          <IntroMainText>
+            도 <IntroSubText>와주는 곳</IntroSubText>
+          </IntroMainText>
+        </div>
+      </TextContainer>
+
+      <IntroImageContainer>
+        <img src="/images/intro/ball.gif" alt="ball.gif" />
+      </IntroImageContainer>
+
+      <BottonContainer>
+        <IntroSubText>MUINDO</IntroSubText>
+      </BottonContainer>
+    </Container>
   );
 }
 
 export default Intro;
+
+const Container = styled.div`
+  background-color: #000;
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+`;
+const TextContainer = styled.div`
+  padding-top: 30px;
+  padding-left: 25px;
+`;
+const IntroMainText = styled.h1`
+  font-size: 36px;
+  color: #fff;
+  margin: 0;
+`;
+const IntroSubText = styled.span`
+  font-size: 22px;
+  color: #fff;
+  margin: 0;
+`;
+const IntroImageContainer = styled.div`
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  bottom: 15%;
+`;
+const BottonContainer = styled.div`
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  bottom: 5%;
+`;

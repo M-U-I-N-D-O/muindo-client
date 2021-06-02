@@ -6,6 +6,14 @@ export const navbarMode = (number) => {
   };
 };
 
+// dialog (로그인, 마이페이지)
+export const dialogMode = (mode) => {
+  return {
+    type: 'DIALOG_MODE',
+    mode,
+  };
+};
+
 // 셜록의 돋보기
 export const analysisResultImg = (src) => {
   return {

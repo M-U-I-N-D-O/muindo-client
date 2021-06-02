@@ -14,8 +14,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
-import GroupSelector1 from './groupSelector1';
-import GroupSelector2 from './groupSelector2';
+import GroupSelector from './groupSelector';
 import { ModalContext } from '../../App';
 
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -218,7 +217,7 @@ export default function ClosetModal() {
                   {/* <LuxuryBtn>가격</LuxuryBtn>
                   <LuxuryBtn>색상</LuxuryBtn>
                   <LuxuryBtn>브랜드</LuxuryBtn> */}
-                  <GroupSelector1 />
+                  <GroupSelector />
                   {/* <GroupSelector2 kind="sub_category" /> */}
                   {/* <GroupSelector2 kind="price" />
                   <GroupSelector2 kind="brand" /> */}

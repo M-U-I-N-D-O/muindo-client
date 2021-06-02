@@ -13,7 +13,7 @@ import Select from '@material-ui/core/Select';
 
 const useStyles = makeStyles((theme) => ({}));
 
-export default function GroupSelector1() {
+export default function GroupSelector() {
   const classes = useStyles();
   const { condition, setCondition } = useContext(ModalContext);
   const { modalMode, setModalMode } = useContext(ModalContext);
@@ -23,6 +23,7 @@ export default function GroupSelector1() {
   const [conditionNum, setConditionNum] = useState(100);
   const fetch = useEffect(() => {
     try {
+      // 이 부분 로컬에서 카테고리 데이터 import해서 가져오는 걸로 바꿔주기
       axios.get('http://localhost:3000/data/closetCondition.json').then((res) => {
         let result = res.data.filter_query;
         result = result[modalMode].middle_category;

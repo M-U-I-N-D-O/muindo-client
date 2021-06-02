@@ -295,6 +295,8 @@
       {
         "img_url": "/images/closet/closet_bag.jpg",
         "item_name": "가방A(이름)",
+        "category": "가방",
+
         "sub_category": "백팩",
         "price": 57000,
         "color": "다크 그레이",
@@ -304,6 +306,8 @@
       {
         "img_url": "/images/closet/closet_bag1.jpg",
         "item_name": "가방B(이름)",
+        "category": "가방",
+
         "sub_category": "웨이스트 백",
         "price": 57000,
         "color": "다크 그레이",
@@ -313,6 +317,8 @@
       {
         "img_url": "/images/closet/closet_bag2.jpg",
         "item_name": "가방C(이름)",
+        "category": "가방",
+
         "sub_category": "메신저/크로스 백",
         "price": 57000,
         "color": "다크 그레이",
@@ -322,7 +328,9 @@
       {
         "img_url": "/images/closet/closet_womenbag.jpg",
         "item_name": "여성가방A(이름)",
-        "sub_category": "여성 가방",
+        "category": "여성 가방",
+
+        "sub_category": "크로스백",
         "price": 57000,
         "color": "다크 그레이",
         "brand": "발렌티노",
@@ -331,7 +339,9 @@
       {
         "img_url": "/images/closet/closet_womenbag1.jpg",
         "item_name": "여성가방B(이름)",
-        "sub_category": "여성 가방",
+        "category": "여성 가방",
+
+        "sub_category": "파우치 백",
         "price": 57000,
         "color": "다크 그레이",
         "brand": "빈폴 엑세서리",
@@ -340,7 +350,9 @@
       {
         "img_url": "/images/closet/closet_womenbag2.jpg",
         "item_name": "여성가방C(이름)",
-        "sub_category": "여성 가방",
+        "category": "여성 가방",
+
+        "sub_category": "토트백",
         "price": 57000,
         "color": "다크 그레이",
         "brand": "메트로시티",

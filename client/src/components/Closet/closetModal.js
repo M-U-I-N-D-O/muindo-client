@@ -1,4 +1,4 @@
-import React, { useState, createContext, useContext, useEffect } from 'react';
+import React, { useState, useCallback, useContext, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import IconButton from '@material-ui/core/IconButton';
@@ -135,9 +135,20 @@ export default function ClosetModal() {
     setCondition({});
   }, [modalMode, openClosetModal]);
 
-  const fetch = useEffect(() => {
+  // const fetch = useEffect(() => {
+  //   try {
+  //     axios.get('http://localhost:3000/data/closet.json').then((res) => {
+  //       let result = res.data.data;
+  //       setClothesList(result);
+  //     });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }, []);
+
+  const fetchClothesData = useCallback(async () => {
     try {
-      axios.get('http://localhost:3000/data/closet.json').then((res) => {
+      await axios.get('http://localhost:3000/data/closet.json').then((res) => {
         let result = res.data.data;
         setClothesList(result);
       });
@@ -145,6 +156,10 @@ export default function ClosetModal() {
       console.log(err);
     }
   }, []);
+
+  useEffect(() => {
+    fetchClothesData();
+  }, [fetchClothesData]);
 
   const handleClose = () => {
     setOpenClosetModal(false);
@@ -206,10 +221,11 @@ export default function ClosetModal() {
                         return (
                           <div>
                             <img className={classes.modalImg} alt="" src={filteredClothes[i]['img_url']} onClick={handleImageSelect} />
-                            <div>{filteredClothes[i]['brand']}</div>
-
-                            <div>{filteredClothes[i]['item_name']}</div>
-                            <div>{filteredClothes[i]['price']}</div>
+                            <a href={filteredClothes[i]['shop_url']} target="_blank" title="무신사에서 상품 보기" rel="noreferrer">
+                              <div>{filteredClothes[i]['brand']}</div>
+                              <div>{filteredClothes[i]['item_name']}</div>
+                              <div>{filteredClothes[i]['price']}</div>
+                            </a>
                           </div>
                         );
                       })
@@ -217,9 +233,11 @@ export default function ClosetModal() {
                         return (
                           <div>
                             <img className={classes.modalImg} alt="" src={clothesList[modalMode][i]['img_url']} onClick={handleImageSelect} />
-                            <div>{clothesList[modalMode][i]['brand']}</div>
-                            <div>{clothesList[modalMode][i]['item_name']}</div>
-                            <div>{clothesList[modalMode][i]['price']}</div>
+                            <a href={clothesList[modalMode][i]['shop_url']} target="_blank" title="무신사에서 상품 보기" rel="noreferrer">
+                              <div>{clothesList[modalMode][i]['brand']}</div>
+                              <div>{clothesList[modalMode][i]['item_name']}</div>
+                              <div>{clothesList[modalMode][i]['price']}</div>
+                            </a>
                           </div>
                         );
                       })}

@@ -14,13 +14,15 @@ import html2canvas from 'html2canvas';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    // justifyContent: 'center',
+    paddingTop: '60px',
+    paddingBottom: '56px',
+    // // justifyContent: 'center',
     flexDirection: 'column',
     alignItems: 'center',
-    width: '80vw',
-    maxWidth: '1024px',
-    minHeight: ' calc(100vh - 8.5rem)',
-    // height: '80vw',
+    // width: '80vw',
+    // maxWidth: '1024px',
+    // minHeight: ' calc(100vh - 8.5rem)',
+    // // height: '80vw',
   },
   title: {
     marginTop: '25px',

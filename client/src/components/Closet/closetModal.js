@@ -43,8 +43,8 @@ const useStyles = makeStyles((theme) => ({
     // // height: '80vw',
 
     display: 'flex',
-    paddingTop: '60px',
-    paddingBottom: '56px',
+    paddingTop: '70px',
+    paddingBottom: '66px',
     // // justifyContent: 'center',
     flexDirection: 'column',
     alignItems: 'center',
@@ -63,8 +63,8 @@ const useStyles = makeStyles((theme) => ({
     // overflow: 'auto',
   },
   modalCloseBtn: {
-    width: '30px',
-    height: '30px',
+    width: '25px',
+    height: '25px',
   },
   modalTopContents: {
     display: 'flex',
@@ -72,6 +72,8 @@ const useStyles = makeStyles((theme) => ({
   },
   hiddenBtn: {
     visibility: 'hidden',
+    width: '25px',
+    height: '25px',
   },
   modalBtnContainer: {
     display: 'flex',
@@ -238,7 +240,11 @@ export default function ClosetModal() {
               <div className={classes.hiddenBtn}>
                 <ModalCloseBtn />
               </div>
-              <TopComment comment={'마음에 드는 옷을 골라보세요.'} />
+              <div className={classes.modalBtnContainer}>
+                {/* <LuxuryBtn onClick={handleInitializeClick}>초기화</LuxuryBtn> */}
+                <GroupSelector />
+              </div>
+
               <div>
                 <ModalCloseBtn />
               </div>
@@ -246,10 +252,6 @@ export default function ClosetModal() {
 
             {modalMode ? (
               <div className={classes.modalBottomContent}>
-                <div className={classes.modalBtnContainer}>
-                  {/* <LuxuryBtn onClick={handleInitializeClick}>초기화</LuxuryBtn> */}
-                  <GroupSelector />
-                </div>
                 <div className={classes.modalClothesContainer}>
                   {Object.keys(condition).length !== 0
                     ? Array.isArray(filteredClothes) &&

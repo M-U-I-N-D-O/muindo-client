@@ -16,7 +16,24 @@ import Select from '@material-ui/core/Select';
 // import FilterData from '../../data/closetCategorization.json';
 import FilterData from '../../data/closetCategorization.json';
 
-const useStyles = makeStyles((theme) => ({}));
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    // paddingTop: '60px',
+    // paddingBottom: '56px',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    alignItems: 'center',
+    width: '250px',
+    height: '130px',
+    // maxWidth: '1024px',
+    // minHeight: ' calc(100vh - 8.5rem)',
+    // // height: '80vw',
+  },
+  selector: {
+    width: '80px',
+  },
+}));
 
 export default function GroupSelector() {
   const classes = useStyles();
@@ -96,46 +113,47 @@ export default function GroupSelector() {
   };
 
   return (
-    <div>
+    <div className={classes.root}>
+      <div>
+        {' '}
+        <FormControl className={classes.selector}>
+          <InputLabel>중분류</InputLabel>
+          <Select value="category" onChange={handleChangeCategory}>
+            {condition['sub_category'] || condition['brand'] ? (
+              <MenuItem onClick={handleInitialize}>분류 초기화</MenuItem>
+            ) : (
+              categoryList.map(function (selector, i) {
+                return <MenuItem value={selector}>{selector}</MenuItem>;
+              })
+            )}
+          </Select>
+        </FormControl>
+        <FormControl className={classes.selector}>
+          <InputLabel>소분류</InputLabel>
+          <Select value="sub_category" onChange={handleChangeSubCategory}>
+            {conditionNum !== 10000 ? (
+              subCategoryList[conditionNum].map(function (selector, i) {
+                return <MenuItem value={selector}>{selector}</MenuItem>;
+              })
+            ) : (
+              <MenuItem>중분류를 선택하세요</MenuItem>
+            )}
+          </Select>
+        </FormControl>
+        <FormControl className={classes.selector}>
+          <InputLabel>브랜드</InputLabel>
+          <Select value="brand" onChange={handleChangeBrand}>
+            {conditionNum !== 10000 ? (
+              brandList[conditionNum].map(function (selector, i) {
+                return <MenuItem value={selector}>{selector}</MenuItem>;
+              })
+            ) : (
+              <MenuItem>중분류를 선택하세요</MenuItem>
+            )}
+          </Select>
+        </FormControl>
+      </div>
       <LuxuryBtn onClick={handleInitialize}>초기화</LuxuryBtn>
-
-      <FormControl>
-        <InputLabel>중분류</InputLabel>
-        <Select value="category" onChange={handleChangeCategory}>
-          {condition['sub_category'] || condition['brand'] ? (
-            <MenuItem onClick={handleInitialize}>분류 초기화</MenuItem>
-          ) : (
-            categoryList.map(function (selector, i) {
-              return <MenuItem value={selector}>{selector}</MenuItem>;
-            })
-          )}
-        </Select>
-      </FormControl>
-      <FormControl>
-        <InputLabel>소분류</InputLabel>
-        <Select value="sub_category" onChange={handleChangeSubCategory}>
-          {conditionNum !== 10000 ? (
-            subCategoryList[conditionNum].map(function (selector, i) {
-              return <MenuItem value={selector}>{selector}</MenuItem>;
-            })
-          ) : (
-            <MenuItem>중분류를 선택하세요</MenuItem>
-          )}
-        </Select>
-      </FormControl>
-
-      <FormControl>
-        <InputLabel>브랜드</InputLabel>
-        <Select value="brand" onChange={handleChangeBrand}>
-          {conditionNum !== 10000 ? (
-            brandList[conditionNum].map(function (selector, i) {
-              return <MenuItem value={selector}>{selector}</MenuItem>;
-            })
-          ) : (
-            <MenuItem>중분류를 선택하세요</MenuItem>
-          )}
-        </Select>
-      </FormControl>
     </div>
   );
 }
@@ -143,18 +161,18 @@ export default function GroupSelector() {
 const LuxuryBtn = styled.button`
   display: inline-block;
   box-sizing: border-box;
-  max-width: 160px;
-  min-width: 100px;
-  width: 5vw;
+  max-width: 70px;
+  min-width: 60px;
+  width: 10vw;
   background: transparent;
   text-transform: uppercase;
   font-weight: 500;
   font-style: normal;
-  font-size: 15px;
-  letter-spacing: 0.3em;
+  font-size: 13px;
+  letter-spacing: 0.2em;
   color: rgba(223, 190, 106, 0.7);
   border-radius: 0;
-  padding: 15px 20px 15px 20px;
+  padding: 5px 5px 5px 5px;
   transition: all 0.7s ease-out;
   cursor: pointer;
   white-space: pre-wrap;
@@ -163,7 +181,7 @@ const LuxuryBtn = styled.button`
   background-position: 1% 50%;
   background-size: 300% 300%;
   text-decoration: none;
-  margin: 5px 15px 5px 15px;
+  margin: 15px 0px;
   border: none;
   border: 1px solid rgba(223, 190, 106, 0.3);
   :hover {

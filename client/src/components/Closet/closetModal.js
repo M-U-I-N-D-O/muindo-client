@@ -92,9 +92,8 @@ const useStyles = makeStyles((theme) => ({
   modalClothesContainer: {
     display: 'flex',
     overflow: 'auto',
-    width: '63vw',
-    maxWidth: '800px',
-
+    width: '100vw',
+    maxWidth: '350px',
     // height: '70vh',
     flexWrap: 'wrap',
     alignItems: 'center',
@@ -103,10 +102,20 @@ const useStyles = makeStyles((theme) => ({
     // width: '100%',
     // flexDirection: 'column',
   },
+  individualClothesContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    border: 'solid 2px',
+
+    width: '45%',
+    margin: '5px',
+  },
   modalImg: {
-    width: '8vw',
+    width: '80%',
     height: '11vh',
-    margin: '30px 40px',
+    margin: '5px 5px',
   },
 }));
 
@@ -252,65 +261,65 @@ export default function ClosetModal() {
 
             {modalMode ? (
               <div className={classes.modalBottomContent}>
-                <div className={classes.modalClothesContainer}>
+                <div className={classes.modalClothesContainer} id="scrollableDiv">
+                  {/* <InfiniteScroll
+                    dataLength={filteredClothes.length}
+                    next={() => scrollToEnd()}
+                    hasMore={true}
+                    loader={<h1 style={{ textAlign: 'center' }}>Loading..🕵️‍♂️</h1>}
+                    scrollableTarget="scrollableDiv"
+                  > */}
                   {Object.keys(condition).length !== 0
                     ? Array.isArray(filteredClothes) &&
                       filteredClothes.map(function (image, i) {
                         return (
-                          <div id="scrollableDiv">
-                            <InfiniteScroll
-                              dataLength={filteredClothes.length}
-                              next={() => scrollToEnd()}
-                              hasMore={true}
-                              loader={<h1 style={{ textAlign: 'center' }}>Loading..🕵️‍♂️</h1>}
-                              scrollableTarget="scrollableDiv"
-                            >
-                              <div className={filteredClothes[i]['item_url']} onClick={a}>
-                                <img
-                                  className={classes.modalImg}
-                                  alt={filteredClothes[i]['shop_url']}
-                                  src={filteredClothes[i]['img_url']}
-                                  onClick={handleImageSelect}
-                                />
-                              </div>
-                              <a href={filteredClothes[i]['shop_url']} target="_blank" title="무신사에서 상품 보기" rel="noreferrer">
-                                <div>{filteredClothes[i]['brand']}</div>
-                                <div>{filteredClothes[i]['item_name']}</div>
-                                <div>{filteredClothes[i]['price']}</div>
-                              </a>
-                            </InfiniteScroll>
+                          <div className={classes.individualClothesContainer}>
+                            {/* <div onClick={a}> */}
+                            <img
+                              className={classes.modalImg}
+                              alt={filteredClothes[i]['shop_url']}
+                              src={filteredClothes[i]['img_url']}
+                              onClick={handleImageSelect}
+                            />
+                            {/* </div> */}
+                            <a href={filteredClothes[i]['shop_url']} target="_blank" title="무신사에서 상품 보기" rel="noreferrer">
+                              <div>{filteredClothes[i]['brand']}</div>
+                              <div>{filteredClothes[i]['item_name']}</div>
+                              <div>{filteredClothes[i]['price']}</div>
+                            </a>
+                            {/* </InfiniteScroll> */}
                           </div>
                         );
                       })
                     : Array.isArray(clothesList) &&
                       clothesList.map(function (image, i) {
                         return (
-                          <div id="scrollableDiv">
-                            <InfiniteScroll
+                          <div className={classes.individualClothesContainer} id="scrollableDiv">
+                            {/* <InfiniteScroll
                               dataLength={clothesList.length}
                               next={() => scrollToEnd()}
                               hasMore={true}
                               loader={<h1 style={{ textAlign: 'center' }}>Loading..🕵️‍♂️</h1>}
                               scrollableTarget="scrollableDiv"
-                            >
-                              <div className={clothesList[i]['item_url']} onClick={a}>
-                                <img
-                                  className={classes.modalImg}
-                                  alt={clothesList[i]['shop_url']}
-                                  src={clothesList[i]['img_url']}
-                                  onClick={handleImageSelect}
-                                />
-                              </div>
-                              <a href={clothesList[i]['shop_url']} target="_blank" title="무신사에서 상품 보기" rel="noreferrer">
-                                <div>{clothesList[i]['brand']}</div>
-                                <div>{clothesList[i]['item_name']}</div>
-                                <div>{clothesList[i]['price']}</div>
-                              </a>
-                            </InfiniteScroll>
+                            > */}
+                            {/* <div className={clothesList[i]['item_url']} onClick={a}> */}
+                            <img
+                              className={classes.modalImg}
+                              alt={clothesList[i]['shop_url']}
+                              src={clothesList[i]['img_url']}
+                              onClick={handleImageSelect}
+                            />
+                            {/* </div> */}
+                            <a href={clothesList[i]['shop_url']} target="_blank" title="무신사에서 상품 보기" rel="noreferrer">
+                              <div>{clothesList[i]['brand']}</div>
+                              <div>{clothesList[i]['item_name']}</div>
+                              <div>{clothesList[i]['price']}</div>
+                            </a>
                           </div>
                         );
                       })}
                   {filteredClothes.length === 0 ? <div>결과가 없습니다</div> : <></>}
+                  {/* </InfiniteScroll> */}
                 </div>
               </div>
             ) : (

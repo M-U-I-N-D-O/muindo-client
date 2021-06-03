@@ -9,13 +9,14 @@ import styled from 'styled-components';
 import TopComment from '../../components/AnalysisClothes/topComment';
 import axios from 'axios';
 
+import InfiniteScroll from 'react-infinite-scroll-component';
+
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
-import GroupSelector1 from './groupSelector1';
-import GroupSelector2 from './groupSelector2';
+import GroupSelector from './groupSelector';
 import { ModalContext } from '../../App';
 
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -31,32 +32,39 @@ const theme = createMuiTheme({
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    // display: 'flex',
+    // justifyContent: 'center',
+    // // flexDirection: 'column',
+    // alignItems: 'center',
+    // // width: '100px',
+    // // maxWidth: '1024px',
+    // // minHeight: ' calc(100vh - 8.5rem)',
+    // // backgroundColor: '#ececec',
+    // // height: '80vw',
+
     display: 'flex',
-    justifyContent: 'center',
-    // flexDirection: 'column',
+    paddingTop: '60px',
+    paddingBottom: '56px',
+    // // justifyContent: 'center',
+    flexDirection: 'column',
     alignItems: 'center',
-    // width: '100px',
-    // maxWidth: '1024px',
-    // minHeight: ' calc(100vh - 8.5rem)',
-    // backgroundColor: '#ececec',
-    // height: '80vw',
   },
   modal: {
     backgroundColor: 'white',
-    maxWidth: '800px',
-    minWidth: '70px',
-    minHeight: '73vh',
-    height: '78vh',
-    width: '66vw',
+    maxWidth: '350px',
+    // minWidth: '340px',
+    // minHeight: '73vh',
+    height: '100vh',
+    width: '100vw',
     flexDirection: 'column',
-    marginTop: '50px',
+    // marginTop: '50px',
     border: 'solid 3px',
     borderRadius: '25px',
     // overflow: 'auto',
   },
   modalCloseBtn: {
-    width: '3vw',
-    height: '3vh',
+    width: '30px',
+    height: '30px',
   },
   modalTopContents: {
     display: 'flex',
@@ -120,40 +128,67 @@ function ModalCloseBtn() {
 
 export default function ClosetModal() {
   const classes = useStyles();
+  // const { openClosetModal, setOpenClosetModal } = useContext(ModalContext);
+  // const { modalMode, setModalMode } = useContext(ModalContext);
+  // const { closetImg, setClosetImg } = useContext(ModalContext);
+  // const { clothesList, setClothesList } = useContext(ModalContext);
+  // const { condition, setCondition } = useContext(ModalContext);
+  // const [filteredClothes, setFilteredClothes] = useState({});
+  const PAGE_NUMBER = 1;
+
   const { openClosetModal, setOpenClosetModal } = useContext(ModalContext);
   const { modalMode, setModalMode } = useContext(ModalContext);
   const { closetImg, setClosetImg } = useContext(ModalContext);
+  const { closetClothesShopUrl, setClosetClothesShopUrl } = useContext(ModalContext);
   const { clothesList, setClothesList } = useContext(ModalContext);
   const { condition, setCondition } = useContext(ModalContext);
   const [filteredClothes, setFilteredClothes] = useState({});
+  const [page, setPage] = useState(PAGE_NUMBER);
 
   // const [condition, setCondition] = useState({
   //   // category: '캡/야구 모자',
   //   color: '검정색',
   //   price: 33000,
   // });
-  useEffect(() => {
-    setCondition({});
-  }, [modalMode]);
 
-  const fetch = useEffect(() => {
+  // const fetch = useEffect(() => {
+  //   try {
+  //     axios.get('http://localhost:3000/data/closet.json').then((res) => {
+  //       let result = res.data.data;
+  //       console.log(result);
+  //       setClothesList(result);
+  //     });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }, []);
+
+  useEffect(() => {
     try {
       axios.get('http://localhost:3000/data/closet.json').then((res) => {
         let result = res.data.data;
-        console.log(result);
-        setClothesList(result);
+        console.log(modalMode);
+
+        // console.log(res.data.data['bag']);
+        console.log(res.data.data[modalMode]);
+        // console.log(typeof [1, 2, 3]);
+        setClothesList(res.data.data[modalMode]);
       });
     } catch (err) {
       console.log(err);
     }
-  }, []);
+    return clothesList;
+  }, [modalMode, page]);
+
+  const scrollToEnd = () => {
+    console.log('마지막');
+    setTimeout(() => {
+      setPage(page + 1);
+    }, 1000);
+  };
 
   const handleClose = () => {
     setOpenClosetModal(false);
-  };
-
-  const handleClick = () => {
-    setCondition({});
   };
 
   const handleImageSelect = (event) => {
@@ -161,22 +196,21 @@ export default function ClosetModal() {
       ...closetImg,
       [modalMode]: event.target.src,
     });
-    console.log(closetImg);
+    setClosetClothesShopUrl({ ...closetClothesShopUrl, [modalMode]: event.target.alt });
+    console.log(closetClothesShopUrl);
+    console.log(event.target);
     setOpenClosetModal(false);
   };
 
-  // var filteredClothes = clothesList[modalMode]
-  //   ? clothesList[modalMode].filter(function (item) {
-  //       for (var key in condition) {
-  //         if (item[key] === undefined || item[key] !== condition[key]) return false;
-  //       }
-  //       return true;
-  //     })
-  //   : [];
+  const a = (event) => {
+    console.log(event.target);
+  };
 
   useEffect(() => {
-    var subFilteredClothes = clothesList[modalMode]
-      ? clothesList[modalMode].filter(function (item) {
+    var subFilteredClothes = clothesList
+      ? // ?
+
+        clothesList.filter(function (item) {
           for (var key in condition) {
             if (item[key] === undefined || item[key] !== condition[key]) return false;
           }
@@ -184,7 +218,7 @@ export default function ClosetModal() {
         })
       : [];
     setFilteredClothes(subFilteredClothes);
-  }, [clothesList[modalMode], condition]);
+  }, [clothesList, condition]);
 
   return (
     <div>
@@ -213,26 +247,68 @@ export default function ClosetModal() {
             {modalMode ? (
               <div className={classes.modalBottomContent}>
                 <div className={classes.modalBtnContainer}>
-                  <LuxuryBtn onClick={handleClick}>초기화</LuxuryBtn>
-                  {/* <LuxuryBtn>가격</LuxuryBtn>
-                  <LuxuryBtn>색상</LuxuryBtn>
-                  <LuxuryBtn>브랜드</LuxuryBtn> */}
-                  <GroupSelector1 kind="category" />
-                  {/* <GroupSelector2 kind="sub_category" /> */}
-                  {/* <GroupSelector2 kind="price" />
-                  <GroupSelector2 kind="brand" /> */}
+                  {/* <LuxuryBtn onClick={handleInitializeClick}>초기화</LuxuryBtn> */}
+                  <GroupSelector />
                 </div>
                 <div className={classes.modalClothesContainer}>
                   {Object.keys(condition).length !== 0
-                    ? filteredClothes.map(function (image, i) {
-                        return <img className={classes.modalImg} alt="" src={filteredClothes[i]['img_url']} onClick={handleImageSelect} />;
+                    ? Array.isArray(filteredClothes) &&
+                      filteredClothes.map(function (image, i) {
+                        return (
+                          <div id="scrollableDiv">
+                            <InfiniteScroll
+                              dataLength={filteredClothes.length}
+                              next={() => scrollToEnd()}
+                              hasMore={true}
+                              loader={<h1 style={{ textAlign: 'center' }}>Loading..🕵️‍♂️</h1>}
+                              scrollableTarget="scrollableDiv"
+                            >
+                              <div className={filteredClothes[i]['item_url']} onClick={a}>
+                                <img
+                                  className={classes.modalImg}
+                                  alt={filteredClothes[i]['shop_url']}
+                                  src={filteredClothes[i]['img_url']}
+                                  onClick={handleImageSelect}
+                                />
+                              </div>
+                              <a href={filteredClothes[i]['shop_url']} target="_blank" title="무신사에서 상품 보기" rel="noreferrer">
+                                <div>{filteredClothes[i]['brand']}</div>
+                                <div>{filteredClothes[i]['item_name']}</div>
+                                <div>{filteredClothes[i]['price']}</div>
+                              </a>
+                            </InfiniteScroll>
+                          </div>
+                        );
                       })
-                    : clothesList[modalMode].map(function (image, i) {
-                        // console.log(image);
-                        return <img className={classes.modalImg} alt="" src={clothesList[modalMode][i]['img_url']} onClick={handleImageSelect} />;
+                    : Array.isArray(clothesList) &&
+                      clothesList.map(function (image, i) {
+                        return (
+                          <div id="scrollableDiv">
+                            <InfiniteScroll
+                              dataLength={clothesList.length}
+                              next={() => scrollToEnd()}
+                              hasMore={true}
+                              loader={<h1 style={{ textAlign: 'center' }}>Loading..🕵️‍♂️</h1>}
+                              scrollableTarget="scrollableDiv"
+                            >
+                              <div className={clothesList[i]['item_url']} onClick={a}>
+                                <img
+                                  className={classes.modalImg}
+                                  alt={clothesList[i]['shop_url']}
+                                  src={clothesList[i]['img_url']}
+                                  onClick={handleImageSelect}
+                                />
+                              </div>
+                              <a href={clothesList[i]['shop_url']} target="_blank" title="무신사에서 상품 보기" rel="noreferrer">
+                                <div>{clothesList[i]['brand']}</div>
+                                <div>{clothesList[i]['item_name']}</div>
+                                <div>{clothesList[i]['price']}</div>
+                              </a>
+                            </InfiniteScroll>
+                          </div>
+                        );
                       })}
-
-                  {/* {(Object.keys(condition).length === 0) & (filteredClothes.length === 0) ? <div>결과가 없습니다</div> : <></>} */}
+                  {filteredClothes.length === 0 ? <div>결과가 없습니다</div> : <></>}
                 </div>
               </div>
             ) : (

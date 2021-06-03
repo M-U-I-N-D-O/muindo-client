@@ -55,10 +55,7 @@ function App() {
     bag: '',
   });
 
-  const [condition, setCondition] = useState({
-    // color: '검정색',
-    // price: 33000,
-  });
+  const [condition, setCondition] = useState({});
   const [clothesList, setClothesList] = useState([]);
 
   return (

@@ -47,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
+    height: '140px',
   },
   leftClothesContainer: {
     display: 'flex',
@@ -264,37 +265,38 @@ const LuxuryBtn = styled.button`
   box-sizing: border-box;
   max-width: 150px;
   min-width: 130px;
+  height: 80px;
   width: 90vw;
   background: transparent;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 800;
   font-style: normal;
   font-size: 15px;
-  letter-spacing: 0.3em;
-  color: rgba(223, 190, 106, 0.7);
+  letter-spacing: 0.5px;
+  color: black;
   border-radius: 0;
   padding: 15px 20px 15px 20px;
-  transition: all 0.7s ease-out;
+  transition: all 0.25s ease-out;
   cursor: pointer;
   white-space: pre-wrap;
   text-align: center;
-  background: linear-gradient(270deg, rgba(223, 190, 106, 0.8), rgba(146, 111, 52, 0.8), rgba(34, 34, 34, 0), rgba(34, 34, 34, 0));
+  /* background: linear-gradient(270deg, rgba(223, 190, 106, 0.8), rgba(146, 111, 52, 0.8), rgba(34, 34, 34, 0), rgba(34, 34, 34, 0)); */
   background-position: 1% 50%;
   background-size: 300% 300%;
   text-decoration: none;
   margin: 30px 15px 30px 15px;
-  border: none;
-  border: 1px solid rgba(223, 190, 106, 0.3);
+  border: 4px solid;
   :hover {
-    color: #fff;
-    border: 1px solid rgba(223, 190, 106, 0);
-    color: $white;
-    background-position: 99% 50%;
+    color: black;
+    border: 7px solid;
+    /* color: $white; */
+    /* background-position: 99% 50%; */
   }
   :disabled {
-    background-position: 1% 50%;
-    color: rgba(223, 190, 106, 0.7);
-    border: 1px solid rgba(223, 190, 106, 0.3);
+    /* background-position: 1% 50%; */
+    /* color: rgba(223, 190, 106, 0.7); */
+    color: gray;
+    border: 1px solid;
     cursor: default;
   }
 `;

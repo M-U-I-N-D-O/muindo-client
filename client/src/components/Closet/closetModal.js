@@ -162,34 +162,43 @@ export default function ClosetModal() {
   //   price: 33000,
   // });
 
-  // const fetch = useEffect(() => {
+  // useEffect(() => {
   //   try {
   //     axios.get('http://localhost:3000/data/closet.json').then((res) => {
   //       let result = res.data.data;
-  //       console.log(result);
-  //       setClothesList(result);
+  //       console.log(modalMode);
+
+  //       // console.log(res.data.data['bag']);
+  //       console.log(res.data.data[modalMode]);
+  //       // console.log(typeof [1, 2, 3]);
+  //       setClothesList(res.data.data[modalMode]);
   //     });
   //   } catch (err) {
   //     console.log(err);
   //   }
-  // }, []);
+  //   return clothesList;
+  // }, [modalMode, page]);
+
+  //중요한 코드!!!!!!!!
 
   useEffect(() => {
     try {
-      axios.get('http://localhost:3000/data/closet.json').then((res) => {
-        let result = res.data.data;
-        console.log(modalMode);
+      axios.get(`https://d591d186-daf2-497a-adf1-c4ed8820efdd.mock.pstmn.io/looks/items?type=${modalMode}`).then((res) => {
+        // let result = res.data.data;
+        // console.log(modalMode);
+        console.log(res.data);
 
         // console.log(res.data.data['bag']);
-        console.log(res.data.data[modalMode]);
+        // console.log(res.data.data[modalMode]);
         // console.log(typeof [1, 2, 3]);
-        setClothesList(res.data.data[modalMode]);
+        setClothesList([...clothesList, ...res.data]);
       });
     } catch (err) {
       console.log(err);
     }
-    return clothesList;
+    // return clothesList;
   }, [modalMode, page]);
+  console.log(modalMode);
 
   const scrollToEnd = () => {
     console.log('마지막');
@@ -278,7 +287,7 @@ export default function ClosetModal() {
                             <img
                               className={classes.modalImg}
                               alt={filteredClothes[i]['shop_url']}
-                              src={filteredClothes[i]['img_url']}
+                              src={filteredClothes[i]['url']}
                               onClick={handleImageSelect}
                             />
                             {/* </div> */}
@@ -295,31 +304,31 @@ export default function ClosetModal() {
                       clothesList.map(function (image, i) {
                         return (
                           <div className={classes.individualClothesContainer} id="scrollableDiv">
-                            {/* <InfiniteScroll
+                            <InfiniteScroll
                               dataLength={clothesList.length}
                               next={() => scrollToEnd()}
                               hasMore={true}
-                              loader={<h1 style={{ textAlign: 'center' }}>Loading..🕵️‍♂️</h1>}
+                              // loader={<h1 style={{ textAlign: 'center' }}>Loading..🕵️‍♂️</h1>}
                               scrollableTarget="scrollableDiv"
-                            > */}
-                            {/* <div className={clothesList[i]['item_url']} onClick={a}> */}
-                            <img
-                              className={classes.modalImg}
-                              alt={clothesList[i]['shop_url']}
-                              src={clothesList[i]['img_url']}
-                              onClick={handleImageSelect}
-                            />
-                            {/* </div> */}
-                            <a href={clothesList[i]['shop_url']} target="_blank" title="무신사에서 상품 보기" rel="noreferrer">
-                              <div>{clothesList[i]['brand']}</div>
-                              <div>{clothesList[i]['item_name']}</div>
-                              <div>{clothesList[i]['price']}</div>
-                            </a>
+                            >
+                              {/* <div className={clothesList[i]['item_url']} onClick={a}> */}
+                              <img
+                                className={classes.modalImg}
+                                alt={clothesList[i]['musinsa']}
+                                src={clothesList[i]['url']}
+                                onClick={handleImageSelect}
+                              />
+                              {/* </div> */}
+                              <a href={clothesList[i]['musinsa']} target="_blank" title="무신사에서 상품 보기" rel="noreferrer">
+                                <div>{clothesList[i]['brand']}</div>
+                                <div>{clothesList[i]['name']}</div>
+                                <div>{clothesList[i]['price']}</div>
+                              </a>
+                            </InfiniteScroll>
                           </div>
                         );
                       })}
                   {filteredClothes.length === 0 ? <div>결과가 없습니다</div> : <></>}
-                  {/* </InfiniteScroll> */}
                 </div>
               </div>
             ) : (

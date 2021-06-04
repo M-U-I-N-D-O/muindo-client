@@ -7,8 +7,13 @@ import { createContext, useState } from 'react';
 import Intro from './pages/Intro';
 import Main from './pages/Main';
 import MyPage from './pages/MyPage';
-import Home from './pages/Home';
 import About from './pages/About';
+import TopNav from './components/Navbar/topNav';
+import BottomNav from './components/Navbar/bottomNav';
+import LoginDialog from './pages/LoginDialog';
+
+import Home from './pages/Home';
+
 import AnalysisClothes from './pages/AnalysisClothes';
 import AnalysisClothesResult from './pages/AnalysisClothes/AnalysisClothesResult';
 import AnalysisColor from './pages/AnalysisColor';
@@ -19,26 +24,23 @@ import SolutionResult from './pages/Solution/solutionResult';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 
-import TopNav from './components/Navbar/topNav';
-import BottomNav from './components/Navbar/bottomNav';
 import Footer from './components/Footer';
 import Progress from './components/Progress';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './App.css';
 
-const Container = styled.div``;
-
 function App() {
   const navMode = useSelector((state) => state.navbar.switch);
 
   return (
-    <Container>
+    <div>
       <Router>
         {navMode === 1 && <TopNav />}
         <Route exact path="/" component={Intro} />
         <Route exact path="/main" component={Main} />
-        <Route exact component={MyPage} />
+        <Route component={LoginDialog} />
+        <Route component={MyPage} />
         <Route exact path="/about" component={About} />
         <Route exact path="/analysis_clothes" component={AnalysisClothes} />
         <Route exact path="/analysis_clothes/result" component={AnalysisClothesResult} />
@@ -52,7 +54,7 @@ function App() {
         {navMode === 1 && <BottomNav />}
         {/* {navMode === 1 && <Footer />} */}
       </Router>
-    </Container>
+    </div>
   );
 }
 

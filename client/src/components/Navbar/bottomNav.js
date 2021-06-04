@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { dialogMode } from '../../actions';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -28,6 +29,8 @@ function BottomNav() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [value, setValue] = useState(-1);
+  const history = useHistory();
+
   return (
     <div>
       <BottomNavigation
@@ -42,12 +45,25 @@ function BottomNav() {
           className={classes.label}
           label="컨펌하기"
           icon={value === 0 ? <CheckCircleTwoToneIcon /> : <CheckCircleOutlineTwoToneIcon />}
+          onClick={() => {
+            if (localStorage['token']) {
+              history.push('/confirm');
+            } else {
+              dispatch(dialogMode(1));
+            }
+          }}
         />
         <BottomNavigationAction
           className={classes.label}
           label="컨펌받기"
           icon={value === 1 ? <AddBoxTwoToneIcon /> : <AddBoxOutlinedIcon />}
-          onClick={() => dispatch(dialogMode(1))}
+          onClick={() => {
+            if (localStorage['token']) {
+              history.push('/closet');
+            } else {
+              dispatch(dialogMode(1));
+            }
+          }}
         />
         <BottomNavigationAction
           className={classes.label}

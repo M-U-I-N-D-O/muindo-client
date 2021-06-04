@@ -86,6 +86,19 @@ text {
   font-family: 'NanumSquare', sans-serif;
 }
 
+.firebaseui-idp-text.firebaseui-idp-text-long {
+  font-size: 12px;
+  font-weight: lighter;
+  width: 200px;
+  height: 40;
+  text-align: center;
+}
+.firebaseui-card-content {
+  text-align: center;
+}
+.firebaseui-idp-button {
+  background-color: red;
+}
 /* #root {
   margin-bottom: 3.5rem;
   margin-top: 5rem;

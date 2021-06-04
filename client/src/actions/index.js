@@ -14,6 +14,20 @@ export const dialogMode = (mode) => {
   };
 };
 
+// 사용자 로그인 정보
+export const userName = (name) => {
+  return {
+    type: 'USER_NAME',
+    name,
+  };
+};
+export const userEmail = (email) => {
+  return {
+    type: 'USER_EMAIL',
+    email,
+  };
+};
+
 // 셜록의 돋보기
 export const analysisResultImg = (src) => {
   return {

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import IconButton from '@material-ui/core/IconButton';
 import GitHubIcon from '@material-ui/icons/GitHub';
+import MessageOutlinedIcon from '@material-ui/icons/MessageOutlined';
 
 function About() {
   return (
@@ -26,20 +27,20 @@ function About() {
       <ImgBoxText>Contributor</ImgBoxText>
       <ImgBox>
         <ImgBoxItem>
-          <img src="/images/about/mimoj.png" alt="minoj" width="120px" height="120px" />
-          <ImgNameText>민관우</ImgNameText>
-          <ImgRoleText>FE / 기획</ImgRoleText>
-          <ImgLink href="https://github.com/youngminss" target="_blank">
+          <img src="/images/about/1.png" alt="minoj" width="120px" height="120px" />
+          <ImgNameText>정성헌</ImgNameText>
+          <ImgRoleText>BE / AI</ImgRoleText>
+          <ImgLink href="https://github.com/Heon4856" target="_blank">
             <IconButton>
               <GitHubIcon />
             </IconButton>
           </ImgLink>
         </ImgBoxItem>
         <ImgBoxItem>
-          <img src="/images/about/mimoj.png" alt="minoj" width="120px" height="120px" />
-          <ImgNameText>민관우</ImgNameText>
-          <ImgRoleText>FE / 기획</ImgRoleText>
-          <ImgLink href="https://github.com/youngminss" target="_blank">
+          <img src="/images/about/2.png" alt="minoj" width="120px" height="120px" />
+          <ImgNameText>김수람</ImgNameText>
+          <ImgRoleText>BE</ImgRoleText>
+          <ImgLink href="https://github.com/su-ram" target="_blank">
             <IconButton>
               <GitHubIcon />
             </IconButton>
@@ -48,19 +49,19 @@ function About() {
       </ImgBox>
       <ImgBox>
         <ImgBoxItem>
-          <img src="/images/about/mimoj.png" alt="minoj" width="120px" height="120px" />
-          <ImgNameText>민관우</ImgNameText>
-          <ImgRoleText>FE / 기획</ImgRoleText>
-          <ImgLink href="https://github.com/youngminss" target="_blank">
+          <img src="/images/about/3.png" alt="minoj" width="120px" height="120px" />
+          <ImgNameText>민유지</ImgNameText>
+          <ImgRoleText>FE / PM</ImgRoleText>
+          <ImgLink href="https://velog.io/@carmine" target="_blank">
             <IconButton>
-              <GitHubIcon />
+              <MessageOutlinedIcon />
             </IconButton>
           </ImgLink>
         </ImgBoxItem>
         <ImgBoxItem>
-          <img src="/images/about/mimoj.png" alt="minoj" width="120px" height="120px" />
-          <ImgNameText>민관우</ImgNameText>
-          <ImgRoleText>FE / 기획</ImgRoleText>
+          <img src="/images/about/4.png" alt="minoj" width="120px" height="120px" />
+          <ImgNameText>위영민</ImgNameText>
+          <ImgRoleText>FE</ImgRoleText>
           <ImgLink href="https://github.com/youngminss" target="_blank">
             <IconButton>
               <GitHubIcon />
@@ -95,6 +96,8 @@ const DescriptionSubText = styled.span`
 const ImgBoxText = styled.p`
   font-size: 24px;
   font-weight: bold;
+  margin: 36px;
+  margin-bottom: 0;
 `;
 const ImgBox = styled.div`
   display: flex;

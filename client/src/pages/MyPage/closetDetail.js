@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
     width: '325px',
     // border: 'solid 4px',
     height: '70px',
-    marginTop: '15px',
+    marginTop: '5px',
     alignItems: 'center',
     justifyContent: 'center',
     fontSize: '20px',
@@ -91,6 +91,11 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '20px',
     fontWeight: 'bold',
     border: 'solid 4px',
+  },
+  confirmLink: {
+    marginTop: '10px',
+    marginBottom: '10px',
+    fontSize: '12px',
   },
 }));
 
@@ -161,6 +166,9 @@ export default function MyPageClosetDetail() {
           <MenuItem>컨펌을 못받으셨나요?</MenuItem>
         </Menu> */}
       </div>
+      <a href="" className={classes.confirmLink} target="_blank" rel="noreferrer">
+        컨펌을 못 받으셨나요?
+      </a>
     </div>
   );
 }

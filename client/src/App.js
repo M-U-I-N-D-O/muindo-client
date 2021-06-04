@@ -14,6 +14,7 @@ import AnalysisClothesResult from './pages/AnalysisClothes/AnalysisClothesResult
 import AnalysisColor from './pages/AnalysisColor';
 import Closet from './pages/Closet';
 import ClosetLookBook from './pages/Closet/ClosetLookBook';
+import MyPageClosetDetail from './pages/MyPage/closetDetail';
 
 import Community from './pages/Community';
 import Solution from './pages/Solution';
@@ -36,6 +37,7 @@ const Container = styled.div``;
 function App() {
   const navMode = useSelector((state) => state.navbar.switch);
   const [openClosetModal, setOpenClosetModal] = useState(false);
+  const [openClosetInfoModal, setOpenClosetInfoModal] = useState(false);
   const [lookBookColorModal, setLookBookColorModal] = useState(false);
   const [lookBookColorSelect, setLookBookColorSelect] = useState('');
   const [modalMode, setModalMode] = useState('');
@@ -78,6 +80,8 @@ function App() {
           setClothesList,
           condition,
           setCondition,
+          openClosetInfoModal,
+          setOpenClosetInfoModal,
         }}
       >
         <Router>
@@ -92,6 +96,7 @@ function App() {
 
           <Route exact path="/closet" component={Closet} />
           <Route exact path="/closet/look_book" component={ClosetLookBook} />
+          <Route exact path="/my_page_closet_detail" component={MyPageClosetDetail} />
 
           <Route exact path="/community" component={Community} />
           <Route exact path="/solution" component={Solution} />

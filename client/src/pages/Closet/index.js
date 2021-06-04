@@ -153,6 +153,7 @@ function Closet() {
   // const handleOpen = () => {
   //   setOpenModal(true);
   // };
+
   useEffect(() => {
     setClosetImg({
       hat: '',

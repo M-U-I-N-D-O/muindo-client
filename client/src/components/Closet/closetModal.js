@@ -108,7 +108,8 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     flexDirection: 'column',
     border: 'solid 2px',
-
+    fontSize: '11px',
+    minHeight: '180px',
     width: '45%',
     margin: '5px',
   },
@@ -304,27 +305,27 @@ export default function ClosetModal() {
                       clothesList.map(function (image, i) {
                         return (
                           <div className={classes.individualClothesContainer} id="scrollableDiv">
-                            <InfiniteScroll
+                            {/* <InfiniteScroll
                               dataLength={clothesList.length}
                               next={() => scrollToEnd()}
                               hasMore={true}
                               // loader={<h1 style={{ textAlign: 'center' }}>Loading..🕵️‍♂️</h1>}
                               scrollableTarget="scrollableDiv"
-                            >
-                              {/* <div className={clothesList[i]['item_url']} onClick={a}> */}
-                              <img
-                                className={classes.modalImg}
-                                alt={clothesList[i]['musinsa']}
-                                src={clothesList[i]['url']}
-                                onClick={handleImageSelect}
-                              />
-                              {/* </div> */}
-                              <a href={clothesList[i]['musinsa']} target="_blank" title="무신사에서 상품 보기" rel="noreferrer">
-                                <div>{clothesList[i]['brand']}</div>
-                                <div>{clothesList[i]['name']}</div>
-                                <div>{clothesList[i]['price']}</div>
-                              </a>
-                            </InfiniteScroll>
+                            > */}
+                            {/* <div className={clothesList[i]['item_url']} onClick={a}> */}
+                            <img
+                              className={classes.modalImg}
+                              alt={clothesList[i]['musinsa']}
+                              src={clothesList[i]['url']}
+                              onClick={handleImageSelect}
+                            />
+                            {/* </div> */}
+                            <a href={clothesList[i]['musinsa']} target="_blank" title="무신사에서 상품 보기" rel="noreferrer">
+                              <div>{clothesList[i]['brand']}</div>
+                              <div>{clothesList[i]['name']}</div>
+                              <div>{clothesList[i]['price']}</div>
+                            </a>
+                            {/* </InfiniteScroll> */}
                           </div>
                         );
                       })}

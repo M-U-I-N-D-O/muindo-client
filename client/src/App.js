@@ -14,7 +14,8 @@ import AnalysisClothesResult from './pages/AnalysisClothes/AnalysisClothesResult
 import AnalysisColor from './pages/AnalysisColor';
 import Closet from './pages/Closet';
 import ClosetLookBook from './pages/Closet/ClosetLookBook';
-import MyPageClosetDetail from './pages/MyPage/closetDetail';
+import MyPageClosetDetail from './pages/MyPage/myClosetDetail';
+import MyPageClosetList from './pages/MyPage/myClosetList';
 
 import Community from './pages/Community';
 import Solution from './pages/Solution';
@@ -49,7 +50,7 @@ function App() {
     bag: '',
   });
 
-  const [closetClothesShopUrl, setClosetClothesShopUrl] = useState({
+  const [closetClothesId, setClosetClothesId] = useState({
     hat: '',
     top: '',
     bottom: '',
@@ -70,8 +71,8 @@ function App() {
           setModalMode,
           closetImg,
           setClosetImg,
-          closetClothesShopUrl,
-          setClosetClothesShopUrl,
+          closetClothesId,
+          setClosetClothesId,
           lookBookColorModal,
           setLookBookColorModal,
           lookBookColorSelect,
@@ -97,6 +98,7 @@ function App() {
           <Route exact path="/closet" component={Closet} />
           <Route exact path="/closet/look_book" component={ClosetLookBook} />
           <Route exact path="/my_page_closet_detail" component={MyPageClosetDetail} />
+          <Route exact path="/my_page_closet_list" component={MyPageClosetList} />
 
           <Route exact path="/community" component={Community} />
           <Route exact path="/solution" component={Solution} />

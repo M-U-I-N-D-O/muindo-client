@@ -184,7 +184,7 @@ function Closet() {
 
   return (
     <div className={classes.root}>
-      <ClosetModal data={modalMode} />
+      {modalMode !== '' && <ClosetModal data={modalMode} />}
 
       <div className={classes.title}>
         <TopComment comment={'옷장에 옷을 넣어보세요.'} />

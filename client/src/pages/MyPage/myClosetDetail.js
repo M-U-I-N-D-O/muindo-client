@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef } from 'react';
+import React, { useState, useContext, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import TopComment from '../../components/AnalysisClothes/topComment';
@@ -97,6 +97,10 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: '10px',
     fontSize: '12px',
   },
+  myLookBookImg: {
+    height: '100%',
+    width: '100%',
+  },
 }));
 
 export default function MyPageClosetDetail() {
@@ -104,11 +108,12 @@ export default function MyPageClosetDetail() {
   const history = useHistory();
   const { openClosetInfoModal, setOpenClosetInfoModal } = useContext(ModalContext);
 
-  const [infoAnchor, setInfoAnchor] = useState('');
+  const [myClosetLookBookImg, setMyClosetLookBookImg] = useState([]);
 
   const handleOpenClosetModalClick = (event) => {
     // setModalMode(event.target.id);
     setOpenClosetInfoModal(true);
+
     // setModifyAnchor(null);
 
     // console.log(lookBookColorModal);
@@ -116,18 +121,52 @@ export default function MyPageClosetDetail() {
     // console.log(closetImg);
   };
 
-  const handleInfoClick = () => {
-    setInfoAnchor(true);
-  };
+  // useEffect(() => {
+  //   try {
+  //     axios.get('http://localhost:3000/data/closet.json').then((res) => {
+  //       let result = res.data.data;
+  //       // console.log(res.data.data['bag']);
+  //       // console.log(typeof [1, 2, 3]);
+  //       setMyClosetLookBookImg(res.data.data['hat']);
+  //     });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  //   return myClosetLookBookImg;
+  // }, [myClosetLookBookImg]);
 
-  const handleInfoClose = () => {
-    setInfoAnchor(null);
-  };
+  // useEffect(async() => {
+  //   try {
+  //     axios.get(`http://elice-kdt-ai-track-vm-ai-12.koreacentral.cloudapp.azure.com:5000/looks/items?type=hat`).then((res) => {
+  //       setMyClosetLookBookImg(res.data);
+  //     });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  //   // return clothesList;
+  // }, [myClosetLookBookImg]);
+
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     const res = await axios.get(`http://elice-kdt-ai-track-vm-ai-12.koreacentral.cloudapp.azure.com:5000/looks/items?type=hat`);
+  //     setMyClosetLookBookImg(res.data);
+  //   }
+  //   fetchData();
+  // }, []);
+
+  // const handleInfoClick = () => {
+  //   setInfoAnchor(true);
+  // };
+  // const handleInfoClose = () => {
+  //   setInfoAnchor(null);
+  // };
 
   return (
     <div className={classes.root}>
       <MyClosetInfo />
-      <div className={classes.closetContainer}></div>
+      <div className={classes.closetContainer}>
+        {/* {Array.isArray(myClosetLookBookImg) && <img className={classes.myLookBookImg} src={myClosetLookBookImg[0]['img_url']}></img>} */}
+      </div>
       <div className={classes.likeNoContainer}>
         <div className={classes.likeNoBox}>
           <div className={classes.likeNoTitleBox}>Like</div>
@@ -140,7 +179,13 @@ export default function MyPageClosetDetail() {
       </div>
       <div className={classes.listBtnContainer}>
         {/* <div className={classes.listBtn}> */}
-        <LuxuryBtn>목록으로</LuxuryBtn>
+        <LuxuryBtn
+          onClick={() => {
+            history.push('/my_page_closet_list');
+          }}
+        >
+          목록으로
+        </LuxuryBtn>
 
         {/* </div> */}
       </div>
@@ -166,7 +211,7 @@ export default function MyPageClosetDetail() {
           <MenuItem>컨펌을 못받으셨나요?</MenuItem>
         </Menu> */}
       </div>
-      <a href="" className={classes.confirmLink} target="_blank" rel="noreferrer">
+      <a href="/solution" className={classes.confirmLink} target="_blank" rel="noreferrer">
         컨펌을 못 받으셨나요?
       </a>
     </div>

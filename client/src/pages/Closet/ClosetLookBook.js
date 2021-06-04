@@ -159,6 +159,7 @@ export default function ClosetLookBook() {
   const { lookBookColorModal, setLookBookColorModal } = useContext(ModalContext);
   const { modalMode, setModalMode } = useContext(ModalContext);
   const { closetImg, setClosetImg } = useContext(ModalContext);
+  const { closetClothesId, setClosetClothesId } = useContext(ModalContext);
 
   const [modifyAnchor, setModifyAnchor] = useState(null);
   const [shareAnchor, setShareAnchor] = useState(null);
@@ -253,6 +254,7 @@ export default function ClosetLookBook() {
       `https://muindoapi.azurewebsites.net/looks/upload`,
       {
         dataType: 'text',
+        items: closetClothesId,
         data: {
           img: url,
         },

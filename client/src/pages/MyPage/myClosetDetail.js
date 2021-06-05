@@ -1,5 +1,5 @@
 import React, { useState, useContext, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import TopComment from '../../components/AnalysisClothes/topComment';
 import styled from 'styled-components';
@@ -107,19 +107,33 @@ export default function MyPageClosetDetail() {
   const classes = useStyles();
   const history = useHistory();
   const { openClosetInfoModal, setOpenClosetInfoModal } = useContext(ModalContext);
+  const { seq } = useParams();
 
   const [myClosetLookBookImg, setMyClosetLookBookImg] = useState([]);
+  const [a, setA] = useState([]);
 
   const handleOpenClosetModalClick = (event) => {
     // setModalMode(event.target.id);
     setOpenClosetInfoModal(true);
-
-    // setModifyAnchor(null);
-
-    // console.log(lookBookColorModal);
-    // console.log(modalMode);
-    // console.log(closetImg);
   };
+
+  useEffect(() => {
+    try {
+      axios
+        .get(`http://elice-kdt-ai-track-vm-ai-12.koreacentral.cloudapp.azure.com:8080/mypage/my-looks/${seq}`, {
+          headers: { Authorization: 'Bearer ' + window.localStorage.token },
+        })
+        .then((res) => {
+          console.log(res);
+          setA(res.data);
+        });
+    } catch (err) {
+      console.log(err);
+    }
+    // return clothesList;
+  }, [a]);
+  console.log(a);
+  console.log(seq);
 
   // useEffect(() => {
   //   try {
@@ -165,16 +179,16 @@ export default function MyPageClosetDetail() {
     <div className={classes.root}>
       <MyClosetInfo />
       <div className={classes.closetContainer}>
-        {/* {Array.isArray(myClosetLookBookImg) && <img className={classes.myLookBookImg} src={myClosetLookBookImg[0]['img_url']}></img>} */}
+        {Array.isArray(myClosetLookBookImg) && <img className={classes.myLookBookImg} src={a['url']}></img>}
       </div>
       <div className={classes.likeNoContainer}>
         <div className={classes.likeNoBox}>
           <div className={classes.likeNoTitleBox}>Like</div>
-          <div className={classes.likeNoCountBox}>10</div>
+          <div className={classes.likeNoCountBox}>{a['ok']}</div>
         </div>
         <div className={classes.likeNoBox}>
           <div className={classes.likeNoTitleBox}>NoNo</div>
-          <div className={classes.likeNoCountBox}>5</div>
+          <div className={classes.likeNoCountBox}>{a['no']}</div>
         </div>
       </div>
       <div className={classes.listBtnContainer}>

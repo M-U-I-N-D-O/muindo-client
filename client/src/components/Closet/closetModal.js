@@ -196,7 +196,7 @@ export default function ClosetModal() {
   useEffect(() => {
     try {
       axios
-        .get(`http://elice-kdt-ai-track-vm-ai-12.koreacentral.cloudapp.azure.com:4000/looks/items?type=${modalMode}`, {
+        .get(`http://elice-kdt-ai-track-vm-ai-12.koreacentral.cloudapp.azure.com:8080/looks/items?type=${modalMode}`, {
           headers: { Authorization: 'Bearer ' + window.localStorage.token },
         })
         .then((res) => {
@@ -229,7 +229,7 @@ export default function ClosetModal() {
     console.log('마지막');
     setTimeout(() => {
       setPage(page + 1);
-      axios.get(`http://elice-kdt-ai-track-vm-ai-12.koreacentral.cloudapp.azure.com:9000/looks/items?type=${modalMode}`).then((res) => {
+      axios.get(`http://elice-kdt-ai-track-vm-ai-12.koreacentral.cloudapp.azure.com:8080/looks/items?type=${modalMode}`).then((res) => {
         setClothesList([...clothesList, ...res.data]);
       });
     }, 1000);
@@ -357,7 +357,7 @@ export default function ClosetModal() {
         </Fade>
       </Modal> */}
 
-      <Modal
+      {/* <Modal
         className={classes.root}
         open={openClosetModal}
         onClose={handleClose}
@@ -398,7 +398,6 @@ export default function ClosetModal() {
                         filteredClothes.map(function (image, i) {
                           return (
                             <div className={classes.individualClothesContainer}>
-                              {/* <div onClick={a}> */}
                               <img
                                 className={classes.modalImg}
                                 alt={filteredClothes[i]['id']}
@@ -435,7 +434,7 @@ export default function ClosetModal() {
             )}
           </div>
         </Fade>
-      </Modal>
+      </Modal> */}
 
       <Dialog className={classes.root} open={openClosetModal} TransitionComponent={Transition} keepMounted onClose={handleClose}>
         {/* <DialogTitle id="alert-dialog-slide-title">{"Use Google's location service?"}</DialogTitle> */}

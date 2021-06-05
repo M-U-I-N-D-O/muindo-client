@@ -1,5 +1,5 @@
 import React, { useState, useContext, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import TopComment from '../../components/AnalysisClothes/topComment';
 import styled from 'styled-components';
@@ -164,6 +164,8 @@ export default function ClosetLookBook() {
   const [modifyAnchor, setModifyAnchor] = useState(null);
   const [shareAnchor, setShareAnchor] = useState(null);
   const [imgUrl, setImgUrl] = useState('');
+  const { seq } = useParams();
+  const [lookBookId, setLookBookId] = useState('');
 
   const captureRef = useRef();
 
@@ -251,21 +253,26 @@ export default function ClosetLookBook() {
       console.log(url);
     });
     const res = await axios.post(
-      `http://elice-kdt-ai-track-vm-ai-12.koreacentral.cloudapp.azure.com:5000/looks/upload`,
+      `http://elice-kdt-ai-track-vm-ai-12.koreacentral.cloudapp.azure.com:8080/looks/upload`,
       {
         dataType: 'text',
         items: closetClothesId,
         data: {
           img: url,
         },
-        success: function (res) {
-          console.log(res);
+        success: function () {
+          // seq = res['id'];
         },
       },
 
       { headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + window.localStorage.token } },
     );
+    console.log(res);
+    const seq = res.data.id;
+    history.push('/my_page_closet_detail/' + seq);
   };
+  // console.log(lookBookId);
+  console.log(seq);
 
   return (
     <div className={classes.root}>
@@ -358,9 +365,10 @@ export default function ClosetLookBook() {
         <LuxuryBtn onClick={handleImageDownloadClick}>{'이미지 \n 다운로드'}</LuxuryBtn>
         <LuxuryBtn>{'카카오톡 \n공유하기'}</LuxuryBtn> */}
         <LuxuryBtn
-          // onClick={() => {
-          //   history.push('/closet/form');
-          // }}
+          onClick={() => {
+            // history.push('/my_page_closet_detail/' + seq);
+            console.log('gi');
+          }}
           onClick={handleUpload}
         >
           {'커뮤니티 \n등록'}

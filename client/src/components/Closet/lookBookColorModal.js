@@ -8,11 +8,19 @@ import Backdrop from '@material-ui/core/Backdrop';
 import styled from 'styled-components';
 import TopComment from '../AnalysisClothes/topComment';
 
-import ColorSelect from './colorPalette';
+// import ColorSelect from './colorPalette';
 import { ModalContext } from '../../App';
 
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
+import { SketchPicker, CirclePicker } from 'react-color';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Slide from '@material-ui/core/Slide';
+import Button from '@material-ui/core/Button';
 
 const theme = createMuiTheme({
   palette: {
@@ -82,7 +90,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     overflow: 'auto',
     // width: '40vw',
-    height: '70vh',
+    height: '500px',
     // border: 'solid 1px',
     justifyContent: 'center',
     alignItems: 'center',
@@ -95,27 +103,48 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ModalCloseBtn() {
-  const classes = useStyles();
-  const { lookBookColorSelect, setLookBookColorSelect } = useContext(ModalContext);
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
-  const { lookBookColorModal, setLookBookColorModal } = useContext(ModalContext);
-  // const { setModalMode } = useContext(ModalContext);
+// function ColorSelect() {
+//   const classes = useStyles();
 
-  const handleLookBookColorClose = () => {
-    setLookBookColorModal(false);
-    console.log(lookBookColorModal);
-    console.log(lookBookColorSelect);
-  };
+//   const { lookBookColorSelect, setLookBookColorSelect } = useContext(ModalContext);
 
-  return (
-    <ThemeProvider theme={theme}>
-      <IconButton onClick={handleLookBookColorClose}>
-        <CloseIcon className={classes.modalCloseBtn} />
-      </IconButton>
-    </ThemeProvider>
-  );
-}
+//   const [background, setBackground] = useState('#fff');
+
+//   const handleChangeComplete = (color) => {
+//     setBackground(color.hex);
+//   };
+
+//   // setLookBookColorSelect(color['hex']);
+//   //   console.log(lookBookColorModal['hex']);
+
+//   return <CirclePicker color={background} onChangeComplete={handleChangeComplete} />;
+// }
+
+// function ModalCloseBtn() {
+//   const classes = useStyles();
+//   const { lookBookColorSelect, setLookBookColorSelect } = useContext(ModalContext);
+
+//   const { lookBookColorModal, setLookBookColorModal } = useContext(ModalContext);
+//   // const { setModalMode } = useContext(ModalContext);
+
+//   const handleLookBookColorClose = () => {
+//     setLookBookColorModal(false);
+//     console.log(lookBookColorModal);
+//     console.log(lookBookColorSelect);
+//   };
+
+//   return (
+//     <ThemeProvider theme={theme}>
+//       <IconButton onClick={handleLookBookColorClose}>
+//         <CloseIcon className={classes.modalCloseBtn} />
+//       </IconButton>
+//     </ThemeProvider>
+//   );
+// }
 
 export default function ColorChangeModal({ data }) {
   const classes = useStyles();
@@ -128,9 +157,22 @@ export default function ColorChangeModal({ data }) {
     console.log(lookBookColorModal);
   };
 
+  // const { lookBookColorSelect, setLookBookColorSelect } = useContext(ModalContext);
+
+  // const [background, setBackground] = useState('#fff');
+
+  const handleChangeComplete = (color) => {
+    setLookBookColorSelect(color.hex);
+  };
+
+  // setLookBookColorSelect(color['hex']);
+  //   console.log(lookBookColorModal['hex']);
+
+  // return <CirclePicker color={background} onChangeComplete={handleChangeComplete} />;
+
   return (
     <div>
-      <Modal
+      {/* <Modal
         className={classes.root}
         open={lookBookColorModal}
         onClose={handleLookBookColorClose}
@@ -160,7 +202,27 @@ export default function ColorChangeModal({ data }) {
             </div>
           </div>
         </Fade>
-      </Modal>
+      </Modal> */}
+
+      <Dialog className={classes.root} open={lookBookColorModal} TransitionComponent={Transition} keepMounted onClose={handleLookBookColorClose}>
+        {/* <DialogTitle id="alert-dialog-slide-title">{"Use Google's location service?"}</DialogTitle> */}
+        <DialogContent>
+          {/* <DialogContentText id="alert-dialog-slide-description">
+            Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.
+          </DialogContentText> */}
+          <div className={classes.clothesBox}>
+            <CirclePicker color="#fff" onChangeComplete={handleChangeComplete} />
+          </div>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleLookBookColorClose} color="primary">
+            Disagree
+          </Button>
+          <Button onClick={handleLookBookColorClose} color="primary">
+            Agree
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }

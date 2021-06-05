@@ -6,26 +6,54 @@ import { makeStyles } from '@material-ui/core/styles';
 import styled from 'styled-components';
 import { ModalContext } from '../../App';
 import AnalysisClothesResult from '../../pages/AnalysisClothes/AnalysisClothesResult';
+import { SketchPicker } from 'react-color';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '1vw',
-    // maxWidth: '1024px',
-    // minHeight: ' calc(100vh - 8.5rem)',
-    // backgroundColor: '#ececec',
-    height: '10vh',
-  },
-}));
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     width: '100px',
+//     // maxWidth: '1024px',
+//     // minHeight: ' calc(100vh - 8.5rem)',
+//     // backgroundColor: '#ececec',
+//     height: '10px',
+//   },
+// }));
 
-export default function ColorSelect() {
-  const classes = useStyles();
+// export default function ColorSelect() {
+//   const classes = useStyles();
 
-  const { lookBookColorSelect, setLookBookColorSelect } = useContext(ModalContext);
+//   const { lookBookColorSelect, setLookBookColorSelect } = useContext(ModalContext);
 
-  const [color, setColor] = useColor('hex', '#ffffff');
+//   const [color, setColor] = useColor('hex', '#ffffff');
 
-  setLookBookColorSelect(color['hex']);
-  //   console.log(lookBookColorModal['hex']);
+//   setLookBookColorSelect(color['hex']);
+//   //   console.log(lookBookColorModal['hex']);
 
-  return <ColorPicker width={400} height={200} color={color} onChange={setColor} hideHSV dark />;
-}
+//   return <ColorPicker width={400} height={200} color={color} onChange={setColor} hideHSV dark id="hello" />;
+// }
+
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     width: '100px',
+//     // maxWidth: '1024px',
+//     // minHeight: ' calc(100vh - 8.5rem)',
+//     // backgroundColor: '#ececec',
+//     height: '10px',
+//   },
+// }));
+
+// export default function ColorSelect() {
+//   const classes = useStyles();
+
+//   const { lookBookColorSelect, setLookBookColorSelect } = useContext(ModalContext);
+
+//   const [background, setBackground] = useColor('#fff');
+
+//   const handleChangeComplete = (color) => {
+//     setBackground(color.hex);
+//   };
+
+//   // setLookBookColorSelect(color['hex']);
+//   //   console.log(lookBookColorModal['hex']);
+
+//   return <SketchPicker color={background} onChangeComplete={handleChangeComplete} />;
+// }

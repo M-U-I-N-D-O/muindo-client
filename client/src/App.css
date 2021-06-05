@@ -86,6 +86,10 @@ text {
   font-family: 'NanumSquare', sans-serif;
 }
 
+rcp.rcp-body {
+  width: 50px;
+}
+
 .firebaseui-idp-text.firebaseui-idp-text-long {
   font-size: 12px;
   font-weight: lighter;

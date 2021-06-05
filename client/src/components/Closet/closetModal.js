@@ -104,7 +104,7 @@ const useStyles = makeStyles((theme) => ({
     // justifyContent: 'center',
     alignItems: 'center',
   },
-  box: { overflow: 'auto' },
+  box: { overflow: 'auto', width: '100%' },
 
   modalClothesContainer: {
     display: 'flex',

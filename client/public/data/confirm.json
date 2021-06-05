@@ -1,0 +1,8 @@
+{
+    "data" : [
+       [100, "./images/main/1.png"],
+       [200, "./images/main/2.png"],
+       [300, "./images/main/3.png"],
+       [400, "./images/main/4.png"]
+    ]
+}

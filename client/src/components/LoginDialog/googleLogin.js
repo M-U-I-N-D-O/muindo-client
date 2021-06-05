@@ -4,6 +4,7 @@ import { dialogMode, userName, userEmail } from '../../actions';
 import firebase from 'firebase';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import axios from 'axios';
+import url from '../../url';
 
 var uiConfig = {
   signInFlow: 'popup',
@@ -28,19 +29,19 @@ const GoogleLogin = () => {
   const [user, setUser] = useState(null);
   const dispatch = useDispatch();
 
-  const signOut = () => {
-    firebase
-      .auth()
-      .signOut()
-      .then(function () {
-        console.log('Successfully Signed Out');
-        dispatch(userName(''));
-        dispatch(userEmail(''));
-      })
-      .catch(function () {
-        console.log('Error!');
-      });
-  };
+  // const signOut = () => {
+  //   firebase
+  //     .auth()
+  //     .signOut()
+  //     .then(function () {
+  //       console.log('Successfully Signed Out');
+  //       dispatch(userName(''));
+  //       dispatch(userEmail(''));
+  //     })
+  //     .catch(function () {
+  //       console.log('Error!');
+  //     });
+  // };
   useEffect(() => {
     const authObserver = firebase.auth().onAuthStateChanged((user) => {
       setUser(user);
@@ -58,10 +59,10 @@ const GoogleLogin = () => {
           uid: user.uid,
         };
         try {
-          const url = 'http://elice-kdt-ai-track-vm-ai-12.koreacentral.cloudapp.azure.com:5000/auth/access-token';
+          // const url = 'http://elice-kdt-ai-track-vm-ai-12.koreacentral.cloudapp.azure.com:8080/auth/access-token';
           const json = JSON.stringify(userInfo);
           axios
-            .post(url, json, {
+            .post(url + 'auth/access-token', json, {
               headers: {
                 // Overwrite Axios's automatically set Content-Type
                 'Content-Type': 'application/json',
@@ -70,13 +71,13 @@ const GoogleLogin = () => {
             .then((response) => {
               console.log('post 결과 : ', response);
               localStorage.setItem('token', response.data.access_token);
+              dispatch(userName(user.providerData[0].displayName));
+              dispatch(userEmail(user.providerData[0].email));
+              dispatch(dialogMode(-1));
             });
         } catch (err) {
           console.log(err);
         }
-        dispatch(userName(user.providerData[0].displayName));
-        dispatch(userEmail(user.providerData[0].email));
-        dispatch(dialogMode(-1));
       }
       console.log('firebase auth : ', firebase.auth());
     });

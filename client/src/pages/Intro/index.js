@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { userName, userEmail } from '../../actions';
 import { navbarMode } from '../../actions';
 
 function Intro() {
@@ -10,6 +11,8 @@ function Intro() {
 
   useEffect(() => {
     dispatch(navbarMode(0));
+    localStorage.clear();
+    localStorage.removeItem('persist:root');
     setTimeout(() => {
       dispatch(navbarMode(1));
       history.push('/main');

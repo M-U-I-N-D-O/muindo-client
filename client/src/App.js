@@ -11,6 +11,7 @@ import About from './pages/About';
 import TopNav from './components/Navbar/topNav';
 import BottomNav from './components/Navbar/bottomNav';
 import LoginDialog from './pages/LoginDialog';
+import Confirm from './pages/Confirm';
 
 import Home from './pages/Home';
 
@@ -93,6 +94,8 @@ function App() {
           <Route component={LoginDialog} />
           <Route component={MyPage} />
           <Route exact path="/about" component={About} />
+          <Route exact path="/confirm" component={Confirm} />
+
           <Route exact path="/analysis_clothes" component={AnalysisClothes} />
           <Route exact path="/analysis_clothes/result" component={AnalysisClothesResult} />
           <Route exact path="/analysis_color" component={AnalysisColor} />

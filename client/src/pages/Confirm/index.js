@@ -3,43 +3,82 @@ import styled from 'styled-components';
 import MotionStack from 'react-motion-stack';
 import 'react-motion-stack/build/motion-stack.css';
 import './index.css';
+import axios from 'axios';
+import url from '../../url';
 
-const data = Array.from({ length: 4 }, (_, i) => ({
-  id: i,
-  //   element: (
-  //     <div style={{ margin: 'auto 0', backgroundColor: '#222' }}>
-  //       <img draggable={false} src={`https://source.unsplash.com/random/${i + 1}`} alt="img" />
-  //     </div>
-  //   ),
-  element: (
-    <div key={i} style={{ backgroundColor: '#222' }}>
-      <img draggable={false} src={`./images/main/${i + 1}.png`} alt="img" />
-    </div>
-  ),
-}));
+// const data = Array.from(this.state.ItemList.data, (v, i) => ({
+//   id: i,
+//   element: <img key={v[0]} draggable={false} src={`${v[1]}`} alt="img" />,
+// }));
+// const data = Array.from({ length: 4 }, (_, i) => ({
+//   id: i,
+//   element: <img key={i} draggable={false} src={`https://source.unsplash.com/random/${i + 1}`} alt="img" />,
+//   //   element: (
+//   //     <div style={{ backgroundColor: '#222' }}>
+//   //       <img key={i} draggable={false} src={`./images/main/${i + 1}.png`} alt="img" />
+//   //     </div>
+//   //   ),
+// }));
 
-class Main extends Component {
+class Confirm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       text: '',
+      ItemList: [],
     };
   }
 
+  fetchData = async () => {
+    axios
+      .get(url + 'tinder/test')
+      .then((res) => {
+        console.log(res.data);
+        this.setState({ ItemList: res.data });
+        // console.log('ItemList :', this.state.ItemList);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  componentDidMount() {
+    this.fetchData();
+  }
+
+  postData = (opinion, id, token) => {
+    const json = JSON.stringify({ id: id, opinion: opinion, token: token });
+    try {
+      axios
+        .post('주소', json, {
+          headers: {
+            // Overwrite Axios's automatically set Content-Type
+            'Content-Type': 'application/json',
+          },
+        })
+        .then((res) => {
+          console.log(res);
+        });
+    } catch (err) {
+      console.log(err);
+    }
+  };
   onBeforeSwipe = (swipe, direction, state) => {
     document.getElementById('tinder-btn1').disabled = true;
     document.getElementById('tinder-btn2').disabled = true;
+
     if (direction === 'right') {
       this.setState({ text: 'Like' });
       console.log('방금 선택 : 따봉 하나 추가요~');
+      //   this.postData('like', state.data[0].element.key, localStorage.getItem('token'));
     } else {
       this.setState({ text: 'Nope' });
       console.log('방금 선택 : 놉 하나 추가요~');
+      //   this.postData('nope', state.data[0].element.key, localStorage.getItem('token'));
     }
     console.log('현재 data key', state.data[0].element.key);
     console.log('유저 token : ', localStorage.getItem('token'));
-    console.log('데이터 : ', state.data);
-
+    console.log('데이터 :', state.data);
     swipe();
   };
 
@@ -53,6 +92,7 @@ class Main extends Component {
     // console.log('선택 :', this.state);
     // console.log('유저 token :', localStorage.getItem('token'));
     // console.log('data', data);
+
     this.setState({ text: '' });
     console.log('마침 :', this.state);
     document.getElementById('tinder-btn1').disabled = false;
@@ -72,12 +112,19 @@ class Main extends Component {
     return (
       <div className="demo-wrapper">
         <MotionStack
-          data={data}
+          data={this.state.ItemList.map((item, index) => {
+            // console.log('한 요소 :', item);
+            var returnObj = {};
+            returnObj['id'] = index;
+            returnObj['element'] = <img key={item.id} src={item.url} alt="img" />;
+            // console.log('하나 만들어진 obj :', returnObj);
+            return returnObj;
+          })}
           onSwipeEnd={this.onSwipeEnd}
           onBeforeSwipe={this.onBeforeSwipe}
           render={(props) => props.element}
           renderButtons={this.renderButtons}
-          infinite={false}
+          infinite={true}
           springConfig={{ stiffness: 1600, damping: 80 }}
         />
         <BottomContainer>
@@ -88,19 +135,15 @@ class Main extends Component {
   }
 }
 
-export default Main;
+export default Confirm;
 
 const BottomContainer = styled.div`
   height: 60px;
   text-align: center;
 `;
-const TinderImg = styled.img`
-  background-color: white;
-`;
 const CustomButton = styled.button`
   border: none;
   background: transparent;
-  /* margin: 0.25em; */
   margin-top: 10vh;
   font-size: 3em;
 `;
@@ -112,15 +155,3 @@ const BottomText = styled.h1`
   bottom: 35%;
   margin: 0 auto;
 `;
-
-// import React from 'react';
-
-// function Main() {
-//   return (
-//     <div>
-//       <h1>메인페이지</h1>
-//     </div>
-//   );
-// }
-
-// export default Main;

@@ -103,7 +103,7 @@ export default function MyPageClosetList() {
   useEffect(() => {
     try {
       axios
-        .get(`http://elice-kdt-ai-track-vm-ai-12.koreacentral.cloudapp.azure.com:8080/mypage/my-looks`, {
+        .get(`http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/my-looks`, {
           headers: { Authorization: 'Bearer ' + window.localStorage.token },
         })
         .then((res) => {
@@ -120,7 +120,7 @@ export default function MyPageClosetList() {
     setTimeout(() => {
       setPage(page + 1);
       axios
-        .get(`http://elice-kdt-ai-track-vm-ai-12.koreacentral.cloudapp.azure.com:8080/mypage/my-looks`, {
+        .get(`http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/my-looks`, {
           headers: { Authorization: 'Bearer ' + window.localStorage.token },
         })
         .then((res) => {

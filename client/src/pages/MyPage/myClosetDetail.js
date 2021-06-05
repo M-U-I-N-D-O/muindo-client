@@ -8,7 +8,7 @@ import axios from 'axios';
 import { useHistory } from 'react-router';
 
 import { ModalContext } from '../../App';
-// import { ModalContext } from '../../';
+// import { ModalContext } from '../../data/confirmed_star.png';
 
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -28,13 +28,14 @@ const useStyles = makeStyles((theme) => ({
   closetContainer: {
     // backgroundColor: '#ced3e3',
     display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    // alignItems: 'center',
+    // justifyContent: 'center',
     width: '340px',
     border: 'solid 4px',
     height: '380px',
-    position: 'relative',
+    // position: 'relative',
     marginTop: '20px',
+    position: 'relative',
   },
   likeNoContainer: {
     // backgroundColor: '#ced3e3',
@@ -100,6 +101,25 @@ const useStyles = makeStyles((theme) => ({
   myLookBookImg: {
     height: '100%',
     width: '100%',
+    position: 'absolute',
+    zIndex: 1,
+  },
+  confirmedStar: {
+    zIndex: 100,
+    position: 'absolute',
+    width: '75px',
+
+    top: '8px',
+    right: '25px',
+  },
+  confirmedText: {
+    zIndex: 100,
+    position: 'absolute',
+    width: '50px',
+    fontSize: '16px',
+    top: '92px',
+    right: '67px',
+    color: 'red',
   },
 }));
 
@@ -112,15 +132,31 @@ export default function MyPageClosetDetail() {
   const [myClosetLookBookImg, setMyClosetLookBookImg] = useState([]);
   const [a, setA] = useState([]);
 
-  const handleOpenClosetModalClick = (event) => {
+  const handleOpenClosetModalClick = async (event) => {
     // setModalMode(event.target.id);
+    // const res = await axios.post(
+    //   `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/looks/upload`,
+    //   {
+    //     dataType: 'text',
+    //     items: closetClothesId,
+    //     data: {
+    //       img: url,
+    //     },
+    //     success: function () {
+    //       // seq = res['id'];
+    //     },
+    //   },
+
+    //   { headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + window.localStorage.token } },
+    // );
+
     setOpenClosetInfoModal(true);
   };
 
   useEffect(() => {
     try {
       axios
-        .get(`http://elice-kdt-ai-track-vm-ai-12.koreacentral.cloudapp.azure.com:8080/mypage/my-looks/${seq}`, {
+        .get(`http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/my-looks/${seq}`, {
           headers: { Authorization: 'Bearer ' + window.localStorage.token },
         })
         .then((res) => {
@@ -179,7 +215,14 @@ export default function MyPageClosetDetail() {
     <div className={classes.root}>
       <MyClosetInfo />
       <div className={classes.closetContainer}>
-        {Array.isArray(myClosetLookBookImg) && <img className={classes.myLookBookImg} src={a['url']}></img>}
+        {/* {Array.isArray(myClosetLookBookImg) && <img className={classes.myLookBookImg} src={a['url']} alt="aaa" />} */}
+        <img className={classes.myLookBookImg} src="/images/closet/closet_bottom2.jpg" alt="aaa" />
+        {/* {a['ok'] > a['no'] * 2 && ( */}
+        <div>
+          <img className={classes.confirmedStar} src="/images/confirmed_thumb.png" alt="sdgf" />{' '}
+          <span className={classes.confirmedText}>Confirmed!</span>
+        </div>
+        {/* )} */}
       </div>
       <div className={classes.likeNoContainer}>
         <div className={classes.likeNoBox}>
@@ -225,7 +268,7 @@ export default function MyPageClosetDetail() {
           <MenuItem>컨펌을 못받으셨나요?</MenuItem>
         </Menu> */}
       </div>
-      <a href="/solution" className={classes.confirmLink} target="_blank" rel="noreferrer">
+      <a href="/solution" className={classes.confirmLink} style={{ color: '#000' }} target="_blank" rel="noreferrer">
         컨펌을 못 받으셨나요?
       </a>
     </div>

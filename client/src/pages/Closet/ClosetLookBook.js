@@ -253,7 +253,7 @@ export default function ClosetLookBook() {
       console.log(url);
     });
     const res = await axios.post(
-      `http://elice-kdt-ai-track-vm-ai-12.koreacentral.cloudapp.azure.com:8080/looks/upload`,
+      `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/looks/upload`,
       {
         dataType: 'text',
         items: closetClothesId,

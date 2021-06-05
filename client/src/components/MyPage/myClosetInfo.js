@@ -8,6 +8,15 @@ import Fade from '@material-ui/core/Fade';
 import Backdrop from '@material-ui/core/Backdrop';
 import axios from 'axios';
 
+import Button from '@material-ui/core/Button';
+
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Slide from '@material-ui/core/Slide';
+
 import { ModalContext } from '../../App';
 
 const useStyles = makeStyles((theme) => ({
@@ -63,8 +72,13 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
+    width: '300px',
   },
 }));
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 function ModalCloseBtn() {
   const classes = useStyles();
@@ -144,7 +158,7 @@ export default function MyClosetInfo({ data }) {
 
   return (
     <div>
-      <Modal
+      {/* <Modal
         className={classes.root}
         open={openClosetInfoModal}
         onClose={handleClosetInfoModalClose}
@@ -160,7 +174,6 @@ export default function MyClosetInfo({ data }) {
               <div className={classes.hiddenBtn}>
                 <ModalCloseBtn />
               </div>
-              {/* <TopComment comment={'마음에 드는 배경 색상을 골라보세요.'} /> */}
               <div>
                 <ModalCloseBtn />
               </div>
@@ -174,7 +187,30 @@ export default function MyClosetInfo({ data }) {
             </div>
           </div>
         </Fade>
-      </Modal>
+      </Modal> */}
+      <Dialog className={classes.root} open={openClosetInfoModal} TransitionComponent={Transition} keepMounted onClose={handleClosetInfoModalClose}>
+        {/* <DialogTitle id="alert-dialog-slide-title">{"Use Google's location service?"}</DialogTitle> */}
+        <DialogContent>
+          {/* <DialogContentText id="alert-dialog-slide-description">
+            Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.
+          </DialogContentText> */}
+          <div className={classes.clothesBox}>
+            <LuxuryBtn>{'모자 & \n 선글라스'}</LuxuryBtn>
+            <LuxuryBtn>{'상의'}</LuxuryBtn>
+            <LuxuryBtn>{'하의'}</LuxuryBtn>
+            <LuxuryBtn>{'신발'}</LuxuryBtn>
+            <LuxuryBtn>{'가방'}</LuxuryBtn>
+          </div>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClosetInfoModalClose} color="primary">
+            Disagree
+          </Button>
+          <Button onClick={handleClosetInfoModalClose} color="primary">
+            Agree
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }

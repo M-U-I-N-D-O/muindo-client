@@ -271,7 +271,7 @@ export default function ClosetModal() {
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
-          timeout: 500,
+          timeout: 750,
         }}
       >
         <Fade in={openClosetModal}>
@@ -298,7 +298,7 @@ export default function ClosetModal() {
                     dataLength={clothesList.length}
                     next={() => scrollToEnd()}
                     hasMore={true}
-                    // loader={<h1 style={{ textAlign: 'center' }}>Loading..🕵️‍♂️</h1>}
+                    loader={<h1 style={{ textAlign: 'center' }}>Loading...</h1>}
                     scrollableTarget="scrollableDiv"
                   >
                     {/* <InfiniteScroll

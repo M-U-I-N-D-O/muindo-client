@@ -102,12 +102,12 @@ function App() {
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/loading" component={Progress} />
-          {navMode === 1 && <BottomNav />}
-
           <Route exact path="/closet" component={Closet} />
           <Route exact path="/closet/look_book" component={ClosetLookBook} />
           <Route exact path="/my_page_closet_detail" component={MyPageClosetDetail} />
           <Route exact path="/my_page_closet_list" component={MyPageClosetList} />
+
+          {navMode === 1 && <BottomNav />}
 
           {/* {navMode === 1 && <Footer />} */}
         </Router>

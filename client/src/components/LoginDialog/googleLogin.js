@@ -58,7 +58,7 @@ const GoogleLogin = () => {
           uid: user.uid,
         };
         try {
-          const url = 'http://elice-kdt-ai-track-vm-ai-12.koreacentral.cloudapp.azure.com:5000/auth/access-token';
+          const url = 'http://elice-kdt-ai-track-vm-ai-12.koreacentral.cloudapp.azure.com:8080/auth/access-token';
           const json = JSON.stringify(userInfo);
           axios
             .post(url, json, {

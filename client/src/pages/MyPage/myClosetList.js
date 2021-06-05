@@ -1,9 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import TopComment from '../../components/AnalysisClothes/topComment';
 import styled from 'styled-components';
-import MyClosetInfo from '../../components/MyPage/myClosetInfo';
+import MyClosetInfo from '../../components/MyPage/myClosetInfoModal';
 import axios from 'axios';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
@@ -95,30 +95,56 @@ export default function MyPageClosetList() {
   const history = useHistory();
   const PAGE_NUMBER = 1;
   const [page, setPage] = useState(PAGE_NUMBER);
+  const { seq } = useParams();
 
   const [a, setA] = useState([]);
+  const [lookBookId, setLookBookId] = useState('');
 
   useEffect(() => {
     try {
-      axios.get(`http://elice-kdt-ai-track-vm-ai-12.koreacentral.cloudapp.azure.com:5000/looks/items?type=hat`).then((res) => {
-        setA(res.data);
-      });
+      axios
+        .get(`http://elice-kdt-ai-track-vm-ai-12.koreacentral.cloudapp.azure.com:8080/mypage/my-looks`, {
+          headers: { Authorization: 'Bearer ' + window.localStorage.token },
+        })
+        .then((res) => {
+          setA(res.data);
+        });
     } catch (err) {
       console.log(err);
     }
     // return clothesList;
   }, []);
+
   const scrollToEnd = () => {
     console.log('마지막');
-    // setTimeout(() => {
-    //   setPage(page + 1);
-    //   axios.get(`http://elice-kdt-ai-track-vm-ai-12.koreacentral.cloudapp.azure.com:9000/looks/items?type=hat`).then((res) => {
-    //     setA([...a, ...res.data]);
-    //   });
-    // }, 1000);
+    setTimeout(() => {
+      setPage(page + 1);
+      axios
+        .get(`http://elice-kdt-ai-track-vm-ai-12.koreacentral.cloudapp.azure.com:8080/mypage/my-looks`, {
+          headers: { Authorization: 'Bearer ' + window.localStorage.token },
+        })
+        .then((res) => {
+          setA([...a, ...res.data]);
+        });
+    }, 1000);
+  };
+
+  // useEffect(() => {
+  //   lookBookId && history.push(`/my_page_closet_detail/${lookBookId}`);
+  // }, [lookBookId]);
+
+  const handleLookBookClick = async (event) => {
+    // console.log(event.target.alt);
+    const seq = event.target.alt;
+    // await setLookBookId(() => {
+    //   return event.target.alt;
+    // });
+    // console.log(lookBookId);
+    history.push('/my_page_closet_detail/' + seq);
   };
 
   console.log(a);
+  console.log(window.localStorage.token);
   return (
     <div className={classes.root} id="scrollableDiv">
       <TopComment comment={'내 옷장 보기'} />
@@ -135,10 +161,13 @@ export default function MyPageClosetList() {
         {Array.isArray(a) &&
           a.map(function (image, i) {
             return (
-              <div className={classes.individualClosetContainer}>
+              // <Link to={'/my_page_closet_detail/' + seq} className={classes.individualClosetContainer} onClick={handleLookBookClick}>
+              <div className={classes.individualClosetContainer} onClick={handleLookBookClick}>
                 <div className={classes.thumbnailBox}>
                   <img className={classes.thumbnail} alt={a[i]['id']} src={a[i]['url']} />
                 </div>
+                {image['id']}
+
                 {/* <a href={a[i]['shop_url']} target="_blank" title="무신사에서 상품 보기" rel="noreferrer">
                   <div>{a[i]['brand']}</div>
                   <div>{a[i]['item_name']}</div>

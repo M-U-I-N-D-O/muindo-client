@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import TopComment from '../../components/AnalysisClothes/topComment';
 import styled from 'styled-components';
-import MyClosetInfo from '../../components/MyPage/myClosetInfo';
+import MyClosetInfo from '../../components/MyPage/myClosetInfoModal';
 import axios from 'axios';
 import { useHistory } from 'react-router';
 

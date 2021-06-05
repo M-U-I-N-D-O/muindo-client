@@ -251,7 +251,7 @@ export default function ClosetLookBook() {
       console.log(url);
     });
     const res = await axios.post(
-      `https://muindoapi.azurewebsites.net/looks/upload`,
+      `http://elice-kdt-ai-track-vm-ai-12.koreacentral.cloudapp.azure.com:5000/looks/upload`,
       {
         dataType: 'text',
         items: closetClothesId,
@@ -262,7 +262,8 @@ export default function ClosetLookBook() {
           console.log(res);
         },
       },
-      { headers: { 'Content-Type': 'application/json' } },
+
+      { headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + window.localStorage.token } },
     );
   };
 

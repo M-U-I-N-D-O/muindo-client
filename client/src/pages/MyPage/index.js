@@ -99,7 +99,17 @@ function MyPage() {
             <ListText>About MUINDO</ListText>
           </ListItem>
           <Divider />
-          <ListItem button onClick={() => console.log('내 옷장 확인하기')}>
+          <ListItem
+            button
+            onClick={() => {
+              if (localStorage.getItem('token')) {
+                dispatch(dialogMode(-1));
+                history.push('/my_page_closet_list');
+              } else {
+                console.log('로그인 먼저 해주세요 !');
+              }
+            }}
+          >
             <ListText>내 옷장 확인하기</ListText>
           </ListItem>
         </List>

@@ -21,7 +21,7 @@ function Intro() {
       <TextContainer>
         <div>
           <IntroMainText>
-            무<IntroSubText>지하게 패션</IntroSubText>
+            무 <IntroSubText>지하게 패션</IntroSubText>
           </IntroMainText>
         </div>
         <div>

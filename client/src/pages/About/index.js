@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 import IconButton from '@material-ui/core/IconButton';
 import GitHubIcon from '@material-ui/icons/GitHub';
-import MessageOutlinedIcon from '@material-ui/icons/MessageOutlined';
 
 function About() {
   return (
@@ -52,9 +51,9 @@ function About() {
           <img src="/images/about/3.png" alt="minoj" width="120px" height="120px" />
           <ImgNameText>민유지</ImgNameText>
           <ImgRoleText>FE / PM</ImgRoleText>
-          <ImgLink href="https://velog.io/@carmine" target="_blank">
+          <ImgLink href="https://github.com/nvrtmd" target="_blank">
             <IconButton>
-              <MessageOutlinedIcon />
+              <GitHubIcon />
             </IconButton>
           </ImgLink>
         </ImgBoxItem>

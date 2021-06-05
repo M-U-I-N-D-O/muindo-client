@@ -167,7 +167,7 @@ export default function MyPageClosetDetail() {
       console.log(err);
     }
     // return clothesList;
-  }, [a]);
+  }, []);
   console.log(a);
   console.log(seq);
 
@@ -213,10 +213,10 @@ export default function MyPageClosetDetail() {
 
   return (
     <div className={classes.root}>
-      <MyClosetInfo />
+      <MyClosetInfo data={a} />
       <div className={classes.closetContainer}>
-        {/* {Array.isArray(myClosetLookBookImg) && <img className={classes.myLookBookImg} src={a['url']} alt="aaa" />} */}
-        <img className={classes.myLookBookImg} src="/images/closet/closet_bottom2.jpg" alt="aaa" />
+        {Array.isArray(myClosetLookBookImg) && <img className={classes.myLookBookImg} src={a['url']} alt="aaa" />}
+        {/* <img className={classes.myLookBookImg} src="/images/closet/closet_bottom2.jpg" alt="aaa" /> */}
         {/* {a['ok'] > a['no'] * 2 && ( */}
         <div>
           <img className={classes.confirmedStar} src="/images/confirmed_thumb.png" alt="sdgf" />{' '}

@@ -80,27 +80,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-function ModalCloseBtn() {
-  const classes = useStyles();
-  // const { lookBookColorSelect, setLookBookColorSelect } = useContext(ModalContext);
-
-  // const { lookBookColorModal, setLookBookColorModal } = useContext(ModalContext);
-  // const { setModalMode } = useContext(ModalContext);
-  const { openClosetInfoModal, setOpenClosetInfoModal } = useContext(ModalContext);
-
-  const handleClosetInfoModalClose = () => {
-    setOpenClosetInfoModal(false);
-    // console.log(lookBookColorModal);
-  };
-
-  return (
-    <IconButton onClick={handleClosetInfoModalClose}>
-      <CloseIcon className={classes.modalCloseBtn} />
-    </IconButton>
-  );
-}
-
-export default function MyClosetInfo({ data }) {
+export default function MyClosetInfo(props) {
   const classes = useStyles();
   // const { lookBookColorModal, setLookBookColorModal } = useContext(ModalContext);
   // const { lookBookColorSelect, setLookBookColorSelect } = useContext(ModalContext);
@@ -113,6 +93,7 @@ export default function MyClosetInfo({ data }) {
     setOpenClosetInfoModal(false);
     // console.log(lookBookColorModal);
   };
+  console.log(props.data);
 
   // const fetchClothesData = useCallback(async () => {
   //   try {
@@ -134,27 +115,51 @@ export default function MyClosetInfo({ data }) {
   // }, []);
 
   // useEf
+  //   axios.post(
+  //     `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/looks/upload`,
+  //     {
+  //       dataType: 'text',
+  //       items: closetClothesId,
+  //       data: {
+  //         img: url,
+  //       },
+  //       success: function () {
+  //         // seq = res['id'];
+  //       },
+  //     },
 
-  // useEffect(() => {
-  //   try {
-  //     axios.get('http://localhost:3000/data/closet.json').then((res) => {
-  //       let result = res.data.data;
-  //       // // console.log(modalMode);
-  //       console.log(result.hat);
-
-  //       // console.log(res.data.data['bag']);
-  //       // console.log(res.data.data[modalMode]);
-  //       // console.log(typeof [1, 2, 3]);
-  //       setClosetInfo(result['hat']);
-  //     });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  //   // return clothesList;
-  // }, []);
+  //     { headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + window.localStorage.token } },
+  //   );
+  //   console.log(res);
+  //   const seq = res.data.id;
+  //   history.push('/my_page_closet_detail/' + seq);
+  // };
+  useEffect(() => {
+    try {
+      axios
+        .get(
+          'http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/my-looks/info',
+          {
+            body: {
+              bag_id: props.data.bag,
+              bottom_id: props.data.bottom,
+              hat_id: props.data.hat,
+              shoes_id: props.data.shoes,
+              top_id: props.data.top,
+            },
+          },
+          { headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + window.localStorage.token } },
+        )
+        .then((res) => {
+          setClosetInfo(res.data);
+        });
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
   // console.log(modalMode);
 
-  // console.log(setClosetInfo);
+  console.log(closetInfo);
 
   return (
     <div>

@@ -14,17 +14,19 @@ import html2canvas from 'html2canvas';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    // justifyContent: 'center',
+    paddingTop: '60px',
+    paddingBottom: '56px',
+    // // justifyContent: 'center',
     flexDirection: 'column',
     alignItems: 'center',
-    width: '80vw',
-    maxWidth: '1024px',
-    minHeight: ' calc(100vh - 8.5rem)',
-    // height: '80vw',
+    // width: '80vw',
+    // maxWidth: '1024px',
+    // minHeight: ' calc(100vh - 8.5rem)',
+    // // height: '80vw',
   },
   title: {
-    marginTop: '25px',
-    marginBottom: '5px',
+    // marginTop: '25px',
+    // marginBottom: '5px',
   },
   closetImg: {
     width: '60vw',
@@ -35,31 +37,36 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    maxWidth: '600px',
-    minWidth: '90px',
-    width: '66vw',
-    border: 'solid 1px',
+    maxWidth: '340px',
+    minWidth: '310px',
+    width: '90vw',
+    border: 'solid 4px',
     minHeight: '57vh',
   },
   btnBox: {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
+    height: '140px',
   },
   leftClothesContainer: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    marginRight: '25px',
+    // maxWidth: '150px',
+    // minWidth: '130px',
+    width: '150px',
+
+    marginRight: '15px',
   },
   hatContainer: {
     display: 'flex',
     alignItems: 'center',
-    // maxWidth: '200px',
+    maxWidth: '90px',
 
     minWidth: '70px',
-    minHeight: '70px',
-    width: '10vw',
+    minHeight: '90px',
+    width: '40vw',
     justifyContent: 'center',
     border: 'solid 2px',
     margin: '20px 0px',
@@ -68,9 +75,11 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     // maxWidth: '200px',
+    maxWidth: '120px',
+
     minWidth: '90px',
     minHeight: '150px',
-    width: '10vw',
+    width: '30vw',
 
     justifyContent: 'center',
     border: 'solid 2px',
@@ -79,10 +88,10 @@ const useStyles = makeStyles((theme) => ({
   bottomContainer: {
     display: 'flex',
     alignItems: 'center',
-    // maxWidth: '200px',
+    maxWidth: '120px',
     minWidth: '90px',
-    minHeight: '180px',
-    width: '10vw',
+    minHeight: '150px',
+    width: '30vw',
 
     justifyContent: 'center',
     border: 'solid 2px',
@@ -91,10 +100,10 @@ const useStyles = makeStyles((theme) => ({
   shoesContainer: {
     display: 'flex',
     alignItems: 'center',
-    // maxWidth: '200px',
+    maxWidth: '90px',
     minWidth: '70px',
     minHeight: '90px',
-    width: '10vw',
+    width: '30vw',
 
     justifyContent: 'center',
     border: 'solid 2px',
@@ -103,10 +112,10 @@ const useStyles = makeStyles((theme) => ({
   bagContainer: {
     display: 'flex',
     alignItems: 'center',
-    // maxWidth: '200px',
-    minWidth: '85px',
+    maxWidth: '90px',
+    minWidth: '70px',
     minHeight: '100px',
-    width: '10vw',
+    width: '30vw',
 
     justifyContent: 'center',
     border: 'solid 2px',
@@ -144,6 +153,7 @@ function Closet() {
   // const handleOpen = () => {
   //   setOpenModal(true);
   // };
+
   useEffect(() => {
     setClosetImg({
       hat: '',
@@ -174,7 +184,7 @@ function Closet() {
 
   return (
     <div className={classes.root}>
-      <ClosetModal data={modalMode} />
+      {modalMode !== '' && <ClosetModal data={modalMode} />}
 
       <div className={classes.title}>
         <TopComment comment={'옷장에 옷을 넣어보세요.'} />
@@ -183,7 +193,7 @@ function Closet() {
         <div className={classes.leftClothesContainer}>
           <div className={classes.hatContainer} onClick={handleClothesContainerClick} id="hat">
             {closetImg['hat'] ? (
-              <img style={{ maxHeight: '90px', width: '8.5vw', minWidth: '65px' }} alt="" src={closetImg['hat']} id="hat" />
+              <img style={{ width: '100%', height: '100%' }} alt="" src={closetImg['hat']} id="hat" />
             ) : (
               <div className={classes.clothesText} id="hat">
                 모자
@@ -192,7 +202,7 @@ function Closet() {
           </div>
           <div className={classes.topContainer} onClick={handleClothesContainerClick} id="top">
             {closetImg['top'] ? (
-              <img style={{ maxHeight: '230px', width: '9vw', minWidth: '90px' }} alt="" src={closetImg['top']} id="top" />
+              <img style={{ width: '100%', height: '100%' }} alt="" src={closetImg['top']} id="top" />
             ) : (
               <div className={classes.clothesText} id="top">
                 상의
@@ -201,7 +211,7 @@ function Closet() {
           </div>
           <div className={classes.bottomContainer} onClick={handleClothesContainerClick} id="bottom">
             {closetImg['bottom'] ? (
-              <img style={{ maxHeight: '260px', width: '9vw', minWidth: '90px' }} alt="" src={closetImg['bottom']} id="bottom" />
+              <img style={{ width: '100%', height: '100%' }} alt="" src={closetImg['bottom']} id="bottom" />
             ) : (
               <div className={classes.clothesText} id="bottom">
                 하의
@@ -210,7 +220,7 @@ function Closet() {
           </div>
           <div className={classes.shoesContainer} onClick={handleClothesContainerClick} id="shoes">
             {closetImg['shoes'] ? (
-              <img style={{ maxHeight: '140px', width: '9vw', minWidth: '70px' }} alt="" src={closetImg['shoes']} id="shoes" />
+              <img style={{ width: '100%', height: '100%' }} alt="" src={closetImg['shoes']} id="shoes" />
             ) : (
               <div className={classes.clothesText} id="shoes">
                 신발
@@ -221,7 +231,7 @@ function Closet() {
         <div className={classes.rightClothesContainer}>
           <div className={classes.bagContainer} onClick={handleClothesContainerClick} id="bag">
             {closetImg['bag'] ? (
-              <img style={{ maxHeight: '190px', width: '9vw', minWidth: '85px' }} alt="" src={closetImg['bag']} id="bag" />
+              <img style={{ width: '100%', height: '100%' }} alt="" src={closetImg['bag']} id="bag" />
             ) : (
               <div className={classes.clothesText} id="bag">
                 가방
@@ -254,39 +264,40 @@ export default Closet;
 const LuxuryBtn = styled.button`
   display: inline-block;
   box-sizing: border-box;
-  max-width: 190px;
-  min-width: 170px;
-  width: 8vw;
+  max-width: 150px;
+  min-width: 130px;
+  height: 80px;
+  width: 90vw;
   background: transparent;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 800;
   font-style: normal;
   font-size: 15px;
-  letter-spacing: 0.3em;
-  color: rgba(223, 190, 106, 0.7);
+  letter-spacing: 0.5px;
+  color: black;
   border-radius: 0;
   padding: 15px 20px 15px 20px;
-  transition: all 0.7s ease-out;
+  transition: all 0.25s ease-out;
   cursor: pointer;
   white-space: pre-wrap;
   text-align: center;
-  background: linear-gradient(270deg, rgba(223, 190, 106, 0.8), rgba(146, 111, 52, 0.8), rgba(34, 34, 34, 0), rgba(34, 34, 34, 0));
+  /* background: linear-gradient(270deg, rgba(223, 190, 106, 0.8), rgba(146, 111, 52, 0.8), rgba(34, 34, 34, 0), rgba(34, 34, 34, 0)); */
   background-position: 1% 50%;
   background-size: 300% 300%;
   text-decoration: none;
-  margin: 30px 15px 30px 20px;
-  border: none;
-  border: 1px solid rgba(223, 190, 106, 0.3);
+  margin: 30px 15px 30px 15px;
+  border: 4px solid;
   :hover {
-    color: #fff;
-    border: 1px solid rgba(223, 190, 106, 0);
-    color: $white;
-    background-position: 99% 50%;
+    color: black;
+    border: 7px solid;
+    /* color: $white; */
+    /* background-position: 99% 50%; */
   }
   :disabled {
-    background-position: 1% 50%;
-    color: rgba(223, 190, 106, 0.7);
-    border: 1px solid rgba(223, 190, 106, 0.3);
+    /* background-position: 1% 50%; */
+    /* color: rgba(223, 190, 106, 0.7); */
+    color: gray;
+    border: 1px solid;
     cursor: default;
   }
 `;

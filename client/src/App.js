@@ -41,7 +41,7 @@ function App() {
   const [openClosetModal, setOpenClosetModal] = useState(false);
   const [openClosetInfoModal, setOpenClosetInfoModal] = useState(false);
   const [lookBookColorModal, setLookBookColorModal] = useState(false);
-  const [lookBookColorSelect, setLookBookColorSelect] = useState('');
+  const [lookBookColorSelect, setLookBookColorSelect] = useState('#fff');
   const [modalMode, setModalMode] = useState('');
   const [closetImg, setClosetImg] = useState({
     hat: '',

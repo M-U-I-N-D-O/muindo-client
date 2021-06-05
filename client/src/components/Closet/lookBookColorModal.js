@@ -101,50 +101,19 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     marginTop: '2vw',
   },
+  colorCircleBox: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+
+    width: '250px',
+    height: '170px',
+  },
 }));
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-
-// function ColorSelect() {
-//   const classes = useStyles();
-
-//   const { lookBookColorSelect, setLookBookColorSelect } = useContext(ModalContext);
-
-//   const [background, setBackground] = useState('#fff');
-
-//   const handleChangeComplete = (color) => {
-//     setBackground(color.hex);
-//   };
-
-//   // setLookBookColorSelect(color['hex']);
-//   //   console.log(lookBookColorModal['hex']);
-
-//   return <CirclePicker color={background} onChangeComplete={handleChangeComplete} />;
-// }
-
-// function ModalCloseBtn() {
-//   const classes = useStyles();
-//   const { lookBookColorSelect, setLookBookColorSelect } = useContext(ModalContext);
-
-//   const { lookBookColorModal, setLookBookColorModal } = useContext(ModalContext);
-//   // const { setModalMode } = useContext(ModalContext);
-
-//   const handleLookBookColorClose = () => {
-//     setLookBookColorModal(false);
-//     console.log(lookBookColorModal);
-//     console.log(lookBookColorSelect);
-//   };
-
-//   return (
-//     <ThemeProvider theme={theme}>
-//       <IconButton onClick={handleLookBookColorClose}>
-//         <CloseIcon className={classes.modalCloseBtn} />
-//       </IconButton>
-//     </ThemeProvider>
-//   );
-// }
 
 export default function ColorChangeModal({ data }) {
   const classes = useStyles();
@@ -152,74 +121,39 @@ export default function ColorChangeModal({ data }) {
   const { lookBookColorSelect, setLookBookColorSelect } = useContext(ModalContext);
   const { closetImg, setClosetImg } = useContext(ModalContext);
 
+  useEffect(() => {
+    setLookBookColorSelect('#fff');
+  }, []);
+
   const handleLookBookColorClose = () => {
     setLookBookColorModal(false);
     console.log(lookBookColorModal);
   };
 
-  // const { lookBookColorSelect, setLookBookColorSelect } = useContext(ModalContext);
+  const handleLookBookColorReset = () => {
+    setLookBookColorSelect('#fff');
+    setLookBookColorModal(false);
+    console.log(lookBookColorModal);
+  };
 
-  // const [background, setBackground] = useState('#fff');
-
-  const handleChangeComplete = (color) => {
+  const handleLookBookColorChange = (color) => {
     setLookBookColorSelect(color.hex);
   };
 
-  // setLookBookColorSelect(color['hex']);
-  //   console.log(lookBookColorModal['hex']);
-
-  // return <CirclePicker color={background} onChangeComplete={handleChangeComplete} />;
-
   return (
     <div>
-      {/* <Modal
-        className={classes.root}
-        open={lookBookColorModal}
-        onClose={handleLookBookColorClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <Fade in={lookBookColorModal}>
-          <div className={classes.modal}>
-            <div className={classes.modalTopContents}>
-              <div className={classes.hiddenBtn}>
-                <ModalCloseBtn />
-              </div>
-              <TopComment comment={'마음에 드는 배경 색상을 골라보세요.'} />
-              <div>
-                <ModalCloseBtn />
-              </div>
-            </div>
-
-            <div className={classes.modalMiddleContents}>
-              <ColorSelect />
-            </div>
-            <div className={classes.modalBottomContents}>
-              <LuxuryBtn onClick={handleLookBookColorClose}>결정</LuxuryBtn>
-            </div>
-          </div>
-        </Fade>
-      </Modal> */}
-
       <Dialog className={classes.root} open={lookBookColorModal} TransitionComponent={Transition} keepMounted onClose={handleLookBookColorClose}>
-        {/* <DialogTitle id="alert-dialog-slide-title">{"Use Google's location service?"}</DialogTitle> */}
         <DialogContent>
-          {/* <DialogContentText id="alert-dialog-slide-description">
-            Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.
-          </DialogContentText> */}
-          <div className={classes.clothesBox}>
-            <CirclePicker color="#fff" onChangeComplete={handleChangeComplete} />
+          <div className={classes.colorCircleBox}>
+            <CirclePicker color="#fff" onChangeComplete={handleLookBookColorChange} />
           </div>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleLookBookColorClose} color="primary">
-            Disagree
+          <Button onClick={handleLookBookColorReset} color="primary">
+            Reset
           </Button>
           <Button onClick={handleLookBookColorClose} color="primary">
-            Agree
+            결정
           </Button>
         </DialogActions>
       </Dialog>

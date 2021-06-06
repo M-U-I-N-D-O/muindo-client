@@ -59,7 +59,7 @@ const GoogleLogin = () => {
           uid: user.uid,
         };
         try {
-          const url = 'http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/auth/access-token';
+          // const url = 'http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/auth/access-token';
           const json = JSON.stringify(userInfo);
           axios
             .post(url + 'auth/access-token', json, {
@@ -71,6 +71,7 @@ const GoogleLogin = () => {
             .then((response) => {
               console.log('post 결과 : ', response);
               localStorage.setItem('token', response.data.access_token);
+
               dispatch(userName(user.providerData[0].displayName));
               dispatch(userEmail(user.providerData[0].email));
               dispatch(dialogMode(-1));

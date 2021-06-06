@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { createContext, useState } from 'react';
+import { CookiesProvider, withCookies } from 'react-cookie';
 
 import Intro from './pages/Intro';
 import Main from './pages/Main';
@@ -72,7 +73,7 @@ function App() {
   const [closetDetailInfo, setClosetDetailInfo] = useState([]);
 
   return (
-    <div>
+    <CookiesProvider>
       <ModalContext.Provider
         value={{
           openClosetModal,
@@ -125,7 +126,7 @@ function App() {
           {/* {navMode === 1 && <Footer />} */}
         </Router>
       </ModalContext.Provider>
-    </div>
+    </CookiesProvider>
   );
 }
 export { ModalContext };

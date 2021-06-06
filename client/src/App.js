@@ -59,6 +59,8 @@ function App() {
     bag: '',
   });
 
+  const [closetDetailInfo, setClosetDetailInfo] = useState([]);
+
   const [condition, setCondition] = useState({});
   const [clothesList, setClothesList] = useState([]);
 
@@ -84,6 +86,8 @@ function App() {
           setCondition,
           openClosetInfoModal,
           setOpenClosetInfoModal,
+          closetDetailInfo,
+          setClosetDetailInfo,
         }}
       >
         <Router>

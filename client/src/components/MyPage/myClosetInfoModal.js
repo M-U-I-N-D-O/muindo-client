@@ -86,14 +86,24 @@ export default function MyClosetInfo(props) {
   // const { lookBookColorSelect, setLookBookColorSelect } = useContext(ModalContext);
   // const { closetImg, setClosetImg } = useContext(ModalContext);
   const { openClosetInfoModal, setOpenClosetInfoModal } = useContext(ModalContext);
+  const { closetDetailInfo, setClosetDetailInfo } = useContext(ModalContext);
 
-  const [closetInfo, setClosetInfo] = useState([]);
+  // const [closetDetailInfo, setClosetDetailInfo] = useState([]);
 
   const handleClosetInfoModalClose = () => {
     setOpenClosetInfoModal(false);
     // console.log(lookBookColorModal);
   };
-  console.log(props.data);
+
+  console.log(closetDetailInfo);
+  console.log(closetDetailInfo[0]['url']);
+  // console.log(props.data.data[0]);
+  // useEffect(() => {
+  //   setClosetDetailInfo(props.data.data);
+  // }, []);
+  // setClosetDetailInfo(props.data.data);
+
+  // console.log(props.data.bag);
 
   // const fetchClothesData = useCallback(async () => {
   //   try {
@@ -134,32 +144,70 @@ export default function MyClosetInfo(props) {
   //   const seq = res.data.id;
   //   history.push('/my_page_closet_detail/' + seq);
   // };
-  useEffect(() => {
-    try {
-      axios
-        .get(
-          'http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/my-looks/info',
-          {
-            body: {
-              bag_id: props.data.bag,
-              bottom_id: props.data.bottom,
-              hat_id: props.data.hat,
-              shoes_id: props.data.shoes,
-              top_id: props.data.top,
-            },
-          },
-          { headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + window.localStorage.token } },
-        )
-        .then((res) => {
-          setClosetInfo(res.data);
-        });
-    } catch (err) {
-      console.log(err);
-    }
-  }, []);
-  // console.log(modalMode);
+  // useEffect(() => {
+  // try {
+  // const k = {
+  //   body: {
+  //     bag_id: props.data.bag,
+  //     bottom_id: props.data.bottom,
+  //     hat_id: props.data.hat,
+  //     shoes_id: props.data.shoes,
+  //     top_id: props.data.top,
+  //   },
+  // };
+  // const body = JSON.stringify(k);
+  // const a = props.data.bag
+  // const b = props.data.bag
+  // const c = props.data.bag
+  // const d = props.data.bag
+  // const e = props.data.bag
+  // console.log(props.data.bag);
 
-  console.log(closetInfo);
+  // const res = axios
+  //   .post(
+  //     'http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/test',
+  //     // 'http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/my-looks/info',
+  //     {
+  //       bag_id: props.data.bag,
+  //       bottom_id: props.data.bottom,
+  //       hat_id: props.data.hat,
+  //       shoes_id: props.data.shoes,
+  //       top_id: props.data.top,
+  //     },
+  //     { headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + window.localStorage.token } },
+  //   )
+  //   .then((r) => {
+  //     console.log(r);
+  //     setClosetInfo(r.data);
+  //     // } catch (err) {
+  //     //   console.log(err);
+  //     // }
+  //   }, []);
+
+  // useEffect(() => {
+  //   try {
+  //     axios
+  //       .post(
+  //         'http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/my-looks/info',
+  //         {
+  //           bag_id: props.data.bag,
+  //           bottom_id: props.data.bottom,
+  //           hat_id: props.data.hat,
+  //           shoes_id: props.data.shoes,
+  //           top_id: props.data.top,
+  //         },
+  //         { headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + window.localStorage.token } },
+  //       )
+  //       .then((res) => {
+  //         setClosetInfo(res.data);
+  //       });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  //   return closetInfo;
+  // }, []);
+
+  // console.log(closetInfo);
 
   return (
     <div>
@@ -200,11 +248,19 @@ export default function MyClosetInfo(props) {
             Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.
           </DialogContentText> */}
           <div className={classes.clothesBox}>
-            <LuxuryBtn>{'모자 & \n 선글라스'}</LuxuryBtn>
+            {/* <LuxuryBtn>{'모자 & \n 선글라스'}</LuxuryBtn>
             <LuxuryBtn>{'상의'}</LuxuryBtn>
             <LuxuryBtn>{'하의'}</LuxuryBtn>
             <LuxuryBtn>{'신발'}</LuxuryBtn>
-            <LuxuryBtn>{'가방'}</LuxuryBtn>
+            <LuxuryBtn>{'가방'}</LuxuryBtn> */}
+            {closetDetailInfo &&
+              closetDetailInfo.map(function (item, i) {
+                return (
+                  <div>
+                    <img src={closetDetailInfo[i]['url']} />;
+                  </div>
+                );
+              })}
           </div>
         </DialogContent>
         <DialogActions>

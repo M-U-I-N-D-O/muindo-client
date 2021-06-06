@@ -128,9 +128,11 @@ export default function MyPageClosetDetail() {
   const history = useHistory();
   const { openClosetInfoModal, setOpenClosetInfoModal } = useContext(ModalContext);
   const { seq } = useParams();
+  const { closetDetailInfo, setClosetDetailInfo } = useContext(ModalContext);
 
   const [myClosetLookBookImg, setMyClosetLookBookImg] = useState([]);
   const [a, setA] = useState([]);
+  const [closetInfo, setClosetInfo] = useState([]);
 
   const handleOpenClosetModalClick = async (event) => {
     // setModalMode(event.target.id);
@@ -162,11 +164,27 @@ export default function MyPageClosetDetail() {
         .then((res) => {
           console.log(res);
           setA(res.data);
+          axios
+            .post(
+              'http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/my-looks/info',
+              // 'http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/my-looks/info',
+              {
+                bag_id: res.data.bag,
+                bottom_id: res.data.bottom,
+                hat_id: res.data.hat,
+                shoes_id: res.data.shoes,
+                top_id: res.data.top,
+              },
+              { headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + window.localStorage.token } },
+            )
+            .then((response) => {
+              console.log(response);
+              setClosetDetailInfo(response.data);
+            });
         });
     } catch (err) {
       console.log(err);
     }
-    // return clothesList;
   }, []);
   console.log(a);
   console.log(seq);
@@ -213,7 +231,7 @@ export default function MyPageClosetDetail() {
 
   return (
     <div className={classes.root}>
-      <MyClosetInfo data={a} />
+      <MyClosetInfo />
       <div className={classes.closetContainer}>
         {Array.isArray(myClosetLookBookImg) && <img className={classes.myLookBookImg} src={a['url']} alt="aaa" />}
         {/* <img className={classes.myLookBookImg} src="/images/closet/closet_bottom2.jpg" alt="aaa" /> */}

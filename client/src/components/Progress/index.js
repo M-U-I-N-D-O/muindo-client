@@ -3,10 +3,11 @@ import styled from 'styled-components';
 
 const ContainerBox = styled.div`
   display: flex;
-  /* padding-bottom: 3.5rem; */
-  /* padding-top: 25vh; */
+  padding-bottom: 66px;
+  /* padding-top: 70px; */
   justify-content: center;
   align-items: center;
+  height: 100vh;
 `;
 const LoadingBox = styled.div`
   justify-content: center;
@@ -21,7 +22,7 @@ function Progress() {
     <ContainerBox>
       <LoadingBox>
         <img src="/images/progress/loading.gif" alt="progress-gif" style={{ backgroundColor: 'none' }} />
-        <LoadingText>로딩중...🕵️‍♂️</LoadingText>
+        <LoadingText>Loading...</LoadingText>
       </LoadingBox>
     </ContainerBox>
   );

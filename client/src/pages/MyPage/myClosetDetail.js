@@ -1,14 +1,14 @@
 import React, { useState, useContext, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import TopComment from '../../components/AnalysisClothes/topComment';
 import styled from 'styled-components';
-import MyClosetInfo from '../../components/MyPage/myClosetInfo';
+import MyClosetInfo from '../../components/MyPage/myClosetInfoModal';
 import axios from 'axios';
 import { useHistory } from 'react-router';
 
 import { ModalContext } from '../../App';
-// import { ModalContext } from '../../';
+// import { ModalContext } from '../../data/confirmed_star.png';
 
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -28,13 +28,14 @@ const useStyles = makeStyles((theme) => ({
   closetContainer: {
     // backgroundColor: '#ced3e3',
     display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    // alignItems: 'center',
+    // justifyContent: 'center',
     width: '340px',
     border: 'solid 4px',
     height: '380px',
-    position: 'relative',
+    // position: 'relative',
     marginTop: '20px',
+    position: 'relative',
   },
   likeNoContainer: {
     // backgroundColor: '#ced3e3',
@@ -100,6 +101,25 @@ const useStyles = makeStyles((theme) => ({
   myLookBookImg: {
     height: '100%',
     width: '100%',
+    position: 'absolute',
+    zIndex: 1,
+  },
+  confirmedStar: {
+    zIndex: 100,
+    position: 'absolute',
+    width: '60px',
+
+    top: '8px',
+    right: '15px',
+  },
+  confirmedText: {
+    zIndex: 100,
+    position: 'absolute',
+    width: '50px',
+    fontSize: '13px',
+    top: '70px',
+    right: '42px',
+    color: 'red',
   },
 }));
 
@@ -107,19 +127,50 @@ export default function MyPageClosetDetail() {
   const classes = useStyles();
   const history = useHistory();
   const { openClosetInfoModal, setOpenClosetInfoModal } = useContext(ModalContext);
+  const { seq } = useParams();
+  const { closetDetailInfo, setClosetDetailInfo } = useContext(ModalContext);
 
   const [myClosetLookBookImg, setMyClosetLookBookImg] = useState([]);
+  const [a, setA] = useState([]);
+  const [closetInfo, setClosetInfo] = useState([]);
 
   const handleOpenClosetModalClick = (event) => {
-    // setModalMode(event.target.id);
     setOpenClosetInfoModal(true);
-
-    // setModifyAnchor(null);
-
-    // console.log(lookBookColorModal);
-    // console.log(modalMode);
-    // console.log(closetImg);
   };
+
+  useEffect(() => {
+    try {
+      axios
+        .get(`http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/my-looks/${seq}`, {
+          headers: { Authorization: 'Bearer ' + window.localStorage.token },
+        })
+        .then((res) => {
+          console.log(res);
+          setA(res.data);
+          axios
+            .post(
+              'http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/my-looks/info',
+              // 'http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/my-looks/info',
+              {
+                bag_id: res.data.bag,
+                bottom_id: res.data.bottom,
+                hat_id: res.data.hat,
+                shoes_id: res.data.shoes,
+                top_id: res.data.top,
+              },
+              { headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + window.localStorage.token } },
+            )
+            .then((response) => {
+              console.log(response);
+              setClosetDetailInfo(response.data);
+            });
+        });
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
+  console.log(a);
+  console.log(seq);
 
   // useEffect(() => {
   //   try {
@@ -165,16 +216,23 @@ export default function MyPageClosetDetail() {
     <div className={classes.root}>
       <MyClosetInfo />
       <div className={classes.closetContainer}>
-        {/* {Array.isArray(myClosetLookBookImg) && <img className={classes.myLookBookImg} src={myClosetLookBookImg[0]['img_url']}></img>} */}
+        {Array.isArray(myClosetLookBookImg) && <img className={classes.myLookBookImg} src={a['url']} alt="aaa" />}
+        {/* <img className={classes.myLookBookImg} src="/images/closet/closet_bottom2.jpg" alt="aaa" /> */}
+        {/* {a['ok'] > a['no'] * 2 && ( */}
+        <div>
+          <img className={classes.confirmedStar} src="/images/confirmed_thumb.png" alt="sdgf" />{' '}
+          <span className={classes.confirmedText}>Confirmed!</span>
+        </div>
+        {/* )} */}
       </div>
       <div className={classes.likeNoContainer}>
         <div className={classes.likeNoBox}>
           <div className={classes.likeNoTitleBox}>Like</div>
-          <div className={classes.likeNoCountBox}>10</div>
+          <div className={classes.likeNoCountBox}>{a['ok']}</div>
         </div>
         <div className={classes.likeNoBox}>
           <div className={classes.likeNoTitleBox}>NoNo</div>
-          <div className={classes.likeNoCountBox}>5</div>
+          <div className={classes.likeNoCountBox}>{a['no']}</div>
         </div>
       </div>
       <div className={classes.listBtnContainer}>
@@ -211,7 +269,7 @@ export default function MyPageClosetDetail() {
           <MenuItem>컨펌을 못받으셨나요?</MenuItem>
         </Menu> */}
       </div>
-      <a href="/solution" className={classes.confirmLink} target="_blank" rel="noreferrer">
+      <a href="/solution" className={classes.confirmLink} style={{ color: '#000' }} target="_blank" rel="noreferrer">
         컨펌을 못 받으셨나요?
       </a>
     </div>

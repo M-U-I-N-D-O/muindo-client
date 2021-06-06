@@ -39,9 +39,6 @@ const ModalContext = createContext({});
 function App() {
   const navMode = useSelector((state) => state.navbar.switch);
   const [openClosetModal, setOpenClosetModal] = useState(false);
-  const [openClosetInfoModal, setOpenClosetInfoModal] = useState(false);
-  const [lookBookColorModal, setLookBookColorModal] = useState(false);
-  const [lookBookColorSelect, setLookBookColorSelect] = useState('');
   const [modalMode, setModalMode] = useState('');
   const [closetImg, setClosetImg] = useState({
     hat: '',
@@ -50,7 +47,6 @@ function App() {
     shoes: '',
     bag: '',
   });
-
   const [closetClothesId, setClosetClothesId] = useState({
     hat: '',
     top: '',
@@ -58,9 +54,21 @@ function App() {
     shoes: '',
     bag: '',
   });
+  // const [condition, setCondition] = useState({});
 
-  const [condition, setCondition] = useState({});
+  const [condition, setCondition] = useState({
+    middleCategory: '',
+    subCategory: '',
+    brand: '',
+  });
+
   const [clothesList, setClothesList] = useState([]);
+
+  const [lookBookColorModal, setLookBookColorModal] = useState(false);
+  const [lookBookColorSelect, setLookBookColorSelect] = useState('#fff');
+
+  const [openClosetInfoModal, setOpenClosetInfoModal] = useState(false);
+  const [closetDetailInfo, setClosetDetailInfo] = useState([]);
 
   return (
     <div>
@@ -84,6 +92,8 @@ function App() {
           setCondition,
           openClosetInfoModal,
           setOpenClosetInfoModal,
+          closetDetailInfo,
+          setClosetDetailInfo,
         }}
       >
         <Router>
@@ -102,12 +112,12 @@ function App() {
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/loading" component={Progress} />
-          {navMode === 1 && <BottomNav />}
-
           <Route exact path="/closet" component={Closet} />
           <Route exact path="/closet/look_book" component={ClosetLookBook} />
-          <Route exact path="/my_page_closet_detail" component={MyPageClosetDetail} />
+          <Route exact path="/my_page_closet_detail/:seq" component={MyPageClosetDetail} />
           <Route exact path="/my_page_closet_list" component={MyPageClosetList} />
+
+          {navMode === 1 && <BottomNav />}
 
           {/* {navMode === 1 && <Footer />} */}
         </Router>

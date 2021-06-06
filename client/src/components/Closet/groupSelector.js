@@ -40,16 +40,17 @@ export default function GroupSelector() {
   const classes = useStyles();
   const { condition, setCondition } = useContext(ModalContext);
   const { modalMode, setModalMode } = useContext(ModalContext);
+  const { clothesList, setClothesList } = useContext(ModalContext);
+
   const [categoryList, setCategoryList] = useState([]);
+  const [categoryNumList, setCategoryNumList] = useState([]);
   const [subCategoryList, setSubCategoryList] = useState([]);
+  const [subCategoryNumList, setSubCategoryNumList] = useState([]);
   const [brandList, setBrandList] = useState([]);
+  const [brandEngList, setBrandEngList] = useState([]);
   const [conditionNum, setConditionNum] = useState(10000);
   const fetch = useEffect(() => {
     try {
-      // 이 부분 로컬에서 카테고리 데이터 import해서 가져오는 걸로 바꿔주기
-      // axios.get('http://localhost:3000/data/closetCondition.json').then((res) => {
-      // });
-
       const res = FilterData;
       console.log(res);
       let result = res.filter_query;
@@ -69,9 +70,30 @@ export default function GroupSelector() {
         brandArr.push(result[l]['brand']);
       }
 
+      let categoryNumArr = [];
+      for (var m = 0; m < result.length; m++) {
+        categoryNumArr.push(result[m]['category_num']);
+      }
+      let subCategoryNumArr = [];
+      for (var n = 0; n < result.length; n++) {
+        subCategoryNumArr.push(result[n]['sub_category_num']);
+      }
+      let brandEngArr = [];
+      for (var o = 0; o < result.length; o++) {
+        brandEngArr.push(result[o]['brand']);
+      }
+
+      // let categoryNumArr = [];
+      // for (var m = 0; m < result.length; m++) {
+      //   categoryNumArr.push(result[m]['category_num']);
+      // }
+
       setCategoryList(categoryArr);
+      setCategoryNumList(categoryNumArr);
       setSubCategoryList(subCategoryArr);
+      setSubCategoryNumList(subCategoryNumArr);
       setBrandList(brandArr);
+      setBrandEngList(brandEngArr);
     } catch (err) {
       console.log(err);
     }
@@ -79,9 +101,9 @@ export default function GroupSelector() {
 
   const handleInitialize = (event) => {
     var newCondition = { ...condition };
-    delete newCondition['category'];
-    delete newCondition['sub_category'];
-    delete newCondition['brand'];
+    newCondition['middleCategory'] = '';
+    newCondition['subCategory'] = '';
+    newCondition['brand'] = '';
     setConditionNum(10000);
     setCondition(newCondition);
   };
@@ -89,8 +111,8 @@ export default function GroupSelector() {
   const handleChangeCategory = (event) => {
     if (event.target.value) {
       var newCondition = { ...condition };
-      newCondition['category'] = event.target.value;
-      setConditionNum(categoryList.indexOf(event.target.value));
+      newCondition['middleCategory'] = event.target.value;
+      setConditionNum(categoryNumList.indexOf(event.target.value));
       console.log(condition);
       setCondition(newCondition);
     }
@@ -99,7 +121,7 @@ export default function GroupSelector() {
   const handleChangeSubCategory = (event) => {
     if (event.target.value) {
       var newCondition = { ...condition };
-      newCondition['sub_category'] = event.target.value;
+      newCondition['subCategory'] = event.target.value;
       console.log(condition);
       setCondition(newCondition);
     }
@@ -116,15 +138,14 @@ export default function GroupSelector() {
   return (
     <div className={classes.root}>
       <div>
-        {' '}
         <FormControl className={classes.selector}>
           <InputLabel>중분류</InputLabel>
           <Select value="category" onChange={handleChangeCategory}>
-            {condition['sub_category'] || condition['brand'] ? (
+            {condition['subCategory'] || condition['brand'] ? (
               <MenuItem onClick={handleInitialize}>분류 초기화</MenuItem>
             ) : (
               categoryList.map(function (selector, i) {
-                return <MenuItem value={selector}>{selector}</MenuItem>;
+                return <MenuItem value={categoryNumList[i]}>{selector}</MenuItem>;
               })
             )}
           </Select>
@@ -134,7 +155,7 @@ export default function GroupSelector() {
           <Select value="sub_category" onChange={handleChangeSubCategory}>
             {conditionNum !== 10000 ? (
               subCategoryList[conditionNum].map(function (selector, i) {
-                return <MenuItem value={selector}>{selector}</MenuItem>;
+                return <MenuItem value={subCategoryNumList[conditionNum][i]}>{selector}</MenuItem>;
               })
             ) : (
               <MenuItem>중분류를 선택하세요</MenuItem>
@@ -146,7 +167,7 @@ export default function GroupSelector() {
           <Select value="brand" onChange={handleChangeBrand}>
             {conditionNum !== 10000 ? (
               brandList[conditionNum].map(function (selector, i) {
-                return <MenuItem value={selector}>{selector}</MenuItem>;
+                return <MenuItem value={brandEngList[conditionNum[i]]}>{selector}</MenuItem>;
               })
             ) : (
               <MenuItem>중분류를 선택하세요</MenuItem>

@@ -8,11 +8,19 @@ import Backdrop from '@material-ui/core/Backdrop';
 import styled from 'styled-components';
 import TopComment from '../AnalysisClothes/topComment';
 
-import ColorSelect from './colorPalette';
+// import ColorSelect from './colorPalette';
 import { ModalContext } from '../../App';
 
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
+import { SketchPicker, CirclePicker } from 'react-color';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Slide from '@material-ui/core/Slide';
+import Button from '@material-ui/core/Button';
 
 const theme = createMuiTheme({
   palette: {
@@ -82,7 +90,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     overflow: 'auto',
     // width: '40vw',
-    height: '70vh',
+    height: '500px',
     // border: 'solid 1px',
     justifyContent: 'center',
     alignItems: 'center',
@@ -93,29 +101,19 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     marginTop: '2vw',
   },
+  colorCircleBox: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+
+    width: '250px',
+    height: '170px',
+  },
 }));
 
-function ModalCloseBtn() {
-  const classes = useStyles();
-  const { lookBookColorSelect, setLookBookColorSelect } = useContext(ModalContext);
-
-  const { lookBookColorModal, setLookBookColorModal } = useContext(ModalContext);
-  // const { setModalMode } = useContext(ModalContext);
-
-  const handleLookBookColorClose = () => {
-    setLookBookColorModal(false);
-    console.log(lookBookColorModal);
-    console.log(lookBookColorSelect);
-  };
-
-  return (
-    <ThemeProvider theme={theme}>
-      <IconButton onClick={handleLookBookColorClose}>
-        <CloseIcon className={classes.modalCloseBtn} />
-      </IconButton>
-    </ThemeProvider>
-  );
-}
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 export default function ColorChangeModal({ data }) {
   const classes = useStyles();
@@ -123,44 +121,42 @@ export default function ColorChangeModal({ data }) {
   const { lookBookColorSelect, setLookBookColorSelect } = useContext(ModalContext);
   const { closetImg, setClosetImg } = useContext(ModalContext);
 
+  useEffect(() => {
+    setLookBookColorSelect('#fff');
+  }, []);
+
   const handleLookBookColorClose = () => {
     setLookBookColorModal(false);
     console.log(lookBookColorModal);
   };
 
+  const handleLookBookColorReset = () => {
+    setLookBookColorSelect('#fff');
+    setLookBookColorModal(false);
+    console.log(lookBookColorModal);
+  };
+
+  const handleLookBookColorChange = (color) => {
+    setLookBookColorSelect(color.hex);
+  };
+
   return (
     <div>
-      <Modal
-        className={classes.root}
-        open={lookBookColorModal}
-        onClose={handleLookBookColorClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <Fade in={lookBookColorModal}>
-          <div className={classes.modal}>
-            <div className={classes.modalTopContents}>
-              <div className={classes.hiddenBtn}>
-                <ModalCloseBtn />
-              </div>
-              <TopComment comment={'마음에 드는 배경 색상을 골라보세요.'} />
-              <div>
-                <ModalCloseBtn />
-              </div>
-            </div>
-
-            <div className={classes.modalMiddleContents}>
-              <ColorSelect />
-            </div>
-            <div className={classes.modalBottomContents}>
-              <LuxuryBtn onClick={handleLookBookColorClose}>결정</LuxuryBtn>
-            </div>
+      <Dialog className={classes.root} open={lookBookColorModal} TransitionComponent={Transition} keepMounted onClose={handleLookBookColorClose}>
+        <DialogContent>
+          <div className={classes.colorCircleBox}>
+            <CirclePicker color="#fff" onChangeComplete={handleLookBookColorChange} />
           </div>
-        </Fade>
-      </Modal>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleLookBookColorReset} color="primary">
+            Reset
+          </Button>
+          <Button onClick={handleLookBookColorClose} color="primary">
+            결정
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }

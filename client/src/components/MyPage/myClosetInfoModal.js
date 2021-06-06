@@ -74,6 +74,26 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     width: '300px',
   },
+  infoContainer: {
+    display: 'flex',
+    width: '300px',
+    alignItems: 'center',
+    // justifyContent: 'space-evenly',
+
+    // justifyContent: 'center',
+  },
+  infoImg: {
+    width: '80px',
+    height: '90px',
+    marginBottom: '12px',
+  },
+  infoBox: {
+    marginLeft: '15px',
+    display: 'flex',
+    fontSize: '16px',
+    flexDirection: 'column',
+    marginBottom: '12px',
+  },
 }));
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -82,171 +102,20 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function MyClosetInfo(props) {
   const classes = useStyles();
-  // const { lookBookColorModal, setLookBookColorModal } = useContext(ModalContext);
-  // const { lookBookColorSelect, setLookBookColorSelect } = useContext(ModalContext);
-  // const { closetImg, setClosetImg } = useContext(ModalContext);
   const { openClosetInfoModal, setOpenClosetInfoModal } = useContext(ModalContext);
   const { closetDetailInfo, setClosetDetailInfo } = useContext(ModalContext);
 
-  // const [closetDetailInfo, setClosetDetailInfo] = useState([]);
-
   const handleClosetInfoModalClose = () => {
     setOpenClosetInfoModal(false);
-    // console.log(lookBookColorModal);
   };
 
   console.log(closetDetailInfo);
-  console.log(closetDetailInfo[0]['url']);
-  // console.log(props.data.data[0]);
-  // useEffect(() => {
-  //   setClosetDetailInfo(props.data.data);
-  // }, []);
-  // setClosetDetailInfo(props.data.data);
-
-  // console.log(props.data.bag);
-
-  // const fetchClothesData = useCallback(async () => {
-  //   try {
-  //     await axios.get('http://localhost:3000/data/closet.json').then((res) => {
-  //       let result = res.data.data;
-  //       // console.log(modalMode);
-  //       // console.log(result[modalMode]);
-  //       // let arr = [];
-  //       // for (var i = 0; i < result[modalMode]; i++) {
-  //       //   console.log(result[modalMode[i]]);
-  //       //   //   var newArray = appendObjTo(arr, result[modalMode[i]])
-  //       // }
-  //       // console.log(arr);
-  //       setClosetInfo(result);
-  //     });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }, []);
-
-  // useEf
-  //   axios.post(
-  //     `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/looks/upload`,
-  //     {
-  //       dataType: 'text',
-  //       items: closetClothesId,
-  //       data: {
-  //         img: url,
-  //       },
-  //       success: function () {
-  //         // seq = res['id'];
-  //       },
-  //     },
-
-  //     { headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + window.localStorage.token } },
-  //   );
-  //   console.log(res);
-  //   const seq = res.data.id;
-  //   history.push('/my_page_closet_detail/' + seq);
-  // };
-  // useEffect(() => {
-  // try {
-  // const k = {
-  //   body: {
-  //     bag_id: props.data.bag,
-  //     bottom_id: props.data.bottom,
-  //     hat_id: props.data.hat,
-  //     shoes_id: props.data.shoes,
-  //     top_id: props.data.top,
-  //   },
-  // };
-  // const body = JSON.stringify(k);
-  // const a = props.data.bag
-  // const b = props.data.bag
-  // const c = props.data.bag
-  // const d = props.data.bag
-  // const e = props.data.bag
-  // console.log(props.data.bag);
-
-  // const res = axios
-  //   .post(
-  //     'http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/test',
-  //     // 'http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/my-looks/info',
-  //     {
-  //       bag_id: props.data.bag,
-  //       bottom_id: props.data.bottom,
-  //       hat_id: props.data.hat,
-  //       shoes_id: props.data.shoes,
-  //       top_id: props.data.top,
-  //     },
-  //     { headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + window.localStorage.token } },
-  //   )
-  //   .then((r) => {
-  //     console.log(r);
-  //     setClosetInfo(r.data);
-  //     // } catch (err) {
-  //     //   console.log(err);
-  //     // }
-  //   }, []);
-
-  // useEffect(() => {
-  //   try {
-  //     axios
-  //       .post(
-  //         'http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/my-looks/info',
-  //         {
-  //           bag_id: props.data.bag,
-  //           bottom_id: props.data.bottom,
-  //           hat_id: props.data.hat,
-  //           shoes_id: props.data.shoes,
-  //           top_id: props.data.top,
-  //         },
-  //         { headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + window.localStorage.token } },
-  //       )
-  //       .then((res) => {
-  //         setClosetInfo(res.data);
-  //       });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  //   return closetInfo;
-  // }, []);
-
-  // console.log(closetInfo);
 
   return (
     <div>
-      {/* <Modal
-        className={classes.root}
-        open={openClosetInfoModal}
-        onClose={handleClosetInfoModalClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <Fade in={openClosetInfoModal}>
-          <div className={classes.modal}>
-            <div className={classes.modalTopContents}>
-              <div className={classes.hiddenBtn}>
-                <ModalCloseBtn />
-              </div>
-              <div>
-                <ModalCloseBtn />
-              </div>
-            </div>
-            <div className={classes.clothesBox}>
-              <LuxuryBtn>{'모자 & \n 선글라스'}</LuxuryBtn>
-              <LuxuryBtn>{'상의'}</LuxuryBtn>
-              <LuxuryBtn>{'하의'}</LuxuryBtn>
-              <LuxuryBtn>{'신발'}</LuxuryBtn>
-              <LuxuryBtn>{'가방'}</LuxuryBtn>
-            </div>
-          </div>
-        </Fade>
-      </Modal> */}
       <Dialog className={classes.root} open={openClosetInfoModal} TransitionComponent={Transition} keepMounted onClose={handleClosetInfoModalClose}>
         {/* <DialogTitle id="alert-dialog-slide-title">{"Use Google's location service?"}</DialogTitle> */}
         <DialogContent>
-          {/* <DialogContentText id="alert-dialog-slide-description">
-            Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.
-          </DialogContentText> */}
           <div className={classes.clothesBox}>
             {/* <LuxuryBtn>{'모자 & \n 선글라스'}</LuxuryBtn>
             <LuxuryBtn>{'상의'}</LuxuryBtn>
@@ -256,19 +125,26 @@ export default function MyClosetInfo(props) {
             {closetDetailInfo &&
               closetDetailInfo.map(function (item, i) {
                 return (
-                  <div>
-                    <img src={closetDetailInfo[i]['url']} />;
+                  <div className={classes.infoContainer}>
+                    <img className={classes.infoImg} src={item['url']} alt="infoImg" />
+                    <div className={classes.infoBox}>
+                      <a href={item['musinsa']} style={{ color: '#000' }} target="_blank" rel="noreferrer">
+                        <div> {item['brand']}</div>
+                        <div> {item['name']}</div>
+                        <div> {item['price']}\</div>
+                      </a>
+                    </div>
                   </div>
                 );
               })}
           </div>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClosetInfoModalClose} color="primary">
+          {/* <Button onClick={handleClosetInfoModalClose} color="primary">
             Disagree
-          </Button>
+          </Button> */}
           <Button onClick={handleClosetInfoModalClose} color="primary">
-            Agree
+            Close
           </Button>
         </DialogActions>
       </Dialog>

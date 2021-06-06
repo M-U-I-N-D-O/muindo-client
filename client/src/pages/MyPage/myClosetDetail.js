@@ -107,18 +107,18 @@ const useStyles = makeStyles((theme) => ({
   confirmedStar: {
     zIndex: 100,
     position: 'absolute',
-    width: '75px',
+    width: '60px',
 
     top: '8px',
-    right: '25px',
+    right: '15px',
   },
   confirmedText: {
     zIndex: 100,
     position: 'absolute',
     width: '50px',
-    fontSize: '16px',
-    top: '92px',
-    right: '67px',
+    fontSize: '13px',
+    top: '70px',
+    right: '42px',
     color: 'red',
   },
 }));
@@ -134,24 +134,7 @@ export default function MyPageClosetDetail() {
   const [a, setA] = useState([]);
   const [closetInfo, setClosetInfo] = useState([]);
 
-  const handleOpenClosetModalClick = async (event) => {
-    // setModalMode(event.target.id);
-    // const res = await axios.post(
-    //   `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/looks/upload`,
-    //   {
-    //     dataType: 'text',
-    //     items: closetClothesId,
-    //     data: {
-    //       img: url,
-    //     },
-    //     success: function () {
-    //       // seq = res['id'];
-    //     },
-    //   },
-
-    //   { headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + window.localStorage.token } },
-    // );
-
+  const handleOpenClosetModalClick = (event) => {
     setOpenClosetInfoModal(true);
   };
 

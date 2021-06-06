@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import MotionStack from 'react-motion-stack';
 import 'react-motion-stack/build/motion-stack.css';
-import './index.css';
 import axios from 'axios';
 import url from '../../url';
 
+// import './index.css';
 // const data = Array.from(this.state.ItemList.data, (v, i) => ({
 //   id: i,
 //   element: <img key={v[0]} draggable={false} src={`${v[1]}`} alt="img" />,
@@ -54,6 +54,7 @@ class Confirm extends Component {
           headers: {
             // Overwrite Axios's automatically set Content-Type
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
         })
         .then((res) => {
@@ -101,22 +102,33 @@ class Confirm extends Component {
 
   renderButtons(props) {
     return (
-      <div className="btn-group">
-        <CustomButton id="tinder-btn1" children="❌" onClick={props.reject} />
-        <CustomButton id="tinder-btn2" children="⭕" onClick={props.accept} />
+      <div style={{ display: 'flex', justifyContent: 'center' }} className="btn-group">
+        <CustomButton id="tinder-btn1" children="👎" onClick={props.reject} />
+        <CustomButton id="tinder-btn2" children="👍" onClick={props.accept} />
       </div>
     );
   }
 
   render() {
     return (
-      <div className="demo-wrapper">
+      <div
+        style={{
+          backgroundColor: '#222',
+          height: '100vh',
+          width: '100%',
+          display: 'grid',
+          alignItems: 'center',
+          msTouchAction: 'pan-y',
+          touchAction: 'pan-y',
+        }}
+        className="demo-wrapper"
+      >
         <MotionStack
           data={this.state.ItemList.map((item, index) => {
             // console.log('한 요소 :', item);
             var returnObj = {};
             returnObj['id'] = index;
-            returnObj['element'] = <img key={item.id} src={item.url} alt="img" />;
+            returnObj['element'] = <TinderImg key={item.id} src={item.url} alt="img" />;
             // console.log('하나 만들어진 obj :', returnObj);
             return returnObj;
           })}
@@ -128,7 +140,11 @@ class Confirm extends Component {
           springConfig={{ stiffness: 1600, damping: 80 }}
         />
         <BottomContainer>
-          <BottomText>{this.state.text}</BottomText>
+          {this.state.text === 'Nope' ? (
+            <BottomText style={{ color: 'red' }}>{this.state.text}</BottomText>
+          ) : (
+            <BottomText style={{ color: 'green' }}>{this.state.text}</BottomText>
+          )}
         </BottomContainer>
       </div>
     );
@@ -144,6 +160,7 @@ const BottomContainer = styled.div`
 const CustomButton = styled.button`
   border: none;
   background: transparent;
+  margin: 0 3vh;
   margin-top: 10vh;
   font-size: 3em;
 `;
@@ -154,4 +171,10 @@ const BottomText = styled.h1`
   margin: 0;
   bottom: 35%;
   margin: 0 auto;
+`;
+const TinderImg = styled.img`
+  max-width: 100%;
+  height: auto;
+  user-select: none;
+  padding-top: 60px;
 `;

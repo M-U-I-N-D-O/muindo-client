@@ -5,6 +5,13 @@ export const navbarMode = (number) => {
     number,
   };
 };
+// bottom 네비게이션 버튼 활성화
+export const bottomNavMode = (number) => {
+  return {
+    type: 'BOTTOM_BUTTON_MODE',
+    number,
+  };
+};
 
 // dialog (로그인, 마이페이지)
 export const dialogMode = (mode) => {

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import MotionStack from 'react-motion-stack';
 import 'react-motion-stack/build/motion-stack.css';
-import './index.css';
+
+// import './index.css';
 
 const data = Array.from({ length: 4 }, (_, i) => ({
   id: i,
@@ -12,9 +13,13 @@ const data = Array.from({ length: 4 }, (_, i) => ({
   //     </div>
   //   ),
   element: (
-    <div key={i} style={{ backgroundColor: '#222' }}>
-      <img draggable={false} src={`./images/main/${i + 1}.png`} alt="img" />
-    </div>
+    <img
+      style={{ maxWidth: '100%', height: 'auto', userSelect: 'none', paddingTop: '60px' }}
+      key={i}
+      draggable={false}
+      src={`./images/main/${i + 1}.png`}
+      alt="img"
+    />
   ),
 }));
 
@@ -61,16 +66,27 @@ class Main extends Component {
 
   renderButtons(props) {
     return (
-      <div className="btn-group">
-        <CustomButton id="tinder-btn1" children="❌" onClick={props.reject} />
-        <CustomButton id="tinder-btn2" children="⭕" onClick={props.accept} />
+      <div style={{ display: 'flex', justifyContent: 'center' }} className="btn-group">
+        <CustomButton id="tinder-btn1" children="👎" onClick={props.reject} />
+        <CustomButton id="tinder-btn2" children="👍" onClick={props.accept} />
       </div>
     );
   }
 
   render() {
     return (
-      <div className="demo-wrapper">
+      <div
+        style={{
+          backgroundColor: '#222',
+          height: '100vh',
+          width: '100%',
+          display: 'grid',
+          alignItems: 'center',
+          msTouchAction: 'pan-y',
+          touchAction: 'pan-y',
+        }}
+        className="demo-wrapper"
+      >
         <MotionStack
           data={data}
           onSwipeEnd={this.onSwipeEnd}
@@ -81,7 +97,11 @@ class Main extends Component {
           springConfig={{ stiffness: 1600, damping: 80 }}
         />
         <BottomContainer>
-          <BottomText>{this.state.text}</BottomText>
+          {this.state.text === 'Nope' ? (
+            <BottomText style={{ color: 'red' }}>{this.state.text}</BottomText>
+          ) : (
+            <BottomText style={{ color: 'green' }}>{this.state.text}</BottomText>
+          )}
         </BottomContainer>
       </div>
     );
@@ -94,13 +114,11 @@ const BottomContainer = styled.div`
   height: 60px;
   text-align: center;
 `;
-const TinderImg = styled.img`
-  background-color: white;
-`;
+
 const CustomButton = styled.button`
   border: none;
   background: transparent;
-  /* margin: 0.25em; */
+  margin: 0 5vw;
   margin-top: 10vh;
   font-size: 3em;
 `;

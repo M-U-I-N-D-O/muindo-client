@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { bottomNavMode } from '../../actions';
 import { useHistory } from 'react-router-dom';
 import { dialogMode } from '../../actions';
 
@@ -7,11 +8,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import PermIdentityOutlinedIcon from '@material-ui/icons/PermIdentityOutlined';
-import PermIdentityTwoToneIcon from '@material-ui/icons/PermIdentityTwoTone';
 import AddBoxOutlinedIcon from '@material-ui/icons/AddBoxOutlined';
-import AddBoxTwoToneIcon from '@material-ui/icons/AddBoxTwoTone';
 import CheckCircleOutlineTwoToneIcon from '@material-ui/icons/CheckCircleOutlineTwoTone';
-import CheckCircleTwoToneIcon from '@material-ui/icons/CheckCircleTwoTone';
 
 const useStyles = makeStyles({
   root: {
@@ -20,15 +18,20 @@ const useStyles = makeStyles({
     bottom: 0,
     backgroundColor: 'black',
   },
-  label: {
-    color: 'white',
+
+  actionItemStyles: {
+    color: 'gray',
+    '&$selected': {
+      color: 'red',
+    },
   },
+  selected: {},
 });
 
 function BottomNav() {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const [value, setValue] = useState(-1);
+  const value = useSelector((state) => state.navbar.button);
   const history = useHistory();
 
   return (
@@ -36,15 +39,15 @@ function BottomNav() {
       <BottomNavigation
         value={value}
         onChange={(event, newValue) => {
-          setValue(newValue);
+          dispatch(bottomNavMode(newValue));
         }}
         showLabels
         className={classes.root}
       >
         <BottomNavigationAction
-          className={classes.label}
+          classes={{ root: classes.actionItemStyles, selected: classes.selected }}
           label="컨펌하기"
-          icon={value === 0 ? <CheckCircleTwoToneIcon /> : <CheckCircleOutlineTwoToneIcon />}
+          icon={<CheckCircleOutlineTwoToneIcon />}
           onClick={() => {
             if (localStorage['token']) {
               history.push('/confirm');
@@ -54,9 +57,9 @@ function BottomNav() {
           }}
         />
         <BottomNavigationAction
-          className={classes.label}
+          classes={{ root: classes.actionItemStyles, selected: classes.selected }}
           label="컨펌받기"
-          icon={value === 1 ? <AddBoxTwoToneIcon /> : <AddBoxOutlinedIcon />}
+          icon={<AddBoxOutlinedIcon />}
           onClick={() => {
             if (localStorage['token']) {
               history.push('/closet');
@@ -66,9 +69,9 @@ function BottomNav() {
           }}
         />
         <BottomNavigationAction
-          className={classes.label}
+          classes={{ root: classes.actionItemStyles, selected: classes.selected }}
           label="마이페이지"
-          icon={value === 2 ? <PermIdentityTwoToneIcon /> : <PermIdentityOutlinedIcon />}
+          icon={<PermIdentityOutlinedIcon />}
           onClick={() => dispatch(dialogMode(2))}
         />
       </BottomNavigation>

@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { NavLink as Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { navbarMode } from '../../actions';
+import { navbarMode, bottomNavMode } from '../../actions';
 import styled from 'styled-components';
 import { makeStyles } from '@material-ui/core/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -50,6 +50,7 @@ function TopNav() {
 
   const handleNavbarMode = (mode) => {
     dispatch(navbarMode(mode));
+    dispatch(bottomNavMode(-1));
   };
   return (
     <div className={classes.root}>

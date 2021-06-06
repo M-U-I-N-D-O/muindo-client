@@ -39,9 +39,6 @@ const ModalContext = createContext({});
 function App() {
   const navMode = useSelector((state) => state.navbar.switch);
   const [openClosetModal, setOpenClosetModal] = useState(false);
-  const [openClosetInfoModal, setOpenClosetInfoModal] = useState(false);
-  const [lookBookColorModal, setLookBookColorModal] = useState(false);
-  const [lookBookColorSelect, setLookBookColorSelect] = useState('#fff');
   const [modalMode, setModalMode] = useState('');
   const [closetImg, setClosetImg] = useState({
     hat: '',
@@ -50,7 +47,6 @@ function App() {
     shoes: '',
     bag: '',
   });
-
   const [closetClothesId, setClosetClothesId] = useState({
     hat: '',
     top: '',
@@ -58,11 +54,21 @@ function App() {
     shoes: '',
     bag: '',
   });
+  // const [condition, setCondition] = useState({});
 
-  const [closetDetailInfo, setClosetDetailInfo] = useState([]);
+  const [condition, setCondition] = useState({
+    middleCategory: '',
+    subCategory: '',
+    brand: '',
+  });
 
-  const [condition, setCondition] = useState({});
   const [clothesList, setClothesList] = useState([]);
+
+  const [lookBookColorModal, setLookBookColorModal] = useState(false);
+  const [lookBookColorSelect, setLookBookColorSelect] = useState('#fff');
+
+  const [openClosetInfoModal, setOpenClosetInfoModal] = useState(false);
+  const [closetDetailInfo, setClosetDetailInfo] = useState([]);
 
   return (
     <div>

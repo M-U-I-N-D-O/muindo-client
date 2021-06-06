@@ -189,60 +189,47 @@ export default function ClosetModal() {
   const [filteredClothes, setFilteredClothes] = useState({});
   const [page, setPage] = useState(PAGE_NUMBER);
 
-  // const [condition, setCondition] = useState({
-  //   // category: '캡/야구 모자',
-  //   color: '검정색',
-  //   price: 33000,
-  // });
-
+  //중요한 코드!!!!!!!!
   // useEffect(() => {
   //   try {
-  //     axios.get('http://localhost:3000/data/closet.json').then((res) => {
-  //       let result = res.data.data;
-  //       console.log(modalMode);
-
-  //       // console.log(res.data.data['bag']);
-  //       console.log(res.data.data[modalMode]);
-  //       // console.log(typeof [1, 2, 3]);
-  //       setClothesList(res.data.data[modalMode]);
-  //     });
+  //     axios
+  //       .get(`http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/looks/items?type=${modalMode}`, {
+  //         headers: { Authorization: 'Bearer ' + window.localStorage.token },
+  //       })
+  //       .then((res) => {
+  //         setClothesList(res.data);
+  //       });
   //   } catch (err) {
   //     console.log(err);
   //   }
-  //   return clothesList;
-  // }, [modalMode, page]);
+  //   // return clothesList;
+  // }, [modalMode]);
+  // console.log(clothesList);
+  // console.log(modalMode);
 
-  //중요한 코드!!!!!!!!
-  console.log(clothesList);
   useEffect(() => {
     try {
       axios
-        .get(`http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/looks/items?type=${modalMode}`, {
-          headers: { Authorization: 'Bearer ' + window.localStorage.token },
-        })
+        .get(
+          // `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/looks/items?middlecategory=${encodeURI(
+          //   encodeURIComponent(condition.middleCategory),
+          // )}&subcategory=${encodeURI(encodeURIComponent(condition.subCategory))}&brand=${encodeURI(
+          //   encodeURIComponent(condition.brand),
+          // )}&type=${modalMode}&itemid=`,
+          `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/looks/items?middlecategory=${condition.middleCategory}&subcategory=${condition.subCategory}&brand=${condition.brand}&type=${modalMode}`,
+
+          {
+            headers: { Authorization: 'Bearer ' + window.localStorage.token },
+          },
+        )
         .then((res) => {
-          // axios.get(`http://elice-kdt-ai-track-vm-ai-12.koreacentral.cloudapp.azure.com:5000/looks/items?type=hat`).then((res) => {
-          // let result = res.data.data;
-          // console.log(modalMode);
-          // console.log(res.data);
-          // if (clothesList.length === 0) {
-          //   setClothesList(res.data);
-          // } else {
-          //   setClothesList([...clothesList, ...res.data]);
-          // }
-
-          // console.log(res.data.data['bag']);
-          // console.log(res.data.data[modalMode]);
-          // console.log(typeof [1, 2, 3]);
-
-          // setClothesList([...clothesList, ...res.data]);
           setClothesList(res.data);
         });
     } catch (err) {
       console.log(err);
     }
     // return clothesList;
-  }, [modalMode]);
+  }, [modalMode, condition]);
   console.log(clothesList);
   console.log(modalMode);
 
@@ -261,17 +248,15 @@ export default function ClosetModal() {
   };
 
   const handleClose = () => {
-    // setClothesList(() => {
-    //   var newArr = []
-    //   return
-    // });
-    // setClothesList(() => {
-    //   const a = [];
-    //   return a;
-    // });
     setClothesList([]);
     console.log(clothesList);
     setOpenClosetModal(false);
+    var newCondition = { ...condition };
+    newCondition['middleCategory'] = '';
+    newCondition['subCategory'] = '';
+    newCondition['brand'] = '';
+    // setConditionNum(10000);
+    setCondition(newCondition);
   };
 
   const handleImageSelect = (event) => {
@@ -418,7 +403,7 @@ export default function ClosetModal() {
                     loader={<h1 style={{ textAlign: 'center' }}>Loading...</h1>}
                     scrollableTarget="scrollableDiv"
                   >
-                    {Object.keys(condition).length !== 0
+                    {/* {Object.keys(condition).length !== 0
                       ? Array.isArray(filteredClothes) &&
                         filteredClothes.map(function (image, i) {
                           return (
@@ -436,8 +421,8 @@ export default function ClosetModal() {
                               </a>
                             </div>
                           );
-                        })
-                      : Array.isArray(clothesList) &&
+                        }) */}
+                    {/* : Array.isArray(clothesList) &&
                         clothesList.map(function (image, i) {
                           return (
                             <div className={classes.individualClothesContainer}>
@@ -464,7 +449,32 @@ export default function ClosetModal() {
                               </div>
                             </div>
                           );
-                        })}
+                        })} */}
+
+                    {Array.isArray(clothesList) &&
+                      clothesList.map(function (image, i) {
+                        return (
+                          <div className={classes.individualClothesContainer}>
+                            <div className={classes.clothesThumbnailBox}>
+                              <img className={classes.modalImg} alt={clothesList[i]['id']} src={clothesList[i]['url']} onClick={handleImageSelect} />
+                            </div>
+                            <div className={classes.clothesInfoBox}>
+                              <a
+                                href={clothesList[i]['musinsa']}
+                                target="_blank"
+                                style={{ color: '#000' }}
+                                title="무신사에서 상품 보기"
+                                rel="noreferrer"
+                              >
+                                <div>{clothesList[i]['brand']}</div>
+                                <div>{clothesList[i]['name']}</div>
+                                <div>{clothesList[i]['price']}</div>
+                              </a>
+                            </div>
+                          </div>
+                        );
+                      })}
+
                     {filteredClothes.length === 0 ? <div>결과가 없습니다</div> : <></>}
                   </InfiniteScroll>
                 </div>

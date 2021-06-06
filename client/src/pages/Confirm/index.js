@@ -2,53 +2,85 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import MotionStack from 'react-motion-stack';
 import 'react-motion-stack/build/motion-stack.css';
+import axios from 'axios';
+import url from '../../url';
 
 // import './index.css';
+// const data = Array.from(this.state.ItemList.data, (v, i) => ({
+//   id: i,
+//   element: <img key={v[0]} draggable={false} src={`${v[1]}`} alt="img" />,
+// }));
+// const data = Array.from({ length: 4 }, (_, i) => ({
+//   id: i,
+//   element: <img key={i} draggable={false} src={`https://source.unsplash.com/random/${i + 1}`} alt="img" />,
+//   //   element: (
+//   //     <div style={{ backgroundColor: '#222' }}>
+//   //       <img key={i} draggable={false} src={`./images/main/${i + 1}.png`} alt="img" />
+//   //     </div>
+//   //   ),
+// }));
 
-const data = Array.from({ length: 4 }, (_, i) => ({
-  id: i,
-  //   element: (
-  //     <div style={{ margin: 'auto 0', backgroundColor: '#222' }}>
-  //       <img draggable={false} src={`https://source.unsplash.com/random/${i + 1}`} alt="img" />
-  //     </div>
-  //   ),
-  element: (
-    <img
-      style={{ maxWidth: '100%', height: 'auto', userSelect: 'none', paddingTop: '60px' }}
-      key={i}
-      draggable={false}
-      src={`./images/main/${i + 1}.png`}
-      alt="img"
-    />
-  ),
-}));
-
-class Main extends Component {
+class Confirm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       text: '',
+      ItemList: [],
     };
   }
 
+  fetchData = async () => {
+    axios
+      .get(url + 'tinder/test')
+      .then((res) => {
+        console.log(res.data);
+        this.setState({ ItemList: res.data });
+        // console.log('ItemList :', this.state.ItemList);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  componentDidMount() {
+    this.fetchData();
+  }
+
+  postData = (opinion, id, token) => {
+    const json = JSON.stringify({ id: id, opinion: opinion, token: token });
+    try {
+      axios
+        .post('주소', json, {
+          headers: {
+            // Overwrite Axios's automatically set Content-Type
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        })
+        .then((res) => {
+          console.log(res);
+        });
+    } catch (err) {
+      console.log(err);
+    }
+  };
   onBeforeSwipe = (swipe, direction, state) => {
     document.getElementById('tinder-btn1').disabled = true;
     document.getElementById('tinder-btn2').disabled = true;
+
     if (direction === 'right') {
       this.setState({ text: 'Like' });
       console.log('방금 선택 : 따봉 하나 추가요~');
+      //   this.postData('like', state.data[0].element.key, localStorage.getItem('token'));
     } else {
       this.setState({ text: 'Nope' });
       console.log('방금 선택 : 놉 하나 추가요~');
+      //   this.postData('nope', state.data[0].element.key, localStorage.getItem('token'));
     }
     console.log('현재 data key', state.data[0].element.key);
     console.log('유저 token : ', localStorage.getItem('token'));
-    console.log('데이터 : ', state.data);
-    console.log(state.data.length);
-
-    if (state.data.length !== 1) {
-      swipe();
-    }
+    console.log('데이터 :', state.data);
+    swipe();
   };
 
   onSwipeEnd = ({ data }) => {
@@ -61,6 +93,7 @@ class Main extends Component {
     // console.log('선택 :', this.state);
     // console.log('유저 token :', localStorage.getItem('token'));
     // console.log('data', data);
+
     this.setState({ text: '' });
     console.log('마침 :', this.state);
     document.getElementById('tinder-btn1').disabled = false;
@@ -91,30 +124,19 @@ class Main extends Component {
         className="demo-wrapper"
       >
         <MotionStack
-          // data={data}
-          data={[
-            { id: 0, element: <TinderImg src="./images/main/1.png" alt="img" /> },
-            { id: 1, element: <TinderImg src="./images/main/2.png" alt="img" /> },
-            { id: 2, element: <TinderImg src="./images/main/3.png" alt="img" /> },
-            { id: 3, element: <TinderImg src="./images/main/4.png" alt="img" /> },
-            {
-              id: 4,
-              element: (
-                <TinderBox>
-                  <TinderText>
-                    본 서비스를 위해
-                    <br />
-                    로그인을 해주세요 :)
-                  </TinderText>
-                </TinderBox>
-              ),
-            },
-          ]}
+          data={this.state.ItemList.map((item, index) => {
+            // console.log('한 요소 :', item);
+            var returnObj = {};
+            returnObj['id'] = index;
+            returnObj['element'] = <TinderImg key={item.id} src={item.url} alt="img" />;
+            // console.log('하나 만들어진 obj :', returnObj);
+            return returnObj;
+          })}
           onSwipeEnd={this.onSwipeEnd}
           onBeforeSwipe={this.onBeforeSwipe}
           render={(props) => props.element}
           renderButtons={this.renderButtons}
-          infinite={false}
+          infinite={true}
           springConfig={{ stiffness: 1600, damping: 80 }}
         />
         <BottomContainer>
@@ -129,17 +151,16 @@ class Main extends Component {
   }
 }
 
-export default Main;
+export default Confirm;
 
 const BottomContainer = styled.div`
   height: 60px;
   text-align: center;
 `;
-
 const CustomButton = styled.button`
   border: none;
   background: transparent;
-  margin: 0 5vw;
+  margin: 0 3vh;
   margin-top: 10vh;
   font-size: 3em;
 `;
@@ -156,15 +177,4 @@ const TinderImg = styled.img`
   height: auto;
   user-select: none;
   padding-top: 60px;
-`;
-const TinderBox = styled.div`
-  display: flex;
-  border: 2px solid white;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-`;
-const TinderText = styled.h1`
-  color: white;
-  font-size: 18px;
 `;

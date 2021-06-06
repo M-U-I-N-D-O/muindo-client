@@ -72,7 +72,7 @@ function MyPage() {
             </IconButton>
           </Toolbar>
         </AppBar>
-        {name ? (
+        {localStorage.getItem('token') ? (
           <Container>
             <MainText>{name}님</MainText>
             <SubText>{email}</SubText>
@@ -114,7 +114,7 @@ function MyPage() {
           </ListItem>
         </List>
 
-        {name && (
+        {localStorage.getItem('token') && (
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <LogoutButton onClick={signOut}>
               <LogoutButtonText>로그아웃</LogoutButtonText>

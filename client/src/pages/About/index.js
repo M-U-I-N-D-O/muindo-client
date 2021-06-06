@@ -50,7 +50,7 @@ function About() {
         <ImgBoxItem>
           <img src="/images/about/3.png" alt="minoj" width="120px" height="120px" />
           <ImgNameText>민유지</ImgNameText>
-          <ImgRoleText>FE / PM</ImgRoleText>
+          <ImgRoleText>FE</ImgRoleText>
           <ImgLink href="https://github.com/nvrtmd" target="_blank">
             <IconButton>
               <GitHubIcon />

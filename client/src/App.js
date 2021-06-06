@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { createContext, useState } from 'react';
-import { CookiesProvider, withCookies } from 'react-cookie';
+import { CookiesProvider, withCookies, useCookies } from 'react-cookie';
 
 import Intro from './pages/Intro';
 import Main from './pages/Main';

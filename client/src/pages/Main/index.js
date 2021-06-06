@@ -44,8 +44,11 @@ class Main extends Component {
     console.log('현재 data key', state.data[0].element.key);
     console.log('유저 token : ', localStorage.getItem('token'));
     console.log('데이터 : ', state.data);
+    console.log(state.data.length);
 
-    swipe();
+    if (state.data.length !== 1) {
+      swipe();
+    }
   };
 
   onSwipeEnd = ({ data }) => {
@@ -88,7 +91,25 @@ class Main extends Component {
         className="demo-wrapper"
       >
         <MotionStack
-          data={data}
+          // data={data}
+          data={[
+            { id: 0, element: <TinderImg src="./images/main/1.png" alt="img" /> },
+            { id: 1, element: <TinderImg src="./images/main/2.png" alt="img" /> },
+            { id: 2, element: <TinderImg src="./images/main/3.png" alt="img" /> },
+            { id: 3, element: <TinderImg src="./images/main/4.png" alt="img" /> },
+            {
+              id: 4,
+              element: (
+                <TinderBox>
+                  <TinderText>
+                    본 서비스를 위해
+                    <br />
+                    로그인을 해주세요 :)
+                  </TinderText>
+                </TinderBox>
+              ),
+            },
+          ]}
           onSwipeEnd={this.onSwipeEnd}
           onBeforeSwipe={this.onBeforeSwipe}
           render={(props) => props.element}
@@ -130,15 +151,20 @@ const BottomText = styled.h1`
   bottom: 35%;
   margin: 0 auto;
 `;
-
-// import React from 'react';
-
-// function Main() {
-//   return (
-//     <div>
-//       <h1>메인페이지</h1>
-//     </div>
-//   );
-// }
-
-// export default Main;
+const TinderImg = styled.img`
+  max-width: 100%;
+  height: auto;
+  user-select: none;
+  padding-top: 60px;
+`;
+const TinderBox = styled.div`
+  display: flex;
+  border: 2px solid white;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+`;
+const TinderText = styled.h1`
+  color: white;
+  font-size: 18px;
+`;

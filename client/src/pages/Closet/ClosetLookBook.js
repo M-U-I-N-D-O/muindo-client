@@ -270,7 +270,13 @@ export default function ClosetLookBook() {
         },
       },
 
-      { headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + window.localStorage.token } },
+      {
+        headers: {
+          Authorization:
+            'Bearer ' +
+            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNjIzMDgxNjI5LCJqdGkiOiIxMjE5NTU1ZC0xYThiLTQ0OGMtOGRlMy0xNDVmMTU5MjdmZmUiLCJ0eXBlIjoiYWNjZXNzIiwic3ViIjoxNywibmJmIjoxNjIzMDgxNjI5LCJjc3JmIjoiMzkwZTQ5ZWMtZTRiYS00NzU0LWJkODctN2U5OGVhODM2NGMwIiwiZXhwIjoxNjIzMDg1MjI5fQ._Q2gBbUmL9TpisIdjku6xhQG_fYwSqfvVbZJTAtYWcQ',
+        },
+      },
     );
     console.log(res);
     const seq = res.data.id;

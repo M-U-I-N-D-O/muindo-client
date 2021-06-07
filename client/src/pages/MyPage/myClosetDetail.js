@@ -137,12 +137,31 @@ export default function MyPageClosetDetail() {
     console.log(closetClothesId);
 
     try {
-      axios.get(`http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/my-looks/${seq}`).then((res) => {
-        const arr = [];
-        arr.push(res.data.hat, res.data.top, res.data.bottom, res.data.shoes, res.data.bag);
-        setClosetDetailInfo(arr);
-        setMyLookBookInfo(res.data.my_look);
-      });
+      axios
+        .get(`http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/my-looks/${seq}`, {
+          headers: {
+            Authorization:
+              'Bearer ' +
+              'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNjIzMDgxNjI5LCJqdGkiOiIxMjE5NTU1ZC0xYThiLTQ0OGMtOGRlMy0xNDVmMTU5MjdmZmUiLCJ0eXBlIjoiYWNjZXNzIiwic3ViIjoxNywibmJmIjoxNjIzMDgxNjI5LCJjc3JmIjoiMzkwZTQ5ZWMtZTRiYS00NzU0LWJkODctN2U5OGVhODM2NGMwIiwiZXhwIjoxNjIzMDg1MjI5fQ._Q2gBbUmL9TpisIdjku6xhQG_fYwSqfvVbZJTAtYWcQ',
+          },
+        })
+        .then((res) => {
+          const arr1 = [];
+          arr1.push(res.data.hat, res.data.top, res.data.bottom, res.data.shoes, res.data.bag);
+          console.log(arr1);
+
+          const arr2 = [];
+          for (var i = 0; i < arr1.length; i++) {
+            if (arr1[i] !== null) {
+              // console.log(arr1[i]);
+              arr2.push(arr1[i]);
+            }
+          }
+          console.log(arr2);
+
+          setClosetDetailInfo(arr2);
+          setMyLookBookInfo(res.data.my_look);
+        });
     } catch (err) {
       console.log(err);
     }

@@ -95,7 +95,7 @@ export default function MyPageClosetList() {
   const history = useHistory();
   const PAGE_NUMBER = 1;
   const [page, setPage] = useState(PAGE_NUMBER);
-  const { seq } = useParams();
+  // const { seq } = useParams();
 
   const [a, setA] = useState([]);
   const [lookBookId, setLookBookId] = useState('');

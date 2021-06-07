@@ -188,8 +188,8 @@ function Closet() {
             {closetImg['hat'] ? (
               <img style={{ width: '100%', height: '100%' }} alt="" src={closetImg['hat']} id="hat" />
             ) : (
-              <div className={classes.clothesText} id="hat">
-                모자
+              <div style={{ fontSize: '18.5px', whiteSpace: 'pre-wrap' }} id="hat">
+                {'모자 / \n안경'}
               </div>
             )}
           </div>

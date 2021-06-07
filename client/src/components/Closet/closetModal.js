@@ -216,19 +216,14 @@ export default function ClosetModal() {
     try {
       axios
         .get(
-          `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/looks/items?middlecategory=${condition.middleCategory}&subcategory=${condition.subCategory}&brand=${condition.brand}&type=${modalMode}&itemid=11000`,
-          // {
-          //   headers: { Authorization: 'Bearer ' + window.localStorage.token },
-          // },
-          // {
-          //   headers: { withCredentials: true },
-          // },
-
-          // {
-          //   headers: {
-          //     'X-CSRF-TOKEN': getCookie('csrf_access_token'),
-          //   },
-          // },
+          `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/looks/items?middlecategory=${condition.middleCategory}&subcategory=${condition.subCategory}&brand=${condition.brand}&type=${modalMode}&itemid=`,
+          {
+            headers: {
+              Authorization:
+                'Bearer ' +
+                'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNjIzMDgxNjI5LCJqdGkiOiIxMjE5NTU1ZC0xYThiLTQ0OGMtOGRlMy0xNDVmMTU5MjdmZmUiLCJ0eXBlIjoiYWNjZXNzIiwic3ViIjoxNywibmJmIjoxNjIzMDgxNjI5LCJjc3JmIjoiMzkwZTQ5ZWMtZTRiYS00NzU0LWJkODctN2U5OGVhODM2NGMwIiwiZXhwIjoxNjIzMDg1MjI5fQ._Q2gBbUmL9TpisIdjku6xhQG_fYwSqfvVbZJTAtYWcQ',
+            },
+          },
         )
         .then((res) => {
           setClothesList(res.data);
@@ -245,16 +240,32 @@ export default function ClosetModal() {
 
   // console.log(lastClothesId);
 
+  const setLastId = () => {
+    if (clothesList.length !== 0) {
+      setLastClothesId(clothesList[clothesList.length - 1]['id']);
+    }
+    console.log(lastClothesId);
+  };
+  useEffect(() => {
+    setLastId();
+  }, [clothesList, condition]);
+
   const scrollToEnd = () => {
     console.log('마지막');
+    // setLastClothesId(clothesList[clothesList.length - 1]['id']);
+
     setTimeout(() => {
       setPage(page + 1);
       axios
         .get(
-          `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/looks/items?middlecategory=${condition.middleCategory}&subcategory=${condition.subCategory}&brand=${condition.brand}&type=${modalMode}&itemid=1`,
-          // {
-          //   headers: { Authorization: 'Bearer ' + window.localStorage.token },
-          // }
+          `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/looks/items?middlecategory=${condition.middleCategory}&subcategory=${condition.subCategory}&brand=${condition.brand}&type=${modalMode}&itemid=${lastClothesId}`,
+          {
+            headers: {
+              Authorization:
+                'Bearer ' +
+                'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNjIzMDgxNjI5LCJqdGkiOiIxMjE5NTU1ZC0xYThiLTQ0OGMtOGRlMy0xNDVmMTU5MjdmZmUiLCJ0eXBlIjoiYWNjZXNzIiwic3ViIjoxNywibmJmIjoxNjIzMDgxNjI5LCJjc3JmIjoiMzkwZTQ5ZWMtZTRiYS00NzU0LWJkODctN2U5OGVhODM2NGMwIiwiZXhwIjoxNjIzMDg1MjI5fQ._Q2gBbUmL9TpisIdjku6xhQG_fYwSqfvVbZJTAtYWcQ',
+            },
+          },
         )
         .then((res) => {
           setClothesList([...clothesList, ...res.data]);

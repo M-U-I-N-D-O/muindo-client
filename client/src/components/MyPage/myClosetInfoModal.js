@@ -113,27 +113,27 @@ export default function MyClosetInfo(props) {
       <Dialog className={classes.root} open={openClosetInfoModal} TransitionComponent={Transition} keepMounted onClose={handleClosetInfoModalClose}>
         <DialogContent>
           <div className={classes.clothesBox}>
-            <div>{closetDetailInfo.hat}</div>
-            {closetDetailInfo.map(function (item, i) {
-              return (
-                <div className={classes.infoContainer}>
-                  <img className={classes.infoImg} src={item['url']} alt="infoImg" />
-                  <div className={classes.infoBox}>
-                    <a
-                      href={item['musinsa']}
-                      style={{ color: '#6C49B8', textDecoration: 'none' }}
-                      target="_blank"
-                      rel="noreferrer"
-                      title="무신사에서 상품 보기"
-                    >
-                      <div> {item['brand']}</div>
-                      <div> {item['name']}</div>
-                      <div> {item['price']}\</div>
-                    </a>
+            {closetDetailInfo &&
+              closetDetailInfo.map(function (item, i) {
+                return (
+                  <div className={classes.infoContainer}>
+                    <img className={classes.infoImg} src={item['url']} alt="infoImg" />
+                    <div className={classes.infoBox}>
+                      <a
+                        href={item['musinsa']}
+                        style={{ color: '#6C49B8', textDecoration: 'none' }}
+                        target="_blank"
+                        rel="noreferrer"
+                        title="무신사에서 상품 보기"
+                      >
+                        <div> {item['brand']}</div>
+                        <div> {item['name']}</div>
+                        <div> {item['price']}\</div>
+                      </a>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
           </div>
         </DialogContent>
         <DialogActions>

@@ -133,6 +133,7 @@ export default function MyPageClosetDetail() {
   const [myClosetLookBookImg, setMyClosetLookBookImg] = useState([]);
   const [a, setA] = useState([]);
   const [closetInfo, setClosetInfo] = useState([]);
+  const { closetClothesId, setClosetClothesId } = useContext(ModalContext);
 
   const handleOpenClosetModalClick = (event) => {
     setOpenClosetInfoModal(true);
@@ -152,11 +153,16 @@ export default function MyPageClosetDetail() {
               'http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/my-looks/info',
               // 'http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/my-looks/info',
               {
-                bag_id: res.data.bag,
-                bottom_id: res.data.bottom,
-                hat_id: res.data.hat,
-                shoes_id: res.data.shoes,
-                top_id: res.data.top,
+                // bag_id: res.data.bag,
+                // bottom_id: res.data.bottom,
+                // hat_id: res.data.hat,
+                // shoes_id: res.data.shoes,
+                // top_id: res.data.top,
+                bag_id: closetClothesId.bag,
+                bottom_id: closetClothesId.bottom,
+                hat_id: closetClothesId.hat,
+                shoes_id: closetClothesId.shoes,
+                top_id: closetClothesId.top,
               },
               { headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + window.localStorage.token } },
             )

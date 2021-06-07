@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     // marginTop: '50px',
     border: 'solid 3px',
-    borderRadius: '25px',
+    borderRadius: '15px',
     // overflow: 'auto',
   },
   modalCloseBtn: {
@@ -206,20 +206,28 @@ export default function ClosetModal() {
   // }, [modalMode]);
   // console.log(clothesList);
   // console.log(modalMode);
+  function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+  }
 
   useEffect(() => {
     try {
       axios
         .get(
-          // `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/looks/items?middlecategory=${encodeURI(
-          //   encodeURIComponent(condition.middleCategory),
-          // )}&subcategory=${encodeURI(encodeURIComponent(condition.subCategory))}&brand=${encodeURI(
-          //   encodeURIComponent(condition.brand),
-          // )}&type=${modalMode}&itemid=`,
-          `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/looks/items?middlecategory=${condition.middleCategory}&subcategory=${condition.subCategory}&brand=${condition.brand}&type=${modalMode}&itemid=`,
-
+          `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/looks/items?middlecategory=${condition.middleCategory}&subcategory=${condition.subCategory}&brand=${condition.brand}&type=${modalMode}&itemid=11000`,
           // {
           //   headers: { Authorization: 'Bearer ' + window.localStorage.token },
+          // },
+          // {
+          //   headers: { withCredentials: true },
+          // },
+
+          // {
+          //   headers: {
+          //     'X-CSRF-TOKEN': getCookie('csrf_access_token'),
+          //   },
           // },
         )
         .then((res) => {
@@ -239,7 +247,7 @@ export default function ClosetModal() {
       setPage(page + 1);
       axios
         .get(
-          `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/looks/items?type=${modalMode}`,
+          `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/looks/items?middlecategory=${condition.middleCategory}&subcategory=${condition.subCategory}&brand=${condition.brand}&type=${modalMode}&itemid=1`,
           // {
           //   headers: { Authorization: 'Bearer ' + window.localStorage.token },
           // }
@@ -269,6 +277,8 @@ export default function ClosetModal() {
     });
     setClosetClothesId({ ...closetClothesId, [modalMode]: event.target.alt });
     console.log(event.target);
+    console.log(closetClothesId);
+
     setClothesList([]);
     setOpenClosetModal(false);
     setModalMode('');

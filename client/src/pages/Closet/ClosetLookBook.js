@@ -7,6 +7,7 @@ import ClosetModal from '../../components/Closet/closetModal';
 import ColorChangeModal from '../../components/Closet/lookBookColorModal';
 import axios from 'axios';
 import { useHistory } from 'react-router';
+import { Helmet } from 'react-helmet';
 
 import { ModalContext } from '../../App';
 // import { ModalContext } from '../../';
@@ -273,6 +274,39 @@ export default function ClosetLookBook() {
   };
   // console.log(lookBookId);
   console.log(seq);
+  const shareByKakao = () => {
+    if (window.Kakao) {
+      const kakao = window.Kakao;
+      if (!kakao.isInitialized()) {
+        kakao.init(process.env.REACT_APP_KAKAO_KEY);
+        console.log(window.Kakao.isInitialized());
+      }
+      kakao.Link.sendDefault({
+        objectType: 'feed',
+        content: {
+          title: 'MUINDO에서 만든 룩북이 도착했어요!',
+          description: '무지하게 패션 인싸 되고 싶은 사람들\n도와주는 곳, MUINDO',
+          // imageUrl: 'https://ifh.cc/g/pXhGOy.jpg',
+          // imageUrl: 'https://ifh.cc/g/GKUPxC.png',
+          imageUrl: 'https://ifh.cc/g/6R44lA.png',
+          link: {
+            mobileWebUrl: 'http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com',
+            webUrl: 'http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com',
+          },
+        },
+
+        buttons: [
+          {
+            title: '나도 룩북 만들기',
+            link: {
+              mobileWebUrl: 'http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com',
+              webUrl: 'http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com',
+            },
+          },
+        ],
+      });
+    }
+  };
 
   return (
     <div className={classes.root}>
@@ -358,7 +392,11 @@ export default function ClosetLookBook() {
           onClose={handleShareClose}
         >
           <MenuItem onClick={handleImageDownloadClick}>이미지 다운로드 </MenuItem>
-          <MenuItem onClick={handleShareClose}>카카오톡 공유하기</MenuItem>
+          <Helmet>
+            <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+          </Helmet>
+
+          <MenuItem onClick={shareByKakao}>카카오톡 공유하기</MenuItem>
         </Menu>
 
         {/* <LuxuryBtn onClick={handleColorChangeClick}>{'배경 색상 \n 변경하기'}</LuxuryBtn>

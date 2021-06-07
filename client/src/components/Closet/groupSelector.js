@@ -80,7 +80,7 @@ export default function GroupSelector() {
       }
       let brandEngArr = [];
       for (var o = 0; o < result.length; o++) {
-        brandEngArr.push(result[o]['brand']);
+        brandEngArr.push(result[o]['brand_eng']);
       }
 
       // let categoryNumArr = [];
@@ -167,7 +167,7 @@ export default function GroupSelector() {
           <Select value="brand" onChange={handleChangeBrand}>
             {conditionNum !== 10000 ? (
               brandList[conditionNum].map(function (selector, i) {
-                return <MenuItem value={brandEngList[conditionNum[i]]}>{selector}</MenuItem>;
+                return <MenuItem value={brandEngList[conditionNum][i]}>{selector}</MenuItem>;
               })
             ) : (
               <MenuItem>중분류를 선택하세요</MenuItem>

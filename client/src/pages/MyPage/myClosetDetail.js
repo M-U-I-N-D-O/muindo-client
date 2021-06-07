@@ -131,18 +131,15 @@ export default function MyPageClosetDetail() {
   const { closetDetailInfo, setClosetDetailInfo } = useContext(ModalContext);
 
   const [myLookBookInfo, setMyLookBookInfo] = useState([]);
-  const { closetClothesId, setClosetClothesId } = useContext(ModalContext);
 
   useEffect(() => {
-    console.log(closetClothesId);
-
     try {
       axios
         .get(`http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/my-looks/${seq}`, {
           headers: {
             Authorization:
               'Bearer ' +
-              'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNjIzMDgxNjI5LCJqdGkiOiIxMjE5NTU1ZC0xYThiLTQ0OGMtOGRlMy0xNDVmMTU5MjdmZmUiLCJ0eXBlIjoiYWNjZXNzIiwic3ViIjoxNywibmJmIjoxNjIzMDgxNjI5LCJjc3JmIjoiMzkwZTQ5ZWMtZTRiYS00NzU0LWJkODctN2U5OGVhODM2NGMwIiwiZXhwIjoxNjIzMDg1MjI5fQ._Q2gBbUmL9TpisIdjku6xhQG_fYwSqfvVbZJTAtYWcQ',
+              'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNjIyODMyODkxLCJqdGkiOiI5ODQ3YmIyOC1kNTg3LTQ1ZmEtOTE1Yi1iMjIwNTI1OTFiNzAiLCJ0eXBlIjoiYWNjZXNzIiwic3ViIjoxMCwibmJmIjoxNjIyODMyODkxLCJleHAiOjE2MjU0MjQ4OTF9.yp8IslBjQNWukhJ6FzJ4q0H31rWzSqg2XMwAJ95038k',
           },
         })
         .then((res) => {

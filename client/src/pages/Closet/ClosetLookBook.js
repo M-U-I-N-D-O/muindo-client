@@ -274,7 +274,7 @@ export default function ClosetLookBook() {
         headers: {
           Authorization:
             'Bearer ' +
-            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNjIzMDgxNjI5LCJqdGkiOiIxMjE5NTU1ZC0xYThiLTQ0OGMtOGRlMy0xNDVmMTU5MjdmZmUiLCJ0eXBlIjoiYWNjZXNzIiwic3ViIjoxNywibmJmIjoxNjIzMDgxNjI5LCJjc3JmIjoiMzkwZTQ5ZWMtZTRiYS00NzU0LWJkODctN2U5OGVhODM2NGMwIiwiZXhwIjoxNjIzMDg1MjI5fQ._Q2gBbUmL9TpisIdjku6xhQG_fYwSqfvVbZJTAtYWcQ',
+            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNjIyODMyODkxLCJqdGkiOiI5ODQ3YmIyOC1kNTg3LTQ1ZmEtOTE1Yi1iMjIwNTI1OTFiNzAiLCJ0eXBlIjoiYWNjZXNzIiwic3ViIjoxMCwibmJmIjoxNjIyODMyODkxLCJleHAiOjE2MjU0MjQ4OTF9.yp8IslBjQNWukhJ6FzJ4q0H31rWzSqg2XMwAJ95038k',
         },
       },
     );

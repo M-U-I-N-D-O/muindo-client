@@ -83,11 +83,6 @@ export default function GroupSelector() {
         brandEngArr.push(result[o]['brand_eng']);
       }
 
-      // let categoryNumArr = [];
-      // for (var m = 0; m < result.length; m++) {
-      //   categoryNumArr.push(result[m]['category_num']);
-      // }
-
       setCategoryList(categoryArr);
       setCategoryNumList(categoryNumArr);
       setSubCategoryList(subCategoryArr);
@@ -152,7 +147,7 @@ export default function GroupSelector() {
         </FormControl>
         <FormControl className={classes.selector}>
           <InputLabel>소분류</InputLabel>
-          <Select value="sub_category" onChange={handleChangeSubCategory}>
+          <Select value="sub-category" onChange={handleChangeSubCategory}>
             {conditionNum !== 10000 ? (
               subCategoryList[conditionNum].map(function (selector, i) {
                 return <MenuItem value={subCategoryNumList[conditionNum][i]}>{selector}</MenuItem>;

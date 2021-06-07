@@ -145,28 +145,8 @@ function Closet() {
   const classes = useStyles();
 
   const { openClosetModal, setOpenClosetModal } = useContext(ModalContext);
-  const { openImgDownloadModal, setOpenImgDownloadModal } = useContext(ModalContext);
   const { modalMode, setModalMode } = useContext(ModalContext);
   const { closetImg, setClosetImg } = useContext(ModalContext);
-  const captureRef = useRef();
-  const [shareImg, setShareImg] = useState('');
-  const { clothesList, setClothesList } = useContext(ModalContext);
-
-  // const fetch = useEffect(() => {
-  //   try {
-  //     axios.get('http://localhost:3000/data/closet.json').then((res) => {
-  //       let result = res.data.data;
-  //       console.log(result);
-  //       setClothesList(result);
-  //     });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }, []);
-  // const handleOpen = () => {
-  //   setOpenModal(true);
-  // };
-
   useEffect(() => {
     setClosetImg({
       hat: '',
@@ -261,7 +241,7 @@ function Closet() {
             history.push('/loading');
             setTimeout(function () {
               history.push('/closet/look_book');
-            }, 2000);
+            }, 0);
           }}
           disabled={!(closetImg['hat'] || closetImg['top'] || closetImg['bottom'] || closetImg['shoes'] || closetImg['bag'])}
         >

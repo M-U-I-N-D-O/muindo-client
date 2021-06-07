@@ -120,13 +120,13 @@ const useStyles = makeStyles((theme) => ({
   },
   individualClothesContainer: {
     display: 'flex',
-    alignItems: 'center',
+    // alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
     border: 'solid 2px',
-    fontSize: '11px',
+    fontSize: '18px',
     width: '160px',
-    height: '210px',
+    height: '300px',
     margin: '5px',
   },
   modalImg: {
@@ -140,10 +140,12 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
 
     width: '160px',
-    height: '140px',
+    height: '160px',
     marginBottom: '5px',
   },
   clothesInfoBox: {
+    flexWrap: 'wrap',
+    marginLeft: '3px',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -189,6 +191,7 @@ export default function ClosetModal() {
   const [filteredClothes, setFilteredClothes] = useState({});
   const [page, setPage] = useState(PAGE_NUMBER);
 
+  const [lastClothesId, setLastClothesId] = useState('1');
   //중요한 코드!!!!!!!!
   // useEffect(() => {
   //   try {
@@ -206,13 +209,10 @@ export default function ClosetModal() {
   // }, [modalMode]);
   // console.log(clothesList);
   // console.log(modalMode);
-  function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
-  }
 
   useEffect(() => {
+    console.log(closetClothesId);
+
     try {
       axios
         .get(
@@ -232,14 +232,18 @@ export default function ClosetModal() {
         )
         .then((res) => {
           setClothesList(res.data);
+          // setLastClothesId(res.data[res.data.length - 1]['id']);
         });
     } catch (err) {
       console.log(err);
     }
+    // setLastClothesId(clothesList[clothesList.length - 1]['id']);
+
     // return clothesList;
   }, [modalMode, condition]);
   console.log(clothesList);
-  console.log(modalMode);
+
+  // console.log(lastClothesId);
 
   const scrollToEnd = () => {
     console.log('마지막');
@@ -254,6 +258,7 @@ export default function ClosetModal() {
         )
         .then((res) => {
           setClothesList([...clothesList, ...res.data]);
+          // setLastClothesId(res.data[res.data.length - 1]['id']);
         });
     }, 1000);
   };
@@ -285,101 +290,8 @@ export default function ClosetModal() {
   };
   console.log(closetClothesId);
 
-  // useEffect(() => {
-  //   var subFilteredClothes = clothesList
-  //     ? // ?
-
-  //       clothesList.filter(function (item) {
-  //         for (var key in condition) {
-  //           if (item[key] === undefined || item[key] !== condition[key]) return false;
-  //         }
-  //         return true;
-  //       })
-  //     : [];
-  //   setFilteredClothes(subFilteredClothes);
-  // }, [clothesList, condition]);
-
   return (
     <div>
-      {/* <Modal
-        className={classes.root}
-        open={openClosetModal}
-        onClose={handleClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 750,
-        }}
-      >
-        <Fade in={openClosetModal}>
-          <div className={classes.modal}>
-            <div className={classes.modalTopContents}>
-              <div className={classes.hiddenBtn}>
-                <ModalCloseBtn />
-              </div>
-              <div className={classes.modalBtnContainer}>
-                <GroupSelector />
-              </div>
-
-              <div>
-                <ModalCloseBtn />
-              </div>
-            </div>
-
-            {modalMode ? (
-              <div className={classes.modalBottomContent}>
-                <div className={classes.box} id="scrollableDiv">
-                  <InfiniteScroll
-                    className={classes.modalClothesContainer}
-                    dataLength={clothesList.length}
-                    next={() => scrollToEnd()}
-                    hasMore={true}
-                    loader={<h1 style={{ textAlign: 'center' }}>Loading...</h1>}
-                    scrollableTarget="scrollableDiv"
-                  >
-                    {Object.keys(condition).length !== 0
-                      ? Array.isArray(filteredClothes) &&
-                        filteredClothes.map(function (image, i) {
-                          return (
-                            <div className={classes.individualClothesContainer}>
-                              <img
-                                className={classes.modalImg}
-                                alt={filteredClothes[i]['id']}
-                                src={filteredClothes[i]['url']}
-                                onClick={handleImageSelect}
-                              />
-                              <a href={filteredClothes[i]['shop_url']} target="_blank" title="무신사에서 상품 보기" rel="noreferrer">
-                                <div>{filteredClothes[i]['brand']}</div>
-                                <div>{filteredClothes[i]['item_name']}</div>
-                                <div>{filteredClothes[i]['price']}</div>
-                              </a>
-                            </div>
-                          );
-                        })
-                      : Array.isArray(clothesList) &&
-                        clothesList.map(function (image, i) {
-                          return (
-                            <div className={classes.individualClothesContainer}>
-                              <img className={classes.modalImg} alt={clothesList[i]['id']} src={clothesList[i]['url']} onClick={handleImageSelect} />
-                              <a href={clothesList[i]['musinsa']} target="_blank" title="무신사에서 상품 보기" rel="noreferrer">
-                                <div>{clothesList[i]['brand']}</div>
-                                <div>{clothesList[i]['name']}</div>
-                                <div>{clothesList[i]['price']}</div>
-                              </a>
-                            </div>
-                          );
-                        })}
-                    {filteredClothes.length === 0 ? <div>결과가 없습니다</div> : <></>}
-                  </InfiniteScroll>
-                </div>
-              </div>
-            ) : (
-              <div></div>
-            )}
-          </div>
-        </Fade>
-      </Modal> */}
-
       <Modal
         className={classes.root}
         open={openClosetModal}
@@ -393,16 +305,9 @@ export default function ClosetModal() {
         <Fade in={openClosetModal}>
           <div className={classes.modal}>
             <div className={classes.modalTopContents}>
-              {/* <div className={classes.hiddenBtn}>
-                <ModalCloseBtn />
-              </div> */}
               <div className={classes.modalBtnContainer}>
                 <GroupSelector />
               </div>
-
-              {/* <div>
-                <ModalCloseBtn />
-              </div> */}
             </div>
 
             {modalMode ? (
@@ -416,54 +321,6 @@ export default function ClosetModal() {
                     loader={<h1 style={{ textAlign: 'center' }}>Loading...</h1>}
                     scrollableTarget="scrollableDiv"
                   >
-                    {/* {Object.keys(condition).length !== 0
-                      ? Array.isArray(filteredClothes) &&
-                        filteredClothes.map(function (image, i) {
-                          return (
-                            <div className={classes.individualClothesContainer}>
-                              <img
-                                className={classes.modalImg}
-                                alt={filteredClothes[i]['id']}
-                                src={filteredClothes[i]['url']}
-                                onClick={handleImageSelect}
-                              />
-                              <a href={filteredClothes[i]['shop_url']} target="_blank" title="무신사에서 상품 보기" rel="noreferrer">
-                                <div>{filteredClothes[i]['brand']}</div>
-                                <div>{filteredClothes[i]['item_name']}</div>
-                                <div>{filteredClothes[i]['price']}</div>
-                              </a>
-                            </div>
-                          );
-                        }) */}
-                    {/* : Array.isArray(clothesList) &&
-                        clothesList.map(function (image, i) {
-                          return (
-                            <div className={classes.individualClothesContainer}>
-                              <div className={classes.clothesThumbnailBox}>
-                                <img
-                                  className={classes.modalImg}
-                                  alt={clothesList[i]['id']}
-                                  src={clothesList[i]['url']}
-                                  onClick={handleImageSelect}
-                                />
-                              </div>
-                              <div className={classes.clothesInfoBox}>
-                                <a
-                                  href={clothesList[i]['musinsa']}
-                                  target="_blank"
-                                  style={{ color: '#000' }}
-                                  title="무신사에서 상품 보기"
-                                  rel="noreferrer"
-                                >
-                                  <div>{clothesList[i]['brand']}</div>
-                                  <div>{clothesList[i]['name']}</div>
-                                  <div>{clothesList[i]['price']}</div>
-                                </a>
-                              </div>
-                            </div>
-                          );
-                        })} */}
-
                     {Array.isArray(clothesList) &&
                       clothesList.map(function (image, i) {
                         return (
@@ -475,13 +332,13 @@ export default function ClosetModal() {
                               <a
                                 href={clothesList[i]['musinsa']}
                                 target="_blank"
-                                style={{ color: '#000' }}
+                                style={{ color: '#6C49B8', textDecoration: 'none' }}
                                 title="무신사에서 상품 보기"
                                 rel="noreferrer"
                               >
-                                <div>{clothesList[i]['brand']}</div>
-                                <div>{clothesList[i]['name']}</div>
-                                <div>{clothesList[i]['price']}</div>
+                                <div style={{ fontSize: '14px' }}>{clothesList[i]['brand']}</div>
+                                <div>{clothesList[i]['name'].slice(0, 18)}...</div>
+                                <div style={{ fontSize: '16px' }}>{clothesList[i]['price']}\</div>
                               </a>
                             </div>
                           </div>

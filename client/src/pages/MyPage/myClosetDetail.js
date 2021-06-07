@@ -130,119 +130,49 @@ export default function MyPageClosetDetail() {
   const { seq } = useParams();
   const { closetDetailInfo, setClosetDetailInfo } = useContext(ModalContext);
 
-  const [myClosetLookBookImg, setMyClosetLookBookImg] = useState([]);
-  const [a, setA] = useState([]);
-  const [closetInfo, setClosetInfo] = useState([]);
+  const [myLookBookInfo, setMyLookBookInfo] = useState([]);
   const { closetClothesId, setClosetClothesId } = useContext(ModalContext);
 
-  const handleOpenClosetModalClick = (event) => {
-    setOpenClosetInfoModal(true);
-  };
-
   useEffect(() => {
+    console.log(closetClothesId);
+
     try {
-      axios
-        .get(`http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/my-looks/${seq}`, {
-          headers: { Authorization: 'Bearer ' + window.localStorage.token },
-        })
-        .then((res) => {
-          console.log(res);
-          setA(res.data);
-          axios
-            .post(
-              'http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/my-looks/info',
-              // 'http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/my-looks/info',
-              {
-                // bag_id: res.data.bag,
-                // bottom_id: res.data.bottom,
-                // hat_id: res.data.hat,
-                // shoes_id: res.data.shoes,
-                // top_id: res.data.top,
-                bag_id: closetClothesId.bag,
-                bottom_id: closetClothesId.bottom,
-                hat_id: closetClothesId.hat,
-                shoes_id: closetClothesId.shoes,
-                top_id: closetClothesId.top,
-              },
-              { headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + window.localStorage.token } },
-            )
-            .then((response) => {
-              console.log(response);
-              setClosetDetailInfo(response.data);
-            });
-        });
+      axios.get(`http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/my-looks/${seq}`).then((res) => {
+        const arr = [];
+        arr.push(res.data.hat, res.data.top, res.data.bottom, res.data.shoes, res.data.bag);
+        setClosetDetailInfo(arr);
+        setMyLookBookInfo(res.data.my_look);
+      });
     } catch (err) {
       console.log(err);
     }
   }, []);
-  console.log(a);
-  console.log(seq);
-
-  // useEffect(() => {
-  //   try {
-  //     axios.get('http://localhost:3000/data/closet.json').then((res) => {
-  //       let result = res.data.data;
-  //       // console.log(res.data.data['bag']);
-  //       // console.log(typeof [1, 2, 3]);
-  //       setMyClosetLookBookImg(res.data.data['hat']);
-  //     });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  //   return myClosetLookBookImg;
-  // }, [myClosetLookBookImg]);
-
-  // useEffect(async() => {
-  //   try {
-  //     axios.get(`http://elice-kdt-ai-track-vm-ai-12.koreacentral.cloudapp.azure.com:5000/looks/items?type=hat`).then((res) => {
-  //       setMyClosetLookBookImg(res.data);
-  //     });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  //   // return clothesList;
-  // }, [myClosetLookBookImg]);
-
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     const res = await axios.get(`http://elice-kdt-ai-track-vm-ai-12.koreacentral.cloudapp.azure.com:5000/looks/items?type=hat`);
-  //     setMyClosetLookBookImg(res.data);
-  //   }
-  //   fetchData();
-  // }, []);
-
-  // const handleInfoClick = () => {
-  //   setInfoAnchor(true);
-  // };
-  // const handleInfoClose = () => {
-  //   setInfoAnchor(null);
-  // };
+  const handleOpenClosetModalClick = () => {
+    setOpenClosetInfoModal(true);
+  };
 
   return (
     <div className={classes.root}>
       <MyClosetInfo />
       <div className={classes.closetContainer}>
-        {Array.isArray(myClosetLookBookImg) && <img className={classes.myLookBookImg} src={a['url']} alt="aaa" />}
-        {/* <img className={classes.myLookBookImg} src="/images/closet/closet_bottom2.jpg" alt="aaa" /> */}
-        {/* {a['ok'] > a['no'] * 2 && ( */}
+        <img className={classes.myLookBookImg} src={myLookBookInfo['url']} alt="aaa" />
         <div>
           <img className={classes.confirmedStar} src="/images/confirmed_thumb.png" alt="sdgf" />{' '}
           <span className={classes.confirmedText}>Confirmed!</span>
         </div>
-        {/* )} */}
       </div>
       <div className={classes.likeNoContainer}>
         <div className={classes.likeNoBox}>
           <div className={classes.likeNoTitleBox}>Like</div>
-          <div className={classes.likeNoCountBox}>{a['ok']}</div>
+          <div className={classes.likeNoCountBox}>{myLookBookInfo['ok']}</div>
         </div>
         <div className={classes.likeNoBox}>
           <div className={classes.likeNoTitleBox}>NoNo</div>
-          <div className={classes.likeNoCountBox}>{a['no']}</div>
+          <div className={classes.likeNoCountBox}>{myLookBookInfo['no']}</div>
         </div>
       </div>
+
       <div className={classes.listBtnContainer}>
-        {/* <div className={classes.listBtn}> */}
         <LuxuryBtn
           onClick={() => {
             history.push('/my_page_closet_list');
@@ -250,34 +180,14 @@ export default function MyPageClosetDetail() {
         >
           목록으로
         </LuxuryBtn>
-
-        {/* </div> */}
       </div>
       <div className={classes.bottomContents}>
         <LuxuryBtn2 onClick={handleOpenClosetModalClick}>{'LookBook \n 정보보기'}</LuxuryBtn2>
-        {/* <Menu
-          id="simple-menu"
-          anchorEl={infoAnchor}
-          getContentAnchorEl={null | undefined}
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'center',
-          }}
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'center',
-          }}
-          keepMounted
-          open={Boolean(infoAnchor)}
-          onClose={handleInfoClose}
-        >
-          <MenuItem onClick={handleOpenClosetModalClick}>옷 정보 보기</MenuItem>
-          <MenuItem>컨펌을 못받으셨나요?</MenuItem>
-        </Menu> */}
       </div>
       <a href="/solution" className={classes.confirmLink} style={{ color: '#000' }} target="_blank" rel="noreferrer">
         컨펌을 못 받으셨나요?
       </a>
+      {}
     </div>
   );
 }
@@ -285,8 +195,6 @@ export default function MyPageClosetDetail() {
 const LuxuryBtn = styled.button`
   display: inline-block;
   box-sizing: border-box;
-  /* max-width: 150px;
-  min-width: 130px; */
   height: 45px;
   width: 140px;
   background: transparent;

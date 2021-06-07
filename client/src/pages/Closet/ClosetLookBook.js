@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef } from 'react';
+import React, { useState, useContext, useRef, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import TopComment from '../../components/AnalysisClothes/topComment';
@@ -200,6 +200,9 @@ export default function ClosetLookBook() {
     setShareAnchor(null);
   };
 
+  useEffect(() => {
+    console.log(closetClothesId);
+  }, []);
   //   const handleEraseAllButtonClick = () => {
   //     setClosetImg({
   //       hat: '',
@@ -253,6 +256,7 @@ export default function ClosetLookBook() {
       url = url.replace('data:image/png;base64,', '');
       console.log(url);
     });
+    console.log(closetClothesId);
     const res = await axios.post(
       `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/looks/upload`,
       {

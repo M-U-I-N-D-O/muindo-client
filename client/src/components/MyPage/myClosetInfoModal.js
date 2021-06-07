@@ -108,41 +108,35 @@ export default function MyClosetInfo(props) {
   const handleClosetInfoModalClose = () => {
     setOpenClosetInfoModal(false);
   };
-
-  console.log(closetDetailInfo);
-
   return (
     <div>
       <Dialog className={classes.root} open={openClosetInfoModal} TransitionComponent={Transition} keepMounted onClose={handleClosetInfoModalClose}>
-        {/* <DialogTitle id="alert-dialog-slide-title">{"Use Google's location service?"}</DialogTitle> */}
         <DialogContent>
           <div className={classes.clothesBox}>
-            {/* <LuxuryBtn>{'모자 & \n 선글라스'}</LuxuryBtn>
-            <LuxuryBtn>{'상의'}</LuxuryBtn>
-            <LuxuryBtn>{'하의'}</LuxuryBtn>
-            <LuxuryBtn>{'신발'}</LuxuryBtn>
-            <LuxuryBtn>{'가방'}</LuxuryBtn> */}
-            {closetDetailInfo &&
-              closetDetailInfo.map(function (item, i) {
-                return (
-                  <div className={classes.infoContainer}>
-                    <img className={classes.infoImg} src={item['url']} alt="infoImg" />
-                    <div className={classes.infoBox}>
-                      <a href={item['musinsa']} style={{ color: '#000' }} target="_blank" rel="noreferrer">
-                        <div> {item['brand']}</div>
-                        <div> {item['name']}</div>
-                        <div> {item['price']}\</div>
-                      </a>
-                    </div>
+            <div>{closetDetailInfo.hat}</div>
+            {closetDetailInfo.map(function (item, i) {
+              return (
+                <div className={classes.infoContainer}>
+                  <img className={classes.infoImg} src={item['url']} alt="infoImg" />
+                  <div className={classes.infoBox}>
+                    <a
+                      href={item['musinsa']}
+                      style={{ color: '#6C49B8', textDecoration: 'none' }}
+                      target="_blank"
+                      rel="noreferrer"
+                      title="무신사에서 상품 보기"
+                    >
+                      <div> {item['brand']}</div>
+                      <div> {item['name']}</div>
+                      <div> {item['price']}\</div>
+                    </a>
                   </div>
-                );
-              })}
+                </div>
+              );
+            })}
           </div>
         </DialogContent>
         <DialogActions>
-          {/* <Button onClick={handleClosetInfoModalClose} color="primary">
-            Disagree
-          </Button> */}
           <Button onClick={handleClosetInfoModalClose} color="primary">
             Close
           </Button>
@@ -155,8 +149,6 @@ export default function MyClosetInfo(props) {
 const LuxuryBtn = styled.button`
   display: inline-block;
   box-sizing: border-box;
-  /* max-width: 150px;
-  min-width: 130px; */
   height: 65px;
   width: 100px;
   background: transparent;
@@ -167,12 +159,10 @@ const LuxuryBtn = styled.button`
   letter-spacing: 0.5px;
   color: black;
   border-radius: 0;
-  /* padding: 15px 20px 15px 20px; */
   transition: all 0.25s ease-out;
   cursor: pointer;
   white-space: pre-wrap;
   text-align: center;
-  /* background: linear-gradient(270deg, rgba(223, 190, 106, 0.8), rgba(146, 111, 52, 0.8), rgba(34, 34, 34, 0), rgba(34, 34, 34, 0)); */
   background-position: 1% 50%;
   background-size: 300% 300%;
   text-decoration: none;
@@ -181,12 +171,8 @@ const LuxuryBtn = styled.button`
   :hover {
     color: black;
     border: 7px solid;
-    /* color: $white; */
-    /* background-position: 99% 50%; */
   }
   :disabled {
-    /* background-position: 1% 50%; */
-    /* color: rgba(223, 190, 106, 0.7); */
     color: gray;
     border: 1px solid;
     cursor: default;

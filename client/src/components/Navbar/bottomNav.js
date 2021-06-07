@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { bottomNavMode } from '../../actions';
 import { useHistory } from 'react-router-dom';
@@ -10,6 +10,9 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import PermIdentityOutlinedIcon from '@material-ui/icons/PermIdentityOutlined';
 import AddBoxOutlinedIcon from '@material-ui/icons/AddBoxOutlined';
 import CheckCircleOutlineTwoToneIcon from '@material-ui/icons/CheckCircleOutlineTwoTone';
+
+// 유지가 추가한 부분!
+import { ClothesIdContext } from '../../App';
 
 const useStyles = makeStyles({
   root: {
@@ -33,6 +36,8 @@ function BottomNav() {
   const dispatch = useDispatch();
   const value = useSelector((state) => state.navbar.button);
   const history = useHistory();
+  // 유지가 추가한 부분!
+  const { closetClothesId, setClosetClothesId } = useContext(ClothesIdContext);
 
   return (
     <div>
@@ -63,6 +68,14 @@ function BottomNav() {
           onClick={() => {
             if (localStorage['token']) {
               history.push('/closet');
+              // 유지가 추가한 부분!
+              setClosetClothesId({
+                hat: '',
+                top: '',
+                bottom: '',
+                shoes: '',
+                bag: '',
+              });
             } else {
               dispatch(dialogMode(1));
             }

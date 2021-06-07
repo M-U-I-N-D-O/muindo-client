@@ -10,6 +10,7 @@ import { useHistory } from 'react-router';
 import { Helmet } from 'react-helmet';
 
 import { ModalContext } from '../../App';
+import { ClothesIdContext } from '../../App';
 // import { ModalContext } from '../../';
 
 import Menu from '@material-ui/core/Menu';
@@ -160,7 +161,7 @@ export default function ClosetLookBook() {
   const { lookBookColorModal, setLookBookColorModal } = useContext(ModalContext);
   const { modalMode, setModalMode } = useContext(ModalContext);
   const { closetImg, setClosetImg } = useContext(ModalContext);
-  const { closetClothesId, setClosetClothesId } = useContext(ModalContext);
+  const { closetClothesId, setClosetClothesId } = useContext(ClothesIdContext);
 
   const [modifyAnchor, setModifyAnchor] = useState(null);
   const [shareAnchor, setShareAnchor] = useState(null);

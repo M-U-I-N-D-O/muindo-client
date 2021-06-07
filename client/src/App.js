@@ -37,6 +37,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import './App.css';
 
 const ModalContext = createContext({});
+const ClothesIdContext = createContext({});
 
 function App() {
   const navMode = useSelector((state) => state.navbar.switch);
@@ -98,37 +99,40 @@ function App() {
           setClosetDetailInfo,
         }}
       >
-        <Router>
-          {navMode === 1 && <TopNav />}
-          <Route exact path="/" component={Intro} />
-          <Route exact path="/main" component={Main} />
-          <Route component={LoginDialog} />
-          <Route component={MyPage} />
-          <Route exact path="/about" component={About} />
-          <Route exact path="/confirm" component={Confirm} />
+        <ClothesIdContext.Provider value={{ closetClothesId, setClosetClothesId }}>
+          <Router>
+            {navMode === 1 && <TopNav />}
+            <Route exact path="/" component={Intro} />
+            <Route exact path="/main" component={Main} />
+            <Route component={LoginDialog} />
+            <Route component={MyPage} />
+            <Route exact path="/about" component={About} />
+            <Route exact path="/confirm" component={Confirm} />
 
-          <Route exact path="/analysis_clothes" component={AnalysisClothes} />
-          <Route exact path="/analysis_clothes/result" component={AnalysisClothesResult} />
-          <Route exact path="/analysis_color" component={AnalysisColor} />
+            <Route exact path="/analysis_clothes" component={AnalysisClothes} />
+            <Route exact path="/analysis_clothes/result" component={AnalysisClothesResult} />
+            <Route exact path="/analysis_color" component={AnalysisColor} />
 
-          <Route exact path="/community" component={Community} />
-          <Route exact path="/solution" component={Solution} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/signup" component={SignUp} />
-          <Route exact path="/loading" component={Progress} />
-          <Route exact path="/closet" component={Closet} />
-          <Route exact path="/closet/look_book" component={ClosetLookBook} />
-          <Route exact path="/my_page_closet_detail/:seq" component={MyPageClosetDetail} />
-          <Route exact path="/my_page_closet_list" component={MyPageClosetList} />
+            <Route exact path="/community" component={Community} />
+            <Route exact path="/solution" component={Solution} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/signup" component={SignUp} />
+            <Route exact path="/loading" component={Progress} />
+            <Route exact path="/closet" component={Closet} />
+            <Route exact path="/closet/look_book" component={ClosetLookBook} />
+            <Route exact path="/my_page_closet_detail/:seq" component={MyPageClosetDetail} />
+            <Route exact path="/my_page_closet_list" component={MyPageClosetList} />
 
-          {navMode === 1 && <BottomNav />}
+            {navMode === 1 && <BottomNav />}
 
-          {/* {navMode === 1 && <Footer />} */}
-        </Router>
+            {/* {navMode === 1 && <Footer />} */}
+          </Router>
+        </ClothesIdContext.Provider>
       </ModalContext.Provider>
     </CookiesProvider>
   );
 }
 export { ModalContext };
+export { ClothesIdContext };
 
 export default App;

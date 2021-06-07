@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import clsx from 'clsx';
 import { NavLink as Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
@@ -10,6 +10,9 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+
+// 유지가 추가한 부분!
+import { ClothesIdContext } from '../../App';
 
 const NavTitleContainer = styled.div`
   margin: auto;
@@ -42,6 +45,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function TopNav() {
+  // 유지가 추가한 부분!
+  const { closetClothesId, setClosetClothesId } = useContext(ClothesIdContext);
+
   const classes = useStyles();
   // const [open, setOpen] = useState(false);
   // const [value, setValue] = useState(0);
@@ -51,6 +57,15 @@ function TopNav() {
   const handleNavbarMode = (mode) => {
     dispatch(navbarMode(mode));
     dispatch(bottomNavMode(-1));
+
+    // 유지가 추가한 부분!
+    setClosetClothesId({
+      hat: '',
+      top: '',
+      bottom: '',
+      shoes: '',
+      bag: '',
+    });
   };
   return (
     <div className={classes.root}>

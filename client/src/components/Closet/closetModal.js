@@ -26,6 +26,7 @@ import Slide from '@material-ui/core/Slide';
 
 import GroupSelector from './groupSelector';
 import { ModalContext } from '../../App';
+import { ClothesIdContext } from '../../App';
 
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
@@ -185,7 +186,7 @@ export default function ClosetModal() {
   const { openClosetModal, setOpenClosetModal } = useContext(ModalContext);
   const { modalMode, setModalMode } = useContext(ModalContext);
   const { closetImg, setClosetImg } = useContext(ModalContext);
-  const { closetClothesId, setClosetClothesId } = useContext(ModalContext);
+  const { closetClothesId, setClosetClothesId } = useContext(ClothesIdContext);
   const { clothesList, setClothesList } = useContext(ModalContext);
   const { condition, setCondition } = useContext(ModalContext);
   const [filteredClothes, setFilteredClothes] = useState({});
@@ -210,15 +211,15 @@ export default function ClosetModal() {
   // console.log(clothesList);
   // console.log(modalMode);
 
-  useEffect(() => {
-    setClosetClothesId({
-      hat: '',
-      top: '',
-      bottom: '',
-      shoes: '',
-      bag: '',
-    });
-  }, []);
+  // useEffect(() => {
+  //   setClosetClothesId({
+  //     hat: '',
+  //     top: '',
+  //     bottom: '',
+  //     shoes: '',
+  //     bag: '',
+  //   });
+  // }, []);
 
   useEffect(() => {
     console.log(closetClothesId);

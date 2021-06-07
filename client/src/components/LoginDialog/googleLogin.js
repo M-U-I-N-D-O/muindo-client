@@ -6,6 +6,11 @@ import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import axios from 'axios';
 import url from '../../url';
 
+import { useCookies } from 'react-cookie';
+
+axios.defaults.baseURL = url;
+axios.defaults.withCredentials = true;
+
 var uiConfig = {
   signInFlow: 'popup',
   signInOptions: [firebase.auth.EmailAuthProvider.PROVIDER_ID, firebase.auth.GoogleAuthProvider.PROVIDER_ID],
@@ -25,9 +30,12 @@ var uiConfig = {
   },
 };
 
+const JWT_EXPIRY_TIME = 3600 * 1000;
+
 const GoogleLogin = () => {
   const [user, setUser] = useState(null);
   const dispatch = useDispatch();
+  const [cookies, setCookie, removeCookie] = useCookies(['name']);
 
   // const signOut = () => {
   //   firebase
@@ -42,6 +50,45 @@ const GoogleLogin = () => {
   //       console.log('Error!');
   //     });
   // };
+
+  const onLoginSuccess = (response, user) => {
+    console.log('post 결과 : ', response);
+    console.log('user :', user);
+    axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.access_token}`;
+    localStorage.setItem('token', response.data.access_token);
+    localStorage.setItem('refresh', response.data.refresh_token);
+    console.log('access token : ', localStorage.getItem('token'));
+    console.log('refresh token : ', localStorage.getItem('refresh'));
+
+    setTimeout(() => {
+      onSilentRefresh();
+    }, 10000);
+    dispatch(userName(user.name));
+    dispatch(userEmail(user.email));
+    dispatch(dialogMode(-1));
+  };
+
+  const onSilentRefresh = () => {
+    const json = JSON.stringify(localStorage.getItem('refresh'));
+    try {
+      axios
+        .post('/auth/refresh', json, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('refresh')}`,
+          },
+        })
+        .then((response) => {
+          localStorage.setItem('token', response.data.access_token);
+
+          console.log('new_access_token : ', response.data.access_token);
+          console.log('new_refresh_token : ', response.data.refresh_token);
+        });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     const authObserver = firebase.auth().onAuthStateChanged((user) => {
       setUser(user);
@@ -59,28 +106,19 @@ const GoogleLogin = () => {
           uid: user.uid,
         };
         try {
-          // const url = 'http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/auth/access-token';
           const json = JSON.stringify(userInfo);
           axios
-            .post(url + 'auth/access-token', json, {
+            .post('auth/access-token', json, {
               headers: {
-                // Overwrite Axios's automatically set Content-Type
                 'Content-Type': 'application/json',
               },
             })
-            .then((response) => {
-              console.log('post 결과 : ', response);
-              localStorage.setItem('token', response.data.access_token);
-
-              dispatch(userName(user.providerData[0].displayName));
-              dispatch(userEmail(user.providerData[0].email));
-              dispatch(dialogMode(-1));
-            });
+            .then((res) => onLoginSuccess(res, userInfo));
         } catch (err) {
           console.log(err);
         }
+        console.log('firebase auth : ', firebase.auth());
       }
-      console.log('firebase auth : ', firebase.auth());
     });
     return authObserver;
   }, []);

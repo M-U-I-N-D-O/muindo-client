@@ -20,7 +20,7 @@ const useStyles = makeStyles({
   },
 
   actionItemStyles: {
-    color: 'gray',
+    color: 'lightgray',
     '&$selected': {
       color: 'red',
     },

@@ -2,17 +2,26 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { userName, userEmail } from '../../actions';
+import { userName, userEmail, bottomNavMode } from '../../actions';
 import { navbarMode } from '../../actions';
+import firebase from 'firebase';
 
 function Intro() {
   const dispatch = useDispatch();
   const history = useHistory();
 
   useEffect(() => {
+    firebase
+      .auth()
+      .signOut()
+      .catch((err) => {
+        console.log(err);
+      });
     dispatch(navbarMode(0));
     localStorage.clear();
-    localStorage.removeItem('persist:root');
+    dispatch(userName(''));
+    dispatch(userEmail(''));
+    dispatch(bottomNavMode(-1));
     setTimeout(() => {
       dispatch(navbarMode(1));
       history.push('/main');

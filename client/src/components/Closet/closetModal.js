@@ -216,11 +216,11 @@ export default function ClosetModal() {
           // )}&subcategory=${encodeURI(encodeURIComponent(condition.subCategory))}&brand=${encodeURI(
           //   encodeURIComponent(condition.brand),
           // )}&type=${modalMode}&itemid=`,
-          `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/looks/items?middlecategory=${condition.middleCategory}&subcategory=${condition.subCategory}&brand=${condition.brand}&type=${modalMode}`,
+          `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/looks/items?middlecategory=${condition.middleCategory}&subcategory=${condition.subCategory}&brand=${condition.brand}&type=${modalMode}$itemid=1`,
 
-          {
-            headers: { Authorization: 'Bearer ' + window.localStorage.token },
-          },
+          // {
+          //   headers: { Authorization: 'Bearer ' + window.localStorage.token },
+          // },
         )
         .then((res) => {
           setClothesList(res.data);

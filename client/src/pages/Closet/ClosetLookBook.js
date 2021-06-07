@@ -265,7 +265,7 @@ export default function ClosetLookBook() {
         },
       },
 
-      { headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + window.localStorage.token } },
+      { headers: { 'Content-Type': 'application/json' } },
     );
     console.log(res);
     const seq = res.data.id;

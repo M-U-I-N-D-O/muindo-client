@@ -5,21 +5,6 @@ import 'react-motion-stack/build/motion-stack.css';
 import axios from 'axios';
 import url from '../../url';
 
-// import './index.css';
-// const data = Array.from(this.state.ItemList.data, (v, i) => ({
-//   id: i,
-//   element: <img key={v[0]} draggable={false} src={`${v[1]}`} alt="img" />,
-// }));
-// const data = Array.from({ length: 4 }, (_, i) => ({
-//   id: i,
-//   element: <img key={i} draggable={false} src={`https://source.unsplash.com/random/${i + 1}`} alt="img" />,
-//   //   element: (
-//   //     <div style={{ backgroundColor: '#222' }}>
-//   //       <img key={i} draggable={false} src={`./images/main/${i + 1}.png`} alt="img" />
-//   //     </div>
-//   //   ),
-// }));
-
 class Confirm extends Component {
   constructor(props) {
     super(props);
@@ -31,11 +16,9 @@ class Confirm extends Component {
 
   fetchData = async () => {
     axios
-      .get(url + 'tinder/test')
+      .get(url + 'tinder/look')
       .then((res) => {
-        console.log(res.data);
         this.setState({ ItemList: res.data });
-        // console.log('ItemList :', this.state.ItemList);
       })
       .catch((err) => {
         console.log(err);
@@ -50,15 +33,13 @@ class Confirm extends Component {
     const json = JSON.stringify({ id: id, opinion: opinion, token: token });
     try {
       axios
-        .post('주소', json, {
+        .post(url + 'tinder/confirm', json, {
           headers: {
-            // Overwrite Axios's automatically set Content-Type
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
         })
         .then((res) => {
-          console.log(res);
+          console.log('반환 결과 :', res);
         });
     } catch (err) {
       console.log(err);
@@ -71,11 +52,11 @@ class Confirm extends Component {
     if (direction === 'right') {
       this.setState({ text: 'Like' });
       console.log('방금 선택 : 따봉 하나 추가요~');
-      //   this.postData('like', state.data[0].element.key, localStorage.getItem('token'));
+      this.postData('like', state.data[0].element.key, localStorage.getItem('token'));
     } else {
       this.setState({ text: 'Nope' });
       console.log('방금 선택 : 놉 하나 추가요~');
-      //   this.postData('nope', state.data[0].element.key, localStorage.getItem('token'));
+      this.postData('nope', state.data[0].element.key, localStorage.getItem('token'));
     }
     console.log('현재 data key', state.data[0].element.key);
     console.log('유저 token : ', localStorage.getItem('token'));
@@ -84,16 +65,6 @@ class Confirm extends Component {
   };
 
   onSwipeEnd = ({ data }) => {
-    // console.log('타켓 키 : ', data[data.length - 1].element.key);
-    // if (this.state.text === 'Like') {
-    //   console.log('따봉 하나 추가요~');
-    // } else {
-    //   console.log('놉 하나 추가요 ~');
-    // }
-    // console.log('선택 :', this.state);
-    // console.log('유저 token :', localStorage.getItem('token'));
-    // console.log('data', data);
-
     this.setState({ text: '' });
     console.log('마침 :', this.state);
     document.getElementById('tinder-btn1').disabled = false;
@@ -125,11 +96,9 @@ class Confirm extends Component {
       >
         <MotionStack
           data={this.state.ItemList.map((item, index) => {
-            // console.log('한 요소 :', item);
             var returnObj = {};
             returnObj['id'] = index;
             returnObj['element'] = <TinderImg key={item.id} src={item.url} alt="img" />;
-            // console.log('하나 만들어진 obj :', returnObj);
             return returnObj;
           })}
           onSwipeEnd={this.onSwipeEnd}

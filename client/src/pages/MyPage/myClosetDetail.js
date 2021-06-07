@@ -10,6 +10,7 @@ import { Helmet } from 'react-helmet';
 
 import { ModalContext } from '../../App';
 // import { ModalContext } from '../../data/confirmed_star.png';
+import { ClothesIdContext } from '../../App';
 
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -71,16 +72,17 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 'bold',
   },
 
-  listBtnContainer: {
+  lookBookInfoBtnContainer: {
     display: 'flex',
     width: '325px',
     // border: 'solid 4px',
     height: '70px',
     marginTop: '5px',
     alignItems: 'center',
-    justifyContent: 'center',
     fontSize: '20px',
     fontWeight: 'bold',
+    justifyContent: 'space-around',
+
     // border: 'solid 4px',
   },
   listBtn: {
@@ -122,6 +124,20 @@ const useStyles = makeStyles((theme) => ({
     right: '42px',
     color: 'red',
   },
+  shareBtn: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: '16px',
+  },
+  ectBtnContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    marginTop: '15px',
+    marginBottom: '15px',
+    width: '325px',
+  },
 }));
 
 export default function MyPageClosetDetail() {
@@ -133,6 +149,7 @@ export default function MyPageClosetDetail() {
   const [shareAnchor, setShareAnchor] = useState(null);
 
   const [myLookBookInfo, setMyLookBookInfo] = useState([]);
+  const { closetClothesId, setClosetClothesId } = useContext(ClothesIdContext);
 
   useEffect(() => {
     try {
@@ -234,23 +251,14 @@ export default function MyPageClosetDetail() {
         </div>
       </div>
 
-      <div className={classes.listBtnContainer}>
-        {/* <LuxuryBtn
-          onClick={() => {
-            history.push('/my_page_closet_list');
-          }}
-        >
-          목록으로
-        </LuxuryBtn>
+      <div className={classes.lookBookInfoBtnContainer}>
         <LuxuryBtn2 onClick={handleOpenClosetModalClick}>{'LookBook \n 정보보기'}</LuxuryBtn2>{' '}
-        <LuxuryBtn
-          onClick={() => {
-            history.push('/my_page_closet_list');
-          }}
-        >
-          목록으로
-        </LuxuryBtn> */}
-        <text onClick={handleShareClick}>{'공유하기'}</text>
+      </div>
+
+      <div className={classes.ectBtnContainer}>
+        <div className={classes.shareBtn} onClick={handleShareClick}>
+          {'공유하기'}
+        </div>
         <Menu
           id="simple-menu"
           anchorEl={shareAnchor}
@@ -267,7 +275,7 @@ export default function MyPageClosetDetail() {
           open={Boolean(shareAnchor)}
           onClose={handleShareClose}
         >
-          <a href={myLookBookInfo['url']}>
+          <a href={myLookBookInfo['url']} style={{ color: '#000000', textDecoration: 'none' }}>
             <MenuItem onClick={handleImageDownloadClick}>이미지 다운로드 </MenuItem>
           </a>
           <Helmet>
@@ -276,22 +284,31 @@ export default function MyPageClosetDetail() {
 
           <MenuItem onClick={shareByKakao}>카카오톡 공유하기</MenuItem>
         </Menu>
-        <LuxuryBtn2 onClick={handleOpenClosetModalClick}>{'LookBook \n 정보보기'}</LuxuryBtn2>{' '}
-        <text
+
+        <div
+          className={classes.shareBtn}
           onClick={() => {
             history.push('/my_page_closet_list');
           }}
         >
+          목록으로
+        </div>
+        <div
+          className={classes.shareBtn}
+          onClick={() => {
+            history.push('/closet');
+            setClosetClothesId({
+              hat: '',
+              top: '',
+              bottom: '',
+              shoes: '',
+              bag: '',
+            });
+          }}
+        >
           다시 만들기
-        </text>
+        </div>
       </div>
-      <text
-        onClick={() => {
-          history.push('/my_page_closet_list');
-        }}
-      >
-        목록으로
-      </text>
 
       <a href="/solution" className={classes.confirmLink} style={{ color: '#000' }} target="_blank" rel="noreferrer">
         컨펌을 못 받으셨나요?

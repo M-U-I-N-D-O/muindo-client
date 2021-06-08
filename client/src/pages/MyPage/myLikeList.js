@@ -3,21 +3,18 @@ import { Link, useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import TopComment from '../../components/AnalysisClothes/topComment';
 import styled from 'styled-components';
-import MyClosetInfo from '../../components/MyPage/myClosetInfoModal';
 import axios from 'axios';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 import { useHistory } from 'react-router';
 
 import { ModalContext } from '../../App';
-// import { ModalContext } from '../../';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     paddingTop: '60px',
     paddingBottom: '56px',
-    // // justifyContent: 'center',
     flexDirection: 'column',
     alignItems: 'center',
 
@@ -30,9 +27,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     width: '100vw',
     maxWidth: '350px',
-    // height: '70vh',
     flexWrap: 'wrap',
     alignItems: 'center',
+    // marginTop: '10px',
     justifyContent: 'center',
     paddingBottom: '56px',
   },
@@ -65,13 +62,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MyPageClosetList() {
+export default function MyPageLikeList() {
   const classes = useStyles();
   const history = useHistory();
   const PAGE_NUMBER = 1;
   const [page, setPage] = useState(PAGE_NUMBER);
+  // const { seq } = useParams();
 
-  const [myClosetListInfo, setMyClosetListInfo] = useState([]);
+  const [a, setA] = useState([]);
+  const [lookBookId, setLookBookId] = useState('');
 
   useEffect(() => {
     try {
@@ -84,11 +83,12 @@ export default function MyPageClosetList() {
           // },
         })
         .then((res) => {
-          setMyClosetListInfo(res.data);
+          setA(res.data);
         });
     } catch (err) {
       console.log(err);
     }
+    // return clothesList;
   }, []);
 
   // const scrollToEnd = () => {
@@ -111,13 +111,14 @@ export default function MyPageClosetList() {
 
   const handleLookBookClick = async (event) => {
     const seq = event.target.alt;
-    history.push('/my_page_closet_detail/' + seq);
+    history.push('/my_page_like_detail/' + seq);
   };
 
+  console.log(a);
   console.log(window.localStorage.token);
   return (
     <div className={classes.root} id="scrollableDiv">
-      <TopComment comment={'MY LOOKBOOK LIST'} />
+      <TopComment comment={'MY LIKE LIST'} />
       {/* <InfiniteScroll
         className={classes.closetListContainer}
         dataLength={a.length}
@@ -127,16 +128,16 @@ export default function MyPageClosetList() {
         scrollableTarget="scrollableDiv"
       > */}
       <div className={classes.closetListContainer}>
-        {Array.isArray(myClosetListInfo) &&
-          myClosetListInfo.map(function (item, i) {
+        {Array.isArray(a) &&
+          a.map(function (image, i) {
             return (
               <div className={classes.individualClosetContainer} onClick={handleLookBookClick}>
                 <div className={classes.thumbnailBox}>
-                  <img className={classes.thumbnail} alt={myClosetListInfo[i]['id']} src={myClosetListInfo[i]['url']} />
+                  <img className={classes.thumbnail} alt={a[i]['id']} src={a[i]['url']} />
                 </div>
-                {item['ok'] > item['no'] && <img className={classes.confirmedThumb} src="/images/confirmed_thumb.png" alt="sdgf" />}
-                {item['no'] > item['ok'] && <img className={classes.confirmedThumb} src="/images/confirmed_thumb_down.png" alt="sdgf" />}
-                {(item['ok'] < 1 && item['no'] < 1) || item['ok'] === item['no'] ? (
+                {image['ok'] > image['no'] && <img className={classes.confirmedThumb} src="/images/confirmed_thumb.png" alt="sdgf" />}
+                {image['no'] > image['ok'] && <img className={classes.confirmedThumb} src="/images/confirmed_thumb_down.png" alt="sdgf" />}
+                {(image['ok'] < 1 && image['no'] < 1) || image['ok'] === image['no'] ? (
                   <img className={classes.confirmedThumb} src="/images/question.png" alt="sdgf" />
                 ) : (
                   <div></div>

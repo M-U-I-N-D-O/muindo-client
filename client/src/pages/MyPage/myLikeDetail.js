@@ -22,23 +22,30 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     paddingTop: '60px',
     paddingBottom: '56px',
+    // // justifyContent: 'center',
     flexDirection: 'column',
     alignItems: 'center',
   },
 
   closetContainer: {
+    // backgroundColor: '#ced3e3',
     display: 'flex',
+    // alignItems: 'center',
+    // justifyContent: 'center',
     width: '340px',
     border: 'solid 4px',
     height: '380px',
+    // position: 'relative',
     // marginTop: '20px',
     position: 'relative',
   },
   likeNoContainer: {
+    // backgroundColor: '#ced3e3',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
     width: '325px',
+    // border: 'solid 4px',
     height: '100px',
     marginTop: '10px',
   },
@@ -68,12 +75,15 @@ const useStyles = makeStyles((theme) => ({
   lookBookInfoBtnContainer: {
     display: 'flex',
     width: '325px',
+    // border: 'solid 4px',
     height: '70px',
     marginTop: '5px',
     alignItems: 'center',
     fontSize: '20px',
     fontWeight: 'bold',
     justifyContent: 'space-around',
+
+    // border: 'solid 4px',
   },
   listBtn: {
     display: 'flex',
@@ -130,7 +140,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MyPageClosetDetail() {
+export default function MyPageLikeDetail() {
   const classes = useStyles();
   const history = useHistory();
   const { openClosetInfoModal, setOpenClosetInfoModal } = useContext(ModalContext);
@@ -159,6 +169,7 @@ export default function MyPageClosetDetail() {
           const arr2 = [];
           for (var i = 0; i < arr1.length; i++) {
             if (arr1[i] !== null) {
+              // console.log(arr1[i]);
               arr2.push(arr1[i]);
             }
           }
@@ -220,7 +231,7 @@ export default function MyPageClosetDetail() {
   return (
     <div className={classes.root}>
       <MyClosetInfo />
-      <TopComment comment={'MY LOOKBOOK'} />
+      <TopComment comment={'MY LIKE LOOKBOOK'} />
 
       <div className={classes.closetContainer}>
         <img className={classes.myLookBookImg} src={myLookBookInfo['url']} alt="aaa" />
@@ -282,7 +293,7 @@ export default function MyPageClosetDetail() {
         <LuxuryBtn1
           className={classes.shareBtn}
           onClick={() => {
-            history.push('/my_page_closet_list');
+            history.push('/my_page_like_list');
           }}
         >
           목록으로

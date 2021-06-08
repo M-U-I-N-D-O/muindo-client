@@ -23,6 +23,8 @@ import Closet from './pages/Closet';
 import ClosetLookBook from './pages/Closet/ClosetLookBook';
 import MyPageClosetDetail from './pages/MyPage/myClosetDetail';
 import MyPageClosetList from './pages/MyPage/myClosetList';
+import MyPageLikeDetail from './pages/MyPage/myLikeDetail';
+import MyPageLikeList from './pages/MyPage/myLikeList';
 
 import Community from './pages/Community';
 import Solution from './pages/Solution';
@@ -122,6 +124,8 @@ function App() {
             <Route exact path="/closet/look_book" component={ClosetLookBook} />
             <Route exact path="/my_page_closet_detail/:seq" component={MyPageClosetDetail} />
             <Route exact path="/my_page_closet_list" component={MyPageClosetList} />
+            <Route exact path="/my_page_like_detail/:seq" component={MyPageLikeDetail} />
+            <Route exact path="/my_page_like_list" component={MyPageLikeList} />
 
             {navMode === 1 && <BottomNav />}
 

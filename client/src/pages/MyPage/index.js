@@ -112,7 +112,23 @@ function MyPage() {
           >
             <ListText>내 옷장 확인하기</ListText>
           </ListItem>
+
+          {/* 유지가 추가한 부분 */}
+          <ListItem
+            button
+            onClick={() => {
+              if (localStorage.getItem('token')) {
+                dispatch(dialogMode(-1));
+                history.push('/my_page_like_list');
+              } else {
+                console.log('로그인 먼저 해주세요 !');
+              }
+            }}
+          >
+            <ListText>좋아요 목록 확인하기</ListText>
+          </ListItem>
         </List>
+        {/* 유지가 추가한 부분 */}
 
         {localStorage.getItem('token') && (
           <div style={{ display: 'flex', justifyContent: 'center' }}>

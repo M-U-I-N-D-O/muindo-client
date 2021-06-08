@@ -40,7 +40,8 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: '340px',
     minWidth: '310px',
     width: '90vw',
-    border: 'solid 4px',
+    height: '650px',
+    border: 'solid 5px',
     minHeight: '57vh',
   },
   btnBox: {
@@ -71,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
     height: '80px',
 
     justifyContent: 'center',
-    border: 'solid 2px',
+    border: 'solid 3px',
     margin: '15px 0px',
   },
   topContainer: {
@@ -86,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
     height: '150px',
 
     justifyContent: 'center',
-    border: 'solid 2px',
+    border: 'solid 3px',
     margin: '15px 0px',
   },
   bottomContainer: {
@@ -101,7 +102,7 @@ const useStyles = makeStyles((theme) => ({
     height: '150px',
 
     justifyContent: 'center',
-    border: 'solid 2px',
+    border: 'solid 3px',
     margin: '15px 0px',
   },
   shoesContainer: {
@@ -116,7 +117,7 @@ const useStyles = makeStyles((theme) => ({
     height: '80px',
 
     justifyContent: 'center',
-    border: 'solid 2px',
+    border: 'solid 3px',
     margin: '15px 0px',
   },
   bagContainer: {
@@ -131,7 +132,7 @@ const useStyles = makeStyles((theme) => ({
     height: '120px',
 
     justifyContent: 'center',
-    border: 'solid 2px',
+    border: 'solid 3px',
     margin: '15px 0px',
   },
   clothesText: {
@@ -188,36 +189,36 @@ function Closet() {
             {closetImg['hat'] ? (
               <img style={{ width: '100%', height: '100%' }} alt="" src={closetImg['hat']} id="hat" />
             ) : (
-              <div style={{ fontSize: '18.5px', whiteSpace: 'pre-wrap' }} id="hat">
+              <h2 style={{ fontSize: '18.5px', whiteSpace: 'pre-wrap' }} id="hat">
                 {'모자 / \n안경'}
-              </div>
+              </h2>
             )}
           </div>
           <div className={classes.topContainer} onClick={handleClothesContainerClick} id="top">
             {closetImg['top'] ? (
               <img style={{ width: '100%', height: '100%' }} alt="" src={closetImg['top']} id="top" />
             ) : (
-              <div className={classes.clothesText} id="top">
+              <h2 className={classes.clothesText} id="top">
                 상의
-              </div>
+              </h2>
             )}
           </div>
           <div className={classes.bottomContainer} onClick={handleClothesContainerClick} id="bottom">
             {closetImg['bottom'] ? (
               <img style={{ width: '100%', height: '100%' }} alt="" src={closetImg['bottom']} id="bottom" />
             ) : (
-              <div className={classes.clothesText} id="bottom">
+              <h2 className={classes.clothesText} id="bottom">
                 하의
-              </div>
+              </h2>
             )}
           </div>
           <div className={classes.shoesContainer} onClick={handleClothesContainerClick} id="shoes">
             {closetImg['shoes'] ? (
               <img style={{ width: '100%', height: '100%' }} alt="" src={closetImg['shoes']} id="shoes" />
             ) : (
-              <div className={classes.clothesText} id="shoes">
+              <h2 className={classes.clothesText} id="shoes">
                 신발
-              </div>
+              </h2>
             )}
           </div>
         </div>
@@ -226,9 +227,9 @@ function Closet() {
             {closetImg['bag'] ? (
               <img style={{ width: '100%', height: '100%' }} alt="" src={closetImg['bag']} id="bag" />
             ) : (
-              <div className={classes.clothesText} id="bag">
+              <h2 className={classes.clothesText} id="bag">
                 가방
-              </div>
+              </h2>
             )}
           </div>
         </div>
@@ -264,6 +265,7 @@ const LuxuryBtn = styled.button`
   background: transparent;
   text-transform: uppercase;
   font-weight: 800;
+  font-family: GmarketSansMedium;
   font-style: normal;
   font-size: 15px;
   letter-spacing: 0.5px;

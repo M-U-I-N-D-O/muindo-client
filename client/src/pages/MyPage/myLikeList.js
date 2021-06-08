@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: '56px',
     flexDirection: 'column',
     alignItems: 'center',
-
     overflow: 'auto',
     height: '100vh',
   },
@@ -75,7 +74,7 @@ export default function MyPageLikeList() {
   useEffect(() => {
     try {
       axios
-        .get(`http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/my-looks`, {
+        .get(`http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/thumbs`, {
           // headers: {
           //   Authorization:
           //     'Bearer ' +
@@ -90,7 +89,7 @@ export default function MyPageLikeList() {
     }
     // return clothesList;
   }, []);
-
+  console.log(a);
   // const scrollToEnd = () => {
   //   console.log('마지막');
   //   setTimeout(() => {

@@ -15,8 +15,6 @@ import { ClothesIdContext } from '../../App';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
-import html2canvas from 'html2canvas';
-
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',

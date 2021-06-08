@@ -261,9 +261,9 @@ export default function MyPageLikeDetail() {
       </div>
 
       <div className={classes.ectBtnContainer}>
-        <LuxuryBtn1 className={classes.shareBtn} onClick={handleShareClick}>
+        {/* <LuxuryBtn1 className={classes.shareBtn} onClick={handleShareClick}>
           {'공유하기'}
-        </LuxuryBtn1>
+        </LuxuryBtn1> */}
         <Menu
           id="simple-menu"
           anchorEl={shareAnchor}

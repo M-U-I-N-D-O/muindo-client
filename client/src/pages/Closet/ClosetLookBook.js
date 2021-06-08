@@ -241,6 +241,8 @@ export default function ClosetLookBook() {
   };
 
   const handleUpload = async () => {
+    history.push('/loading');
+
     function downloadURI(uri, name) {
       var link = document.createElement('a');
       link.download = name;
@@ -282,7 +284,9 @@ export default function ClosetLookBook() {
     );
     console.log(res);
     const seq = res.data.id;
-    history.push('/my_page_closet_detail/' + seq);
+    setTimeout(function () {
+      history.push('/my_page_closet_detail/' + seq);
+    }, 1200);
   };
   // console.log(lookBookId);
   console.log(seq);
@@ -379,6 +383,13 @@ export default function ClosetLookBook() {
             onClick={() => {
               history.push('/closet');
               setModifyAnchor(null);
+              setClosetClothesId({
+                hat: '',
+                top: '',
+                bottom: '',
+                shoes: '',
+                bag: '',
+              });
             }}
           >
             의상 수정하기
@@ -414,15 +425,7 @@ export default function ClosetLookBook() {
         {/* <LuxuryBtn onClick={handleColorChangeClick}>{'배경 색상 \n 변경하기'}</LuxuryBtn>
         <LuxuryBtn onClick={handleImageDownloadClick}>{'이미지 \n 다운로드'}</LuxuryBtn>
         <LuxuryBtn>{'카카오톡 \n공유하기'}</LuxuryBtn> */}
-        <LuxuryBtn
-          onClick={() => {
-            // history.push('/my_page_closet_detail/' + seq);
-            console.log('gi');
-          }}
-          onClick={handleUpload}
-        >
-          {'커뮤니티 \n등록'}
-        </LuxuryBtn>
+        <LuxuryBtn onClick={handleUpload}>{'커뮤니티 \n등록'}</LuxuryBtn>
       </div>
     </div>
   );
@@ -473,6 +476,8 @@ const LuxuryBtn = styled.button`
   box-sizing: border-box;
   /* max-width: 150px;
   min-width: 130px; */
+  font-family: GmarketSansMedium;
+
   height: 65px;
   width: 100px;
   background: transparent;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import styled from 'styled-components';
 import MotionStack from 'react-motion-stack';
 import 'react-motion-stack/build/motion-stack.css';

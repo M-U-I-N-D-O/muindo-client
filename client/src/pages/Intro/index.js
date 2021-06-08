@@ -18,7 +18,7 @@ function Intro() {
         console.log(err);
       });
     dispatch(navbarMode(0));
-    localStorage.clear();
+    localStorage.removeItem('token');
     dispatch(userName(''));
     dispatch(userEmail(''));
     dispatch(bottomNavMode(-1));

@@ -9,7 +9,7 @@ import { useHistory } from 'react-router';
 
 import { ModalContext } from '../../App';
 
-import html2canvas from 'html2canvas';
+import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,14 +41,8 @@ const useStyles = makeStyles((theme) => ({
     minWidth: '310px',
     width: '90vw',
     height: '650px',
-    border: 'solid 5px',
+    border: 'solid 4px',
     minHeight: '57vh',
-  },
-  btnBox: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    height: '140px',
   },
   leftClothesContainer: {
     display: 'flex',
@@ -136,7 +130,36 @@ const useStyles = makeStyles((theme) => ({
     margin: '15px 0px',
   },
   clothesText: {
-    fontSize: '23.5px',
+    fontSize: '21px',
+  },
+  btnBox: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    height: '150px',
+    width: '350px',
+    marginTop: '40px',
+    fontFamily: 'GmarketSansMedium',
+    fontSize: '18px',
+    fontWeight: 'bold',
+  },
+
+  eraseBtn: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+
+    width: '150px',
+    height: '60px',
+  },
+  makeLookBookBtn: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    whiteSpace: 'pre-wrap',
+
+    width: '150px',
+    height: '60px',
   },
 }));
 
@@ -183,14 +206,14 @@ function Closet() {
       <div className={classes.title}>
         <TopComment comment={'옷장에 옷을 넣어보세요.'} />
       </div>
-      <div className={classes.closetContainer}>
+      <Paper elevation={5} className={classes.closetContainer}>
         <div className={classes.leftClothesContainer}>
           <div className={classes.hatContainer} onClick={handleClothesContainerClick} id="hat">
             {closetImg['hat'] ? (
               <img style={{ width: '100%', height: '100%' }} alt="" src={closetImg['hat']} id="hat" />
             ) : (
-              <h2 style={{ fontSize: '18.5px', whiteSpace: 'pre-wrap' }} id="hat">
-                {'모자 / \n안경'}
+              <h2 style={{ fontSize: '18px', whiteSpace: 'pre-wrap' }} id="hat">
+                {'모자🧢\n안경👓'}
               </h2>
             )}
           </div>
@@ -199,7 +222,7 @@ function Closet() {
               <img style={{ width: '100%', height: '100%' }} alt="" src={closetImg['top']} id="top" />
             ) : (
               <h2 className={classes.clothesText} id="top">
-                상의
+                상의👕
               </h2>
             )}
           </div>
@@ -208,7 +231,7 @@ function Closet() {
               <img style={{ width: '100%', height: '100%' }} alt="" src={closetImg['bottom']} id="bottom" />
             ) : (
               <h2 className={classes.clothesText} id="bottom">
-                하의
+                하의👖
               </h2>
             )}
           </div>
@@ -217,37 +240,38 @@ function Closet() {
               <img style={{ width: '100%', height: '100%' }} alt="" src={closetImg['shoes']} id="shoes" />
             ) : (
               <h2 className={classes.clothesText} id="shoes">
-                신발
+                신발👟
               </h2>
             )}
           </div>
         </div>
         <div className={classes.rightClothesContainer}>
-          <div className={classes.bagContainer} onClick={handleClothesContainerClick} id="bag">
+          <div elevation={4} className={classes.bagContainer} onClick={handleClothesContainerClick} id="bag">
             {closetImg['bag'] ? (
               <img style={{ width: '100%', height: '100%' }} alt="" src={closetImg['bag']} id="bag" />
             ) : (
               <h2 className={classes.clothesText} id="bag">
-                가방
+                가방🎒
               </h2>
             )}
           </div>
         </div>
-      </div>
+      </Paper>
 
       <div className={classes.btnBox}>
-        <LuxuryBtn onClick={handleEraseAllButtonClick}>모두 지우기</LuxuryBtn>
-        <LuxuryBtn
+        <Paper elevation={4} className={classes.eraseBtn} onClick={handleEraseAllButtonClick}>
+          모두 지우기
+        </Paper>
+        <Paper
+          elevation={4}
+          className={classes.makeLookBookBtn}
           onClick={() => {
-            history.push('/loading');
-            setTimeout(function () {
-              history.push('/closet/look_book');
-            }, 0);
+            history.push('/closet/look_book');
           }}
           disabled={!(closetImg['hat'] || closetImg['top'] || closetImg['bottom'] || closetImg['shoes'] || closetImg['bag'])}
         >
-          {'LOOKBOOK \n만들기'}
-        </LuxuryBtn>
+          {'LOOKBOOK\n      만들기'}
+        </Paper>
       </div>
     </div>
   );

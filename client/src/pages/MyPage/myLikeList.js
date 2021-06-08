@@ -7,6 +7,7 @@ import axios from 'axios';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 import { useHistory } from 'react-router';
+import Paper from '@material-ui/core/Paper';
 
 import { ModalContext } from '../../App';
 
@@ -17,11 +18,11 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: '56px',
     flexDirection: 'column',
     alignItems: 'center',
-    overflow: 'auto',
+    // overflow: 'auto',
     height: '100vh',
   },
 
-  box: { overflow: 'auto' },
+  // box: { overflow: 'auto' },
   closetListContainer: {
     display: 'flex',
     width: '100vw',
@@ -36,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
-    border: 'solid 2px',
+    // border: 'solid 2px',
     fontSize: '11px',
     width: '40%',
     height: '210px',
@@ -67,8 +68,9 @@ export default function MyPageLikeList() {
   const PAGE_NUMBER = 1;
   const [page, setPage] = useState(PAGE_NUMBER);
   // const { seq } = useParams();
+  const [myLikeListInfo, setMyLikeListInfo] = useState([]);
 
-  const [a, setA] = useState([]);
+  // const [a, setA] = useState([]);
   const [lookBookId, setLookBookId] = useState('');
 
   useEffect(() => {
@@ -82,14 +84,13 @@ export default function MyPageLikeList() {
           // },
         })
         .then((res) => {
-          setA(res.data);
+          setMyLikeListInfo(res.data);
         });
     } catch (err) {
       console.log(err);
     }
     // return clothesList;
   }, []);
-  console.log(a);
   // const scrollToEnd = () => {
   //   console.log('마지막');
   //   setTimeout(() => {
@@ -113,11 +114,10 @@ export default function MyPageLikeList() {
     history.push('/my_page_like_detail/' + seq);
   };
 
-  console.log(a);
   console.log(window.localStorage.token);
   return (
     <div className={classes.root} id="scrollableDiv">
-      <TopComment comment={'MY LIKE LIST'} />
+      <TopComment comment={'저장한 룩북 리스트'} />
       {/* <InfiniteScroll
         className={classes.closetListContainer}
         dataLength={a.length}
@@ -127,21 +127,21 @@ export default function MyPageLikeList() {
         scrollableTarget="scrollableDiv"
       > */}
       <div className={classes.closetListContainer}>
-        {Array.isArray(a) &&
-          a.map(function (image, i) {
+        {Array.isArray(myLikeListInfo) &&
+          myLikeListInfo.map(function (item, i) {
             return (
-              <div className={classes.individualClosetContainer} onClick={handleLookBookClick}>
+              <Paper elevation={4} className={classes.individualClosetContainer} onClick={handleLookBookClick}>
                 <div className={classes.thumbnailBox}>
-                  <img className={classes.thumbnail} alt={a[i]['id']} src={a[i]['url']} />
+                  <img className={classes.thumbnail} alt={myLikeListInfo[i]['id']} src={myLikeListInfo[i]['url']} />
                 </div>
-                {image['ok'] > image['no'] && <img className={classes.confirmedThumb} src="/images/confirmed_thumb.png" alt="sdgf" />}
-                {image['no'] > image['ok'] && <img className={classes.confirmedThumb} src="/images/confirmed_thumb_down.png" alt="sdgf" />}
-                {(image['ok'] < 1 && image['no'] < 1) || image['ok'] === image['no'] ? (
-                  <img className={classes.confirmedThumb} src="/images/question.png" alt="sdgf" />
+                {item['ok'] > item['no'] && <img className={classes.confirmedThumb} src="/images/myPage/confirmed_thumb.png" alt="sdgf" />}
+                {item['no'] > item['ok'] && <img className={classes.confirmedThumb} src="/images/myPage/confirmed_thumb_down.png" alt="sdgf" />}
+                {(item['ok'] < 1 && item['no'] < 1) || item['ok'] === item['no'] ? (
+                  <img className={classes.confirmedThumb} src="/images/myPage/question.png" alt="sdgf" />
                 ) : (
                   <div></div>
                 )}
-              </div>
+              </Paper>
             );
           })}
       </div>

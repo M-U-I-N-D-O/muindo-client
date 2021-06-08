@@ -11,11 +11,9 @@ import { Helmet } from 'react-helmet';
 import { ModalContext } from '../../App';
 // import { ModalContext } from '../../data/confirmed_star.png';
 import { ClothesIdContext } from '../../App';
-
+import Paper from '@material-ui/core/Paper';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-
-import html2canvas from 'html2canvas';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,11 +45,11 @@ const useStyles = makeStyles((theme) => ({
     width: '325px',
     // border: 'solid 4px',
     height: '100px',
-    marginTop: '10px',
+    marginTop: '30px',
   },
   likeNoBox: {
     width: '143px',
-    border: 'solid 4px',
+    border: 'solid 3.5px',
     height: '80px',
   },
   likeNoTitleBox: {
@@ -61,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '20px',
     fontWeight: 'bold',
     height: '50%',
-    borderBottom: 'solid 4px',
+    borderBottom: 'solid 3px',
   },
   likeNoCountBox: {
     display: 'flex',
@@ -85,20 +83,20 @@ const useStyles = makeStyles((theme) => ({
 
     // border: 'solid 4px',
   },
-  listBtn: {
-    display: 'flex',
-    width: '130px',
-    height: '40px',
+  // listBtn: {
+  //   display: 'flex',
+  //   width: '130px',
+  //   height: '40px',
 
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontSize: '20px',
-    fontWeight: 'bold',
-    border: 'solid 4px',
-  },
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  //   fontSize: '20px',
+  //   fontWeight: 'bold',
+  //   border: 'solid 4px',
+  // },
   confirmLink: {
     marginTop: '10px',
-    marginBottom: '10px',
+    marginBottom: '20px',
     fontSize: '12px',
   },
   myLookBookImg: {
@@ -124,19 +122,50 @@ const useStyles = makeStyles((theme) => ({
     right: '38px',
     color: 'red',
   },
+  lookBookBtn: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    whiteSpace: 'pre-wrap',
+    border: 'solid 2px',
+    width: '150px',
+    height: '60px',
+    marginTop: '25px',
+  },
   shareBtn: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    fontSize: '16px',
+    fontSize: '15px',
+    width: '90px',
+    height: '40px',
+    fontFamily: 'GmarketSansMedium',
+  },
+  listBtn: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: '14px',
+    width: '90px',
+    height: '40px',
+    fontFamily: 'GmarketSansMedium',
+  },
+  restartBtn: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: '13px',
+    width: '90px',
+    height: '40px',
+    fontFamily: 'GmarketSansMedium',
   },
   ectBtnContainer: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-around',
-    marginTop: '15px',
-    marginBottom: '15px',
-    width: '325px',
+    marginTop: '35px',
+    marginBottom: '25px',
+    width: '330px',
   },
 }));
 
@@ -231,40 +260,42 @@ export default function MyPageLikeDetail() {
   return (
     <div className={classes.root}>
       <MyClosetInfo />
-      <TopComment comment={'MY LIKE LOOKBOOK'} />
+      <TopComment comment={'저장한 룩북'} />
 
-      <div className={classes.closetContainer}>
+      <Paper elevation={4} className={classes.closetContainer}>
         <img className={classes.myLookBookImg} src={myLookBookInfo['url']} alt="aaa" />
         <div>
           {myLookBookInfo['ok'] > 5 && (
             <div>
               {' '}
-              <img className={classes.confirmedThumb} src="/images/confirmed_thumb.png" alt="sdgf" />
+              <img className={classes.confirmedThumb} src="/images/myPage/confirmed_thumb.png" alt="sdgf" />
               <span className={classes.confirmedText}>Confirmed!</span>
             </div>
           )}
         </div>
-      </div>
+      </Paper>
       <div className={classes.likeNoContainer}>
-        <div className={classes.likeNoBox}>
-          <div className={classes.likeNoTitleBox}>Like</div>
+        <Paper elevation={4} className={classes.likeNoBox}>
+          <div className={classes.likeNoTitleBox}>Confirm✔</div>
           <div className={classes.likeNoCountBox}>{myLookBookInfo['ok']}</div>
-        </div>
-        <div className={classes.likeNoBox}>
-          <div className={classes.likeNoTitleBox}>NoNo</div>
+        </Paper>
+        <Paper elevation={4} className={classes.likeNoBox}>
+          <div className={classes.likeNoTitleBox}>Nope❌</div>
           <div className={classes.likeNoCountBox}>{myLookBookInfo['no']}</div>
-        </div>
+        </Paper>
       </div>
 
       <div className={classes.lookBookInfoBtnContainer}>
-        <LuxuryBtn2 onClick={handleOpenClosetModalClick}>{'LookBook \n 정보보기'}</LuxuryBtn2>{' '}
+        <Paper elevation={4} className={classes.lookBookBtn} onClick={handleOpenClosetModalClick}>
+          {'LookBook \n 정보보기'}
+        </Paper>{' '}
       </div>
 
       <div className={classes.ectBtnContainer}>
         {/* <LuxuryBtn1 className={classes.shareBtn} onClick={handleShareClick}>
           {'공유하기'}
         </LuxuryBtn1> */}
-        <Menu
+        {/* <Menu
           id="simple-menu"
           anchorEl={shareAnchor}
           getContentAnchorEl={null | undefined}
@@ -288,37 +319,18 @@ export default function MyPageLikeDetail() {
           </Helmet>
 
           <MenuItem onClick={shareByKakao}>카카오톡 공유하기</MenuItem>
-        </Menu>
+        </Menu> */}
 
-        <LuxuryBtn1
+        <Paper
+          elevation={4}
           className={classes.shareBtn}
           onClick={() => {
             history.push('/my_page_like_list');
           }}
         >
           목록으로
-        </LuxuryBtn1>
-        <LuxuryBtn1
-          className={classes.shareBtn}
-          onClick={() => {
-            history.push('/closet');
-            setClosetClothesId({
-              hat: '',
-              top: '',
-              bottom: '',
-              shoes: '',
-              bag: '',
-            });
-          }}
-        >
-          {'다시 \n 만들기'}
-        </LuxuryBtn1>
+        </Paper>
       </div>
-
-      <a href="/solution" className={classes.confirmLink} style={{ color: '#000' }} target="_blank" rel="noreferrer">
-        컨펌을 못 받으셨나요?
-      </a>
-      {}
     </div>
   );
 }

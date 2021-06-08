@@ -11,6 +11,7 @@ import { useHistory } from 'react-router';
 
 import { ModalContext } from '../../App';
 // import { ModalContext } from '../../';
+import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,11 +22,11 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
 
-    overflow: 'auto',
+    // overflow: 'auto',
     height: '100vh',
   },
 
-  box: { overflow: 'auto' },
+  // box: { overflow: 'auto' },
   closetListContainer: {
     display: 'flex',
     width: '100vw',
@@ -40,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
-    border: 'solid 2px',
+    // border: 'solid 2px',
     fontSize: '11px',
     width: '40%',
     height: '210px',
@@ -117,7 +118,7 @@ export default function MyPageClosetList() {
   console.log(window.localStorage.token);
   return (
     <div className={classes.root} id="scrollableDiv">
-      <TopComment comment={'MY LOOKBOOK LIST'} />
+      <TopComment comment={'나의 룩북 리스트'} />
       {/* <InfiniteScroll
         className={classes.closetListContainer}
         dataLength={a.length}
@@ -130,18 +131,18 @@ export default function MyPageClosetList() {
         {Array.isArray(myClosetListInfo) &&
           myClosetListInfo.map(function (item, i) {
             return (
-              <div className={classes.individualClosetContainer} onClick={handleLookBookClick}>
+              <Paper elevation={4} className={classes.individualClosetContainer} onClick={handleLookBookClick}>
                 <div className={classes.thumbnailBox}>
                   <img className={classes.thumbnail} alt={myClosetListInfo[i]['id']} src={myClosetListInfo[i]['url']} />
                 </div>
-                {item['ok'] > item['no'] && <img className={classes.confirmedThumb} src="/images/confirmed_thumb.png" alt="sdgf" />}
-                {item['no'] > item['ok'] && <img className={classes.confirmedThumb} src="/images/confirmed_thumb_down.png" alt="sdgf" />}
+                {item['ok'] > item['no'] && <img className={classes.confirmedThumb} src="/images/myPage/confirmed_thumb.png" alt="sdgf" />}
+                {item['no'] > item['ok'] && <img className={classes.confirmedThumb} src="/images/myPage/confirmed_thumb_down.png" alt="sdgf" />}
                 {(item['ok'] < 1 && item['no'] < 1) || item['ok'] === item['no'] ? (
-                  <img className={classes.confirmedThumb} src="/images/question.png" alt="sdgf" />
+                  <img className={classes.confirmedThumb} src="/images/myPage/question.png" alt="sdgf" />
                 ) : (
                   <div></div>
                 )}
-              </div>
+              </Paper>
             );
           })}
       </div>

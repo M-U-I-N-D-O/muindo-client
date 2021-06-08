@@ -9,7 +9,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 import axios from 'axios';
 
 import Button from '@material-ui/core/Button';
-
+import Paper from '@material-ui/core/Paper';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -79,20 +79,18 @@ const useStyles = makeStyles((theme) => ({
     width: '300px',
     alignItems: 'center',
     // justifyContent: 'space-evenly',
-
+    margin: '7px',
     // justifyContent: 'center',
   },
   infoImg: {
     width: '80px',
     height: '90px',
-    marginBottom: '12px',
   },
   infoBox: {
     marginLeft: '15px',
     display: 'flex',
     fontSize: '16px',
     flexDirection: 'column',
-    marginBottom: '12px',
   },
 }));
 
@@ -116,7 +114,7 @@ export default function MyClosetInfo(props) {
             {closetDetailInfo &&
               closetDetailInfo.map(function (item, i) {
                 return (
-                  <div className={classes.infoContainer}>
+                  <Paper elevation={2} className={classes.infoContainer}>
                     <img className={classes.infoImg} src={item['url']} alt="infoImg" />
                     <div className={classes.infoBox}>
                       <a
@@ -126,12 +124,12 @@ export default function MyClosetInfo(props) {
                         rel="noreferrer"
                         title="무신사에서 상품 보기"
                       >
-                        <div> {item['brand']}</div>
+                        <div style={{ color: '#000000', fontWeight: 'bold' }}> {item['brand']}</div>
                         <div> {item['name']}</div>
                         <div> {item['price']}\</div>
                       </a>
                     </div>
-                  </div>
+                  </Paper>
                 );
               })}
           </div>

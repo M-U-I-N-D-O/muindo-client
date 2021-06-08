@@ -3,25 +3,21 @@ import { Link, useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import TopComment from '../../components/AnalysisClothes/topComment';
 import styled from 'styled-components';
-import MyClosetInfo from '../../components/MyPage/myClosetInfoModal';
 import axios from 'axios';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 import { useHistory } from 'react-router';
+import Paper from '@material-ui/core/Paper';
 
 import { ModalContext } from '../../App';
-// import { ModalContext } from '../../';
-import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     paddingTop: '60px',
     paddingBottom: '56px',
-    // // justifyContent: 'center',
     flexDirection: 'column',
     alignItems: 'center',
-
     // overflow: 'auto',
     height: '100vh',
   },
@@ -31,9 +27,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     width: '100vw',
     maxWidth: '350px',
-    // height: '70vh',
     flexWrap: 'wrap',
     alignItems: 'center',
+    // marginTop: '10px',
     justifyContent: 'center',
     paddingBottom: '56px',
   },
@@ -66,18 +62,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MyPageClosetList() {
+export default function MyPageLikeList() {
   const classes = useStyles();
   const history = useHistory();
   const PAGE_NUMBER = 1;
   const [page, setPage] = useState(PAGE_NUMBER);
+  // const { seq } = useParams();
+  const [myLikeListInfo, setMyLikeListInfo] = useState([]);
 
-  const [myClosetListInfo, setMyClosetListInfo] = useState([]);
+  // const [a, setA] = useState([]);
+  const [lookBookId, setLookBookId] = useState('');
 
   useEffect(() => {
     try {
       axios
-        .get(`http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/my-looks`, {
+        .get(`http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/thumbs`, {
           // headers: {
           //   Authorization:
           //     'Bearer ' +
@@ -85,13 +84,13 @@ export default function MyPageClosetList() {
           // },
         })
         .then((res) => {
-          setMyClosetListInfo(res.data);
+          setMyLikeListInfo(res.data);
         });
     } catch (err) {
       console.log(err);
     }
+    // return clothesList;
   }, []);
-
   // const scrollToEnd = () => {
   //   console.log('마지막');
   //   setTimeout(() => {
@@ -112,13 +111,13 @@ export default function MyPageClosetList() {
 
   const handleLookBookClick = async (event) => {
     const seq = event.target.alt;
-    history.push('/my_page_closet_detail/' + seq);
+    history.push('/my_page_like_detail/' + seq);
   };
 
   console.log(window.localStorage.token);
   return (
     <div className={classes.root} id="scrollableDiv">
-      <TopComment comment={'나의 룩북 리스트'} />
+      <TopComment comment={'저장한 룩북 리스트'} />
       {/* <InfiniteScroll
         className={classes.closetListContainer}
         dataLength={a.length}
@@ -128,12 +127,12 @@ export default function MyPageClosetList() {
         scrollableTarget="scrollableDiv"
       > */}
       <div className={classes.closetListContainer}>
-        {Array.isArray(myClosetListInfo) &&
-          myClosetListInfo.map(function (item, i) {
+        {Array.isArray(myLikeListInfo) &&
+          myLikeListInfo.map(function (item, i) {
             return (
               <Paper elevation={4} className={classes.individualClosetContainer} onClick={handleLookBookClick}>
                 <div className={classes.thumbnailBox}>
-                  <img className={classes.thumbnail} alt={myClosetListInfo[i]['id']} src={myClosetListInfo[i]['url']} />
+                  <img className={classes.thumbnail} alt={myLikeListInfo[i]['id']} src={myLikeListInfo[i]['url']} />
                 </div>
                 {item['ok'] > item['no'] && <img className={classes.confirmedThumb} src="/images/myPage/confirmed_thumb.png" alt="sdgf" />}
                 {item['no'] > item['ok'] && <img className={classes.confirmedThumb} src="/images/myPage/confirmed_thumb_down.png" alt="sdgf" />}

@@ -11,7 +11,7 @@ import axios from 'axios';
 
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Button from '@material-ui/core/Button';
-
+import Paper from '@material-ui/core/Paper';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
@@ -53,6 +53,7 @@ const useStyles = makeStyles((theme) => ({
     // // minHeight: ' calc(100vh - 8.5rem)',
     // // backgroundColor: '#ececec',
     // // height: '80vw',
+    fontFamily: 'GmarketSansMedium',
 
     display: 'flex',
     paddingTop: '70px',
@@ -124,7 +125,7 @@ const useStyles = makeStyles((theme) => ({
     // alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
-    border: 'solid 2px',
+    // border: 'solid 2px',
     fontSize: '18px',
     width: '160px',
     height: '300px',
@@ -193,34 +194,6 @@ export default function ClosetModal() {
   const [page, setPage] = useState(PAGE_NUMBER);
 
   const [lastClothesId, setLastClothesId] = useState('1');
-  //중요한 코드!!!!!!!!
-  // useEffect(() => {
-  //   try {
-  //     axios
-  //       .get(`http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/looks/items?type=${modalMode}`, {
-  //         headers: { Authorization: 'Bearer ' + window.localStorage.token },
-  //       })
-  //       .then((res) => {
-  //         setClothesList(res.data);
-  //       });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  //   // return clothesList;
-  // }, [modalMode]);
-  // console.log(clothesList);
-  // console.log(modalMode);
-
-  // useEffect(() => {
-  //   setClosetClothesId({
-  //     hat: '',
-  //     top: '',
-  //     bottom: '',
-  //     shoes: '',
-  //     bag: '',
-  //   });
-  // }, []);
-
   useEffect(() => {
     console.log(closetClothesId);
 
@@ -228,28 +201,15 @@ export default function ClosetModal() {
       axios
         .get(
           `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/looks/items?middlecategory=${condition.middleCategory}&subcategory=${condition.subCategory}&brand=${condition.brand}&type=${modalMode}&itemid=`,
-          // {
-          //   headers: {
-          //     Authorization:
-          //       'Bearer ' +
-          //       'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNjIyODMyODkxLCJqdGkiOiI5ODQ3YmIyOC1kNTg3LTQ1ZmEtOTE1Yi1iMjIwNTI1OTFiNzAiLCJ0eXBlIjoiYWNjZXNzIiwic3ViIjoxMCwibmJmIjoxNjIyODMyODkxLCJleHAiOjE2MjU0MjQ4OTF9.yp8IslBjQNWukhJ6FzJ4q0H31rWzSqg2XMwAJ95038k',
-          //   },
-          // },
         )
         .then((res) => {
           setClothesList(res.data);
-          // setLastClothesId(res.data[res.data.length - 1]['id']);
         });
     } catch (err) {
       console.log(err);
     }
-    // setLastClothesId(clothesList[clothesList.length - 1]['id']);
-
-    // return clothesList;
   }, [modalMode, condition]);
   console.log(clothesList);
-
-  // console.log(lastClothesId);
 
   const setLastId = () => {
     if (clothesList.length !== 0) {
@@ -263,24 +223,15 @@ export default function ClosetModal() {
 
   const scrollToEnd = () => {
     console.log('마지막');
-    // setLastClothesId(clothesList[clothesList.length - 1]['id']);
 
     setTimeout(() => {
       setPage(page + 1);
       axios
         .get(
           `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/looks/items?middlecategory=${condition.middleCategory}&subcategory=${condition.subCategory}&brand=${condition.brand}&type=${modalMode}&itemid=${lastClothesId}`,
-          {
-            headers: {
-              Authorization:
-                'Bearer ' +
-                'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNjIyODMyODkxLCJqdGkiOiI5ODQ3YmIyOC1kNTg3LTQ1ZmEtOTE1Yi1iMjIwNTI1OTFiNzAiLCJ0eXBlIjoiYWNjZXNzIiwic3ViIjoxMCwibmJmIjoxNjIyODMyODkxLCJleHAiOjE2MjU0MjQ4OTF9.yp8IslBjQNWukhJ6FzJ4q0H31rWzSqg2XMwAJ95038k',
-            },
-          },
         )
         .then((res) => {
           setClothesList([...clothesList, ...res.data]);
-          // setLastClothesId(res.data[res.data.length - 1]['id']);
         });
     }, 1000);
   };
@@ -348,7 +299,7 @@ export default function ClosetModal() {
                     {Array.isArray(clothesList) &&
                       clothesList.map(function (image, i) {
                         return (
-                          <div className={classes.individualClothesContainer}>
+                          <Paper elevation={4} className={classes.individualClothesContainer}>
                             <div className={classes.clothesThumbnailBox}>
                               <img className={classes.modalImg} alt={clothesList[i]['id']} src={clothesList[i]['url']} onClick={handleImageSelect} />
                             </div>
@@ -365,7 +316,7 @@ export default function ClosetModal() {
                                 <div style={{ fontSize: '16px' }}>{clothesList[i]['price']}\</div>
                               </a>
                             </div>
-                          </div>
+                          </Paper>
                         );
                       })}
 
@@ -378,7 +329,7 @@ export default function ClosetModal() {
             )}
             <div className={classes.modalCloseBtn}>
               <Button onClick={handleClose} color="primary">
-                닫기
+                Close
               </Button>
             </div>
           </div>

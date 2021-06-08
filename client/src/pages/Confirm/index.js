@@ -5,12 +5,15 @@ import 'react-motion-stack/build/motion-stack.css';
 import axios from 'axios';
 import url from '../../url';
 
+import HeartCheckbox from 'react-heart-checkbox';
+
 class Confirm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       text: '',
       ItemList: [],
+      checked: false,
     };
   }
 
@@ -18,7 +21,8 @@ class Confirm extends Component {
     axios
       .get(url + 'tinder/look')
       .then((res) => {
-        this.setState({ ItemList: res.data });
+        let fetchData = res.data.sort(() => Math.random() - 0.5);
+        this.setState({ ItemList: fetchData });
       })
       .catch((err) => {
         console.log(err);
@@ -45,12 +49,13 @@ class Confirm extends Component {
       console.log(err);
     }
   };
+
   onBeforeSwipe = (swipe, direction, state) => {
     document.getElementById('tinder-btn1').disabled = true;
     document.getElementById('tinder-btn2').disabled = true;
 
     if (direction === 'right') {
-      this.setState({ text: 'Like' });
+      this.setState({ text: 'Confirm' });
       console.log('방금 선택 : 따봉 하나 추가요~');
       this.postData('like', state.data[0].element.key, localStorage.getItem('token'));
     } else {
@@ -61,6 +66,7 @@ class Confirm extends Component {
     console.log('현재 data key', state.data[0].element.key);
     console.log('유저 token : ', localStorage.getItem('token'));
     console.log('데이터 :', state.data);
+    this.setState({ checked: false });
     swipe();
   };
 
@@ -70,6 +76,28 @@ class Confirm extends Component {
     document.getElementById('tinder-btn1').disabled = false;
     document.getElementById('tinder-btn2').disabled = false;
   };
+
+  putData = (value, id) => {
+    // console.log('현재 찜하기 정보 : ', value, id);
+    const json = JSON.stringify({ value: value });
+    try {
+      axios
+        .put(url + `tinder/thumbs/${id}`, json, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+        .then((res) => {
+          console.log('put 결과 : ', res);
+        });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // onClickHandler = () => {
+  //   this.setState({ checked: !this.state.checked });
+  // };
 
   renderButtons(props) {
     return (
@@ -98,7 +126,30 @@ class Confirm extends Component {
           data={this.state.ItemList.map((item, index) => {
             var returnObj = {};
             returnObj['id'] = index;
-            returnObj['element'] = <TinderImg key={item.id} src={item.url} alt="img" />;
+            returnObj['element'] = (
+              <TinderBox key={item.id}>
+                <TinderImg src={item.url} alt="img" />
+                <WishButton
+                  onClick={(e) => {
+                    // e.preventDefault();
+                    this.setState({ checked: !this.state.checked });
+                    // console.log('checkd :', !this.state.checked);
+                    this.putData(!this.state.checked, item.id);
+                  }}
+                >
+                  ❤
+                </WishButton>
+
+                {/* <HeartCheckbox
+                  checked={this.state.checked}
+                  onClick={(e) => {
+                    e
+                    this.setState({ checked: !this.state.checked });
+                    console.log('checked : ', this.state.checked);
+                  }}
+                /> */}
+              </TinderBox>
+            );
             return returnObj;
           })}
           onSwipeEnd={this.onSwipeEnd}
@@ -114,6 +165,13 @@ class Confirm extends Component {
           ) : (
             <BottomText style={{ color: 'green' }}>{this.state.text}</BottomText>
           )}
+          {/* <WishButton
+            onClick={(e) => {
+              this.putData(!checked);
+            }}
+          >
+            ❤
+          </WishButton> */}
         </BottomContainer>
       </div>
     );
@@ -141,9 +199,17 @@ const BottomText = styled.h1`
   bottom: 35%;
   margin: 0 auto;
 `;
+const TinderBox = styled.div``;
 const TinderImg = styled.img`
   max-width: 100%;
   height: auto;
   user-select: none;
   padding-top: 60px;
+`;
+const WishButton = styled.button`
+  margin: 0 auto;
+`;
+const HeartButton = styled(HeartCheckbox)`
+  width: 100px;
+  height: 100px;
 `;

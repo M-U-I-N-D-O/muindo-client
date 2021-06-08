@@ -62,7 +62,7 @@ const GoogleLogin = () => {
 
     setTimeout(() => {
       onSilentRefresh();
-    }, 20000);
+    }, 5000);
     dispatch(userName(user.name));
     dispatch(userEmail(user.email));
     dispatch(dialogMode(-1));

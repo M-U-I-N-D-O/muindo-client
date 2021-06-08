@@ -22,6 +22,7 @@
     "react-dom": "^17.0.2",
     "react-dropzone": "^11.3.2",
     "react-firebaseui": "^5.0.2",
+    "react-heart-checkbox": "0.0.4",
     "react-helmet": "^6.1.0",
     "react-infinite-scroll-component": "^6.1.0",
     "react-motion-stack": "0.0.4",

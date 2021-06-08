@@ -106,11 +106,25 @@ function MyPage() {
                 dispatch(dialogMode(-1));
                 history.push('/my_page_closet_list');
               } else {
-                console.log('로그인 먼저 해주세요 !');
+                dispatch(dialogMode(1));
               }
             }}
           >
             <ListText>내 옷장 확인하기</ListText>
+          </ListItem>
+          <Divider />
+          <ListItem
+            button
+            onClick={() => {
+              if (localStorage.getItem('token')) {
+                dispatch(dialogMode(-1));
+                history.push('/mypage/thumbs');
+              } else {
+                dispatch(dialogMode(1));
+              }
+            }}
+          >
+            <ListText>위시 옷장 리스트</ListText>
           </ListItem>
         </List>
 

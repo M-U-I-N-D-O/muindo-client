@@ -95,7 +95,7 @@ export default function MyPageClosetList() {
   const history = useHistory();
   const PAGE_NUMBER = 1;
   const [page, setPage] = useState(PAGE_NUMBER);
-  const { seq } = useParams();
+  // const { seq } = useParams();
 
   const [a, setA] = useState([]);
   const [lookBookId, setLookBookId] = useState('');
@@ -105,7 +105,9 @@ export default function MyPageClosetList() {
       axios
         .get(`http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/my-looks`, {
           headers: {
-            Authorization: 'Bearer ' + window.localStorage.token,
+            Authorization:
+              'Bearer ' +
+              'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNjIyODMyODkxLCJqdGkiOiI5ODQ3YmIyOC1kNTg3LTQ1ZmEtOTE1Yi1iMjIwNTI1OTFiNzAiLCJ0eXBlIjoiYWNjZXNzIiwic3ViIjoxMCwibmJmIjoxNjIyODMyODkxLCJleHAiOjE2MjU0MjQ4OTF9.yp8IslBjQNWukhJ6FzJ4q0H31rWzSqg2XMwAJ95038k',
           },
         })
         .then((res) => {
@@ -117,19 +119,19 @@ export default function MyPageClosetList() {
     // return clothesList;
   }, []);
 
-  const scrollToEnd = () => {
-    console.log('마지막');
-    setTimeout(() => {
-      setPage(page + 1);
-      axios
-        .get(`http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/my-looks`, {
-          headers: { Authorization: 'Bearer ' + window.localStorage.token },
-        })
-        .then((res) => {
-          setA([...a, ...res.data]);
-        });
-    }, 1000);
-  };
+  // const scrollToEnd = () => {
+  //   console.log('마지막');
+  //   setTimeout(() => {
+  //     setPage(page + 1);
+  //     axios
+  //       .get(`http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/my-looks`, {
+  //         headers: { Authorization: 'Bearer ' + window.localStorage.token },
+  //       })
+  //       .then((res) => {
+  //         setA([...a, ...res.data]);
+  //       });
+  //   }, 1000);
+  // };
 
   // useEffect(() => {
   //   lookBookId && history.push(`/my_page_closet_detail/${lookBookId}`);
@@ -152,14 +154,15 @@ export default function MyPageClosetList() {
       <TopComment comment={'내 옷장 보기'} />
       {/* <div className={classes.closetThumbnail}> */}
       {/* <div className={classes.box} > */}
-      <InfiniteScroll
+      {/* <InfiniteScroll
         className={classes.closetListContainer}
         dataLength={a.length}
         next={() => scrollToEnd()}
         hasMore={true}
         loader={<h3 style={{ textAlign: 'center' }}>Loading...</h3>}
         scrollableTarget="scrollableDiv"
-      >
+      > */}
+      <div className={classes.closetListContainer}>
         {Array.isArray(a) &&
           a.map(function (image, i) {
             return (
@@ -168,7 +171,7 @@ export default function MyPageClosetList() {
                 <div className={classes.thumbnailBox}>
                   <img className={classes.thumbnail} alt={a[i]['id']} src={a[i]['url']} />
                 </div>
-                {image['id']}
+                {/* {image['id']} */}
 
                 {/* <a href={a[i]['shop_url']} target="_blank" title="무신사에서 상품 보기" rel="noreferrer">
                   <div>{a[i]['brand']}</div>
@@ -178,7 +181,8 @@ export default function MyPageClosetList() {
               </div>
             );
           })}
-      </InfiniteScroll>
+      </div>
+      {/* </InfiniteScroll> */}
     </div>
     // </div>
     // </div>

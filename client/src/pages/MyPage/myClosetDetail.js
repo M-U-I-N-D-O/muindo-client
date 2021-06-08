@@ -6,9 +6,11 @@ import styled from 'styled-components';
 import MyClosetInfo from '../../components/MyPage/myClosetInfoModal';
 import axios from 'axios';
 import { useHistory } from 'react-router';
+import { Helmet } from 'react-helmet';
 
 import { ModalContext } from '../../App';
 // import { ModalContext } from '../../data/confirmed_star.png';
+import { ClothesIdContext } from '../../App';
 
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -70,16 +72,17 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 'bold',
   },
 
-  listBtnContainer: {
+  lookBookInfoBtnContainer: {
     display: 'flex',
     width: '325px',
     // border: 'solid 4px',
     height: '70px',
     marginTop: '5px',
     alignItems: 'center',
-    justifyContent: 'center',
     fontSize: '20px',
     fontWeight: 'bold',
+    justifyContent: 'space-around',
+
     // border: 'solid 4px',
   },
   listBtn: {
@@ -121,6 +124,20 @@ const useStyles = makeStyles((theme) => ({
     right: '42px',
     color: 'red',
   },
+  shareBtn: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: '16px',
+  },
+  ectBtnContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    marginTop: '15px',
+    marginBottom: '15px',
+    width: '325px',
+  },
 }));
 
 export default function MyPageClosetDetail() {
@@ -129,129 +146,127 @@ export default function MyPageClosetDetail() {
   const { openClosetInfoModal, setOpenClosetInfoModal } = useContext(ModalContext);
   const { seq } = useParams();
   const { closetDetailInfo, setClosetDetailInfo } = useContext(ModalContext);
+  const [shareAnchor, setShareAnchor] = useState(null);
 
-  const [myClosetLookBookImg, setMyClosetLookBookImg] = useState([]);
-  const [a, setA] = useState([]);
-  const [closetInfo, setClosetInfo] = useState([]);
-
-  const handleOpenClosetModalClick = (event) => {
-    setOpenClosetInfoModal(true);
-  };
+  const [myLookBookInfo, setMyLookBookInfo] = useState([]);
+  const { closetClothesId, setClosetClothesId } = useContext(ClothesIdContext);
 
   useEffect(() => {
     try {
       axios
         .get(`http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/my-looks/${seq}`, {
-          headers: { Authorization: 'Bearer ' + window.localStorage.token },
+          headers: {
+            Authorization:
+              'Bearer ' +
+              'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNjIyODMyODkxLCJqdGkiOiI5ODQ3YmIyOC1kNTg3LTQ1ZmEtOTE1Yi1iMjIwNTI1OTFiNzAiLCJ0eXBlIjoiYWNjZXNzIiwic3ViIjoxMCwibmJmIjoxNjIyODMyODkxLCJleHAiOjE2MjU0MjQ4OTF9.yp8IslBjQNWukhJ6FzJ4q0H31rWzSqg2XMwAJ95038k',
+          },
         })
         .then((res) => {
-          console.log(res);
-          setA(res.data);
-          axios
-            .post(
-              'http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/my-looks/info',
-              // 'http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/my-looks/info',
-              {
-                bag_id: res.data.bag,
-                bottom_id: res.data.bottom,
-                hat_id: res.data.hat,
-                shoes_id: res.data.shoes,
-                top_id: res.data.top,
-              },
-              { headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + window.localStorage.token } },
-            )
-            .then((response) => {
-              console.log(response);
-              setClosetDetailInfo(response.data);
-            });
+          const arr1 = [];
+          arr1.push(res.data.hat, res.data.top, res.data.bottom, res.data.shoes, res.data.bag);
+          console.log(arr1);
+
+          const arr2 = [];
+          for (var i = 0; i < arr1.length; i++) {
+            if (arr1[i] !== null) {
+              // console.log(arr1[i]);
+              arr2.push(arr1[i]);
+            }
+          }
+          console.log(arr2);
+
+          setClosetDetailInfo(arr2);
+          setMyLookBookInfo(res.data.my_look);
         });
     } catch (err) {
       console.log(err);
     }
   }, []);
-  console.log(a);
-  console.log(seq);
+  const handleOpenClosetModalClick = () => {
+    setOpenClosetInfoModal(true);
+  };
+  const handleShareClick = (event) => {
+    setShareAnchor(event.currentTarget);
+  };
 
-  // useEffect(() => {
-  //   try {
-  //     axios.get('http://localhost:3000/data/closet.json').then((res) => {
-  //       let result = res.data.data;
-  //       // console.log(res.data.data['bag']);
-  //       // console.log(typeof [1, 2, 3]);
-  //       setMyClosetLookBookImg(res.data.data['hat']);
-  //     });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  //   return myClosetLookBookImg;
-  // }, [myClosetLookBookImg]);
+  const handleShareClose = () => {
+    setShareAnchor(null);
+  };
 
-  // useEffect(async() => {
-  //   try {
-  //     axios.get(`http://elice-kdt-ai-track-vm-ai-12.koreacentral.cloudapp.azure.com:5000/looks/items?type=hat`).then((res) => {
-  //       setMyClosetLookBookImg(res.data);
-  //     });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  //   // return clothesList;
-  // }, [myClosetLookBookImg]);
+  const handleImageDownloadClick = async () => {
+    setShareAnchor(null);
+  };
+  const shareByKakao = () => {
+    if (window.Kakao) {
+      const kakao = window.Kakao;
+      if (!kakao.isInitialized()) {
+        kakao.init(process.env.REACT_APP_KAKAO_KEY);
+        console.log(window.Kakao.isInitialized());
+      }
+      kakao.Link.sendDefault({
+        objectType: 'feed',
+        content: {
+          title: 'MUINDO에서 만든 룩북이 도착했어요!',
+          description: '무지하게 패션 인싸 되고 싶은 사람들\n도와주는 곳, MUINDO',
+          // imageUrl: 'https://ifh.cc/g/pXhGOy.jpg',
+          // imageUrl: 'https://ifh.cc/g/GKUPxC.png',
+          imageUrl: 'https://ifh.cc/g/6R44lA.png',
+          link: {
+            mobileWebUrl: 'http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com',
+            webUrl: 'http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com',
+          },
+        },
 
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     const res = await axios.get(`http://elice-kdt-ai-track-vm-ai-12.koreacentral.cloudapp.azure.com:5000/looks/items?type=hat`);
-  //     setMyClosetLookBookImg(res.data);
-  //   }
-  //   fetchData();
-  // }, []);
-
-  // const handleInfoClick = () => {
-  //   setInfoAnchor(true);
-  // };
-  // const handleInfoClose = () => {
-  //   setInfoAnchor(null);
-  // };
+        buttons: [
+          {
+            title: '나도 룩북 만들기',
+            link: {
+              mobileWebUrl: 'http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com',
+              webUrl: 'http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com',
+            },
+          },
+        ],
+      });
+    }
+  };
 
   return (
     <div className={classes.root}>
       <MyClosetInfo />
       <div className={classes.closetContainer}>
-        {Array.isArray(myClosetLookBookImg) && <img className={classes.myLookBookImg} src={a['url']} alt="aaa" />}
-        {/* <img className={classes.myLookBookImg} src="/images/closet/closet_bottom2.jpg" alt="aaa" /> */}
-        {/* {a['ok'] > a['no'] * 2 && ( */}
+        <img className={classes.myLookBookImg} src={myLookBookInfo['url']} alt="aaa" />
         <div>
-          <img className={classes.confirmedStar} src="/images/confirmed_thumb.png" alt="sdgf" />{' '}
-          <span className={classes.confirmedText}>Confirmed!</span>
+          {myLookBookInfo['ok'] > 10 && (
+            <div>
+              {' '}
+              <img className={classes.confirmedStar} src="/images/confirmed_thumb.png" alt="sdgf" />
+              <span className={classes.confirmedText}>Confirmed!</span>
+            </div>
+          )}
         </div>
-        {/* )} */}
       </div>
       <div className={classes.likeNoContainer}>
         <div className={classes.likeNoBox}>
           <div className={classes.likeNoTitleBox}>Like</div>
-          <div className={classes.likeNoCountBox}>{a['ok']}</div>
+          <div className={classes.likeNoCountBox}>{myLookBookInfo['ok']}</div>
         </div>
         <div className={classes.likeNoBox}>
           <div className={classes.likeNoTitleBox}>NoNo</div>
-          <div className={classes.likeNoCountBox}>{a['no']}</div>
+          <div className={classes.likeNoCountBox}>{myLookBookInfo['no']}</div>
         </div>
       </div>
-      <div className={classes.listBtnContainer}>
-        {/* <div className={classes.listBtn}> */}
-        <LuxuryBtn
-          onClick={() => {
-            history.push('/my_page_closet_list');
-          }}
-        >
-          목록으로
-        </LuxuryBtn>
 
-        {/* </div> */}
+      <div className={classes.lookBookInfoBtnContainer}>
+        <LuxuryBtn2 onClick={handleOpenClosetModalClick}>{'LookBook \n 정보보기'}</LuxuryBtn2>{' '}
       </div>
-      <div className={classes.bottomContents}>
-        <LuxuryBtn2 onClick={handleOpenClosetModalClick}>{'LookBook \n 정보보기'}</LuxuryBtn2>
-        {/* <Menu
+
+      <div className={classes.ectBtnContainer}>
+        <div className={classes.shareBtn} onClick={handleShareClick}>
+          {'공유하기'}
+        </div>
+        <Menu
           id="simple-menu"
-          anchorEl={infoAnchor}
+          anchorEl={shareAnchor}
           getContentAnchorEl={null | undefined}
           anchorOrigin={{
             vertical: 'bottom',
@@ -262,16 +277,48 @@ export default function MyPageClosetDetail() {
             horizontal: 'center',
           }}
           keepMounted
-          open={Boolean(infoAnchor)}
-          onClose={handleInfoClose}
+          open={Boolean(shareAnchor)}
+          onClose={handleShareClose}
         >
-          <MenuItem onClick={handleOpenClosetModalClick}>옷 정보 보기</MenuItem>
-          <MenuItem>컨펌을 못받으셨나요?</MenuItem>
-        </Menu> */}
+          <a href={myLookBookInfo['url']} style={{ color: '#000000', textDecoration: 'none' }}>
+            <MenuItem onClick={handleImageDownloadClick}>이미지 다운로드 </MenuItem>
+          </a>
+          <Helmet>
+            <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+          </Helmet>
+
+          <MenuItem onClick={shareByKakao}>카카오톡 공유하기</MenuItem>
+        </Menu>
+
+        <div
+          className={classes.shareBtn}
+          onClick={() => {
+            history.push('/my_page_closet_list');
+          }}
+        >
+          목록으로
+        </div>
+        <div
+          className={classes.shareBtn}
+          onClick={() => {
+            history.push('/closet');
+            setClosetClothesId({
+              hat: '',
+              top: '',
+              bottom: '',
+              shoes: '',
+              bag: '',
+            });
+          }}
+        >
+          다시 만들기
+        </div>
       </div>
+
       <a href="/solution" className={classes.confirmLink} style={{ color: '#000' }} target="_blank" rel="noreferrer">
         컨펌을 못 받으셨나요?
       </a>
+      {}
     </div>
   );
 }
@@ -279,8 +326,6 @@ export default function MyPageClosetDetail() {
 const LuxuryBtn = styled.button`
   display: inline-block;
   box-sizing: border-box;
-  /* max-width: 150px;
-  min-width: 130px; */
   height: 45px;
   width: 140px;
   background: transparent;
@@ -301,7 +346,7 @@ const LuxuryBtn = styled.button`
   background-size: 300% 300%;
   text-decoration: none;
   /* margin: 15px 5px 15px; */
-  border: 4px solid;
+  border-bottom: 4px solid;
   :hover {
     color: black;
     border: 7px solid;

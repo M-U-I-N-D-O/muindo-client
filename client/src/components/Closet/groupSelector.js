@@ -80,13 +80,8 @@ export default function GroupSelector() {
       }
       let brandEngArr = [];
       for (var o = 0; o < result.length; o++) {
-        brandEngArr.push(result[o]['brand']);
+        brandEngArr.push(result[o]['brand_eng']);
       }
-
-      // let categoryNumArr = [];
-      // for (var m = 0; m < result.length; m++) {
-      //   categoryNumArr.push(result[m]['category_num']);
-      // }
 
       setCategoryList(categoryArr);
       setCategoryNumList(categoryNumArr);
@@ -152,7 +147,7 @@ export default function GroupSelector() {
         </FormControl>
         <FormControl className={classes.selector}>
           <InputLabel>소분류</InputLabel>
-          <Select value="sub_category" onChange={handleChangeSubCategory}>
+          <Select value="sub-category" onChange={handleChangeSubCategory}>
             {conditionNum !== 10000 ? (
               subCategoryList[conditionNum].map(function (selector, i) {
                 return <MenuItem value={subCategoryNumList[conditionNum][i]}>{selector}</MenuItem>;
@@ -167,7 +162,7 @@ export default function GroupSelector() {
           <Select value="brand" onChange={handleChangeBrand}>
             {conditionNum !== 10000 ? (
               brandList[conditionNum].map(function (selector, i) {
-                return <MenuItem value={brandEngList[conditionNum[i]]}>{selector}</MenuItem>;
+                return <MenuItem value={brandEngList[conditionNum][i]}>{selector}</MenuItem>;
               })
             ) : (
               <MenuItem>중분류를 선택하세요</MenuItem>

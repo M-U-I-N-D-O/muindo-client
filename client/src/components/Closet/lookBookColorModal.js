@@ -13,7 +13,7 @@ import { ModalContext } from '../../App';
 
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
-import { SketchPicker, CirclePicker } from 'react-color';
+import { SketchPicker, CirclePicker, ChromePicker } from 'react-color';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -145,7 +145,56 @@ export default function ColorChangeModal({ data }) {
       <Dialog className={classes.root} open={lookBookColorModal} TransitionComponent={Transition} keepMounted onClose={handleLookBookColorClose}>
         <DialogContent>
           <div className={classes.colorCircleBox}>
-            <CirclePicker color="#fff" onChangeComplete={handleLookBookColorChange} />
+            {/* <ChromePicker /> */}
+            {/* <CirclePicker
+              color="#fff"
+              colors={[
+                '#df5f6a',
+                '#f0b5ba',
+                '#e4a679',
+                '#e0d666',
+                '#b6efb1',
+                '#cbec9e',
+                '#a8eee8',
+                '#b5d8f0',
+                '#5aa7de',
+                '#dddff8',
+                '#a9aeee',
+                '#f5d8f7',
+                '#f4c6e1',
+                '#98a1a8',
+                '#606e79',
+                '#000000',
+
+              ]}
+              circleSize="32px"
+              circleSpacing="17px"
+              onChangeComplete={handleLookBookColorChange}
+            /> */}
+            <CirclePicker
+              color="#fff"
+              colors={[
+                '#df5f6a',
+                '#f0b5ba',
+                '#e4a679',
+                '#e0d666',
+                '#b6efb1',
+                '#cbec9e',
+                '#9DC8C8',
+                '#a8eee8',
+                '#b5d8f0',
+                '#5aa7de',
+                '#dddff8',
+                '#a9aeee',
+                '#f5d8f7',
+                '#f4c6e1',
+                '#D499B9',
+                '#98a1a8',
+                '#606e79',
+                '#000000',
+              ]}
+              onChangeComplete={handleLookBookColorChange}
+            />
           </div>
         </DialogContent>
         <DialogActions>

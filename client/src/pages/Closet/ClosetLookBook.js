@@ -9,6 +9,7 @@ import axios from 'axios';
 import { useHistory } from 'react-router';
 import { Helmet } from 'react-helmet';
 
+import Paper from '@material-ui/core/Paper';
 import { ModalContext } from '../../App';
 import { ClothesIdContext } from '../../App';
 // import { ModalContext } from '../../';
@@ -62,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
     // flexDirection: 'column',
     alignItems: 'center',
 
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     width: '350px',
   },
   leftClothesContainer: {
@@ -150,6 +151,15 @@ const useStyles = makeStyles((theme) => ({
     // minHeight: '100px',
     // width: '30vw',
   },
+  lookBookBtn: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100px',
+    height: '50px',
+    marginTop: '30px',
+    fontFamily: 'GmarketSansMedium',
+  },
 }));
 
 export default function ClosetLookBook() {
@@ -157,17 +167,13 @@ export default function ClosetLookBook() {
   const history = useHistory();
   const { lookBookColorSelect, setLookBookColorSelect } = useContext(ModalContext);
 
-  const { openClosetModal, setOpenClosetModal } = useContext(ModalContext);
   const { lookBookColorModal, setLookBookColorModal } = useContext(ModalContext);
-  const { modalMode, setModalMode } = useContext(ModalContext);
   const { closetImg, setClosetImg } = useContext(ModalContext);
   const { closetClothesId, setClosetClothesId } = useContext(ClothesIdContext);
 
   const [modifyAnchor, setModifyAnchor] = useState(null);
   const [shareAnchor, setShareAnchor] = useState(null);
-  const [imgUrl, setImgUrl] = useState('');
   const { seq } = useParams();
-  const [lookBookId, setLookBookId] = useState('');
 
   const captureRef = useRef();
 
@@ -241,6 +247,8 @@ export default function ClosetLookBook() {
   };
 
   const handleUpload = async () => {
+    history.push('/loading');
+
     function downloadURI(uri, name) {
       var link = document.createElement('a');
       link.download = name;
@@ -282,7 +290,9 @@ export default function ClosetLookBook() {
     );
     console.log(res);
     const seq = res.data.id;
-    history.push('/my_page_closet_detail/' + seq);
+    setTimeout(function () {
+      history.push('/my_page_closet_detail/' + seq);
+    }, 1200);
   };
   // console.log(lookBookId);
   console.log(seq);
@@ -328,7 +338,7 @@ export default function ClosetLookBook() {
       <div className={classes.title}>
         <TopComment comment={'룩북을 만들어보세요.'} />
       </div>
-      <div className={classes.closetContainer} style={{ backgroundColor: lookBookColorSelect }}>
+      <Paper elevation={3} className={classes.closetContainer} style={{ backgroundColor: lookBookColorSelect }}>
         <div className={classes.modalImgContainer} style={{ backgroundColor: lookBookColorSelect }} ref={captureRef}>
           <div className={classes.modalImgBottom}>
             {closetImg['bottom'] ? <img style={{ width: '100%', height: '100%' }} alt="" src={closetImg['bottom']} id="bottom" /> : <div></div>}
@@ -348,7 +358,7 @@ export default function ClosetLookBook() {
             {closetImg['shoes'] ? <img style={{ width: '100%', height: '100%' }} alt="" src={closetImg['shoes']} id="shoes" /> : <div></div>}
           </div>
         </div>
-      </div>
+      </Paper>
 
       <div className={classes.btnBox}>
         {/* <LuxuryBtn
@@ -358,7 +368,9 @@ export default function ClosetLookBook() {
         >
           수정하기
         </LuxuryBtn> */}
-        <LuxuryBtn onClick={handleModifyClick}>{'수정하기'}</LuxuryBtn>
+        <Paper elevation={4} className={classes.lookBookBtn} onClick={handleModifyClick}>
+          수정하기✍
+        </Paper>
         <Menu
           id="simple-menu"
           anchorEl={modifyAnchor}
@@ -379,6 +391,13 @@ export default function ClosetLookBook() {
             onClick={() => {
               history.push('/closet');
               setModifyAnchor(null);
+              setClosetClothesId({
+                hat: '',
+                top: '',
+                bottom: '',
+                shoes: '',
+                bag: '',
+              });
             }}
           >
             의상 수정하기
@@ -386,9 +405,12 @@ export default function ClosetLookBook() {
           <MenuItem onClick={handleColorChangeClick}>배경 색상 변경하기</MenuItem>
         </Menu>
 
-        <LuxuryBtn onClick={handleShareClick}>{'공유하기'}</LuxuryBtn>
+        <Paper elevation={4} className={classes.lookBookBtn} onClick={handleShareClick}>
+          공유하기💌
+        </Paper>
         <Menu
           id="simple-menu"
+          ㅣ
           anchorEl={shareAnchor}
           getContentAnchorEl={null | undefined}
           anchorOrigin={{
@@ -414,15 +436,9 @@ export default function ClosetLookBook() {
         {/* <LuxuryBtn onClick={handleColorChangeClick}>{'배경 색상 \n 변경하기'}</LuxuryBtn>
         <LuxuryBtn onClick={handleImageDownloadClick}>{'이미지 \n 다운로드'}</LuxuryBtn>
         <LuxuryBtn>{'카카오톡 \n공유하기'}</LuxuryBtn> */}
-        <LuxuryBtn
-          onClick={() => {
-            // history.push('/my_page_closet_detail/' + seq);
-            console.log('gi');
-          }}
-          onClick={handleUpload}
-        >
-          {'커뮤니티 \n등록'}
-        </LuxuryBtn>
+        <Paper elevation={4} className={classes.lookBookBtn} onClick={handleUpload}>
+          컨펌받기👌
+        </Paper>
       </div>
     </div>
   );
@@ -473,6 +489,8 @@ const LuxuryBtn = styled.button`
   box-sizing: border-box;
   /* max-width: 150px;
   min-width: 130px; */
+  font-family: GmarketSansMedium;
+
   height: 65px;
   width: 100px;
   background: transparent;

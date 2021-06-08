@@ -110,7 +110,7 @@ function MyPage() {
               }
             }}
           >
-            <ListText>내 옷장 확인하기</ListText>
+            <ListText>나의 룩북 리스트</ListText>
           </ListItem>
           <Divider />
           <ListItem
@@ -118,15 +118,16 @@ function MyPage() {
             onClick={() => {
               if (localStorage.getItem('token')) {
                 dispatch(dialogMode(-1));
-                history.push('/mypage/thumbs');
+                history.push('/my_page_like_list');
               } else {
                 dispatch(dialogMode(1));
               }
             }}
           >
-            <ListText>위시 옷장 리스트</ListText>
+            <ListText>저장한 룩북 리스트</ListText>
           </ListItem>
         </List>
+        {/* 유지가 추가한 부분 */}
 
         {localStorage.getItem('token') && (
           <div style={{ display: 'flex', justifyContent: 'center' }}>

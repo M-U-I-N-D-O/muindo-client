@@ -7,6 +7,7 @@ import axios from 'axios';
 
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
+import Paper from '@material-ui/core/Paper';
 
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -22,17 +23,30 @@ const useStyles = makeStyles((theme) => ({
     // paddingTop: '60px',
     // paddingBottom: '56px',
     // justifyContent: 'center',
-    marginTop: '15px',
+    marginTop: '10px',
     flexDirection: 'column',
     alignItems: 'center',
-    width: '250px',
-    height: '95px',
+    width: '350px',
+    height: '105px',
     // maxWidth: '1024px',
     // minHeight: ' calc(100vh - 8.5rem)',
     // // height: '80vw',
   },
   selector: {
-    width: '80px',
+    width: '90px',
+    height: '35px',
+
+    margin: '10px',
+  },
+  initializeBtn: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: '10px',
+    width: '70px',
+    height: '35px',
+    border: 'solid 1px',
+    fontFamily: 'GmarketSansMedium',
   },
 }));
 
@@ -40,8 +54,6 @@ export default function GroupSelector() {
   const classes = useStyles();
   const { condition, setCondition } = useContext(ModalContext);
   const { modalMode, setModalMode } = useContext(ModalContext);
-  const { clothesList, setClothesList } = useContext(ModalContext);
-
   const [categoryList, setCategoryList] = useState([]);
   const [categoryNumList, setCategoryNumList] = useState([]);
   const [subCategoryList, setSubCategoryList] = useState([]);
@@ -135,7 +147,7 @@ export default function GroupSelector() {
       <div>
         <FormControl className={classes.selector}>
           <InputLabel>중분류</InputLabel>
-          <Select value="category" onChange={handleChangeCategory}>
+          <Select value={condition['middleCategory']} onChange={handleChangeCategory}>
             {condition['subCategory'] || condition['brand'] ? (
               <MenuItem onClick={handleInitialize}>분류 초기화</MenuItem>
             ) : (
@@ -147,7 +159,7 @@ export default function GroupSelector() {
         </FormControl>
         <FormControl className={classes.selector}>
           <InputLabel>소분류</InputLabel>
-          <Select value="sub-category" onChange={handleChangeSubCategory}>
+          <Select value={condition['subCategory']} onChange={handleChangeSubCategory}>
             {conditionNum !== 10000 ? (
               subCategoryList[conditionNum].map(function (selector, i) {
                 return <MenuItem value={subCategoryNumList[conditionNum][i]}>{selector}</MenuItem>;
@@ -159,7 +171,7 @@ export default function GroupSelector() {
         </FormControl>
         <FormControl className={classes.selector}>
           <InputLabel>브랜드</InputLabel>
-          <Select value="brand" onChange={handleChangeBrand}>
+          <Select value={condition['brand']} onChange={handleChangeBrand}>
             {conditionNum !== 10000 ? (
               brandList[conditionNum].map(function (selector, i) {
                 return <MenuItem value={brandEngList[conditionNum][i]}>{selector}</MenuItem>;
@@ -170,7 +182,9 @@ export default function GroupSelector() {
           </Select>
         </FormControl>
       </div>
-      <LuxuryBtn onClick={handleInitialize}>초기화</LuxuryBtn>
+      <Paper elevation={2} className={classes.initializeBtn} onClick={handleInitialize}>
+        초기화
+      </Paper>
     </div>
   );
 }

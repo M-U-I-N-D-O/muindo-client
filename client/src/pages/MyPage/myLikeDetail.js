@@ -20,23 +20,30 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     paddingTop: '60px',
     paddingBottom: '56px',
+    // // justifyContent: 'center',
     flexDirection: 'column',
     alignItems: 'center',
   },
 
   closetContainer: {
+    // backgroundColor: '#ced3e3',
     display: 'flex',
+    // alignItems: 'center',
+    // justifyContent: 'center',
     width: '340px',
     border: 'solid 4px',
     height: '380px',
+    // position: 'relative',
     // marginTop: '20px',
     position: 'relative',
   },
   likeNoContainer: {
+    // backgroundColor: '#ced3e3',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
     width: '325px',
+    // border: 'solid 4px',
     height: '100px',
     marginTop: '30px',
   },
@@ -66,12 +73,15 @@ const useStyles = makeStyles((theme) => ({
   lookBookInfoBtnContainer: {
     display: 'flex',
     width: '325px',
+    // border: 'solid 4px',
     height: '70px',
     marginTop: '5px',
     alignItems: 'center',
     fontSize: '20px',
     fontWeight: 'bold',
     justifyContent: 'space-around',
+
+    // border: 'solid 4px',
   },
   // listBtn: {
   //   display: 'flex',
@@ -159,7 +169,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MyPageClosetDetail() {
+export default function MyPageLikeDetail() {
   const classes = useStyles();
   const history = useHistory();
   const { openClosetInfoModal, setOpenClosetInfoModal } = useContext(ModalContext);
@@ -188,6 +198,7 @@ export default function MyPageClosetDetail() {
           const arr2 = [];
           for (var i = 0; i < arr1.length; i++) {
             if (arr1[i] !== null) {
+              // console.log(arr1[i]);
               arr2.push(arr1[i]);
             }
           }
@@ -249,7 +260,7 @@ export default function MyPageClosetDetail() {
   return (
     <div className={classes.root}>
       <MyClosetInfo />
-      <TopComment comment={'나의 룩북'} />
+      <TopComment comment={'저장한 룩북'} />
 
       <Paper elevation={4} className={classes.closetContainer}>
         <img className={classes.myLookBookImg} src={myLookBookInfo['url']} alt="aaa" />
@@ -275,7 +286,6 @@ export default function MyPageClosetDetail() {
       </div>
 
       <div className={classes.lookBookInfoBtnContainer}>
-        {/* <LuxuryBtn2 onClick={handleOpenClosetModalClick}>{'LookBook \n 정보보기'}</LuxuryBtn2>{' '} */}
         <Paper elevation={4} className={classes.lookBookBtn} onClick={handleOpenClosetModalClick}>
           {'LookBook \n 정보보기'}
         </Paper>{' '}
@@ -285,10 +295,7 @@ export default function MyPageClosetDetail() {
         {/* <LuxuryBtn1 className={classes.shareBtn} onClick={handleShareClick}>
           {'공유하기'}
         </LuxuryBtn1> */}
-        <Paper elevation={4} className={classes.shareBtn} onClick={handleShareClick}>
-          {'공유하기'}
-        </Paper>
-        <Menu
+        {/* <Menu
           id="simple-menu"
           anchorEl={shareAnchor}
           getContentAnchorEl={null | undefined}
@@ -312,62 +319,18 @@ export default function MyPageClosetDetail() {
           </Helmet>
 
           <MenuItem onClick={shareByKakao}>카카오톡 공유하기</MenuItem>
-        </Menu>
+        </Menu> */}
 
-        {/* <LuxuryBtn1
+        <Paper
+          elevation={4}
           className={classes.shareBtn}
           onClick={() => {
-            history.push('/my_page_closet_list');
+            history.push('/my_page_like_list');
           }}
         >
           목록으로
-        </LuxuryBtn1> */}
-        <Paper
-          elevation={4}
-          className={classes.listBtn}
-          onClick={() => {
-            history.push('/my_page_closet_list');
-          }}
-        >
-          목록으로
-        </Paper>
-        {/* <LuxuryBtn1
-          className={classes.shareBtn}
-          onClick={() => {
-            history.push('/closet');
-            setClosetClothesId({
-              hat: '',
-              top: '',
-              bottom: '',
-              shoes: '',
-              bag: '',
-            });
-          }}
-        >
-          {'다시 \n 만들기'}
-        </LuxuryBtn1> */}
-        <Paper
-          elevation={4}
-          className={classes.restartBtn}
-          onClick={() => {
-            history.push('/closet');
-            setClosetClothesId({
-              hat: '',
-              top: '',
-              bottom: '',
-              shoes: '',
-              bag: '',
-            });
-          }}
-        >
-          {'다시 \n 만들기'}
         </Paper>
       </div>
-
-      <a href="/solution" className={classes.confirmLink} style={{ color: '#000' }} target="_blank" rel="noreferrer">
-        컨펌을 못 받으셨나요?
-      </a>
-      {}
     </div>
   );
 }

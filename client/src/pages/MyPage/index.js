@@ -14,6 +14,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowBackIosRoundedIcon from '@material-ui/icons/ArrowBackIosRounded';
 import Slide from '@material-ui/core/Slide';
+import Paper from '@material-ui/core/Paper';
 
 import firebase from 'firebase';
 
@@ -88,17 +89,7 @@ function MyPage() {
           </Container>
         )}
 
-        <List>
-          <ListItem
-            button
-            onClick={() => {
-              dispatch(dialogMode(-1));
-              history.push('/about');
-            }}
-          >
-            <ListText>About MUINDO</ListText>
-          </ListItem>
-          <Divider />
+        <List style={{ padding: '0px' }}>
           <ListItem
             button
             onClick={() => {
@@ -126,13 +117,25 @@ function MyPage() {
           >
             <ListText>저장한 룩북 리스트</ListText>
           </ListItem>
+          <Divider />
+          <ListItem
+            button
+            onClick={() => {
+              dispatch(dialogMode(-1));
+              history.push('/about');
+            }}
+          >
+            <ListText>About MUINDO</ListText>
+          </ListItem>
         </List>
         {/* 유지가 추가한 부분 */}
 
         {localStorage.getItem('token') && (
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <LogoutButton onClick={signOut}>
-              <LogoutButtonText>로그아웃</LogoutButtonText>
+              <Paper elevation={4}>
+                <LogoutButtonText>로그아웃</LogoutButtonText>
+              </Paper>
             </LogoutButton>
           </div>
         )}
@@ -171,10 +174,13 @@ const LogoutButton = styled.button`
   position: absolute;
   bottom: 5%;
   width: 100px;
-  border: 2px solid black;
+  border: none;
   margin: 0 auto;
-  background-color: none;
+  background-color: white;
 `;
 const LogoutButtonText = styled.h3`
-  margin: 1vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 5vh;
 `;

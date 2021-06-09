@@ -29,7 +29,7 @@ class Main extends Component {
     document.getElementById('tinder-btn1').disabled = true;
     document.getElementById('tinder-btn2').disabled = true;
     if (direction === 'right') {
-      this.setState({ text: 'Like' });
+      this.setState({ text: 'Confirm' });
       // console.log('방금 선택 : 따봉 하나 추가요~');
     } else {
       this.setState({ text: 'Nope' });

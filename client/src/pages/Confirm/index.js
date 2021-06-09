@@ -78,7 +78,7 @@ class Confirm extends Component {
   };
 
   putData = (value, id) => {
-    // console.log('현재 찜하기 정보 : ', value, id);
+    console.log('현재 찜하기 정보 : ', value, id);
     const json = JSON.stringify({ value: value });
     try {
       axios
@@ -129,16 +129,18 @@ class Confirm extends Component {
             returnObj['element'] = (
               <TinderBox key={item.id}>
                 <TinderImg src={item.url} alt="img" />
-                <WishButton
-                  onClick={(e) => {
-                    // e.preventDefault();
-                    this.setState({ checked: !this.state.checked });
-                    // console.log('checkd :', !this.state.checked);
-                    this.putData(!this.state.checked, item.id);
-                  }}
-                >
-                  ❤
-                </WishButton>
+                <div style={{ textAlign: 'center' }}>
+                  <WishButton
+                    onClick={(e) => {
+                      // e.preventDefault();
+                      this.setState({ checked: !this.state.checked });
+                      // console.log('checkd :', !this.state.checked);
+                      this.putData(!this.state.checked, item.id);
+                    }}
+                  >
+                    <WishText>♥</WishText>
+                  </WishButton>
+                </div>
 
                 {/* <HeartCheckbox
                   checked={this.state.checked}
@@ -207,9 +209,18 @@ const TinderImg = styled.img`
   padding-top: 60px;
 `;
 const WishButton = styled.button`
-  margin: 0 auto;
+  margin: 0;
+  padding: 0;
+  /* background-color: transparent;
+  border: none; */
 `;
 const HeartButton = styled(HeartCheckbox)`
   width: 100px;
   height: 100px;
+`;
+const WishText = styled.p`
+  margin: 0;
+  padding: 0;
+  font-size: 36px;
+  width: 10vw;
 `;

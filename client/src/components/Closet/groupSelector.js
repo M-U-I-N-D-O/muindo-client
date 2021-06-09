@@ -14,6 +14,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
+import { ClothesIdContext } from '../../App';
+
 // import FilterData from '../../data/closetCategorization.json';
 import FilterData from '../../data/closetCategorization.json';
 
@@ -35,18 +37,26 @@ const useStyles = makeStyles((theme) => ({
   selector: {
     width: '90px',
     height: '35px',
-
     margin: '10px',
   },
+  initializeBtnContainer: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    width: '180px',
+    whiteSpace: 'pre-wrap',
+    marginTop: '25px',
+  },
+
   initializeBtn: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: '10px',
-    width: '70px',
-    height: '35px',
+    width: '80px',
+    height: '45px',
     border: 'solid 1px',
     fontFamily: 'GmarketSansMedium',
+    // marginRight: '10px',
   },
 }));
 
@@ -61,6 +71,10 @@ export default function GroupSelector() {
   const [brandList, setBrandList] = useState([]);
   const [brandEngList, setBrandEngList] = useState([]);
   const [conditionNum, setConditionNum] = useState(10000);
+  const { closetClothesId, setClosetClothesId } = useContext(ClothesIdContext);
+  const { closetImg, setClosetImg } = useContext(ModalContext);
+  const { openClosetModal, setOpenClosetModal } = useContext(ModalContext);
+
   const fetch = useEffect(() => {
     try {
       const res = FilterData;
@@ -106,13 +120,23 @@ export default function GroupSelector() {
     }
   }, [condition]);
 
-  const handleInitialize = (event) => {
+  const handleCategoryInitialize = (event) => {
     var newCondition = { ...condition };
     newCondition['middleCategory'] = '';
     newCondition['subCategory'] = '';
     newCondition['brand'] = '';
     setConditionNum(10000);
     setCondition(newCondition);
+  };
+
+  const handleImageInitialize = (event) => {
+    var closetClothesIdArr = { ...closetClothesId };
+    closetClothesIdArr[modalMode] = '';
+    setClosetClothesId(closetClothesIdArr);
+    var closetImgArr = { ...closetImg };
+    closetImgArr[modalMode] = '';
+    setClosetImg(closetImgArr);
+    setOpenClosetModal(false);
   };
 
   const handleChangeCategory = (event) => {
@@ -149,7 +173,7 @@ export default function GroupSelector() {
           <InputLabel>중분류</InputLabel>
           <Select value={condition['middleCategory']} onChange={handleChangeCategory}>
             {condition['subCategory'] || condition['brand'] ? (
-              <MenuItem onClick={handleInitialize}>분류 초기화</MenuItem>
+              <MenuItem onClick={handleCategoryInitialize}>분류 초기화</MenuItem>
             ) : (
               categoryList.map(function (selector, i) {
                 return <MenuItem value={categoryNumList[i]}>{selector}</MenuItem>;
@@ -182,9 +206,14 @@ export default function GroupSelector() {
           </Select>
         </FormControl>
       </div>
-      <Paper elevation={2} className={classes.initializeBtn} onClick={handleInitialize}>
-        초기화
-      </Paper>
+      <div className={classes.initializeBtnContainer}>
+        <Paper elevation={3} className={classes.initializeBtn} onClick={handleCategoryInitialize}>
+          {'카테고리\n초기화'}
+        </Paper>
+        <Paper elevation={3} className={classes.initializeBtn} onClick={handleImageInitialize}>
+          {' 의상\n초기화'}
+        </Paper>
+      </div>
     </div>
   );
 }

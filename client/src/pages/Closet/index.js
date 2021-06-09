@@ -8,6 +8,8 @@ import axios from 'axios';
 import { useHistory } from 'react-router';
 
 import { ModalContext } from '../../App';
+import { ClothesIdContext } from '../../App';
+import { ClothesPriceContext } from '../../App';
 
 import Paper from '@material-ui/core/Paper';
 
@@ -138,7 +140,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-around',
     height: '150px',
     width: '350px',
-    marginTop: '40px',
+    marginTop: '30px',
     fontFamily: 'GmarketSansMedium',
     fontSize: '18px',
     fontWeight: 'bold',
@@ -151,6 +153,17 @@ const useStyles = makeStyles((theme) => ({
 
     width: '150px',
     height: '60px',
+  },
+  closetPriceBox: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontFamily: 'GmarketSansMedium',
+    fontWeight: 'bold',
+    fontSize: '17px',
+    marginTop: '30px',
+    width: '200px',
+    height: '50px',
   },
   makeLookBookBtn: {
     display: 'flex',
@@ -171,6 +184,9 @@ function Closet() {
   const { openClosetModal, setOpenClosetModal } = useContext(ModalContext);
   const { modalMode, setModalMode } = useContext(ModalContext);
   const { closetImg, setClosetImg } = useContext(ModalContext);
+  const { closetClothesId, setClosetClothesId } = useContext(ClothesIdContext);
+  const { clothesPrice, setClothesPrice } = useContext(ClothesPriceContext);
+
   useEffect(() => {
     setClosetImg({
       hat: '',
@@ -179,7 +195,17 @@ function Closet() {
       shoes: '',
       bag: '',
     });
+    setClosetClothesId({
+      hat: '',
+      top: '',
+      bottom: '',
+      shoes: '',
+      bag: '',
+    });
+    setClothesPrice(0);
+    console.log(clothesPrice);
   }, []);
+  console.log(clothesPrice);
 
   const handleClothesContainerClick = (event) => {
     setModalMode(event.target.id);
@@ -197,6 +223,14 @@ function Closet() {
       shoes: '',
       bag: '',
     });
+    setClosetClothesId({
+      hat: '',
+      top: '',
+      bottom: '',
+      shoes: '',
+      bag: '',
+    });
+    setClothesPrice(0);
   };
 
   return (
@@ -258,17 +292,25 @@ function Closet() {
         </div>
       </Paper>
 
+      <div>
+        <Paper elevation={4} className={classes.closetPriceBox}>
+          {'총 금액💰 : '} {clothesPrice}\
+        </Paper>
+      </div>
+
       <div className={classes.btnBox}>
         <Paper elevation={4} className={classes.eraseBtn} onClick={handleEraseAllButtonClick}>
           모두 지우기
         </Paper>
+
         <Paper
           elevation={4}
           className={classes.makeLookBookBtn}
           onClick={() => {
-            history.push('/closet/look_book');
+            if (closetClothesId['hat'] || closetClothesId['top'] || closetClothesId['bottom'] || closetClothesId['shoes'] || closetClothesId['bag']) {
+              history.push('/closet/look_book');
+            }
           }}
-          disabled={!(closetImg['hat'] || closetImg['top'] || closetImg['bottom'] || closetImg['shoes'] || closetImg['bag'])}
         >
           {'LOOKBOOK\n      만들기'}
         </Paper>

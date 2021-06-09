@@ -69,13 +69,13 @@ function BottomNav() {
             if (localStorage['token']) {
               history.push('/closet');
               // 유지가 추가한 부분!
-              setClosetClothesId({
-                hat: '',
-                top: '',
-                bottom: '',
-                shoes: '',
-                bag: '',
-              });
+              // setClosetClothesId({
+              //   hat: '',
+              //   top: '',
+              //   bottom: '',
+              //   shoes: '',
+              //   bag: '',
+              // });
             } else {
               dispatch(dialogMode(1));
             }

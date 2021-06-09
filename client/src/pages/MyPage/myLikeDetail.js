@@ -178,7 +178,7 @@ export default function MyPageLikeDetail() {
   const [shareAnchor, setShareAnchor] = useState(null);
 
   const [myLookBookInfo, setMyLookBookInfo] = useState([]);
-  const { closetClothesId, setClosetClothesId } = useContext(ClothesIdContext);
+  const [lookBookPrice, setLookBookPrice] = useState(0);
 
   useEffect(() => {
     try {
@@ -191,20 +191,22 @@ export default function MyPageLikeDetail() {
           // },
         })
         .then((res) => {
-          const arr1 = [];
-          arr1.push(res.data.hat, res.data.top, res.data.bottom, res.data.shoes, res.data.bag);
-          console.log(arr1);
-
-          const arr2 = [];
-          for (var i = 0; i < arr1.length; i++) {
-            if (arr1[i] !== null) {
-              // console.log(arr1[i]);
-              arr2.push(arr1[i]);
+          const detailInfoArr = [];
+          detailInfoArr.push(res.data.hat, res.data.top, res.data.bottom, res.data.shoes, res.data.bag);
+          console.log(detailInfoArr);
+          const notNulDetailInfoArr = [];
+          for (var i = 0; i < detailInfoArr.length; i++) {
+            if (detailInfoArr[i] !== null) {
+              notNulDetailInfoArr.push(detailInfoArr[i]);
             }
           }
-          console.log(arr2);
 
-          setClosetDetailInfo(arr2);
+          var clothesPrice = 0;
+          for (var m = 0; m < notNulDetailInfoArr.length; m++) {
+            clothesPrice += parseInt(notNulDetailInfoArr[m]['price']);
+          }
+          setLookBookPrice(clothesPrice);
+          setClosetDetailInfo(notNulDetailInfoArr);
           setMyLookBookInfo(res.data.my_look);
         });
     } catch (err) {
@@ -259,9 +261,8 @@ export default function MyPageLikeDetail() {
 
   return (
     <div className={classes.root}>
-      <MyClosetInfo />
+      <MyClosetInfo price={lookBookPrice} />
       <TopComment comment={'저장한 룩북'} />
-
       <Paper elevation={4} className={classes.closetContainer}>
         <img className={classes.myLookBookImg} src={myLookBookInfo['url']} alt="aaa" />
         <div>
@@ -284,13 +285,11 @@ export default function MyPageLikeDetail() {
           <div className={classes.likeNoCountBox}>{myLookBookInfo['no']}</div>
         </Paper>
       </div>
-
       <div className={classes.lookBookInfoBtnContainer}>
         <Paper elevation={4} className={classes.lookBookBtn} onClick={handleOpenClosetModalClick}>
           {'LookBook \n 정보보기'}
         </Paper>{' '}
       </div>
-
       <div className={classes.ectBtnContainer}>
         {/* <LuxuryBtn1 className={classes.shareBtn} onClick={handleShareClick}>
           {'공유하기'}

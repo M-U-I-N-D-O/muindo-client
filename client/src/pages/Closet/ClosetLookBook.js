@@ -266,28 +266,33 @@ export default function ClosetLookBook() {
       console.log(url);
     });
     console.log(closetClothesId);
-    const res = await axios.post(
-      `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/looks/upload`,
-      {
-        dataType: 'text',
-        items: closetClothesId,
-        data: {
-          img: url,
+    const res = await axios
+      .post(
+        `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/looks/upload`,
+        {
+          dataType: 'text',
+          items: closetClothesId,
+          data: {
+            img: url,
+          },
+          success: function () {
+            // seq = res['id'];
+          },
         },
-        success: function () {
-          // seq = res['id'];
-        },
-      },
 
-      { headers: { 'Content-Type': 'application/json' } },
-      // {
-      //   headers: {
-      //     Authorization:
-      //       'Bearer ' +
-      //       'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNjIyODMyODkxLCJqdGkiOiI5ODQ3YmIyOC1kNTg3LTQ1ZmEtOTE1Yi1iMjIwNTI1OTFiNzAiLCJ0eXBlIjoiYWNjZXNzIiwic3ViIjoxMCwibmJmIjoxNjIyODMyODkxLCJleHAiOjE2MjU0MjQ4OTF9.yp8IslBjQNWukhJ6FzJ4q0H31rWzSqg2XMwAJ95038k',
-      //   },
-      // },
-    );
+        { headers: { 'Content-Type': 'application/json' } },
+        // {
+        //   headers: {
+        //     Authorization:
+        //       'Bearer ' +
+        //       'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNjIyODMyODkxLCJqdGkiOiI5ODQ3YmIyOC1kNTg3LTQ1ZmEtOTE1Yi1iMjIwNTI1OTFiNzAiLCJ0eXBlIjoiYWNjZXNzIiwic3ViIjoxMCwibmJmIjoxNjIyODMyODkxLCJleHAiOjE2MjU0MjQ4OTF9.yp8IslBjQNWukhJ6FzJ4q0H31rWzSqg2XMwAJ95038k',
+        //   },
+        // },
+      )
+      .catch((err) => {
+        console.log(err);
+        history.push('/error');
+      });
     console.log(res);
     const seq = res.data.id;
     setTimeout(function () {

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { dialogMode, userName, userEmail } from '../../actions';
 import firebase from 'firebase';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
@@ -36,6 +37,7 @@ const GoogleLogin = () => {
   const [user, setUser] = useState(null);
   const dispatch = useDispatch();
   const [cookies, setCookie, removeCookie] = useCookies(['name']);
+  const history = useHistory();
 
   // const signOut = () => {
   //   firebase
@@ -86,6 +88,7 @@ const GoogleLogin = () => {
         });
     } catch (err) {
       console.log(err);
+      history.push('/error');
     }
   };
 

@@ -25,6 +25,7 @@ class Confirm extends Component {
         this.setState({ ItemList: fetchData });
       })
       .catch((err) => {
+        this.props.history.push('/error');
         console.log(err);
       });
   };
@@ -46,6 +47,7 @@ class Confirm extends Component {
           console.log('반환 결과 :', res);
         });
     } catch (err) {
+      this.props.history.push('/error');
       console.log(err);
     }
   };
@@ -91,6 +93,7 @@ class Confirm extends Component {
           console.log('put 결과 : ', res);
         });
     } catch (err) {
+      this.props.history.push('/error');
       console.log(err);
     }
   };

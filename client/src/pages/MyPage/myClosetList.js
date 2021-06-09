@@ -88,6 +88,7 @@ export default function MyPageClosetList() {
           setMyClosetListInfo(res.data);
         });
     } catch (err) {
+      history.push('/error');
       console.log(err);
     }
   }, []);

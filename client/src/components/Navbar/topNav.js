@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
 
 function TopNav() {
   // 유지가 추가한 부분!
-  const { closetClothesId, setClosetClothesId } = useContext(ClothesIdContext);
+  // const { closetClothesId, setClosetClothesId } = useContext(ClothesIdContext);
 
   const classes = useStyles();
   // const [open, setOpen] = useState(false);
@@ -59,13 +59,13 @@ function TopNav() {
     dispatch(bottomNavMode(-1));
 
     // 유지가 추가한 부분!
-    setClosetClothesId({
-      hat: '',
-      top: '',
-      bottom: '',
-      shoes: '',
-      bag: '',
-    });
+    // setClosetClothesId({
+    //   hat: '',
+    //   top: '',
+    //   bottom: '',
+    //   shoes: '',
+    //   bag: '',
+    // });
   };
   return (
     <div className={classes.root}>

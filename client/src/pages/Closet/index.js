@@ -8,6 +8,7 @@ import axios from 'axios';
 import { useHistory } from 'react-router';
 
 import { ModalContext } from '../../App';
+import { ClothesIdContext } from '../../App';
 
 import Paper from '@material-ui/core/Paper';
 
@@ -171,8 +172,17 @@ function Closet() {
   const { openClosetModal, setOpenClosetModal } = useContext(ModalContext);
   const { modalMode, setModalMode } = useContext(ModalContext);
   const { closetImg, setClosetImg } = useContext(ModalContext);
+  const { closetClothesId, setClosetClothesId } = useContext(ClothesIdContext);
+
   useEffect(() => {
     setClosetImg({
+      hat: '',
+      top: '',
+      bottom: '',
+      shoes: '',
+      bag: '',
+    });
+    setClosetClothesId({
       hat: '',
       top: '',
       bottom: '',

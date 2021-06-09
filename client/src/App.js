@@ -39,6 +39,8 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './App.css';
 
+import useLocalStorage from '../src/hook/useLocalStorage';
+
 const ModalContext = createContext({});
 const ClothesIdContext = createContext({});
 
@@ -46,14 +48,14 @@ function App() {
   const navMode = useSelector((state) => state.navbar.switch);
   const [openClosetModal, setOpenClosetModal] = useState(false);
   const [modalMode, setModalMode] = useState('');
-  const [closetImg, setClosetImg] = useState({
+  const [closetImg, setClosetImg] = useLocalStorage('closetImg', {
     hat: '',
     top: '',
     bottom: '',
     shoes: '',
     bag: '',
   });
-  const [closetClothesId, setClosetClothesId] = useState({
+  const [closetClothesId, setClosetClothesId] = useLocalStorage('closetClothesId', {
     hat: '',
     top: '',
     bottom: '',

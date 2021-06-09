@@ -215,6 +215,35 @@ export default function MyPageClosetDetail() {
     setShareAnchor(null);
   };
   const shareByKakao = () => {
+    try {
+      axios
+        .get(`http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/my-looks/${seq}`, {
+          // headers: {
+          //   Authorization:
+          //     'Bearer ' +
+          //     'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNjIyODMyODkxLCJqdGkiOiI5ODQ3YmIyOC1kNTg3LTQ1ZmEtOTE1Yi1iMjIwNTI1OTFiNzAiLCJ0eXBlIjoiYWNjZXNzIiwic3ViIjoxMCwibmJmIjoxNjIyODMyODkxLCJleHAiOjE2MjU0MjQ4OTF9.yp8IslBjQNWukhJ6FzJ4q0H31rWzSqg2XMwAJ95038k',
+          // },
+        })
+        .then((res) => {
+          const arr1 = [];
+          arr1.push(res.data.hat, res.data.top, res.data.bottom, res.data.shoes, res.data.bag);
+          console.log(arr1);
+
+          const arr2 = [];
+          for (var i = 0; i < arr1.length; i++) {
+            if (arr1[i] !== null) {
+              arr2.push(arr1[i]);
+            }
+          }
+          console.log(arr2);
+
+          setClosetDetailInfo(arr2);
+          setMyLookBookInfo(res.data.my_look);
+        });
+    } catch (err) {
+      console.log(err);
+    }
+
     if (window.Kakao) {
       const kakao = window.Kakao;
       if (!kakao.isInitialized()) {
@@ -228,8 +257,10 @@ export default function MyPageClosetDetail() {
           description: '무지하게 패션 인싸 되고 싶은 사람들\n도와주는 곳, MUINDO',
           imageUrl: 'https://ifh.cc/g/6R44lA.png',
           link: {
-            mobileWebUrl: 'http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com',
-            webUrl: 'http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com',
+            // mobileWebUrl: `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:7357/my_page_closet_detail/${seq}`,
+            // webUrl: `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:7357/my_page_closet_detail/${seq}`,
+            mobileWebUrl: window.location.href,
+            webUrl: window.location.href,
           },
         },
 
@@ -237,8 +268,8 @@ export default function MyPageClosetDetail() {
           {
             title: '나도 룩북 만들기',
             link: {
-              mobileWebUrl: 'http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com',
-              webUrl: 'http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com',
+              mobileWebUrl: `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:7357/my_page_closet_detail/${seq}`,
+              webUrl: `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:7357/my_page_closet_detail/${seq}`,
             },
           },
         ],
@@ -254,9 +285,8 @@ export default function MyPageClosetDetail() {
       <Paper elevation={4} className={classes.closetContainer}>
         <img className={classes.myLookBookImg} src={myLookBookInfo['url']} alt="aaa" />
         <div>
-          {myLookBookInfo['ok'] > 5 && (
+          {(myLookBookInfo['ok'] > 5) & (myLookBookInfo['ok'] > myLookBookInfo['no'] * 2) && (
             <div>
-              {' '}
               <img className={classes.confirmedThumb} src="/images/myPage/confirmed_thumb.png" alt="sdgf" />
               <span className={classes.confirmedText}>Confirmed!</span>
             </div>
@@ -351,13 +381,13 @@ export default function MyPageClosetDetail() {
           className={classes.restartBtn}
           onClick={() => {
             history.push('/closet');
-            setClosetClothesId({
-              hat: '',
-              top: '',
-              bottom: '',
-              shoes: '',
-              bag: '',
-            });
+            // setClosetClothesId({
+            //   hat: '',
+            //   top: '',
+            //   bottom: '',
+            //   shoes: '',
+            //   bag: '',
+            // });
           }}
         >
           {'다시 \n 만들기'}

@@ -241,11 +241,14 @@ export default function ClosetModal() {
 
   const handleClose = () => {
     setClothesList([]);
+
     setModalMode('');
+
     setLastClothesId('1');
 
     console.log(clothesList);
     setOpenClosetModal(false);
+
     var newCondition = { ...condition };
     newCondition['middleCategory'] = '';
     newCondition['subCategory'] = '';
@@ -263,17 +266,8 @@ export default function ClosetModal() {
     var selectedClothesPrice = parseInt(event.target['title']);
     var newPrice = clothesPrice + selectedClothesPrice;
     setClothesPrice(newPrice);
-    setLastClothesId('1');
-    var newCondition = { ...condition };
-    newCondition['middleCategory'] = '';
-    newCondition['subCategory'] = '';
-    newCondition['brand'] = '';
-    // setConditionNum(10000);
-    setCondition(newCondition);
 
-    setClothesList([]);
-    setOpenClosetModal(false);
-    setModalMode('');
+    handleClose();
   };
 
   return (

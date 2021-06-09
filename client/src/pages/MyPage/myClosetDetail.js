@@ -9,8 +9,6 @@ import { useHistory } from 'react-router';
 import { Helmet } from 'react-helmet';
 
 import { ModalContext } from '../../App';
-// import { ModalContext } from '../../data/confirmed_star.png';
-import { ClothesIdContext } from '../../App';
 import Paper from '@material-ui/core/Paper';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -168,7 +166,7 @@ export default function MyPageClosetDetail() {
   const [shareAnchor, setShareAnchor] = useState(null);
 
   const [myLookBookInfo, setMyLookBookInfo] = useState([]);
-  const { closetClothesId, setClosetClothesId } = useContext(ClothesIdContext);
+  const [lookBookPrice, setLookBookPrice] = useState(0);
 
   useEffect(() => {
     try {
@@ -181,25 +179,33 @@ export default function MyPageClosetDetail() {
           // },
         })
         .then((res) => {
-          const arr1 = [];
-          arr1.push(res.data.hat, res.data.top, res.data.bottom, res.data.shoes, res.data.bag);
-          console.log(arr1);
+          const detailInfoArr = [];
+          detailInfoArr.push(res.data.hat, res.data.top, res.data.bottom, res.data.shoes, res.data.bag);
+          console.log(detailInfoArr);
 
-          const arr2 = [];
-          for (var i = 0; i < arr1.length; i++) {
-            if (arr1[i] !== null) {
-              arr2.push(arr1[i]);
+          const notNulDetailInfoArr = [];
+          for (var i = 0; i < detailInfoArr.length; i++) {
+            if (detailInfoArr[i] !== null) {
+              notNulDetailInfoArr.push(detailInfoArr[i]);
             }
           }
-          console.log(arr2);
+          console.log(notNulDetailInfoArr);
 
-          setClosetDetailInfo(arr2);
+          var clothesPrice = 0;
+          for (var m = 0; m < notNulDetailInfoArr.length; m++) {
+            clothesPrice += parseInt(notNulDetailInfoArr[m]['price']);
+          }
+          setLookBookPrice(clothesPrice);
+          setClosetDetailInfo(notNulDetailInfoArr);
           setMyLookBookInfo(res.data.my_look);
         });
     } catch (err) {
       console.log(err);
     }
   }, []);
+
+  console.log(lookBookPrice);
+
   const handleOpenClosetModalClick = () => {
     setOpenClosetInfoModal(true);
   };
@@ -279,7 +285,7 @@ export default function MyPageClosetDetail() {
 
   return (
     <div className={classes.root}>
-      <MyClosetInfo />
+      <MyClosetInfo price={lookBookPrice} />
       <TopComment comment={'나의 룩북'} />
 
       <Paper elevation={4} className={classes.closetContainer}>

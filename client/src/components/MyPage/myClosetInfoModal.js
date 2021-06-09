@@ -18,41 +18,27 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 
 import { ModalContext } from '../../App';
+import { ClothesPriceContext } from '../../App';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    // display: 'flex',
-    // justifyContent: 'center',
-    // // flexDirection: 'column',
-    // alignItems: 'center',
-    // // width: '100px',
-    // // maxWidth: '1024px',
-    // // minHeight: ' calc(100vh - 8.5rem)',
-    // // backgroundColor: '#ececec',
-    // // height: '80vw',
-
     display: 'flex',
-    paddingTop: '70px',
+    paddingTop: '30px',
     paddingBottom: '66px',
     // // justifyContent: 'center',
     flexDirection: 'column',
     alignItems: 'center',
+    height: '91vh',
   },
   modal: {
     backgroundColor: 'white',
     maxWidth: '350px',
-    // minWidth: '340px',
-    // minHeight: '73vh',
     height: '70vh',
     width: '100vw',
     flexDirection: 'column',
     marginTop: '50px',
     border: 'solid 3px',
     borderRadius: '25px',
-    // alignItems: 'center',
-    // justifyContent: 'center',
-
-    // overflow: 'auto',
   },
   modalCloseBtn: {
     width: '25px',
@@ -78,9 +64,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     width: '300px',
     alignItems: 'center',
-    // justifyContent: 'space-evenly',
     margin: '7px',
-    // justifyContent: 'center',
   },
   infoImg: {
     width: '80px',
@@ -92,6 +76,17 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '16px',
     flexDirection: 'column',
   },
+  closetPriceBox: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontFamily: 'GmarketSansMedium',
+    fontWeight: 'bold',
+    fontSize: '17px',
+    marginTop: '10px',
+    width: '200px',
+    height: '50px',
+  },
 }));
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -102,6 +97,7 @@ export default function MyClosetInfo(props) {
   const classes = useStyles();
   const { openClosetInfoModal, setOpenClosetInfoModal } = useContext(ModalContext);
   const { closetDetailInfo, setClosetDetailInfo } = useContext(ModalContext);
+  // const { clothesPrice, setClothesPrice } = useContext(ClothesPriceContext);
 
   const handleClosetInfoModalClose = () => {
     setOpenClosetInfoModal(false);
@@ -126,12 +122,15 @@ export default function MyClosetInfo(props) {
                       >
                         <div style={{ color: '#000000', fontWeight: 'bold' }}> {item['brand']}</div>
                         <div> {item['name']}</div>
-                        <div> {item['price']}\</div>
+                        <div> {item['price']}원</div>
                       </a>
                     </div>
                   </Paper>
                 );
               })}
+            <Paper elevation={4} className={classes.closetPriceBox}>
+              {'총 금액💰 : '} {props.price}\
+            </Paper>
           </div>
         </DialogContent>
         <DialogActions>

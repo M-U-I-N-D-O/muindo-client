@@ -162,7 +162,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 'bold',
     fontSize: '17px',
     marginTop: '30px',
-    width: '150px',
+    width: '200px',
     height: '50px',
   },
   makeLookBookBtn: {

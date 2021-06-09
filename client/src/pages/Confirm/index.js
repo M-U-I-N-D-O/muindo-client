@@ -5,8 +5,6 @@ import 'react-motion-stack/build/motion-stack.css';
 import axios from 'axios';
 import url from '../../url';
 
-import HeartCheckbox from 'react-heart-checkbox';
-
 class Confirm extends Component {
   constructor(props) {
     super(props);
@@ -25,7 +23,6 @@ class Confirm extends Component {
         this.setState({ ItemList: fetchData });
       })
       .catch((err) => {
-        this.props.history.push('/error');
         console.log(err);
       });
   };
@@ -47,7 +44,6 @@ class Confirm extends Component {
           console.log('반환 결과 :', res);
         });
     } catch (err) {
-      this.props.history.push('/error');
       console.log(err);
     }
   };
@@ -59,10 +55,12 @@ class Confirm extends Component {
     if (direction === 'right') {
       this.setState({ text: 'Confirm' });
       console.log('방금 선택 : 따봉 하나 추가요~');
+
       this.postData('like', state.data[0].element.key, localStorage.getItem('token'));
     } else {
       this.setState({ text: 'Nope' });
       console.log('방금 선택 : 놉 하나 추가요~');
+
       this.postData('nope', state.data[0].element.key, localStorage.getItem('token'));
     }
     console.log('현재 data key', state.data[0].element.key);
@@ -93,14 +91,9 @@ class Confirm extends Component {
           console.log('put 결과 : ', res);
         });
     } catch (err) {
-      this.props.history.push('/error');
       console.log(err);
     }
   };
-
-  // onClickHandler = () => {
-  //   this.setState({ checked: !this.state.checked });
-  // };
 
   renderButtons(props) {
     return (
@@ -135,7 +128,7 @@ class Confirm extends Component {
                 <div style={{ textAlign: 'center' }}>
                   <WishButton
                     onClick={(e) => {
-                      e.preventDefault();
+                      // e.preventDefault();
                       this.setState({ checked: !this.state.checked });
                       var text = document.getElementById('test');
                       if (!this.state.checked) {
@@ -151,15 +144,6 @@ class Confirm extends Component {
                     <WishText id="test">♡</WishText>
                   </WishButton>
                 </div>
-
-                {/* <HeartCheckbox
-                  checked={this.state.checked}
-                  onClick={(e) => {
-                    e
-                    this.setState({ checked: !this.state.checked });
-                    console.log('checked : ', this.state.checked);
-                  }}
-                /> */}
               </TinderBox>
             );
             return returnObj;
@@ -173,17 +157,12 @@ class Confirm extends Component {
         />
         <BottomContainer>
           {this.state.text === 'Nope' ? (
-            <BottomText style={{ color: 'red' }}>{this.state.text}</BottomText>
+            <NopeText id="btn-text">{this.state.text}</NopeText>
+          ) : this.state.text === 'Confirm' ? (
+            <LikeText id="btn-text">{this.state.text}</LikeText>
           ) : (
-            <BottomText style={{ color: 'green' }}>{this.state.text}</BottomText>
+            <BottomText>{this.state.text}</BottomText>
           )}
-          {/* <WishButton
-            onClick={(e) => {
-              this.putData(!checked);
-            }}
-          >
-            ❤
-          </WishButton> */}
         </BottomContainer>
       </div>
     );
@@ -193,8 +172,10 @@ class Confirm extends Component {
 export default Confirm;
 
 const BottomContainer = styled.div`
+  display: flex;
   height: 60px;
   text-align: center;
+  justify-content: center;
 `;
 const CustomButton = styled.button`
   border: none;
@@ -205,12 +186,38 @@ const CustomButton = styled.button`
 `;
 const BottomText = styled.h1`
   position: absolute;
-  width: 100%;
+  width: 50%;
   color: white;
   margin: 0;
-  bottom: 35%;
+  bottom: 60%;
   margin: 0 auto;
+  z-index: 100;
 `;
+const NopeText = styled.h1`
+  position: absolute;
+  color: red;
+  border: 5px solid red;
+  bottom: 60%;
+  z-index: 100;
+  transform: rotate(-20deg);
+  width: 50vw;
+  /* padding: 5px;
+  align-items: center;
+  justify-content: center; */
+`;
+const LikeText = styled.h1`
+  position: absolute;
+  color: #007d3f;
+  border: 5px solid #007d3f;
+  bottom: 60%;
+  z-index: 100;
+  width: 50vw;
+  transform: rotate(20deg);
+  /* padding: 5px;
+  align-items: center;
+  justify-content: center; */
+`;
+
 const TinderBox = styled.div``;
 const TinderImg = styled.img`
   max-width: 100%;
@@ -226,13 +233,10 @@ const WishButton = styled.button`
   /* background-color: transparent;
   border: none; */
 `;
-const HeartButton = styled(HeartCheckbox)`
-  width: 100px;
-  height: 100px;
-`;
 const WishText = styled.p`
   margin: 0;
   padding: 0;
   font-size: 48px;
   color: #ffc0cb;
+  /* color: red; */
 `;

@@ -200,6 +200,7 @@ export default function MyPageClosetDetail() {
           setMyLookBookInfo(res.data.my_look);
         });
     } catch (err) {
+      history.push('/error');
       console.log(err);
     }
   }, []);

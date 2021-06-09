@@ -210,6 +210,7 @@ export default function MyPageLikeDetail() {
           setMyLookBookInfo(res.data.my_look);
         });
     } catch (err) {
+      history.push('/error');
       console.log(err);
     }
   }, []);

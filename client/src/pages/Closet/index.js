@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import ClosetModal from '../../components/Closet/closetModal';
 import axios from 'axios';
 import { useHistory } from 'react-router';
+import TextField from '@material-ui/core/TextField';
 
 import { ModalContext } from '../../App';
 import { ClothesIdContext } from '../../App';
@@ -174,6 +175,12 @@ const useStyles = makeStyles((theme) => ({
     width: '150px',
     height: '60px',
   },
+  closetTextContainer: {
+    marginTop: '20px',
+
+    width: '250px',
+    height: '60px',
+  },
 }));
 
 function Closet() {
@@ -296,6 +303,10 @@ function Closet() {
         <Paper elevation={4} className={classes.closetPriceBox}>
           {'총 금액💰 : '} {clothesPrice}\
         </Paper>
+      </div>
+
+      <div className={classes.closetTextContainer}>
+        <TextField placeholder="ex) 소개팅 갈때 입을 옷이에요!" fullWidth variant="outlined" rows="2" multiline="true" />
       </div>
 
       <div className={classes.btnBox}>

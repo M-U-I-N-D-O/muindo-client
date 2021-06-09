@@ -12,14 +12,23 @@ function Error() {
       <ErrorMainText>404</ErrorMainText>
       <ErrorMidText>Error Not Found</ErrorMidText>
       <ErrorSubText>해당 문서를 찾을수 없습니다.</ErrorSubText>
-      <Button
+
+      <StyledButton
+        onClick={() => {
+          history.goBack();
+        }}
+        variant="contained"
+      >
+        이전으로
+      </StyledButton>
+      <StyledButton
         onClick={() => {
           history.push('/');
         }}
         variant="contained"
       >
         메인으로
-      </Button>
+      </StyledButton>
     </Container>
   );
 }
@@ -45,3 +54,7 @@ const ErrorSubText = styled.p`
   /* font-weight: bold; */
 `;
 const ErrorImg = styled.img``;
+
+const StyledButton = styled(Button)`
+  margin: 8px;
+`;

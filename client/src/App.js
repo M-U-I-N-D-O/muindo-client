@@ -119,6 +119,7 @@ function App() {
 
             <Route exact path="/community" component={Community} />
             <Route exact path="/solution" component={Solution} />
+            <Route exact path="/solution/result" component={SolutionResult} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/loading" component={Progress} />

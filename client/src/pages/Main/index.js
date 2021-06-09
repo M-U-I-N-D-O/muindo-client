@@ -154,3 +154,17 @@ const TinderText = styled.h1`
   color: white;
   font-size: 18px;
 `;
+const WishButton = styled.button`
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  /* background-color: transparent;
+  border: none; */
+`;
+const WishText = styled.p`
+  margin: 0;
+  padding: 0;
+  font-size: 48px;
+  color: #ffc0cb;
+`;

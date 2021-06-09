@@ -78,7 +78,7 @@ class Confirm extends Component {
   };
 
   putData = (value, id) => {
-    console.log('현재 찜하기 정보 : ', value, id);
+    // console.log('현재 찜하기 정보 : ', value, id);
     const json = JSON.stringify({ value: value });
     try {
       axios
@@ -132,13 +132,20 @@ class Confirm extends Component {
                 <div style={{ textAlign: 'center' }}>
                   <WishButton
                     onClick={(e) => {
-                      // e.preventDefault();
+                      e.preventDefault();
                       this.setState({ checked: !this.state.checked });
+                      var text = document.getElementById('test');
+                      if (!this.state.checked) {
+                        text.innerText = '♥';
+                      } else {
+                        text.innerText = '♡';
+                      }
+
                       // console.log('checkd :', !this.state.checked);
                       this.putData(!this.state.checked, item.id);
                     }}
                   >
-                    <WishText>♥</WishText>
+                    <WishText id="test">♡</WishText>
                   </WishButton>
                 </div>
 
@@ -206,11 +213,13 @@ const TinderImg = styled.img`
   max-width: 100%;
   height: auto;
   user-select: none;
-  padding-top: 60px;
+  padding-top: 150px;
 `;
 const WishButton = styled.button`
   margin: 0;
   padding: 0;
+  background-color: transparent;
+  border: none;
   /* background-color: transparent;
   border: none; */
 `;
@@ -221,6 +230,6 @@ const HeartButton = styled(HeartCheckbox)`
 const WishText = styled.p`
   margin: 0;
   padding: 0;
-  font-size: 36px;
-  width: 10vw;
+  font-size: 48px;
+  color: #ffc0cb;
 `;

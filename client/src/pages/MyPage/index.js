@@ -88,17 +88,7 @@ function MyPage() {
           </Container>
         )}
 
-        <List>
-          <ListItem
-            button
-            onClick={() => {
-              dispatch(dialogMode(-1));
-              history.push('/about');
-            }}
-          >
-            <ListText>About MUINDO</ListText>
-          </ListItem>
-          <Divider />
+        <List style={{ padding: '0px' }}>
           <ListItem
             button
             onClick={() => {
@@ -125,6 +115,16 @@ function MyPage() {
             }}
           >
             <ListText>저장한 룩북 리스트</ListText>
+          </ListItem>
+          <Divider />
+          <ListItem
+            button
+            onClick={() => {
+              dispatch(dialogMode(-1));
+              history.push('/about');
+            }}
+          >
+            <ListText>About MUINDO</ListText>
           </ListItem>
         </List>
         {/* 유지가 추가한 부분 */}

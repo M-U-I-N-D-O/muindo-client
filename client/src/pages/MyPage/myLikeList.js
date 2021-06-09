@@ -87,6 +87,7 @@ export default function MyPageLikeList() {
           setMyLikeListInfo(res.data);
         });
     } catch (err) {
+      history.push('/error');
       console.log(err);
     }
     // return clothesList;

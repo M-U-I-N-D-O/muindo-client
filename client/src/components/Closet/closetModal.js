@@ -1,4 +1,5 @@
 import React, { useState, createContext, useContext, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import IconButton from '@material-ui/core/IconButton';
@@ -160,6 +161,7 @@ function ModalCloseBtn() {
   const classes = useStyles();
   const { setOpenClosetModal } = useContext(ModalContext);
   const { setModalMode } = useContext(ModalContext);
+
   const handleClose = () => {
     setOpenClosetModal(false);
   };
@@ -192,8 +194,9 @@ export default function ClosetModal() {
   const { condition, setCondition } = useContext(ModalContext);
   const [filteredClothes, setFilteredClothes] = useState({});
   const [page, setPage] = useState(PAGE_NUMBER);
-
   const [lastClothesId, setLastClothesId] = useState('1');
+
+  const history = useHistory();
   useEffect(() => {
     console.log(closetClothesId);
 
@@ -207,6 +210,7 @@ export default function ClosetModal() {
         });
     } catch (err) {
       console.log(err);
+      history.push('/error');
     }
   }, [modalMode, condition]);
   console.log(clothesList);
@@ -232,6 +236,10 @@ export default function ClosetModal() {
         )
         .then((res) => {
           setClothesList([...clothesList, ...res.data]);
+        })
+        .catch((err) => {
+          console.log(err);
+          history.push('/error');
         });
     }, 1000);
   };

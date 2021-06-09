@@ -76,7 +76,6 @@ class Main extends Component {
         className="demo-wrapper"
       >
         <MotionStack
-          // data={data}
           data={[
             { id: 0, element: <TinderImg src="./images/main/1.png" alt="img" /> },
             { id: 1, element: <TinderImg src="./images/main/2.png" alt="img" /> },

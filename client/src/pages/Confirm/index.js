@@ -197,6 +197,7 @@ const NopeText = styled.h1`
   position: absolute;
   color: red;
   border: 5px solid red;
+  border-radius: 5px;
   bottom: 60%;
   z-index: 100;
   transform: rotate(-20deg);
@@ -209,6 +210,7 @@ const LikeText = styled.h1`
   position: absolute;
   color: #007d3f;
   border: 5px solid #007d3f;
+  border-radius: 5px;
   bottom: 60%;
   z-index: 100;
   width: 50vw;

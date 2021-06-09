@@ -27,6 +27,7 @@ import Slide from '@material-ui/core/Slide';
 import GroupSelector from './groupSelector';
 import { ModalContext } from '../../App';
 import { ClothesIdContext } from '../../App';
+import { ClothesPriceContext } from '../../App';
 
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
@@ -192,6 +193,7 @@ export default function ClosetModal() {
   const { condition, setCondition } = useContext(ModalContext);
   const [filteredClothes, setFilteredClothes] = useState({});
   const [page, setPage] = useState(PAGE_NUMBER);
+  const { clothesPrice, setClothesPrice } = useContext(ClothesPriceContext);
 
   const [lastClothesId, setLastClothesId] = useState('1');
   useEffect(() => {
@@ -221,6 +223,7 @@ export default function ClosetModal() {
     setLastId();
   }, [clothesList, condition]);
 
+  console.log(clothesList);
   const scrollToEnd = () => {
     console.log('마지막');
 
@@ -257,8 +260,9 @@ export default function ClosetModal() {
       [modalMode]: event.target.src,
     });
     setClosetClothesId({ ...closetClothesId, [modalMode]: event.target.alt });
-    console.log(event.target);
-    console.log(closetClothesId);
+    var selectedClothesPrice = parseInt(event.target['title']);
+    var newPrice = clothesPrice + selectedClothesPrice;
+    setClothesPrice(newPrice);
     setLastClothesId('1');
     var newCondition = { ...condition };
     newCondition['middleCategory'] = '';
@@ -271,7 +275,6 @@ export default function ClosetModal() {
     setOpenClosetModal(false);
     setModalMode('');
   };
-  console.log(closetClothesId);
 
   return (
     <div>
@@ -309,7 +312,13 @@ export default function ClosetModal() {
                         return (
                           <Paper elevation={4} className={classes.individualClothesContainer}>
                             <div className={classes.clothesThumbnailBox}>
-                              <img className={classes.modalImg} alt={clothesList[i]['id']} src={clothesList[i]['url']} onClick={handleImageSelect} />
+                              <img
+                                className={classes.modalImg}
+                                alt={clothesList[i]['id']}
+                                title={clothesList[i]['price']}
+                                src={clothesList[i]['url']}
+                                onClick={handleImageSelect}
+                              />
                             </div>
                             <div className={classes.clothesInfoBox}>
                               <a

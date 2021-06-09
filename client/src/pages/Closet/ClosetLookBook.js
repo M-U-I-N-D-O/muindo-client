@@ -251,7 +251,7 @@ export default function ClosetLookBook() {
       url = await canvas.toDataURL('image/jpg');
       // setImgUrl(url);
       console.log(url);
-      downloadURI(url, 'muindo_lookbook.jpg');
+      downloadURI(url, 'muindo_lookbook');
     });
     setShareAnchor(null);
   };

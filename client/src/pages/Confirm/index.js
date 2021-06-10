@@ -5,6 +5,8 @@ import 'react-motion-stack/build/motion-stack.css';
 import axios from 'axios';
 import url from '../../url';
 
+import Paper from '@material-ui/core/Paper';
+
 class Confirm extends Component {
   constructor(props) {
     super(props);
@@ -19,6 +21,7 @@ class Confirm extends Component {
     axios
       .get(url + 'tinder/look')
       .then((res) => {
+        console.log('fetch 데이터 : ', res.data);
         let fetchData = res.data.sort(() => Math.random() - 0.5);
         this.setState({ ItemList: fetchData });
       })
@@ -125,6 +128,9 @@ class Confirm extends Component {
             returnObj['element'] = (
               <TinderBox key={item.id}>
                 <TinderImg src={item.url} alt="img" />
+
+                <TpoText>{item.tpo}</TpoText>
+
                 <div style={{ textAlign: 'center' }}>
                   <WishButton
                     onClick={(e) => {
@@ -181,7 +187,7 @@ const CustomButton = styled.button`
   border: none;
   background: transparent;
   margin: 0 3vh;
-  margin-top: 10vh;
+  margin-top: 15vh;
   font-size: 3em;
 `;
 const BottomText = styled.h1`
@@ -189,7 +195,7 @@ const BottomText = styled.h1`
   width: 50%;
   color: white;
   margin: 0;
-  bottom: 60%;
+  bottom: 55%;
   margin: 0 auto;
   z-index: 100;
 `;
@@ -220,12 +226,19 @@ const LikeText = styled.h1`
   justify-content: center; */
 `;
 
-const TinderBox = styled.div``;
+const TinderBox = styled.div`
+  padding-top: 30px;
+`;
 const TinderImg = styled.img`
   max-width: 100%;
   height: auto;
   user-select: none;
   padding-top: 150px;
+`;
+const TpoText = styled.p`
+  color: white;
+  text-align: center;
+  font-weight: bold;
 `;
 const WishButton = styled.button`
   margin: 0;

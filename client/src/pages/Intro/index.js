@@ -15,6 +15,7 @@ function Intro() {
       .auth()
       .signOut()
       .catch((err) => {
+        console.log('firebase 로그아웃 실패');
         console.log(err);
       });
     dispatch(navbarMode(0));
@@ -33,12 +34,12 @@ function Intro() {
       <TextContainer>
         <div>
           <IntroMainText>
-            무 <IntroSubText>지하게 패션</IntroSubText>
+            무 <IntroSubText>지하게 옷을</IntroSubText>
           </IntroMainText>
         </div>
         <div>
           <IntroMainText>
-            인 <IntroSubText>싸되고 싶은 사람들</IntroSubText>
+            인 <IntroSubText>간적으로 입고 사람들</IntroSubText>
           </IntroMainText>
         </div>
         <div>

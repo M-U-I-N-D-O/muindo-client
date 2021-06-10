@@ -10,6 +10,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { useHistory } from 'react-router';
 
 import { ModalContext } from '../../App';
+import MyPageList from '../../components/MyPage/myPageList';
 // import { ModalContext } from '../../';
 import Paper from '@material-ui/core/Paper';
 
@@ -96,6 +97,7 @@ export default function MyPageClosetList() {
     }
   }, []);
 
+  const apiUrl = `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/my-looks`;
   // const scrollToEnd = () => {
   //   console.log('마지막');
   //   setTimeout(() => {
@@ -114,50 +116,51 @@ export default function MyPageClosetList() {
   //   lookBookId && history.push(`/my_page_closet_detail/${lookBookId}`);
   // }, [lookBookId]);
 
-  const handleLookBookClick = async (event) => {
-    const seq = event.target.alt;
-    history.push('/my_page_closet_detail/' + seq);
-  };
+  // const handleLookBookClick = async (event) => {
+  //   const seq = event.target.alt;
+  //   history.push('/my_page_closet_detail/' + seq);
+  // };
 
-  console.log(window.localStorage.token);
+  // console.log(window.localStorage.token);
   return (
-    <div className={classes.root} id="scrollableDiv">
-      <TopComment comment={'나의 룩북 리스트'} />
-      {/* <InfiniteScroll
-        className={classes.closetListContainer}
-        dataLength={a.length}
-        next={() => scrollToEnd()}
-        hasMore={true}
-        loader={<h3 style={{ textAlign: 'center' }}>Loading...</h3>}
-        scrollableTarget="scrollableDiv"
-      > */}
-      <div className={classes.closetListContainer}>
-        {Array.isArray(myClosetListInfo) &&
-          myClosetListInfo.map(function (item, i) {
-            return (
-              <Paper elevation={4} className={classes.individualClosetContainer} onClick={handleLookBookClick}>
-                <div className={classes.thumbnailBox}>
-                  <img className={classes.thumbnail} alt={item.id} src={item.url} />
-                </div>
-                {item.tpo ? (
-                  <div className={classes.titleText}>{item.tpo.slice(0, 13)}...</div>
-                ) : (
-                  <div className={classes.titleText}>{i + 1}번 룩북</div>
-                )}
-                {item['ok'] > item['no'] && <img className={classes.confirmedThumb} src="/images/myPage/confirmed_thumb.png" alt="confirmed" />}
-                {item['no'] > item['ok'] && (
-                  <img className={classes.confirmedThumb} src="/images/myPage/confirmed_thumb_down.png" alt="notConfirmed" />
-                )}
-                {(item['ok'] < 1 && item['no'] < 1) || item['ok'] === item['no'] ? (
-                  <img className={classes.confirmedThumb} src="/images/myPage/question.png" alt="confirmed" />
-                ) : (
-                  <div></div>
-                )}
-              </Paper>
-            );
-          })}
-      </div>
-      {/* </InfiniteScroll> */}
-    </div>
+    // <div className={classes.root} id="scrollableDiv">
+    //   <TopComment comment={'나의 룩북 리스트'} />
+    //   {/* <InfiniteScroll
+    //     className={classes.closetListContainer}
+    //     dataLength={a.length}
+    //     next={() => scrollToEnd()}
+    //     hasMore={true}
+    //     loader={<h3 style={{ textAlign: 'center' }}>Loading...</h3>}
+    //     scrollableTarget="scrollableDiv"
+    //   > */}
+    //   <div className={classes.closetListContainer}>
+    //     {Array.isArray(myClosetListInfo) &&
+    //       myClosetListInfo.map(function (item, i) {
+    //         return (
+    //           <Paper elevation={4} className={classes.individualClosetContainer} onClick={handleLookBookClick}>
+    //             <div className={classes.thumbnailBox}>
+    //               <img className={classes.thumbnail} alt={item.id} src={item.url} />
+    //             </div>
+    //             {item.tpo ? (
+    //               <div className={classes.titleText}>{item.tpo.slice(0, 13)}...</div>
+    //             ) : (
+    //               <div className={classes.titleText}>{i + 1}번 룩북</div>
+    //             )}
+    //             {item['ok'] > item['no'] && <img className={classes.confirmedThumb} src="/images/myPage/confirmed_thumb.png" alt="confirmed" />}
+    //             {item['no'] > item['ok'] && (
+    //               <img className={classes.confirmedThumb} src="/images/myPage/confirmed_thumb_down.png" alt="notConfirmed" />
+    //             )}
+    //             {(item['ok'] < 1 && item['no'] < 1) || item['ok'] === item['no'] ? (
+    //               <img className={classes.confirmedThumb} src="/images/myPage/question.png" alt="confirmed" />
+    //             ) : (
+    //               <div></div>
+    //             )}
+    //           </Paper>
+    //         );
+    //       })}
+    //   </div>
+    //   {/* </InfiniteScroll> */}
+    // </div>
+    <MyPageList apiUrl={apiUrl} myPageListTitle="나의 룩북 리스트" lookBookUrl={'/my_page_closet_detail/'} myPageListInfo={myClosetListInfo} />
   );
 }

@@ -8,6 +8,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 
 import { useHistory } from 'react-router';
 import Paper from '@material-ui/core/Paper';
+import MyPageList from '../../components/MyPage/myPageList';
 
 import { ModalContext } from '../../App';
 
@@ -69,10 +70,7 @@ export default function MyPageLikeList() {
   const [page, setPage] = useState(PAGE_NUMBER);
   // const { seq } = useParams();
   const [myLikeListInfo, setMyLikeListInfo] = useState([]);
-
-  // const [a, setA] = useState([]);
-  const [lookBookId, setLookBookId] = useState('');
-
+  // const [a, setA] = useState([])
   useEffect(() => {
     try {
       axios
@@ -109,46 +107,48 @@ export default function MyPageLikeList() {
   // useEffect(() => {
   //   lookBookId && history.push(`/my_page_closet_detail/${lookBookId}`);
   // }, [lookBookId]);
+  const apiUrl = `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/thumbs`;
 
-  const handleLookBookClick = async (event) => {
-    const seq = event.target.alt;
-    history.push('/my_page_like_detail/' + seq);
-  };
+  // const handleLookBookClick = async (event) => {
+  //   const seq = event.target.alt;
+  //   history.push('/my_page_like_detail/' + seq);
+  // };
 
-  console.log(window.localStorage.token);
+  // console.log(window.localStorage.token);
   return (
-    <div className={classes.root} id="scrollableDiv">
-      <TopComment comment={'저장한 룩북 리스트'} />
-      {/* <InfiniteScroll
-        className={classes.closetListContainer}
-        dataLength={a.length}
-        next={() => scrollToEnd()}
-        hasMore={true}
-        loader={<h3 style={{ textAlign: 'center' }}>Loading...</h3>}
-        scrollableTarget="scrollableDiv"
-      > */}
-      <div className={classes.closetListContainer}>
-        {Array.isArray(myLikeListInfo) &&
-          myLikeListInfo.map(function (item, i) {
-            return (
-              <Paper elevation={4} className={classes.individualClosetContainer} onClick={handleLookBookClick}>
-                <div className={classes.thumbnailBox}>
-                  <img className={classes.thumbnail} alt={myLikeListInfo[i]['id']} src={myLikeListInfo[i]['url']} />
-                </div>
-                {item['ok'] > item['no'] && <img className={classes.confirmedThumb} src="/images/myPage/confirmed_thumb.png" alt="confirmed" />}
-                {item['no'] > item['ok'] && (
-                  <img className={classes.confirmedThumb} src="/images/myPage/confirmed_thumb_down.png" alt="notConfirmed" />
-                )}
-                {(item['ok'] < 1 && item['no'] < 1) || item['ok'] === item['no'] ? (
-                  <img className={classes.confirmedThumb} src="/images/myPage/question.png" alt="confirmed" />
-                ) : (
-                  <div></div>
-                )}
-              </Paper>
-            );
-          })}
-      </div>
-      {/* </InfiniteScroll> */}
-    </div>
+    // <div className={classes.root} id="scrollableDiv">
+    //   <TopComment comment={'저장한 룩북 리스트'} />
+    //   {/* <InfiniteScroll
+    //     className={classes.closetListContainer}
+    //     dataLength={a.length}
+    //     next={() => scrollToEnd()}
+    //     hasMore={true}
+    //     loader={<h3 style={{ textAlign: 'center' }}>Loading...</h3>}
+    //     scrollableTarget="scrollableDiv"
+    //   > */}
+    //   <div className={classes.closetListContainer}>
+    //     {Array.isArray(myLikeListInfo) &&
+    //       myLikeListInfo.map(function (item, i) {
+    //         return (
+    //           <Paper elevation={4} className={classes.individualClosetContainer} onClick={handleLookBookClick}>
+    //             <div className={classes.thumbnailBox}>
+    //               <img className={classes.thumbnail} alt={myLikeListInfo[i]['id']} src={myLikeListInfo[i]['url']} />
+    //             </div>
+    //             {item['ok'] > item['no'] && <img className={classes.confirmedThumb} src="/images/myPage/confirmed_thumb.png" alt="confirmed" />}
+    //             {item['no'] > item['ok'] && (
+    //               <img className={classes.confirmedThumb} src="/images/myPage/confirmed_thumb_down.png" alt="notConfirmed" />
+    //             )}
+    //             {(item['ok'] < 1 && item['no'] < 1) || item['ok'] === item['no'] ? (
+    //               <img className={classes.confirmedThumb} src="/images/myPage/question.png" alt="confirmed" />
+    //             ) : (
+    //               <div></div>
+    //             )}
+    //           </Paper>
+    //         );
+    //       })}
+    //   </div>
+    //   {/* </InfiniteScroll> */}
+    // </div>
+    <MyPageList apiUrl={apiUrl} myPageListTitle="저장한 룩북 리스트" lookBookUrl={'/my_page_like_detail/'} myPageListInfo={myLikeListInfo} />
   );
 }

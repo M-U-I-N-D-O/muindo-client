@@ -128,7 +128,6 @@ function MyPage() {
             <ListText>About MUINDO</ListText>
           </ListItem>
         </List>
-        {/* 유지가 추가한 부분 */}
 
         {localStorage.getItem('token') && (
           <div style={{ display: 'flex', justifyContent: 'center' }}>

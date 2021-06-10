@@ -4,35 +4,45 @@ import styled from 'styled-components';
 import MotionStack from 'react-motion-stack';
 import 'react-motion-stack/build/motion-stack.css';
 
-// const data = Array.from({ length: 4 }, (_, i) => ({
-//   id: i,
-//   element: (
-//     <img
-//       style={{ maxWidth: '100%', height: 'auto', userSelect: 'none', paddingTop: '60px' }}
-//       key={i}
-//       draggable={false}
-//       src={`./images/main/${i + 1}.png`}
-//       alt="img"
-//     />
-//   ),
-// }));
+const customerData = [
+  { id: 1, url: './images/main/1.png', tpo: '이 룩은 마음에 드시나요 ?' },
+  { id: 2, url: './images/main/2.png', tpo: '이 룩은 마음에 드시나요 ?' },
+  { id: 3, url: './images/main/3.png', tpo: '이 룩은 마음에 드시나요 ?' },
+  { id: 4, url: './images/main/4.png', tpo: '이 룩은 마음에 드시나요 ?' },
+  { id: 5, url: './images/main/5.png', tpo: '' },
+];
+const userData = [
+  { id: 1, url: './images/main/1.png', tpo: '이 룩은 마음에 드시나요 ?' },
+  { id: 2, url: './images/main/2.png', tpo: '이 룩은 마음에 드시나요 ?' },
+  { id: 3, url: './images/main/3.png', tpo: '이 룩은 마음에 드시나요 ?' },
+  { id: 4, url: './images/main/4.png', tpo: '이 룩은 마음에 드시나요 ?' },
+  { id: 6, url: './images/main/6.png', tpo: '' },
+];
 
 class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
       text: '',
+      checked: false,
+      tinderCount: 1,
     };
   }
 
   onBeforeSwipe = (swipe, direction, state) => {
     document.getElementById('tinder-btn1').disabled = true;
     document.getElementById('tinder-btn2').disabled = true;
+    console.log('tinderCount :', this.state.tinderCount);
     if (direction === 'right') {
-      this.setState({ text: 'Confirm' });
+      if (this.state.tinderCount < 5) {
+        this.setState({ text: 'Confirm' });
+      }
       // console.log('방금 선택 : 따봉 하나 추가요~');
     } else {
-      this.setState({ text: 'Nope' });
+      if (this.state.tinderCount < 5) {
+        this.setState({ text: 'Nope' });
+      }
+
       // console.log('방금 선택 : 놉 하나 추가요~');
     }
     // console.log('현재 data key', state.data[0].element.key);
@@ -40,13 +50,14 @@ class Main extends Component {
     // console.log('데이터 : ', state.data);
     // console.log(state.data.length);
 
-    if (state.data.length !== 1) {
+    if (this.state.tinderCount < 5) {
       swipe();
     }
   };
 
   onSwipeEnd = ({ data }) => {
     this.setState({ text: '' });
+    this.setState({ tinderCount: this.state.tinderCount + 1 });
     // console.log('마침 :', this.state);
     document.getElementById('tinder-btn1').disabled = false;
     document.getElementById('tinder-btn2').disabled = false;
@@ -76,24 +87,65 @@ class Main extends Component {
         className="demo-wrapper"
       >
         <MotionStack
-          data={[
-            { id: 0, element: <TinderImg src="./images/main/1.png" alt="img" /> },
-            { id: 1, element: <TinderImg src="./images/main/2.png" alt="img" /> },
-            { id: 2, element: <TinderImg src="./images/main/3.png" alt="img" /> },
-            { id: 3, element: <TinderImg src="./images/main/4.png" alt="img" /> },
-            {
-              id: 4,
-              element: (
-                <TinderBox>
-                  <TinderText>
-                    본 서비스를 위해
-                    <br />
-                    로그인을 해주세요 :)
-                  </TinderText>
-                </TinderBox>
-              ),
-            },
-          ]}
+          data={
+            localStorage.getItem('token')
+              ? customerData.map((item, index) => {
+                  var returnObj = {};
+                  returnObj['id'] = index;
+                  returnObj['element'] = (
+                    <TinderBox key={item.id}>
+                      <TinderImg src={item.url} alt="img" />
+                      <TpoText>{item.tpo}</TpoText>
+
+                      <div style={{ textAlign: 'center' }}>
+                        <WishButton
+                          onClick={(e) => {
+                            // e.preventDefault();
+                            this.setState({ checked: !this.state.checked });
+                            var text = document.getElementById('test');
+                            if (!this.state.checked) {
+                              text.innerText = '♥';
+                            } else {
+                              text.innerText = '♡';
+                            }
+                          }}
+                        >
+                          <WishText id="test">♡</WishText>
+                        </WishButton>
+                      </div>
+                    </TinderBox>
+                  );
+                  return returnObj;
+                })
+              : userData.map((item, index) => {
+                  var returnObj = {};
+                  returnObj['id'] = index;
+                  returnObj['element'] = (
+                    <TinderBox key={item.id}>
+                      <TinderImg src={item.url} alt="img" />
+                      <TpoText>{item.tpo}</TpoText>
+
+                      <div style={{ textAlign: 'center' }}>
+                        <WishButton
+                          onClick={(e) => {
+                            // e.preventDefault();
+                            this.setState({ checked: !this.state.checked });
+                            var text = document.getElementById('test');
+                            if (!this.state.checked) {
+                              text.innerText = '♥';
+                            } else {
+                              text.innerText = '♡';
+                            }
+                          }}
+                        >
+                          <WishText id="test">♡</WishText>
+                        </WishButton>
+                      </div>
+                    </TinderBox>
+                  );
+                  return returnObj;
+                })
+          }
           onSwipeEnd={this.onSwipeEnd}
           onBeforeSwipe={this.onBeforeSwipe}
           render={(props) => props.element}
@@ -103,9 +155,11 @@ class Main extends Component {
         />
         <BottomContainer>
           {this.state.text === 'Nope' ? (
-            <BottomText style={{ color: 'red' }}>{this.state.text}</BottomText>
+            <NopeText id="btn-text">{this.state.text}</NopeText>
+          ) : this.state.text === 'Confirm' ? (
+            <LikeText id="btn-text">{this.state.text}</LikeText>
           ) : (
-            <BottomText style={{ color: 'green' }}>{this.state.text}</BottomText>
+            <BottomText>{this.state.text}</BottomText>
           )}
         </BottomContainer>
       </div>
@@ -116,8 +170,10 @@ class Main extends Component {
 export default Main;
 
 const BottomContainer = styled.div`
+  display: flex;
   height: 60px;
   text-align: center;
+  justify-content: center;
 `;
 
 const CustomButton = styled.button`
@@ -129,11 +185,38 @@ const CustomButton = styled.button`
 `;
 const BottomText = styled.h1`
   position: absolute;
-  width: 100%;
+  width: 50%;
   color: white;
   margin: 0;
-  bottom: 35%;
+  bottom: 55%;
   margin: 0 auto;
+  z-index: 100;
+`;
+const NopeText = styled.h1`
+  position: absolute;
+  color: red;
+  border: 5px solid red;
+  border-radius: 5px;
+  bottom: 60%;
+  z-index: 100;
+  transform: rotate(-20deg);
+  width: 50vw;
+  /* padding: 5px;
+  align-items: center;
+  justify-content: center; */
+`;
+const LikeText = styled.h1`
+  position: absolute;
+  color: #007d3f;
+  border: 5px solid #007d3f;
+  border-radius: 5px;
+  bottom: 60%;
+  z-index: 100;
+  width: 50vw;
+  transform: rotate(20deg);
+  /* padding: 5px;
+  align-items: center;
+  justify-content: center; */
 `;
 const TinderImg = styled.img`
   max-width: 100%;
@@ -142,12 +225,13 @@ const TinderImg = styled.img`
   padding-top: 60px;
   background-color: #222;
 `;
-const TinderBox = styled.div`
-  display: flex;
-  border: 2px solid white;
-  justify-content: center;
-  align-items: center;
+const TpoText = styled.p`
+  color: white;
   text-align: center;
+  font-weight: bold;
+`;
+const TinderBox = styled.div`
+  padding-top: 30px;
 `;
 const TinderText = styled.h1`
   color: white;

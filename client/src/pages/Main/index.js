@@ -92,29 +92,55 @@ class Main extends Component {
               ? customerData.map((item, index) => {
                   var returnObj = {};
                   returnObj['id'] = index;
-                  returnObj['element'] = (
-                    <TinderBox key={item.id}>
-                      <TinderImg src={item.url} alt="img" />
-                      <TpoText>{item.tpo}</TpoText>
+                  if (item.id === 5) {
+                    returnObj['element'] = (
+                      <TinderBox key={item.id} onClick={() => console.log('로그인 하자.')}>
+                        <TinderImg src={item.url} alt="img" />
+                        <TpoText>{item.tpo}</TpoText>
 
-                      <div style={{ textAlign: 'center' }}>
-                        <WishButton
-                          onClick={(e) => {
-                            // e.preventDefault();
-                            this.setState({ checked: !this.state.checked });
-                            var text = document.getElementById('test');
-                            if (!this.state.checked) {
-                              text.innerText = '♥';
-                            } else {
-                              text.innerText = '♡';
-                            }
-                          }}
-                        >
-                          <WishText id="test">♡</WishText>
-                        </WishButton>
-                      </div>
-                    </TinderBox>
-                  );
+                        <div style={{ textAlign: 'center' }}>
+                          <WishButton
+                            onClick={(e) => {
+                              // e.preventDefault();
+                              this.setState({ checked: !this.state.checked });
+                              var text = document.getElementById('test');
+                              if (!this.state.checked) {
+                                text.innerText = '♥';
+                              } else {
+                                text.innerText = '♡';
+                              }
+                            }}
+                          >
+                            <WishText id="test">♡</WishText>
+                          </WishButton>
+                        </div>
+                      </TinderBox>
+                    );
+                  } else {
+                    returnObj['element'] = (
+                      <TinderBox key={item.id}>
+                        <TinderImg src={item.url} alt="img" />
+                        <TpoText>{item.tpo}</TpoText>
+
+                        <div style={{ textAlign: 'center' }}>
+                          <WishButton
+                            onClick={(e) => {
+                              this.setState({ checked: !this.state.checked });
+                              var text = document.getElementById('test');
+                              if (!this.state.checked) {
+                                text.innerText = '♥';
+                              } else {
+                                text.innerText = '♡';
+                              }
+                            }}
+                          >
+                            <WishText id="test">♡</WishText>
+                          </WishButton>
+                        </div>
+                      </TinderBox>
+                    );
+                  }
+
                   return returnObj;
                 })
               : userData.map((item, index) => {
@@ -229,9 +255,11 @@ const TpoText = styled.p`
   color: white;
   text-align: center;
   font-weight: bold;
+  margin-top: 0;
 `;
 const TinderBox = styled.div`
   padding-top: 30px;
+  background-color: #222;
 `;
 const TinderText = styled.h1`
   color: white;

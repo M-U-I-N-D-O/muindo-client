@@ -39,7 +39,7 @@ function Intro() {
         </div>
         <div>
           <IntroMainText>
-            인 <IntroSubText>간적으로 입고 사람들</IntroSubText>
+            인 <IntroSubText>간적으로 입고싶은 사람들</IntroSubText>
           </IntroMainText>
         </div>
         <div>

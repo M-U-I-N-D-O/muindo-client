@@ -64,7 +64,13 @@ function App() {
     shoes: '',
     bag: '',
   });
-  const [clothesPrice, setClothesPrice] = useState(0);
+  const [clothesPrice, setClothesPrice] = useState({
+    hat: 0,
+    top: 0,
+    bottom: 0,
+    shoes: 0,
+    bag: 0,
+  });
   const [closetText, setClosetText] = useState('');
 
   // const [condition, setCondition] = useState({});

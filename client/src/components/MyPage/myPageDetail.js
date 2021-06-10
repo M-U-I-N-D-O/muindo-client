@@ -170,9 +170,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     fontFamily: 'GmarketSansMedium',
-    fontSize: '18px',
+    fontSize: '16px',
 
-    width: '310px',
+    width: '300px',
     height: '55px',
     overflow: 'auto',
   },

@@ -211,7 +211,15 @@ function Closet() {
       shoes: '',
       bag: '',
     });
-    setClothesPrice(0);
+    // setClothesPrice(0);
+    setClothesPrice({
+      hat: 0,
+      top: 0,
+      bottom: 0,
+      shoes: 0,
+      bag: 0,
+    });
+
     setClosetText('');
 
     console.log(clothesPrice);
@@ -241,9 +249,15 @@ function Closet() {
       shoes: '',
       bag: '',
     });
-    setClothesPrice(0);
+    setClothesPrice({
+      hat: 0,
+      top: 0,
+      bottom: 0,
+      shoes: 0,
+      bag: 0,
+    });
   };
-
+  console.log(clothesPrice);
   const handleChangeClosetText = (event) => {
     console.log(event.target.value);
     setClosetText(event.target.value);
@@ -310,7 +324,7 @@ function Closet() {
 
       <div>
         <Paper elevation={4} className={classes.closetPriceBox}>
-          {'총 금액💰 : '} {clothesPrice}\
+          {'총 금액💰 : '} {clothesPrice.hat + clothesPrice.top + clothesPrice.bottom + clothesPrice.shoes + clothesPrice.bag}\
         </Paper>
       </div>
 

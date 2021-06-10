@@ -152,5 +152,6 @@ function App() {
 export { ModalContext };
 export { ClothesIdContext };
 export { ClothesPriceContext };
+export { ClosetTextContext };
 
 export default App;

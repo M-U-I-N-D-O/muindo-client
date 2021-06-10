@@ -12,7 +12,7 @@ import { Helmet } from 'react-helmet';
 import Paper from '@material-ui/core/Paper';
 import { ModalContext } from '../../App';
 import { ClothesIdContext } from '../../App';
-// import { ModalContext } from '../../';
+import { ClosetTextContext } from '../../App';
 
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -184,6 +184,7 @@ export default function ClosetLookBook() {
   const [modifyAnchor, setModifyAnchor] = useState(null);
   const [shareAnchor, setShareAnchor] = useState(null);
   const { seq } = useParams();
+  const { closetText, setClosetText } = useContext(ClosetTextContext);
 
   const captureRef = useRef();
 
@@ -219,6 +220,7 @@ export default function ClosetLookBook() {
 
   useEffect(() => {
     console.log(closetClothesId);
+    console.log(closetText);
   }, []);
   //   const handleEraseAllButtonClick = () => {
   //     setClosetImg({
@@ -285,12 +287,13 @@ export default function ClosetLookBook() {
           data: {
             img: url,
           },
+          tpo: closetText,
           success: function () {
             // seq = res['id'];
           },
         },
 
-        { headers: { 'Content-Type': 'application/json' } },
+        // { headers: { 'Content-Type': 'application/json' } },
         // {
         //   headers: {
         //     Authorization:
@@ -406,13 +409,13 @@ export default function ClosetLookBook() {
             onClick={() => {
               history.push('/closet');
               setModifyAnchor(null);
-              setClosetClothesId({
-                hat: '',
-                top: '',
-                bottom: '',
-                shoes: '',
-                bag: '',
-              });
+              // setClosetClothesId({
+              //   hat: '',
+              //   top: '',
+              //   bottom: '',
+              //   shoes: '',
+              //   bag: '',
+              // });
             }}
           >
             의상 수정하기

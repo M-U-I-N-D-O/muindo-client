@@ -17,6 +17,7 @@ import Slide from '@material-ui/core/Slide';
 import Paper from '@material-ui/core/Paper';
 
 import firebase from 'firebase';
+import { Helmet } from 'react-helmet';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -61,6 +62,39 @@ function MyPage() {
       .catch(function () {
         console.log('Error!');
       });
+  };
+  const shareByKakao = () => {
+    if (window.Kakao) {
+      const kakao = window.Kakao;
+      if (!kakao.isInitialized()) {
+        kakao.init(process.env.REACT_APP_KAKAO_KEY);
+        console.log(window.Kakao.isInitialized());
+      }
+      kakao.Link.sendDefault({
+        objectType: 'feed',
+        content: {
+          title: 'MUINDO에서 초대장이 도착했어요!',
+          description: '쉽고 편한 룩북 컨펌 서비스, MUINDO',
+          imageUrl: 'https://ifh.cc/g/6R44lA.png',
+          link: {
+            mobileWebUrl: `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:7357`,
+            webUrl: `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:7357`,
+            // mobileWebUrl: window.location.href,
+            // webUrl: window.location.href,
+          },
+        },
+
+        buttons: [
+          {
+            title: '나도 룩북 만들기',
+            link: {
+              mobileWebUrl: `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:7357`,
+              webUrl: `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:7357`,
+            },
+          },
+        ],
+      });
+    }
   };
 
   return (
@@ -118,6 +152,15 @@ function MyPage() {
             <ListText>저장한 룩북 리스트</ListText>
           </ListItem>
           <Divider />
+          <Helmet>
+            <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+          </Helmet>
+
+          <ListItem button onClick={shareByKakao}>
+            <ListText>카카오로 공유하기</ListText>
+          </ListItem>
+          <Divider />
+
           <ListItem
             button
             onClick={() => {

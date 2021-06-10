@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'GmarketSansMedium',
 
     display: 'flex',
-    paddingTop: '70px',
+    paddingTop: '60px',
     paddingBottom: '66px',
     // // justifyContent: 'center',
     flexDirection: 'column',
@@ -104,7 +104,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     // overflow: 'auto',
     height: '62vh',
-    marginTop: '15px',
+    marginTop: '28px',
     // justifyContent: 'center',
     alignItems: 'center',
   },

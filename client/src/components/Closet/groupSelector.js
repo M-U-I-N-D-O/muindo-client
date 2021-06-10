@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     // paddingTop: '60px',
     // paddingBottom: '56px',
     // justifyContent: 'center',
-    marginTop: '10px',
+    // marginTop: '10px',
     flexDirection: 'column',
     alignItems: 'center',
     width: '350px',
@@ -45,7 +45,8 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     width: '180px',
     whiteSpace: 'pre-wrap',
-    marginTop: '25px',
+    marginTop: '15px',
+    marginTop: '15px',
   },
 
   initializeBtn: {

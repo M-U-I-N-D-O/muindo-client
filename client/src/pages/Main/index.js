@@ -4,6 +4,9 @@ import styled from 'styled-components';
 import MotionStack from 'react-motion-stack';
 import 'react-motion-stack/build/motion-stack.css';
 
+import { connect } from 'react-redux';
+import { dialogMode } from '../../actions';
+
 const customerData = [
   { id: 1, url: './images/main/1.png', tpo: '이 룩은 마음에 드시나요 ?' },
   { id: 2, url: './images/main/2.png', tpo: '이 룩은 마음에 드시나요 ?' },
@@ -73,6 +76,7 @@ class Main extends Component {
   }
 
   render() {
+    const { storeDialogMode } = this.props;
     return (
       <div
         style={{
@@ -89,63 +93,10 @@ class Main extends Component {
         <MotionStack
           data={
             localStorage.getItem('token')
-              ? customerData.map((item, index) => {
+              ? userData.map((item, index) => {
                   var returnObj = {};
                   returnObj['id'] = index;
-                  if (item.id === 5) {
-                    returnObj['element'] = (
-                      <TinderBox key={item.id} onClick={() => console.log('로그인 하자.')}>
-                        <TinderImg src={item.url} alt="img" />
-                        <TpoText>{item.tpo}</TpoText>
 
-                        <div style={{ textAlign: 'center' }}>
-                          <WishButton
-                            onClick={(e) => {
-                              // e.preventDefault();
-                              this.setState({ checked: !this.state.checked });
-                              var text = document.getElementById('test');
-                              if (!this.state.checked) {
-                                text.innerText = '♥';
-                              } else {
-                                text.innerText = '♡';
-                              }
-                            }}
-                          >
-                            <WishText id="test">♡</WishText>
-                          </WishButton>
-                        </div>
-                      </TinderBox>
-                    );
-                  } else {
-                    returnObj['element'] = (
-                      <TinderBox key={item.id}>
-                        <TinderImg src={item.url} alt="img" />
-                        <TpoText>{item.tpo}</TpoText>
-
-                        <div style={{ textAlign: 'center' }}>
-                          <WishButton
-                            onClick={(e) => {
-                              this.setState({ checked: !this.state.checked });
-                              var text = document.getElementById('test');
-                              if (!this.state.checked) {
-                                text.innerText = '♥';
-                              } else {
-                                text.innerText = '♡';
-                              }
-                            }}
-                          >
-                            <WishText id="test">♡</WishText>
-                          </WishButton>
-                        </div>
-                      </TinderBox>
-                    );
-                  }
-
-                  return returnObj;
-                })
-              : userData.map((item, index) => {
-                  var returnObj = {};
-                  returnObj['id'] = index;
                   returnObj['element'] = (
                     <TinderBox key={item.id}>
                       <TinderImg src={item.url} alt="img" />
@@ -169,6 +120,66 @@ class Main extends Component {
                       </div>
                     </TinderBox>
                   );
+
+                  return returnObj;
+                })
+              : customerData.map((item, index) => {
+                  var returnObj = {};
+                  returnObj['id'] = index;
+                  if (item.id === 5) {
+                    returnObj['element'] = (
+                      <TinderBox
+                        key={item.id}
+                        onClick={() => {
+                          storeDialogMode();
+                          this.props.history.push('/confirm');
+                        }}
+                      >
+                        <TinderImg src={item.url} alt="img" />
+                        <TpoText>{item.tpo}</TpoText>
+
+                        <div style={{ textAlign: 'center' }}>
+                          <WishButton
+                            onClick={() => {
+                              this.setState({ checked: !this.state.checked });
+                              var text = document.getElementById('test');
+                              if (!this.state.checked) {
+                                text.innerText = '♥';
+                              } else {
+                                text.innerText = '♡';
+                              }
+                            }}
+                          >
+                            <WishText id="test">♡</WishText>
+                          </WishButton>
+                        </div>
+                      </TinderBox>
+                    );
+                  } else {
+                    returnObj['element'] = (
+                      <TinderBox key={item.id}>
+                        <TinderImg src={item.url} alt="img" />
+                        <TpoText>{item.tpo}</TpoText>
+
+                        <div style={{ textAlign: 'center' }}>
+                          <WishButton
+                            onClick={() => {
+                              this.setState({ checked: !this.state.checked });
+                              var text = document.getElementById('test');
+                              if (!this.state.checked) {
+                                text.innerText = '♥';
+                              } else {
+                                text.innerText = '♡';
+                              }
+                            }}
+                          >
+                            <WishText id="test">♡</WishText>
+                          </WishButton>
+                        </div>
+                      </TinderBox>
+                    );
+                  }
+
                   return returnObj;
                 })
           }
@@ -193,7 +204,12 @@ class Main extends Component {
   }
 }
 
-export default Main;
+const mapStateToProps = (state) => ({});
+const mapDispatchToProps = (dispatch) => ({
+  storeDialogMode: () => dispatch(dialogMode(1)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
 
 const BottomContainer = styled.div`
   display: flex;

@@ -97,7 +97,6 @@ export default function MyPageClosetList() {
     }
   }, []);
 
-  const apiUrl = `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/my-looks`;
   // const scrollToEnd = () => {
   //   console.log('마지막');
   //   setTimeout(() => {
@@ -161,6 +160,6 @@ export default function MyPageClosetList() {
     //   </div>
     //   {/* </InfiniteScroll> */}
     // </div>
-    <MyPageList apiUrl={apiUrl} myPageListTitle="나의 룩북 리스트" lookBookUrl={'/my_page_closet_detail/'} myPageListInfo={myClosetListInfo} />
+    <MyPageList myPageListTitle="나의 룩북 리스트" lookBookUrl={'/my_page_closet_detail/'} myPageListInfo={myClosetListInfo} />
   );
 }

@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TopComment from '../../components/AnalysisClothes/topComment';
 import styled from 'styled-components';
 import MyClosetInfo from '../../components/MyPage/myClosetInfoModal';
+import MyPageDetail from '../../components/MyPage/myPageDetail';
 import axios from 'axios';
 import { useHistory } from 'react-router';
 import { Helmet } from 'react-helmet';
@@ -226,184 +227,186 @@ export default function MyPageClosetDetail() {
 
   console.log(lookBookPrice);
 
-  const handleOpenClosetModalClick = () => {
-    setOpenClosetInfoModal(true);
-  };
-  const handleShareClick = (event) => {
-    setShareAnchor(event.currentTarget);
-  };
+  // const handleOpenClosetModalClick = () => {
+  //   setOpenClosetInfoModal(true);
+  // };
+  // const handleShareClick = (event) => {
+  //   setShareAnchor(event.currentTarget);
+  // };
 
-  const handleShareClose = () => {
-    setShareAnchor(null);
-  };
+  // const handleShareClose = () => {
+  //   setShareAnchor(null);
+  // };
 
-  const handleImageDownloadClick = async () => {
-    setShareAnchor(null);
-  };
-  const shareByKakao = () => {
-    if (window.Kakao) {
-      const kakao = window.Kakao;
-      if (!kakao.isInitialized()) {
-        kakao.init(process.env.REACT_APP_KAKAO_KEY);
-        console.log(window.Kakao.isInitialized());
-      }
-      kakao.Link.sendDefault({
-        objectType: 'feed',
-        content: {
-          title: 'MUINDO에서 만든 룩북이 도착했어요!',
-          description: '무지하게 패션 인싸 되고 싶은 사람들\n도와주는 곳, MUINDO',
-          imageUrl: 'https://ifh.cc/g/6R44lA.png',
-          link: {
-            // mobileWebUrl: `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:7357/my_page_closet_detail/${seq}`,
-            // webUrl: `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:7357/my_page_closet_detail/${seq}`,
-            mobileWebUrl: window.location.href,
-            webUrl: window.location.href,
-          },
-        },
+  // const handleImageDownloadClick = async () => {
+  //   setShareAnchor(null);
+  // };
+  // const shareByKakao = () => {
+  //   if (window.Kakao) {
+  //     const kakao = window.Kakao;
+  //     if (!kakao.isInitialized()) {
+  //       kakao.init(process.env.REACT_APP_KAKAO_KEY);
+  //       console.log(window.Kakao.isInitialized());
+  //     }
+  //     kakao.Link.sendDefault({
+  //       objectType: 'feed',
+  //       content: {
+  //         title: 'MUINDO에서 만든 룩북이 도착했어요!',
+  //         description: '무지하게 패션 인싸 되고 싶은 사람들\n도와주는 곳, MUINDO',
+  //         imageUrl: 'https://ifh.cc/g/6R44lA.png',
+  //         link: {
+  //           // mobileWebUrl: `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:7357/my_page_closet_detail/${seq}`,
+  //           // webUrl: `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:7357/my_page_closet_detail/${seq}`,
+  //           mobileWebUrl: window.location.href,
+  //           webUrl: window.location.href,
+  //         },
+  //       },
 
-        buttons: [
-          {
-            title: '나도 룩북 만들기',
-            link: {
-              mobileWebUrl: `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:7357/my_page_closet_detail/${seq}`,
-              webUrl: `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:7357/my_page_closet_detail/${seq}`,
-            },
-          },
-        ],
-      });
-    }
-  };
+  //       buttons: [
+  //         {
+  //           title: '나도 룩북 만들기',
+  //           link: {
+  //             mobileWebUrl: `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:7357/my_page_closet_detail/${seq}`,
+  //             webUrl: `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:7357/my_page_closet_detail/${seq}`,
+  //           },
+  //         },
+  //       ],
+  //     });
+  //   }
+  // };
 
   return (
-    <div className={classes.root}>
-      <MyClosetInfo price={lookBookPrice} />
-      <TopComment comment={'나의 룩북'} />
+    // <div className={classes.root}>
+    //   <MyClosetInfo price={lookBookPrice} />
+    //   <TopComment comment={'나의 룩북'} />
 
-      <Paper elevation={4} className={classes.closetContainer}>
-        <img className={classes.myLookBookImg} src={myLookBookInfo['url']} alt="" />
-        <div>
-          {myLookBookInfo['ok'] > 5 && myLookBookInfo['ok'] > myLookBookInfo['no'] * 2 && (
-            <div>
-              <img className={classes.confirmedThumb} src="/images/myPage/confirmed_thumb.png" alt="confirmed" />
-              <span className={classes.confirmedText}>Confirmed!</span>
-            </div>
-          )}
-        </div>
-      </Paper>
-      {myLookBookInfo['tpo'] !== null && (
-        <div className={classes.closetTextContainer}>
-          <Paper elevation={4} className={classes.closetTextBox}>
-            {myLookBookInfo['tpo']}
-          </Paper>
-        </div>
-      )}
+    //   <Paper elevation={4} className={classes.closetContainer}>
+    //     <img className={classes.myLookBookImg} src={myLookBookInfo['url']} alt="" />
+    //     <div>
+    //       {myLookBookInfo['ok'] > 5 && myLookBookInfo['ok'] > myLookBookInfo['no'] * 2 && (
+    //         <div>
+    //           <img className={classes.confirmedThumb} src="/images/myPage/confirmed_thumb.png" alt="confirmed" />
+    //           <span className={classes.confirmedText}>Confirmed!</span>
+    //         </div>
+    //       )}
+    //     </div>
+    //   </Paper>
+    //   {myLookBookInfo['tpo'] !== null && (
+    //     <div className={classes.closetTextContainer}>
+    //       <Paper elevation={4} className={classes.closetTextBox}>
+    //         {myLookBookInfo['tpo']}
+    //       </Paper>
+    //     </div>
+    //   )}
 
-      <div className={classes.likeNoContainer}>
-        <Paper elevation={4} className={classes.likeNoBox}>
-          <div className={classes.likeNoTitleBox}>Confirm✔</div>
-          <div className={classes.likeNoCountBox}>{myLookBookInfo['ok']}</div>
-        </Paper>
-        <Paper elevation={4} className={classes.likeNoBox}>
-          <div className={classes.likeNoTitleBox}>Nope❌</div>
-          <div className={classes.likeNoCountBox}>{myLookBookInfo['no']}</div>
-        </Paper>
-      </div>
+    //   <div className={classes.likeNoContainer}>
+    //     <Paper elevation={4} className={classes.likeNoBox}>
+    //       <div className={classes.likeNoTitleBox}>Confirm✔</div>
+    //       <div className={classes.likeNoCountBox}>{myLookBookInfo['ok']}</div>
+    //     </Paper>
+    //     <Paper elevation={4} className={classes.likeNoBox}>
+    //       <div className={classes.likeNoTitleBox}>Nope❌</div>
+    //       <div className={classes.likeNoCountBox}>{myLookBookInfo['no']}</div>
+    //     </Paper>
+    //   </div>
 
-      <div className={classes.lookBookInfoBtnContainer}>
-        {/* <LuxuryBtn2 onClick={handleOpenClosetModalClick}>{'LookBook \n 정보보기'}</LuxuryBtn2>{' '} */}
-        <Paper elevation={4} className={classes.lookBookBtn} onClick={handleOpenClosetModalClick}>
-          {' LookBook \n  정보보기'}
-        </Paper>{' '}
-      </div>
+    //   <div className={classes.lookBookInfoBtnContainer}>
+    //     {/* <LuxuryBtn2 onClick={handleOpenClosetModalClick}>{'LookBook \n 정보보기'}</LuxuryBtn2>{' '} */}
+    //     <Paper elevation={4} className={classes.lookBookBtn} onClick={handleOpenClosetModalClick}>
+    //       {' LookBook \n  정보보기'}
+    //     </Paper>{' '}
+    //   </div>
 
-      <div className={classes.ectBtnContainer}>
-        {/* <LuxuryBtn1 className={classes.shareBtn} onClick={handleShareClick}>
-          {'공유하기'}
-        </LuxuryBtn1> */}
-        <Paper elevation={4} className={classes.shareBtn} onClick={handleShareClick}>
-          {'공유하기'}
-        </Paper>
-        <Menu
-          id="simple-menu"
-          anchorEl={shareAnchor}
-          getContentAnchorEl={null | undefined}
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'center',
-          }}
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'center',
-          }}
-          keepMounted
-          open={Boolean(shareAnchor)}
-          onClose={handleShareClose}
-        >
-          <a href={myLookBookInfo['url']} style={{ color: '#000000', textDecoration: 'none' }}>
-            <MenuItem onClick={handleImageDownloadClick}>이미지 다운로드 </MenuItem>
-          </a>
-          <Helmet>
-            <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-          </Helmet>
+    //   <div className={classes.ectBtnContainer}>
+    //     {/* <LuxuryBtn1 className={classes.shareBtn} onClick={handleShareClick}>
+    //       {'공유하기'}
+    //     </LuxuryBtn1> */}
+    //     <Paper elevation={4} className={classes.shareBtn} onClick={handleShareClick}>
+    //       {'공유하기'}
+    //     </Paper>
+    //     <Menu
+    //       id="simple-menu"
+    //       anchorEl={shareAnchor}
+    //       getContentAnchorEl={null | undefined}
+    //       anchorOrigin={{
+    //         vertical: 'bottom',
+    //         horizontal: 'center',
+    //       }}
+    //       transformOrigin={{
+    //         vertical: 'top',
+    //         horizontal: 'center',
+    //       }}
+    //       keepMounted
+    //       open={Boolean(shareAnchor)}
+    //       onClose={handleShareClose}
+    //     >
+    //       <a href={myLookBookInfo['url']} style={{ color: '#000000', textDecoration: 'none' }}>
+    //         <MenuItem onClick={handleImageDownloadClick}>이미지 다운로드 </MenuItem>
+    //       </a>
+    //       <Helmet>
+    //         <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    //       </Helmet>
 
-          <MenuItem onClick={shareByKakao}>카카오톡 공유하기</MenuItem>
-        </Menu>
+    //       <MenuItem onClick={shareByKakao}>카카오톡 공유하기</MenuItem>
+    //     </Menu>
 
-        {/* <LuxuryBtn1
-          className={classes.shareBtn}
-          onClick={() => {
-            history.push('/my_page_closet_list');
-          }}
-        >
-          목록으로
-        </LuxuryBtn1> */}
-        <Paper
-          elevation={4}
-          className={classes.listBtn}
-          onClick={() => {
-            history.push('/my_page_closet_list');
-          }}
-        >
-          목록으로
-        </Paper>
-        {/* <LuxuryBtn1
-          className={classes.shareBtn}
-          onClick={() => {
-            history.push('/closet');
-            setClosetClothesId({
-              hat: '',
-              top: '',
-              bottom: '',
-              shoes: '',
-              bag: '',
-            });
-          }}
-        >
-          {'다시 \n 만들기'}
-        </LuxuryBtn1> */}
-        <Paper
-          elevation={4}
-          className={classes.restartBtn}
-          onClick={() => {
-            history.push('/closet');
-            // setClosetClothesId({
-            //   hat: '',
-            //   top: '',
-            //   bottom: '',
-            //   shoes: '',
-            //   bag: '',
-            // });
-          }}
-        >
-          {'다시 \n 만들기'}
-        </Paper>
-      </div>
+    //     {/* <LuxuryBtn1
+    //       className={classes.shareBtn}
+    //       onClick={() => {
+    //         history.push('/my_page_closet_list');
+    //       }}
+    //     >
+    //       목록으로
+    //     </LuxuryBtn1> */}
+    //     <Paper
+    //       elevation={4}
+    //       className={classes.listBtn}
+    //       onClick={() => {
+    //         history.push('/my_page_closet_list');
+    //       }}
+    //     >
+    //       목록으로
+    //     </Paper>
+    //     {/* <LuxuryBtn1
+    //       className={classes.shareBtn}
+    //       onClick={() => {
+    //         history.push('/closet');
+    //         setClosetClothesId({
+    //           hat: '',
+    //           top: '',
+    //           bottom: '',
+    //           shoes: '',
+    //           bag: '',
+    //         });
+    //       }}
+    //     >
+    //       {'다시 \n 만들기'}
+    //     </LuxuryBtn1> */}
+    //     <Paper
+    //       elevation={4}
+    //       className={classes.restartBtn}
+    //       onClick={() => {
+    //         history.push('/closet');
+    //         // setClosetClothesId({
+    //         //   hat: '',
+    //         //   top: '',
+    //         //   bottom: '',
+    //         //   shoes: '',
+    //         //   bag: '',
+    //         // });
+    //       }}
+    //     >
+    //       {'다시 \n 만들기'}
+    //     </Paper>
+    //   </div>
 
-      {/* <a href="/solution" className={classes.confirmLink} style={{ color: '#000' }} target="_blank" rel="noreferrer">
-        컨펌을 못 받으셨나요?
-      </a> */}
-      {}
-    </div>
+    //   {/* <a href="/solution" className={classes.confirmLink} style={{ color: '#000' }} target="_blank" rel="noreferrer">
+    //     컨펌을 못 받으셨나요?
+    //   </a> */}
+    //   {}
+    // </div>
+
+    <MyPageDetail lookBookPrice={lookBookPrice} myLookBookInfo={myLookBookInfo} page="myClosetDetail" goToListPath="/my_page_closet_list" />
   );
 }
 

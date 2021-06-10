@@ -11,6 +11,7 @@ import TextField from '@material-ui/core/TextField';
 import { ModalContext } from '../../App';
 import { ClothesIdContext } from '../../App';
 import { ClothesPriceContext } from '../../App';
+import { ClosetTextContext } from '../../App';
 
 import Paper from '@material-ui/core/Paper';
 
@@ -193,7 +194,8 @@ function Closet() {
   const { closetImg, setClosetImg } = useContext(ModalContext);
   const { closetClothesId, setClosetClothesId } = useContext(ClothesIdContext);
   const { clothesPrice, setClothesPrice } = useContext(ClothesPriceContext);
-
+  const { closetText, setClosetText } = useContext(ClosetTextContext);
+  // const closetTextRef = useRef('');
   useEffect(() => {
     setClosetImg({
       hat: '',
@@ -210,6 +212,8 @@ function Closet() {
       bag: '',
     });
     setClothesPrice(0);
+    setClosetText('');
+
     console.log(clothesPrice);
   }, []);
   console.log(clothesPrice);
@@ -238,6 +242,11 @@ function Closet() {
       bag: '',
     });
     setClothesPrice(0);
+  };
+
+  const handleChangeClosetText = (event) => {
+    console.log(event.target.value);
+    setClosetText(event.target.value);
   };
 
   return (
@@ -306,12 +315,21 @@ function Closet() {
       </div>
 
       <div className={classes.closetTextContainer}>
-        <TextField placeholder="ex) 소개팅 갈때 입을 옷이에요!" fullWidth variant="outlined" rows="2" multiline="true" />
+        <TextField
+          placeholder="ex) 데이트, 동창회, 가족 모임 등"
+          label="이 패션의 TPO💬"
+          value={closetText}
+          onChange={handleChangeClosetText}
+          fullWidth
+          variant="outlined"
+          rows="2"
+          multiline="true"
+        />
       </div>
 
       <div className={classes.btnBox}>
         <Paper elevation={4} className={classes.eraseBtn} onClick={handleEraseAllButtonClick}>
-          모두 지우기
+          모두 지우기💫
         </Paper>
 
         <Paper
@@ -323,7 +341,7 @@ function Closet() {
             }
           }}
         >
-          {'LOOKBOOK\n      만들기'}
+          {'LOOKBOOK\n    만들기📸'}
         </Paper>
       </div>
     </div>

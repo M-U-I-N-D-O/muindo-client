@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
     // border: 'solid 2px',
     fontSize: '11px',
     width: '40%',
-    height: '210px',
+    height: '230px',
     margin: '15px',
   },
 
@@ -63,6 +63,9 @@ const useStyles = makeStyles((theme) => ({
   confirmedThumb: {
     width: '20px',
     margin: '5px 0px',
+  },
+  titleText: {
+    fontFamily: 'GmarketSansMedium',
   },
 }));
 
@@ -134,12 +137,19 @@ export default function MyPageClosetList() {
             return (
               <Paper elevation={4} className={classes.individualClosetContainer} onClick={handleLookBookClick}>
                 <div className={classes.thumbnailBox}>
-                  <img className={classes.thumbnail} alt={myClosetListInfo[i]['id']} src={myClosetListInfo[i]['url']} />
+                  <img className={classes.thumbnail} alt={item.id} src={item.url} />
                 </div>
-                {item['ok'] > item['no'] && <img className={classes.confirmedThumb} src="/images/myPage/confirmed_thumb.png" alt="sdgf" />}
-                {item['no'] > item['ok'] && <img className={classes.confirmedThumb} src="/images/myPage/confirmed_thumb_down.png" alt="sdgf" />}
+                {item.tpo ? (
+                  <div className={classes.titleText}>{item.tpo.slice(0, 13)}...</div>
+                ) : (
+                  <div className={classes.titleText}>{i + 1}번 룩북</div>
+                )}
+                {item['ok'] > item['no'] && <img className={classes.confirmedThumb} src="/images/myPage/confirmed_thumb.png" alt="confirmed" />}
+                {item['no'] > item['ok'] && (
+                  <img className={classes.confirmedThumb} src="/images/myPage/confirmed_thumb_down.png" alt="notConfirmed" />
+                )}
                 {(item['ok'] < 1 && item['no'] < 1) || item['ok'] === item['no'] ? (
-                  <img className={classes.confirmedThumb} src="/images/myPage/question.png" alt="sdgf" />
+                  <img className={classes.confirmedThumb} src="/images/myPage/question.png" alt="confirmed" />
                 ) : (
                   <div></div>
                 )}

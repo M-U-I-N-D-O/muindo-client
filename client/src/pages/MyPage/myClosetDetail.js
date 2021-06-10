@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     width: '325px',
     height: '100px',
-    marginTop: '30px',
+    marginTop: '15px',
   },
   likeNoBox: {
     width: '143px',
@@ -152,8 +152,27 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'space-around',
     marginTop: '35px',
-    marginBottom: '25px',
+    marginBottom: '55px',
     width: '330px',
+  },
+  closetTextContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: '25px',
+    width: '330px',
+    height: '55px',
+  },
+  closetTextBox: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontFamily: 'GmarketSansMedium',
+    fontSize: '18px',
+
+    width: '310px',
+    height: '55px',
+    overflow: 'auto',
   },
 }));
 
@@ -261,16 +280,24 @@ export default function MyPageClosetDetail() {
       <TopComment comment={'나의 룩북'} />
 
       <Paper elevation={4} className={classes.closetContainer}>
-        <img className={classes.myLookBookImg} src={myLookBookInfo['url']} alt="aaa" />
+        <img className={classes.myLookBookImg} src={myLookBookInfo['url']} alt="" />
         <div>
           {myLookBookInfo['ok'] > 5 && myLookBookInfo['ok'] > myLookBookInfo['no'] * 2 && (
             <div>
-              <img className={classes.confirmedThumb} src="/images/myPage/confirmed_thumb.png" alt="sdgf" />
+              <img className={classes.confirmedThumb} src="/images/myPage/confirmed_thumb.png" alt="confirmed" />
               <span className={classes.confirmedText}>Confirmed!</span>
             </div>
           )}
         </div>
       </Paper>
+      {myLookBookInfo['tpo'] !== null && (
+        <div className={classes.closetTextContainer}>
+          <Paper elevation={4} className={classes.closetTextBox}>
+            {myLookBookInfo['tpo']}
+          </Paper>
+        </div>
+      )}
+
       <div className={classes.likeNoContainer}>
         <Paper elevation={4} className={classes.likeNoBox}>
           <div className={classes.likeNoTitleBox}>Confirm✔</div>
@@ -285,7 +312,7 @@ export default function MyPageClosetDetail() {
       <div className={classes.lookBookInfoBtnContainer}>
         {/* <LuxuryBtn2 onClick={handleOpenClosetModalClick}>{'LookBook \n 정보보기'}</LuxuryBtn2>{' '} */}
         <Paper elevation={4} className={classes.lookBookBtn} onClick={handleOpenClosetModalClick}>
-          {'LookBook \n 정보보기'}
+          {' LookBook \n  정보보기'}
         </Paper>{' '}
       </div>
 
@@ -372,9 +399,9 @@ export default function MyPageClosetDetail() {
         </Paper>
       </div>
 
-      <a href="/solution" className={classes.confirmLink} style={{ color: '#000' }} target="_blank" rel="noreferrer">
+      {/* <a href="/solution" className={classes.confirmLink} style={{ color: '#000' }} target="_blank" rel="noreferrer">
         컨펌을 못 받으셨나요?
-      </a>
+      </a> */}
       {}
     </div>
   );

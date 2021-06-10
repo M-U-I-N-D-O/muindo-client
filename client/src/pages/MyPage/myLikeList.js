@@ -135,10 +135,12 @@ export default function MyPageLikeList() {
                 <div className={classes.thumbnailBox}>
                   <img className={classes.thumbnail} alt={myLikeListInfo[i]['id']} src={myLikeListInfo[i]['url']} />
                 </div>
-                {item['ok'] > item['no'] && <img className={classes.confirmedThumb} src="/images/myPage/confirmed_thumb.png" alt="sdgf" />}
-                {item['no'] > item['ok'] && <img className={classes.confirmedThumb} src="/images/myPage/confirmed_thumb_down.png" alt="sdgf" />}
+                {item['ok'] > item['no'] && <img className={classes.confirmedThumb} src="/images/myPage/confirmed_thumb.png" alt="confirmed" />}
+                {item['no'] > item['ok'] && (
+                  <img className={classes.confirmedThumb} src="/images/myPage/confirmed_thumb_down.png" alt="notConfirmed" />
+                )}
                 {(item['ok'] < 1 && item['no'] < 1) || item['ok'] === item['no'] ? (
-                  <img className={classes.confirmedThumb} src="/images/myPage/question.png" alt="sdgf" />
+                  <img className={classes.confirmedThumb} src="/images/myPage/question.png" alt="confirmed" />
                 ) : (
                   <div></div>
                 )}

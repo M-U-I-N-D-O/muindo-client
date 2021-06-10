@@ -97,23 +97,3 @@ const PageName = styled.h1`
 const ButtonContainer = styled.div`
   padding-top: 40vh;
 `;
-const ButtonBox = styled.div`
-  width: 220px;
-  height: 40px;
-  margin: 1vh auto;
-`;
-const KakaoButton = styled.button`
-  display: block;
-  padding: 0;
-  margin: 0 auto;
-  margin-top: 1rem;
-  width: 220px;
-  height: 40px;
-  color: #783c00;
-  background-color: #ffeb00;
-  border: 1px solid transparent;
-  border-radius: 3px;
-  font-size: 14px;
-  font-weight: bold;
-  text-align: center;
-`;

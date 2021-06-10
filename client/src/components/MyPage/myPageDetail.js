@@ -124,6 +124,8 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    whiteSpace: 'pre-wrap',
+
     fontSize: '15px',
     width: '90px',
     height: '40px',
@@ -312,7 +314,7 @@ export default function MyPageDetail(props) {
       <div className={classes.lookBookInfoBtnContainer}>
         {/* <LuxuryBtn2 onClick={handleOpenClosetModalClick}>{'LookBook \n 정보보기'}</LuxuryBtn2>{' '} */}
         <Paper elevation={4} className={classes.lookBookBtn} onClick={handleOpenClosetModalClick}>
-          {' LookBook \n  정보보기'}
+          {' LookBook \n 정보보기📃'}
         </Paper>{' '}
       </div>
 
@@ -322,7 +324,7 @@ export default function MyPageDetail(props) {
         </LuxuryBtn1> */}
         <Paper elevation={4} className={classes.shareBtn} onClick={handleImageDownloadClick}>
           <a href={props.myLookBookInfo['url']} style={{ color: '#000000', textDecoration: 'none' }}>
-            {'이미지 \n다운로드'}
+            {' 이미지 \n다운로드'}
           </a>
         </Paper>
         {/* <Menu
@@ -408,126 +410,3 @@ export default function MyPageDetail(props) {
     </div>
   );
 }
-
-const LuxuryBtn = styled.button`
-  display: inline-block;
-  box-sizing: border-box;
-  /* max-width: 150px;
-  min-width: 130px; */
-  height: 35px;
-  width: 80px;
-  background: transparent;
-  text-transform: uppercase;
-  font-weight: 800;
-  font-style: normal;
-  font-size: 14px;
-  letter-spacing: 0.5px;
-  color: black;
-  border-radius: 0;
-  /* padding: 15px 20px 15px 20px; */
-  transition: all 0.25s ease-out;
-  cursor: pointer;
-  white-space: pre-wrap;
-  text-align: center;
-  /* background: linear-gradient(270deg, rgba(223, 190, 106, 0.8), rgba(146, 111, 52, 0.8), rgba(34, 34, 34, 0), rgba(34, 34, 34, 0)); */
-  background-position: 1% 50%;
-  background-size: 300% 300%;
-  text-decoration: none;
-  /* margin: 15px 5px 15px; */
-  border: 4px solid;
-  :hover {
-    color: black;
-    border: 7px solid;
-    /* color: $white; */
-    /* background-position: 99% 50%; */
-  }
-  :disabled {
-    /* background-position: 1% 50%; */
-    /* color: rgba(223, 190, 106, 0.7); */
-    color: gray;
-    border: 1px solid;
-    cursor: default;
-  }
-`;
-
-const LuxuryBtn1 = styled.button`
-  display: inline-block;
-  box-sizing: border-box;
-  /* max-width: 150px;
-  min-width: 130px; */
-  height: 50px;
-  width: 95px;
-  background: transparent;
-  text-transform: uppercase;
-  font-weight: 800;
-  font-style: normal;
-  font-size: 13.5px;
-  letter-spacing: 0.5px;
-  color: black;
-  border-radius: 0;
-  /* padding: 15px 20px 15px 20px; */
-  transition: all 0.25s ease-out;
-  cursor: pointer;
-  white-space: pre-wrap;
-  text-align: center;
-  /* background: linear-gradient(270deg, rgba(223, 190, 106, 0.8), rgba(146, 111, 52, 0.8), rgba(34, 34, 34, 0), rgba(34, 34, 34, 0)); */
-  background-position: 1% 50%;
-  background-size: 300% 300%;
-  text-decoration: none;
-  /* margin: 15px 5px 15px; */
-  border: 3px solid;
-  :hover {
-    color: black;
-    border: 5px solid;
-    /* color: $white; */
-    /* background-position: 99% 50%; */
-  }
-  :disabled {
-    /* background-position: 1% 50%; */
-    /* color: rgba(223, 190, 106, 0.7); */
-    color: gray;
-    border: 1px solid;
-    cursor: default;
-  }
-`;
-
-const LuxuryBtn2 = styled.button`
-  display: inline-block;
-  box-sizing: border-box;
-  /* max-width: 150px;
-  min-width: 130px; */
-  height: 60px;
-  width: 140px;
-  background: transparent;
-  text-transform: uppercase;
-  font-weight: 800;
-  font-style: normal;
-  font-size: 16px;
-  letter-spacing: 0.5px;
-  color: black;
-  border-radius: 0;
-  /* padding: 15px 20px 15px 20px; */
-  transition: all 0.25s ease-out;
-  cursor: pointer;
-  white-space: pre-wrap;
-  text-align: center;
-  /* background: linear-gradient(270deg, rgba(223, 190, 106, 0.8), rgba(146, 111, 52, 0.8), rgba(34, 34, 34, 0), rgba(34, 34, 34, 0)); */
-  background-position: 1% 50%;
-  background-size: 300% 300%;
-  text-decoration: none;
-  /* margin: 15px 5px 15px; */
-  border: 4px solid;
-  :hover {
-    color: black;
-    border: 7px solid;
-    /* color: $white; */
-    /* background-position: 99% 50%; */
-  }
-  :disabled {
-    /* background-position: 1% 50%; */
-    /* color: rgba(223, 190, 106, 0.7); */
-    color: gray;
-    border: 1px solid;
-    cursor: default;
-  }
-`;

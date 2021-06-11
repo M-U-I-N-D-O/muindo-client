@@ -1,9 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
-import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
+import { Route, BrowserRouter as Router } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { createContext, useState } from 'react';
-import { CookiesProvider, withCookies, useCookies } from 'react-cookie';
+import { CookiesProvider } from 'react-cookie';
 
 import Intro from './pages/Intro';
 import Main from './pages/Main';
@@ -14,12 +13,6 @@ import BottomNav from './components/Navbar/bottomNav';
 import LoginDialog from './pages/LoginDialog';
 import Confirm from './pages/Confirm';
 import Error from './pages/Error';
-
-import Home from './pages/Home';
-
-import AnalysisClothes from './pages/AnalysisClothes';
-import AnalysisClothesResult from './pages/AnalysisClothes/AnalysisClothesResult';
-import AnalysisColor from './pages/AnalysisColor';
 import Closet from './pages/Closet';
 import ClosetLookBook from './pages/Closet/ClosetLookBook';
 import MyPageClosetDetail from './pages/MyPage/myClosetDetail';
@@ -27,16 +20,9 @@ import MyPageClosetList from './pages/MyPage/myClosetList';
 import MyPageLikeDetail from './pages/MyPage/myLikeDetail';
 import MyPageLikeList from './pages/MyPage/myLikeList';
 
-import Community from './pages/Community';
-import Solution from './pages/Solution';
-import SolutionResult from './pages/Solution/solutionResult';
-import Login from './pages/Login';
-import SignUp from './pages/SignUp';
-
-import Footer from './components/Footer';
 import Progress from './components/Progress';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+// import 'slick-carousel/slick/slick.css';
+// import 'slick-carousel/slick/slick-theme.css';
 import './App.css';
 
 import useLocalStorage from '../src/hook/useLocalStorage';
@@ -72,8 +58,6 @@ function App() {
     bag: 0,
   });
   const [closetText, setClosetText] = useState('');
-
-  // const [condition, setCondition] = useState({});
 
   const [condition, setCondition] = useState({
     middleCategory: '',
@@ -122,21 +106,12 @@ function App() {
                 {navMode === 1 && <TopNav />}
                 <Route exact path="/" component={Intro} />
                 <Route exact path="/main" component={Main} />
-                {/* <Route exact path="/home" component={Home} /> */}
                 <Route component={LoginDialog} />
                 <Route component={MyPage} />
                 <Route exact path="/about" component={About} />
                 <Route exact path="/confirm" component={Confirm} />
                 <Route exact path="/error" component={Error} />
 
-                <Route exact path="/analysis_clothes" component={AnalysisClothes} />
-                <Route exact path="/analysis_clothes/result" component={AnalysisClothesResult} />
-                <Route exact path="/analysis_color" component={AnalysisColor} />
-
-                <Route exact path="/community" component={Community} />
-                <Route exact path="/solution" component={Solution} />
-                <Route exact path="/login" component={Login} />
-                <Route exact path="/signup" component={SignUp} />
                 <Route exact path="/loading" component={Progress} />
                 <Route exact path="/closet" component={Closet} />
                 <Route exact path="/closet/look_book" component={ClosetLookBook} />
@@ -146,8 +121,6 @@ function App() {
                 <Route exact path="/my_page_like_list" component={MyPageLikeList} />
 
                 {navMode === 1 && <BottomNav />}
-
-                {/* {navMode === 1 && <Footer />} */}
               </Router>
             </ClosetTextContext.Provider>
           </ClothesPriceContext.Provider>

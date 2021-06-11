@@ -19,6 +19,7 @@ class Confirm extends Component {
     axios
       .get(url + 'tinder/look')
       .then((res) => {
+        console.log(res.data);
         let fetchData = res.data.sort(() => Math.random() - 0.5);
         this.setState({ ItemList: fetchData });
       })
@@ -124,6 +125,7 @@ class Confirm extends Component {
             returnObj['element'] = (
               <TinderBox key={item.id}>
                 <TinderImg src={item.url} alt="img" />
+                <TpoText>{item.tpo}</TpoText>
                 <div style={{ textAlign: 'center' }}>
                   <WishButton
                     onClick={(e) => {
@@ -177,7 +179,7 @@ const CustomButton = styled.button`
   border: none;
   background: transparent;
   margin: 0 3vh;
-  margin-top: 10vh;
+  padding-top: 10vh;
   font-size: 3em;
 `;
 const BottomText = styled.h1`
@@ -228,4 +230,9 @@ const WishText = styled.p`
   padding: 0;
   font-size: 48px;
   color: #ffc0cb;
+`;
+const TpoText = styled.p`
+  color: white;
+  text-align: center;
+  margin-bottom: 2px;
 `;

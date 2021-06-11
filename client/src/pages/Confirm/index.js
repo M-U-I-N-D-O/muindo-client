@@ -78,7 +78,6 @@ class Confirm extends Component {
   };
 
   putData = (value, id) => {
-    // console.log('현재 찜하기 정보 : ', value, id);
     const json = JSON.stringify({ value: value });
     try {
       axios
@@ -128,7 +127,6 @@ class Confirm extends Component {
                 <div style={{ textAlign: 'center' }}>
                   <WishButton
                     onClick={(e) => {
-                      // e.preventDefault();
                       this.setState({ checked: !this.state.checked });
                       var text = document.getElementById('test');
                       if (!this.state.checked) {
@@ -136,8 +134,6 @@ class Confirm extends Component {
                       } else {
                         text.innerText = '♡';
                       }
-
-                      // console.log('checkd :', !this.state.checked);
                       this.putData(!this.state.checked, item.id);
                     }}
                   >
@@ -189,7 +185,7 @@ const BottomText = styled.h1`
   width: 50%;
   color: white;
   margin: 0;
-  bottom: 60%;
+  bottom: 55%;
   margin: 0 auto;
   z-index: 100;
 `;
@@ -202,9 +198,6 @@ const NopeText = styled.h1`
   z-index: 100;
   transform: rotate(-20deg);
   width: 50vw;
-  /* padding: 5px;
-  align-items: center;
-  justify-content: center; */
 `;
 const LikeText = styled.h1`
   position: absolute;
@@ -215,9 +208,6 @@ const LikeText = styled.h1`
   z-index: 100;
   width: 50vw;
   transform: rotate(20deg);
-  /* padding: 5px;
-  align-items: center;
-  justify-content: center; */
 `;
 
 const TinderBox = styled.div``;
@@ -232,13 +222,10 @@ const WishButton = styled.button`
   padding: 0;
   background-color: transparent;
   border: none;
-  /* background-color: transparent;
-  border: none; */
 `;
 const WishText = styled.p`
   margin: 0;
   padding: 0;
   font-size: 48px;
   color: #ffc0cb;
-  /* color: red; */
 `;

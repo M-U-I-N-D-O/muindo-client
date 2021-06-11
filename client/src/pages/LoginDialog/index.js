@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import React from 'react';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { dialogMode } from '../../actions';
@@ -44,7 +43,6 @@ function LoginDialog() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const mode = useSelector((state) => state.dialog.mode);
-  const history = useHistory();
 
   const handleClose = () => {
     dispatch(dialogMode(0));

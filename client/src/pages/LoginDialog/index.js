@@ -1,7 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
+import url from '../../url';
+import { useHistory } from 'react-router-dom';
+
 import { useSelector, useDispatch } from 'react-redux';
-import { dialogMode } from '../../actions';
+import { dialogMode, userName, userEmail } from '../../actions';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
@@ -13,7 +17,11 @@ import Slide from '@material-ui/core/Slide';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 
-import GoogleLogin from '../../components/LoginDialog/googleLogin';
+// import GoogleLogin from '../../components/LoginDialog/googleLogin';
+axios.defaults.baseURL = url;
+axios.defaults.withCredentials = true;
+
+const JWT_EXPIRY_TIME = 3600 * 1000;
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -42,10 +50,54 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 function LoginDialog() {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const history = useHistory();
   const mode = useSelector((state) => state.dialog.mode);
 
   const handleClose = () => {
     dispatch(dialogMode(0));
+  };
+
+  const onSilentRefresh = () => {
+    const json = JSON.stringify(localStorage.getItem('refresh'));
+    try {
+      axios
+        .post('/auth/refresh', json, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('refresh')}`,
+          },
+        })
+        .then((response) => {
+          localStorage.setItem('token', response.data.access_token);
+        });
+    } catch (err) {
+      // console.log(err);
+      history.push('/error');
+    }
+  };
+
+  const onLoginSuccess = (response) => {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.access_token}`;
+    localStorage.setItem('token', response.data.access_token);
+    localStorage.setItem('refresh', response.data.refresh_token);
+
+    setTimeout(() => {
+      onSilentRefresh();
+    }, JWT_EXPIRY_TIME - 60000);
+    dispatch(userName('GUEST'));
+    dispatch(userEmail('GUEST@elice.com'));
+    dispatch(dialogMode(-1));
+    history.push('/confirm');
+  };
+
+  const handleClick = () => {
+    try {
+      axios.get('auth/access-token-guest').then((response) => {
+        onLoginSuccess(response);
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -68,7 +120,10 @@ function LoginDialog() {
               간편로그인
             </Typography>
 
-            <GoogleLogin />
+            {/* <GoogleLogin /> */}
+            <LoginButton onClick={() => handleClick()}>
+              <LoginBtnText>Guest 로그인하기</LoginBtnText>
+            </LoginButton>
 
             <Typography className={classes.caption} variant="caption">
               미리보기
@@ -94,4 +149,12 @@ const PageName = styled.h1`
 `;
 const ButtonContainer = styled.div`
   padding-top: 40vh;
+`;
+const LoginButton = styled.button`
+  margin: 2vh 0;
+`;
+const LoginBtnText = styled.h2`
+  font-weight: bold;
+  font-size: 16px;
+  margin: 8px 2px;
 `;

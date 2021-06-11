@@ -1,12 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import styled from 'styled-components';
-
 import { ModalContext } from '../../App';
-import axios from 'axios';
-
-import { createMuiTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
 import Paper from '@material-ui/core/Paper';
 
 import InputLabel from '@material-ui/core/InputLabel';
@@ -47,7 +41,6 @@ const useStyles = makeStyles((theme) => ({
     width: '180px',
     whiteSpace: 'pre-wrap',
     marginTop: '15px',
-    marginTop: '15px',
   },
 
   initializeBtn: {
@@ -75,10 +68,10 @@ export default function GroupSelector() {
   const [conditionNum, setConditionNum] = useState(10000);
   const { closetClothesId, setClosetClothesId } = useContext(ClothesIdContext);
   const { closetImg, setClosetImg } = useContext(ModalContext);
-  const { openClosetModal, setOpenClosetModal } = useContext(ModalContext);
+  const { setOpenClosetModal } = useContext(ModalContext);
   const { clothesPrice, setClothesPrice } = useContext(ClothesPriceContext);
 
-  const fetch = useEffect(() => {
+  useEffect(() => {
     try {
       const res = FilterData;
       let result = res.filter_query;
@@ -120,7 +113,7 @@ export default function GroupSelector() {
     } catch (err) {
       console.log(err);
     }
-  }, [condition]);
+  }, [condition, modalMode]);
 
   const handleCategoryInitialize = (event) => {
     var newCondition = { ...condition };
@@ -138,15 +131,11 @@ export default function GroupSelector() {
     setClosetClothesId(closetClothesIdArr);
     var closetImgArr = { ...closetImg };
     closetImgArr[modalMode] = '';
-    setModalMode('');
     setClosetImg(closetImgArr);
-    setClothesPrice({
-      hat: 0,
-      top: 0,
-      bottom: 0,
-      shoes: 0,
-      bag: 0,
-    });
+    var newClothesPrice = { ...clothesPrice };
+    newClothesPrice[modalMode] = 0;
+    setClothesPrice(newClothesPrice);
+    setModalMode('');
 
     setOpenClosetModal(false);
   };
@@ -185,7 +174,11 @@ export default function GroupSelector() {
               <MenuItem onClick={handleCategoryInitialize}>분류 초기화</MenuItem>
             ) : (
               categoryList.map(function (selector, i) {
-                return <MenuItem value={categoryNumList[i]}>{selector}</MenuItem>;
+                return (
+                  <MenuItem key={i} value={categoryNumList[i]}>
+                    {selector}
+                  </MenuItem>
+                );
               })
             )}
           </Select>
@@ -195,7 +188,11 @@ export default function GroupSelector() {
           <Select value={condition['subCategory']} onChange={handleChangeSubCategory}>
             {conditionNum !== 10000 ? (
               subCategoryList[conditionNum].map(function (selector, i) {
-                return <MenuItem value={subCategoryNumList[conditionNum][i]}>{selector}</MenuItem>;
+                return (
+                  <MenuItem key={i} value={subCategoryNumList[conditionNum][i]}>
+                    {selector}
+                  </MenuItem>
+                );
               })
             ) : (
               <MenuItem>중분류를 선택하세요</MenuItem>
@@ -207,7 +204,11 @@ export default function GroupSelector() {
           <Select value={condition['brand']} onChange={handleChangeBrand}>
             {conditionNum !== 10000 ? (
               brandList[conditionNum].map(function (selector, i) {
-                return <MenuItem value={brandEngList[conditionNum][i]}>{selector}</MenuItem>;
+                return (
+                  <MenuItem key={i} value={brandEngList[conditionNum][i]}>
+                    {selector}
+                  </MenuItem>
+                );
               })
             ) : (
               <MenuItem>중분류를 선택하세요</MenuItem>

@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TopComment from '../../components/AnalysisClothes/topComment';
-import axios from 'axios';
-import InfiniteScroll from 'react-infinite-scroll-component';
 
 import { useHistory } from 'react-router';
 
@@ -120,7 +118,7 @@ export default function MyPageList(props) {
         {Array.isArray(props.myPageListInfo) &&
           props.myPageListInfo.map(function (item, i) {
             return (
-              <Paper elevation={4} className={classes.individualClosetContainer} onClick={handleLookBookClick}>
+              <Paper key={i} elevation={4} className={classes.individualClosetContainer} onClick={handleLookBookClick}>
                 <div className={classes.thumbnailBox}>
                   <img className={classes.thumbnail} alt={item.id} src={item.url} />
                 </div>

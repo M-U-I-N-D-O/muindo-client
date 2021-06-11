@@ -18,12 +18,12 @@ const TopText = styled.h1`
     font-size: 20px;
   }
 `;
-const TopImg = styled.img`
-  width: 4vw;
-  @media (min-width: 320px) and (max-width: 480px) {
-    width: 7vw;
-  }
-`;
+// const TopImg = styled.img`
+//   width: 4vw;
+//   @media (min-width: 320px) and (max-width: 480px) {
+//     width: 7vw;
+//   }
+// `;
 
 function TopComment(props) {
   return (

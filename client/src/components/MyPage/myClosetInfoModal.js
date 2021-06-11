@@ -1,24 +1,14 @@
-import React, { useState, createContext, useContext, useEffect, useCallback } from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
-import styled from 'styled-components';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
-import Fade from '@material-ui/core/Fade';
-import Backdrop from '@material-ui/core/Backdrop';
-import axios from 'axios';
 
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 
 import { ModalContext } from '../../App';
-import { ClothesPriceContext } from '../../App';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -96,7 +86,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export default function MyClosetInfo(props) {
   const classes = useStyles();
   const { openClosetInfoModal, setOpenClosetInfoModal } = useContext(ModalContext);
-  const { closetDetailInfo, setClosetDetailInfo } = useContext(ModalContext);
+  const { closetDetailInfo } = useContext(ModalContext);
   // const { clothesPrice, setClothesPrice } = useContext(ClothesPriceContext);
 
   const handleClosetInfoModalClose = () => {
@@ -110,7 +100,7 @@ export default function MyClosetInfo(props) {
             {closetDetailInfo &&
               closetDetailInfo.map(function (item, i) {
                 return (
-                  <Paper elevation={2} className={classes.infoContainer}>
+                  <Paper key={i} elevation={2} className={classes.infoContainer}>
                     <img className={classes.infoImg} src={item['url']} alt="infoImg" />
                     <div className={classes.infoBox}>
                       <a

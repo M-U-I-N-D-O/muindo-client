@@ -16,7 +16,7 @@ export default function MyPageClosetList() {
       history.push('/error');
       console.log(err);
     }
-  }, []);
+  }, [history]);
 
   return <MyPageList myPageListTitle="나의 룩북 리스트" lookBookUrl={'/my_page_closet_detail/'} myPageListInfo={myClosetListInfo} />;
 }

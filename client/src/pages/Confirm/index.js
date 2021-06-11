@@ -19,7 +19,6 @@ class Confirm extends Component {
     axios
       .get(url + 'tinder/look')
       .then((res) => {
-        console.log(res.data);
         let fetchData = res.data.sort(() => Math.random() - 0.5);
         this.setState({ ItemList: fetchData });
       })

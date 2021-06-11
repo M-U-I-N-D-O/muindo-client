@@ -114,6 +114,7 @@ class Confirm extends Component {
           alignItems: 'center',
           msTouchAction: 'pan-y',
           touchAction: 'pan-y',
+          overflow: 'hidden',
         }}
         className="demo-wrapper"
       >
@@ -150,7 +151,7 @@ class Confirm extends Component {
           render={(props) => props.element}
           renderButtons={this.renderButtons}
           infinite={true}
-          springConfig={{ stiffness: 1600, damping: 80 }}
+          springConfig={{ stiffness: 2000, damping: 80 }}
         />
         <BottomContainer>
           {this.state.text === 'Nope' ? (

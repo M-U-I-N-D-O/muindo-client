@@ -78,6 +78,7 @@ class Main extends Component {
           alignItems: 'center',
           msTouchAction: 'pan-y',
           touchAction: 'pan-y',
+          overflow: 'hidden',
         }}
         className="demo-wrapper"
       >
@@ -245,6 +246,7 @@ const CustomButton = styled.button`
   margin: 0 3vw;
   margin-top: 10vh;
   font-size: 3em;
+  z-index: 1000;
 `;
 const BottomText = styled.h1`
   position: absolute;

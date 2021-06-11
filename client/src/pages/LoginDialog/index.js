@@ -153,9 +153,11 @@ const CustomerButton = styled.button`
   border-radius: 3px;
   border-color: #222;
   margin-top: 10px;
+  cursor: pointer;
 `;
 const CustomerBtnText = styled.h2`
   color: white;
   font-size: 12px;
   margin: 0;
+  padding: 5px;
 `;

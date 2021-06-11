@@ -17,7 +17,6 @@ import Slide from '@material-ui/core/Slide';
 import Paper from '@material-ui/core/Paper';
 
 import firebase from 'firebase/app';
-import 'firebase/auth';
 import { Helmet } from 'react-helmet';
 
 const useStyles = makeStyles((theme) => ({
@@ -26,9 +25,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: 'black',
     height: '60px',
   },
-  title: {
-    marginLeft: theme.spacing(2),
-    flex: 1,
+  paper: {
+    border: '5px soild red',
   },
 }));
 
@@ -176,7 +174,7 @@ function MyPage() {
         {localStorage.getItem('token') && (
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <LogoutButton onClick={signOut}>
-              <Paper elevation={4}>
+              <Paper className={classes.paper} elevation={3}>
                 <LogoutButtonText>로그아웃</LogoutButtonText>
               </Paper>
             </LogoutButton>
@@ -226,4 +224,6 @@ const LogoutButtonText = styled.h3`
   align-items: center;
   justify-content: center;
   height: 5vh;
+  margin-top: 3vh;
+  margin-bottom: 0;
 `;

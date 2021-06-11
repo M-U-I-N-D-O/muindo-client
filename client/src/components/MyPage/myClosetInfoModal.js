@@ -142,36 +142,3 @@ export default function MyClosetInfo(props) {
     </div>
   );
 }
-
-const LuxuryBtn = styled.button`
-  display: inline-block;
-  box-sizing: border-box;
-  height: 65px;
-  width: 100px;
-  background: transparent;
-  text-transform: uppercase;
-  font-weight: 800;
-  font-style: normal;
-  font-size: 15px;
-  letter-spacing: 0.5px;
-  color: black;
-  border-radius: 0;
-  transition: all 0.25s ease-out;
-  cursor: pointer;
-  white-space: pre-wrap;
-  text-align: center;
-  background-position: 1% 50%;
-  background-size: 300% 300%;
-  text-decoration: none;
-  margin: 15px 5px 15px;
-  border: 4px solid;
-  :hover {
-    color: black;
-    border: 7px solid;
-  }
-  :disabled {
-    color: gray;
-    border: 1px solid;
-    cursor: default;
-  }
-`;

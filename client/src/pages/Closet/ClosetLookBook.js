@@ -218,10 +218,6 @@ export default function ClosetLookBook() {
     setShareAnchor(null);
   };
 
-  useEffect(() => {
-    console.log(closetClothesId);
-    console.log(closetText);
-  }, []);
   //   const handleEraseAllButtonClick = () => {
   //     setClosetImg({
   //       hat: '',
@@ -234,7 +230,6 @@ export default function ClosetLookBook() {
 
   const handleImageDownloadClick = async () => {
     // setOpenImgDownloadModal(true);
-    console.log(captureRef.current);
 
     // setTimeout(function () {
     //   setOpenImgDownloadModal(false);
@@ -245,14 +240,12 @@ export default function ClosetLookBook() {
       link.href = uri;
       document.body.appendChild(link);
       link.click();
-      console.log(link);
     }
     window.scrollTo(0, 0);
     let url = '';
     await html2canvas(captureRef.current, { useCORS: true }).then(async (canvas) => {
       url = await canvas.toDataURL('image/jpg');
       // setImgUrl(url);
-      console.log(url);
       downloadURI(url, 'muindo_lookbook');
     });
     setShareAnchor(null);
@@ -267,7 +260,6 @@ export default function ClosetLookBook() {
       link.href = uri;
       document.body.appendChild(link);
       link.click();
-      console.log(link);
     }
     window.scrollTo(0, 0);
     let url = '';
@@ -275,9 +267,7 @@ export default function ClosetLookBook() {
       url = await canvas.toDataURL('image/jpg');
       // setImgUrl(url);
       url = url.replace('data:image/png;base64,', '');
-      console.log(url);
     });
-    console.log(closetClothesId);
     const res = await axios
       .post(
         `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/looks/upload`,
@@ -313,7 +303,6 @@ export default function ClosetLookBook() {
     }, 1200);
   };
   // console.log(lookBookId);
-  console.log(seq);
   // const shareByKakao = () => {
   //   if (window.Kakao) {
   //     const kakao = window.Kakao;

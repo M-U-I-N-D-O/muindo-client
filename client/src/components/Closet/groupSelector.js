@@ -81,7 +81,6 @@ export default function GroupSelector() {
   const fetch = useEffect(() => {
     try {
       const res = FilterData;
-      console.log(res);
       let result = res.filter_query;
       result = result[modalMode].middle_category;
 
@@ -157,7 +156,6 @@ export default function GroupSelector() {
       var newCondition = { ...condition };
       newCondition['middleCategory'] = event.target.value;
       setConditionNum(categoryNumList.indexOf(event.target.value));
-      console.log(condition);
       setCondition(newCondition);
     }
   };
@@ -166,7 +164,6 @@ export default function GroupSelector() {
     if (event.target.value) {
       var newCondition = { ...condition };
       newCondition['subCategory'] = event.target.value;
-      console.log(condition);
       setCondition(newCondition);
     }
   };
@@ -174,7 +171,6 @@ export default function GroupSelector() {
     if (event.target.value) {
       var newCondition = { ...condition };
       newCondition['brand'] = event.target.value;
-      console.log(condition);
       setCondition(newCondition);
     }
   };
@@ -230,43 +226,3 @@ export default function GroupSelector() {
     </div>
   );
 }
-
-const LuxuryBtn = styled.button`
-  display: inline-block;
-  box-sizing: border-box;
-  max-width: 70px;
-  min-width: 60px;
-  width: 10vw;
-  background: transparent;
-  text-transform: uppercase;
-  font-weight: 500;
-  font-style: normal;
-  font-size: 13px;
-  letter-spacing: 0.2em;
-  color: rgba(223, 190, 106, 0.7);
-  border-radius: 0;
-  padding: 5px 5px 5px 5px;
-  transition: all 0.7s ease-out;
-  cursor: pointer;
-  white-space: pre-wrap;
-  text-align: center;
-  background: linear-gradient(270deg, rgba(223, 190, 106, 0.8), rgba(146, 111, 52, 0.8), rgba(34, 34, 34, 0), rgba(34, 34, 34, 0));
-  background-position: 1% 50%;
-  background-size: 300% 300%;
-  text-decoration: none;
-  margin: 15px 0px;
-  border: none;
-  border: 1px solid rgba(223, 190, 106, 0.3);
-  :hover {
-    color: #fff;
-    border: 1px solid rgba(223, 190, 106, 0);
-    color: $white;
-    background-position: 99% 50%;
-  }
-  :disabled {
-    background-position: 1% 50%;
-    color: rgba(223, 190, 106, 0.7);
-    border: 1px solid rgba(223, 190, 106, 0.3);
-    cursor: default;
-  }
-`;

@@ -19,9 +19,9 @@ var uiConfig = {
       if (userInfo.isNewUser && userInfo.providerId === 'password') {
         try {
           await authResult.user.sendEmailVerification();
-          console.log('Check Email');
+          // console.log('Check Email');
         } catch (e) {
-          console.log('Error!');
+          // console.log('Error!');
         }
       }
       return false;
@@ -37,13 +37,13 @@ const GoogleLogin = () => {
   const history = useHistory();
 
   const onLoginSuccess = (response, user) => {
-    console.log('post 결과 : ', response);
-    console.log('user :', user);
+    // console.log('post 결과 : ', response);
+    // console.log('user :', user);
     axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.access_token}`;
     localStorage.setItem('token', response.data.access_token);
     localStorage.setItem('refresh', response.data.refresh_token);
-    console.log('access token : ', localStorage.getItem('token'));
-    console.log('refresh token : ', localStorage.getItem('refresh'));
+    // console.log('access token : ', localStorage.getItem('token'));
+    // console.log('refresh token : ', localStorage.getItem('refresh'));
 
     setTimeout(() => {
       onSilentRefresh();
@@ -66,11 +66,11 @@ const GoogleLogin = () => {
         .then((response) => {
           localStorage.setItem('token', response.data.access_token);
 
-          console.log('new_access_token : ', response.data.access_token);
-          console.log('new_refresh_token : ', response.data.refresh_token);
+          // console.log('new_access_token : ', response.data.access_token);
+          // console.log('new_refresh_token : ', response.data.refresh_token);
         });
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       history.push('/error');
     }
   };
@@ -101,9 +101,9 @@ const GoogleLogin = () => {
             })
             .then((res) => onLoginSuccess(res, userInfo));
         } catch (err) {
-          console.log(err);
+          // console.log(err);
         }
-        console.log('firebase auth : ', firebase.auth());
+        // console.log('firebase auth : ', firebase.auth());
       }
     });
     return authObserver;

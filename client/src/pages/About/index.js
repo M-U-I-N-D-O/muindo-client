@@ -12,15 +12,17 @@ function About() {
       </LightText>
 
       <DescriptionText>
-        저희 <DescriptionSubText>MUINDO </DescriptionSubText>는
+        <DescriptionSubText>MUINDO </DescriptionSubText>는
         <br />
-        "무지하게 패션 인싸 되고싶은사람 도와주는 곳"으로
+        "무지하게 옷을 인간적으로 입고 싶은 사람을 <br />
+        도와주는 곳"입니다.
         <br />
-        패션가치관이 확립되지 않은 모두가
         <br />
-        자신의 패션 룩을 등록하고 컨펌받으면서
+        옷에 큰 에너지를 쏟고 싶진 않지만
         <br />
-        서로의 패션가치관을 확인 할 수 있는 공간입니다.
+        패션 테러리스트가 되고 싶지도 않은,
+        <br /> 그저 '사람답게'만 입고 싶은 사람들을 위한 <br />
+        서비스입니다.
       </DescriptionText>
 
       <ImgBoxText>Contributor</ImgBoxText>

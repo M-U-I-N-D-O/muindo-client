@@ -221,7 +221,7 @@ const BottomContainer = styled.div`
 const CustomButton = styled.button`
   border: none;
   background: transparent;
-  margin: 0 5vw;
+  margin: 0 3vw;
   margin-top: 10vh;
   font-size: 3em;
 `;
@@ -264,7 +264,7 @@ const TinderImg = styled.img`
   max-width: 100%;
   height: auto;
   user-select: none;
-  padding-top: 60px;
+  padding-top: 150px;
   background-color: #222;
 `;
 const TpoText = styled.p`

@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'GmarketSansMedium',
 
     display: 'flex',
-    paddingTop: '70px',
+    paddingTop: '60px',
     paddingBottom: '66px',
     // // justifyContent: 'center',
     flexDirection: 'column',
@@ -104,7 +104,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     // overflow: 'auto',
     height: '62vh',
-    marginTop: '15px',
+    marginTop: '28px',
     // justifyContent: 'center',
     alignItems: 'center',
   },
@@ -206,7 +206,7 @@ export default function ClosetModal() {
     try {
       axios
         .get(
-          `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/looks/items?middlecategory=${condition.middleCategory}&subcategory=${condition.subCategory}&brand=${condition.brand}&type=${modalMode}&itemid=`,
+          `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/looks/items?middlecategory=${condition.middleCategory}&subcategory=${condition.subCategory}&brand=${condition.brand}&type=${modalMode}&page=1`,
         )
         .then((res) => {
           setClothesList(res.data);
@@ -219,10 +219,11 @@ export default function ClosetModal() {
   console.log(clothesList);
 
   const setLastId = () => {
-    if (clothesList.length !== 0) {
-      setLastClothesId(clothesList[clothesList.length - 1]['id']);
-    }
-    console.log(lastClothesId);
+    // if (clothesList.length !== 0) {
+    //   setLastClothesId(clothesList[clothesList.length - 1]['id']);
+    // }
+    // console.log(lastClothesId);
+    setPage(page + 1);
   };
   useEffect(() => {
     setLastId();
@@ -233,21 +234,20 @@ export default function ClosetModal() {
     console.log('마지막');
 
     setTimeout(() => {
-      setPage(page + 1);
       axios
         .get(
-          `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/looks/items?middlecategory=${condition.middleCategory}&subcategory=${condition.subCategory}&brand=${condition.brand}&type=${modalMode}&itemid=${lastClothesId}`,
+          `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/looks/items?middlecategory=${condition.middleCategory}&subcategory=${condition.subCategory}&brand=${condition.brand}&type=${modalMode}&page=${page}`,
         )
         .then((res) => {
           setClothesList([...clothesList, ...res.data]);
         })
         .catch((err) => {
           console.log(err);
-          history.push('/error');
+          // history.push('/error');
         });
     }, 1000);
   };
-
+  console.log(page);
   const handleClose = () => {
     setClothesList([]);
 
@@ -272,9 +272,11 @@ export default function ClosetModal() {
       [modalMode]: event.target.src,
     });
     setClosetClothesId({ ...closetClothesId, [modalMode]: event.target.alt });
-    var selectedClothesPrice = parseInt(event.target['title']);
-    var newPrice = clothesPrice + selectedClothesPrice;
-    setClothesPrice(newPrice);
+    setClothesPrice({ ...clothesPrice, [modalMode]: parseInt(event.target['title']) });
+    // var selectedClothesPrice = parseInt(event.target['title']);
+    // var newPrice = clothesPrice + selectedClothesPrice;
+    // setClothesPrice(newPrice);
+    setPage(0);
 
     handleClose();
   };
@@ -331,9 +333,9 @@ export default function ClosetModal() {
                                 title="무신사에서 상품 보기"
                                 rel="noreferrer"
                               >
-                                <div style={{ fontSize: '14px' }}>{clothesList[i]['brand']}</div>
-                                <div>{clothesList[i]['name'].slice(0, 18)}...</div>
-                                <div style={{ fontSize: '16px' }}>{clothesList[i]['price']}\</div>
+                                <div style={{ fontSize: '14px', marginLeft: '6px' }}>{clothesList[i]['brand']}</div>
+                                <div style={{ fontSize: '16px', marginLeft: '6px' }}>{clothesList[i]['name'].slice(0, 15)}...</div>
+                                <div style={{ fontSize: '14px', marginLeft: '6px' }}>{clothesList[i]['price']}\</div>
                               </a>
                             </div>
                           </Paper>

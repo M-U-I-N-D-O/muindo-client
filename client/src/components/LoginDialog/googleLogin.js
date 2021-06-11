@@ -47,7 +47,7 @@ const GoogleLogin = () => {
 
     setTimeout(() => {
       onSilentRefresh();
-    }, 5000);
+    }, JWT_EXPIRY_TIME - 60000);
     dispatch(userName(user.name));
     dispatch(userEmail(user.email));
     dispatch(dialogMode(-1));

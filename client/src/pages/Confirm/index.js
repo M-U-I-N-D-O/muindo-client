@@ -124,6 +124,7 @@ class Confirm extends Component {
             returnObj['element'] = (
               <TinderBox key={item.id}>
                 <TinderImg src={item.url} alt="img" />
+                <TpoText>{item.tpo}</TpoText>
                 <div style={{ textAlign: 'center' }}>
                   <WishButton
                     onClick={(e) => {
@@ -216,6 +217,10 @@ const TinderImg = styled.img`
   height: auto;
   user-select: none;
   padding-top: 150px;
+`;
+const TpoText = styled.p`
+  color: white;
+  text-align: center;
 `;
 const WishButton = styled.button`
   margin: 0;

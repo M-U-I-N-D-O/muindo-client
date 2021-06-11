@@ -122,6 +122,7 @@ function App() {
                 {navMode === 1 && <TopNav />}
                 <Route exact path="/" component={Intro} />
                 <Route exact path="/main" component={Main} />
+                {/* <Route exact path="/home" component={Home} /> */}
                 <Route component={LoginDialog} />
                 <Route component={MyPage} />
                 <Route exact path="/about" component={About} />

@@ -201,8 +201,6 @@ export default function ClosetModal() {
 
   const history = useHistory();
   useEffect(() => {
-    console.log(closetClothesId);
-
     try {
       axios
         .get(
@@ -216,7 +214,6 @@ export default function ClosetModal() {
       history.push('/error');
     }
   }, [modalMode, condition]);
-  console.log(clothesList);
 
   const setLastId = () => {
     // if (clothesList.length !== 0) {
@@ -229,10 +226,7 @@ export default function ClosetModal() {
     setLastId();
   }, [clothesList, condition]);
 
-  console.log(clothesList);
   const scrollToEnd = () => {
-    console.log('마지막');
-
     setTimeout(() => {
       axios
         .get(
@@ -247,15 +241,10 @@ export default function ClosetModal() {
         });
     }, 1000);
   };
-  console.log(page);
   const handleClose = () => {
     setClothesList([]);
-
     setModalMode('');
-
     setLastClothesId('1');
-
-    console.log(clothesList);
     setOpenClosetModal(false);
 
     var newCondition = { ...condition };
@@ -360,43 +349,3 @@ export default function ClosetModal() {
     </div>
   );
 }
-
-const LuxuryBtn = styled.button`
-  display: inline-block;
-  box-sizing: border-box;
-  max-width: 160px;
-  min-width: 100px;
-  width: 5vw;
-  background: transparent;
-  text-transform: uppercase;
-  font-weight: 500;
-  font-style: normal;
-  font-size: 15px;
-  letter-spacing: 0.3em;
-  color: rgba(223, 190, 106, 0.7);
-  border-radius: 0;
-  padding: 15px 20px 15px 20px;
-  transition: all 0.7s ease-out;
-  cursor: pointer;
-  white-space: pre-wrap;
-  text-align: center;
-  background: linear-gradient(270deg, rgba(223, 190, 106, 0.8), rgba(146, 111, 52, 0.8), rgba(34, 34, 34, 0), rgba(34, 34, 34, 0));
-  background-position: 1% 50%;
-  background-size: 300% 300%;
-  text-decoration: none;
-  margin: 5px 15px 5px 15px;
-  border: none;
-  border: 1px solid rgba(223, 190, 106, 0.3);
-  :hover {
-    color: #fff;
-    border: 1px solid rgba(223, 190, 106, 0);
-    color: $white;
-    background-position: 99% 50%;
-  }
-  :disabled {
-    background-position: 1% 50%;
-    color: rgba(223, 190, 106, 0.7);
-    border: 1px solid rgba(223, 190, 106, 0.3);
-    cursor: default;
-  }
-`;

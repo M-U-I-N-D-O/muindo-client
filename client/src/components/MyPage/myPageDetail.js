@@ -231,7 +231,7 @@ export default function MyPageDetail(props) {
   return (
     <div className={classes.root}>
       <MyClosetInfo price={props.lookBookPrice} />
-      <TopComment comment={'나의 룩북'} />
+      <TopComment comment={props.title} />
 
       <Paper elevation={4} className={classes.closetContainer}>
         <img className={classes.myLookBookImg} src={props.myLookBookInfo['url']} alt="" />

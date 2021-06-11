@@ -178,7 +178,7 @@ const CustomButton = styled.button`
   border: none;
   background: transparent;
   margin: 0 3vh;
-  margin-top: 10vh;
+  padding-top: 10vh;
   font-size: 3em;
 `;
 const BottomText = styled.h1`
@@ -233,4 +233,9 @@ const WishText = styled.p`
   padding: 0;
   font-size: 48px;
   color: #ffc0cb;
+`;
+const TpoText = styled.p`
+  color: white;
+  text-align: center;
+  margin-bottom: 2px;
 `;

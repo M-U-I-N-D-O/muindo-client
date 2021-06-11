@@ -122,7 +122,7 @@ function LoginDialog() {
 
             {/* <GoogleLogin /> */}
             <LoginButton onClick={() => handleClick()}>
-              <LoginBtnText>GUEST 로그인</LoginBtnText>
+              <LoginBtnText>Guest 로그인하기</LoginBtnText>
             </LoginButton>
 
             <Typography className={classes.caption} variant="caption">
@@ -155,5 +155,6 @@ const LoginButton = styled.button`
 `;
 const LoginBtnText = styled.h2`
   font-weight: bold;
-  margin: 10px 0;
+  font-size: 16px;
+  margin: 8px 2px;
 `;

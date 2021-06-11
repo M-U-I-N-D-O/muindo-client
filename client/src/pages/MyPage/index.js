@@ -77,8 +77,8 @@ function MyPage() {
           description: '쉽고 편한 룩북 컨펌 서비스, MUINDO',
           imageUrl: 'https://ifh.cc/g/6R44lA.png',
           link: {
-            mobileWebUrl: `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:7357`,
-            webUrl: `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:7357`,
+            mobileWebUrl: `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com/`,
+            webUrl: `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com/`,
             // mobileWebUrl: window.location.href,
             // webUrl: window.location.href,
           },
@@ -88,8 +88,8 @@ function MyPage() {
           {
             title: '나도 룩북 만들기',
             link: {
-              mobileWebUrl: `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:7357`,
-              webUrl: `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:7357`,
+              mobileWebUrl: `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com/`,
+              webUrl: `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com/`,
             },
           },
         ],

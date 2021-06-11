@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import styled from 'styled-components';
 import MotionStack from 'react-motion-stack';
 import 'react-motion-stack/build/motion-stack.css';
@@ -35,23 +34,16 @@ class Main extends Component {
   onBeforeSwipe = (swipe, direction, state) => {
     document.getElementById('tinder-btn1').disabled = true;
     document.getElementById('tinder-btn2').disabled = true;
-    console.log('tinderCount :', this.state.tinderCount);
+
     if (direction === 'right') {
       if (this.state.tinderCount < 5) {
         this.setState({ text: 'Confirm' });
       }
-      // console.log('방금 선택 : 따봉 하나 추가요~');
     } else {
       if (this.state.tinderCount < 5) {
         this.setState({ text: 'Nope' });
       }
-
-      // console.log('방금 선택 : 놉 하나 추가요~');
     }
-    // console.log('현재 data key', state.data[0].element.key);
-    // console.log('유저 token : ', localStorage.getItem('token'));
-    // console.log('데이터 : ', state.data);
-    // console.log(state.data.length);
 
     if (this.state.tinderCount < 5) {
       swipe();
@@ -61,7 +53,6 @@ class Main extends Component {
   onSwipeEnd = ({ data }) => {
     this.setState({ text: '' });
     this.setState({ tinderCount: this.state.tinderCount + 1 });
-    // console.log('마침 :', this.state);
     document.getElementById('tinder-btn1').disabled = false;
     document.getElementById('tinder-btn2').disabled = false;
   };
@@ -243,9 +234,6 @@ const NopeText = styled.h1`
   z-index: 100;
   transform: rotate(-20deg);
   width: 50vw;
-  /* padding: 5px;
-  align-items: center;
-  justify-content: center; */
 `;
 const LikeText = styled.h1`
   position: absolute;
@@ -256,9 +244,6 @@ const LikeText = styled.h1`
   z-index: 100;
   width: 50vw;
   transform: rotate(20deg);
-  /* padding: 5px;
-  align-items: center;
-  justify-content: center; */
 `;
 const TinderImg = styled.img`
   max-width: 100%;
@@ -277,17 +262,11 @@ const TinderBox = styled.div`
   padding-top: 30px;
   background-color: #222;
 `;
-const TinderText = styled.h1`
-  color: white;
-  font-size: 18px;
-`;
 const WishButton = styled.button`
   margin: 0;
   padding: 0;
   background-color: transparent;
   border: none;
-  /* background-color: transparent;
-  border: none; */
 `;
 const WishText = styled.p`
   margin: 0;

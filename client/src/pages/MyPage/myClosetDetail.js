@@ -19,7 +19,7 @@ export default function MyPageClosetDetail() {
       axios.get(`http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/my-looks/${seq}`, {}).then((res) => {
         const detailInfoArr = [];
         detailInfoArr.push(res.data.hat, res.data.top, res.data.bottom, res.data.shoes, res.data.bag);
-        console.log(detailInfoArr);
+        // console.log(detailInfoArr);
 
         const notNulDetailInfoArr = [];
         for (var i = 0; i < detailInfoArr.length; i++) {
@@ -27,7 +27,7 @@ export default function MyPageClosetDetail() {
             notNulDetailInfoArr.push(detailInfoArr[i]);
           }
         }
-        console.log(notNulDetailInfoArr);
+        // console.log(notNulDetailInfoArr);
 
         var clothesPrice = 0;
         for (var m = 0; m < notNulDetailInfoArr.length; m++) {
@@ -43,7 +43,7 @@ export default function MyPageClosetDetail() {
     }
   }, [history, seq, setClosetDetailInfo]);
 
-  console.log(lookBookPrice);
+  // console.log(lookBookPrice);
 
   return <MyPageDetail lookBookPrice={lookBookPrice} myLookBookInfo={myLookBookInfo} page="myClosetDetail" goToListPath="/my_page_closet_list" />;
 }

@@ -1,37 +1,13 @@
-import React, { useState, useContext } from 'react';
-import clsx from 'clsx';
+import React from 'react';
 import { NavLink as Link } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { navbarMode, bottomNavMode } from '../../actions';
 import styled from 'styled-components';
 import { makeStyles } from '@material-ui/core/styles';
-import { createMuiTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
+
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 
-// 유지가 추가한 부분!
-import { ClothesIdContext } from '../../App';
-
-const NavTitleContainer = styled.div`
-  margin: auto;
-`;
-const NavTitle = styled.h3`
-  flex-grow: 1;
-  color: white;
-  font-size: 24px;
-  margin: 0;
-  padding-top: 8px;
-`;
-
-// const theme = createMuiTheme({
-//   palette: {
-//     primary: {
-//       main: '#e2b063',
-//     },
-//   },
-// });
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -45,27 +21,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function TopNav() {
-  // 유지가 추가한 부분!
-  // const { closetClothesId, setClosetClothesId } = useContext(ClothesIdContext);
-
   const classes = useStyles();
-  // const [open, setOpen] = useState(false);
-  // const [value, setValue] = useState(0);
+
   const dispatch = useDispatch();
-  // const history = useHistory();
 
   const handleNavbarMode = (mode) => {
     dispatch(navbarMode(mode));
     dispatch(bottomNavMode(-1));
-
-    // 유지가 추가한 부분!
-    // setClosetClothesId({
-    //   hat: '',
-    //   top: '',
-    //   bottom: '',
-    //   shoes: '',
-    //   bag: '',
-    // });
   };
   return (
     <div className={classes.root}>
@@ -89,5 +51,15 @@ function TopNav() {
     </div>
   );
 }
-
 export default TopNav;
+
+const NavTitleContainer = styled.div`
+  margin: auto;
+`;
+const NavTitle = styled.h3`
+  flex-grow: 1;
+  color: white;
+  font-size: 24px;
+  margin: 0;
+  padding-top: 8px;
+`;

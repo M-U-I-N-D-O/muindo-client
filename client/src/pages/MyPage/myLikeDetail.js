@@ -19,7 +19,7 @@ export default function MyPageLikeDetail() {
       axios.get(`http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/my-looks/${seq}`, {}).then((res) => {
         const detailInfoArr = [];
         detailInfoArr.push(res.data.hat, res.data.top, res.data.bottom, res.data.shoes, res.data.bag);
-        console.log(detailInfoArr);
+        // console.log(detailInfoArr);
         const notNulDetailInfoArr = [];
         for (var i = 0; i < detailInfoArr.length; i++) {
           if (detailInfoArr[i] !== null) {

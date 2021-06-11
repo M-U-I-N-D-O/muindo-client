@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { dialogMode, userName, userEmail } from '../../actions';
@@ -32,7 +32,7 @@ var uiConfig = {
 const JWT_EXPIRY_TIME = 3600 * 1000;
 
 const GoogleLogin = () => {
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(null);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -77,7 +77,7 @@ const GoogleLogin = () => {
 
   useEffect(() => {
     const authObserver = firebase.auth().onAuthStateChanged((user) => {
-      setUser(user);
+      // setUser(user);
       // console.log('user info', user);
       if (user) {
         // console.log('provide_Id : ', user.providerData[0].providerId);

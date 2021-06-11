@@ -16,7 +16,8 @@ import ArrowBackIosRoundedIcon from '@material-ui/icons/ArrowBackIosRounded';
 import Slide from '@material-ui/core/Slide';
 import Paper from '@material-ui/core/Paper';
 
-import firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 import { Helmet } from 'react-helmet';
 
 const useStyles = makeStyles((theme) => ({

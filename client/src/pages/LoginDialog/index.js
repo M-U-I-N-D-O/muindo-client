@@ -17,7 +17,7 @@ import Slide from '@material-ui/core/Slide';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 
-// import GoogleLogin from '../../components/LoginDialog/googleLogin';
+import GoogleLogin from '../../components/LoginDialog/googleLogin';
 axios.defaults.baseURL = url;
 axios.defaults.withCredentials = true;
 
@@ -120,14 +120,10 @@ function LoginDialog() {
               간편로그인
             </Typography>
 
-            {/* <GoogleLogin /> */}
-            <LoginButton onClick={() => handleClick()}>
-              <LoginBtnText>Guest 로그인하기</LoginBtnText>
-            </LoginButton>
-
-            <Typography className={classes.caption} variant="caption">
-              미리보기
-            </Typography>
+            <CustomerButton onClick={() => handleClick()} className={classes.btnText}>
+              <CustomerBtnText>Guest Login</CustomerBtnText>
+            </CustomerButton>
+            <GoogleLogin />
           </ButtonContainer>
         </Container>
       </Dialog>
@@ -150,11 +146,16 @@ const PageName = styled.h1`
 const ButtonContainer = styled.div`
   padding-top: 40vh;
 `;
-const LoginButton = styled.button`
-  margin: 2vh 0;
+const CustomerButton = styled.button`
+  width: 220px;
+  height: 40px;
+  background-color: #222;
+  border-radius: 3px;
+  border-color: #222;
+  margin-top: 10px;
 `;
-const LoginBtnText = styled.h2`
-  font-weight: bold;
-  font-size: 16px;
-  margin: 8px 2px;
+const CustomerBtnText = styled.h2`
+  color: white;
+  font-size: 12px;
+  margin: 0;
 `;

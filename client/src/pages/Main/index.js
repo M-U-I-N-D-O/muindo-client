@@ -50,7 +50,7 @@ class Main extends Component {
     }
   };
 
-  onSwipeEnd = ({ data }) => {
+  onSwipeEnd = () => {
     this.setState({ text: '' });
     this.setState({ tinderCount: this.state.tinderCount + 1 });
     document.getElementById('tinder-btn1').disabled = false;
@@ -286,7 +286,6 @@ const TpoText = styled.p`
   color: white;
   text-align: center;
   font-weight: bold;
-  margin-top: 0;
 `;
 const TinderBox = styled.div`
   padding-top: 30px;

@@ -4,7 +4,8 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { userName, userEmail, bottomNavMode } from '../../actions';
 import { navbarMode } from '../../actions';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 
 function Intro() {
   const dispatch = useDispatch();

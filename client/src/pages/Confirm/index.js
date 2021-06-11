@@ -234,8 +234,3 @@ const WishText = styled.p`
   font-size: 48px;
   color: #ffc0cb;
 `;
-const TpoText = styled.p`
-  color: white;
-  text-align: center;
-  margin-bottom: 2px;
-`;

@@ -1,18 +1,11 @@
-import React, { useState, useContext, useRef, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TopComment from '../../components/AnalysisClothes/topComment';
-import styled from 'styled-components';
 import MyClosetInfo from '../../components/MyPage/myClosetInfoModal';
-import axios from 'axios';
 import { useHistory } from 'react-router';
-import { Helmet } from 'react-helmet';
 
 import { ModalContext } from '../../App';
 import Paper from '@material-ui/core/Paper';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -181,10 +174,9 @@ const useStyles = makeStyles((theme) => ({
 export default function MyPageDetail(props) {
   const classes = useStyles();
   const history = useHistory();
-  const { openClosetInfoModal, setOpenClosetInfoModal } = useContext(ModalContext);
+  const { setOpenClosetInfoModal } = useContext(ModalContext);
   //   const { seq } = useParams();
   //   const { closetDetailInfo, setClosetDetailInfo } = useContext(ModalContext);
-  const [shareAnchor, setShareAnchor] = useState(null);
 
   //   const [myLookBookInfo, setMyLookBookInfo] = useState([]);
   //   const [lookBookPrice, setLookBookPrice] = useState(0);
@@ -231,49 +223,10 @@ export default function MyPageDetail(props) {
   const handleOpenClosetModalClick = () => {
     setOpenClosetInfoModal(true);
   };
-  const handleShareClick = (event) => {
-    setShareAnchor(event.currentTarget);
-  };
 
-  const handleShareClose = () => {
-    setShareAnchor(null);
-  };
-
-  const handleImageDownloadClick = async () => {
-    setShareAnchor(null);
-  };
-  const shareByKakao = () => {
-    if (window.Kakao) {
-      const kakao = window.Kakao;
-      if (!kakao.isInitialized()) {
-        kakao.init(process.env.REACT_APP_KAKAO_KEY);
-      }
-      kakao.Link.sendDefault({
-        objectType: 'feed',
-        content: {
-          title: 'MUINDO에서 만든 룩북이 도착했어요!',
-          description: '무지하게 패션 인싸 되고 싶은 사람들\n도와주는 곳, MUINDO',
-          imageUrl: 'https://ifh.cc/g/6R44lA.png',
-          link: {
-            // mobileWebUrl: `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:7357/my_page_closet_detail/${seq}`,
-            // webUrl: `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:7357/my_page_closet_detail/${seq}`,
-            mobileWebUrl: window.location.href,
-            webUrl: window.location.href,
-          },
-        },
-
-        buttons: [
-          {
-            title: '나도 룩북 만들기',
-            link: {
-              mobileWebUrl: `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:7357`,
-              webUrl: `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:7357`,
-            },
-          },
-        ],
-      });
-    }
-  };
+  // const handleImageDownloadClick = async () => {
+  //   // setShareAnchor(null);
+  // };
 
   return (
     <div className={classes.root}>
@@ -321,7 +274,7 @@ export default function MyPageDetail(props) {
         {/* <LuxuryBtn1 className={classes.shareBtn} onClick={handleShareClick}>
           {'공유하기'}
         </LuxuryBtn1> */}
-        <Paper elevation={4} className={classes.shareBtn} onClick={handleImageDownloadClick}>
+        <Paper elevation={4} className={classes.shareBtn}>
           <a href={props.myLookBookInfo['url']} style={{ color: '#000000', textDecoration: 'none' }}>
             {' 이미지 \n다운로드'}
           </a>

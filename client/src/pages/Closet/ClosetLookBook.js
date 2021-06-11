@@ -1,13 +1,9 @@
-import React, { useState, useContext, useRef, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import React, { useState, useContext, useRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TopComment from '../../components/AnalysisClothes/topComment';
-import styled from 'styled-components';
-import ClosetModal from '../../components/Closet/closetModal';
 import ColorChangeModal from '../../components/Closet/lookBookColorModal';
 import axios from 'axios';
 import { useHistory } from 'react-router';
-import { Helmet } from 'react-helmet';
 
 import Paper from '@material-ui/core/Paper';
 import { ModalContext } from '../../App';
@@ -175,16 +171,16 @@ const useStyles = makeStyles((theme) => ({
 export default function ClosetLookBook() {
   const classes = useStyles();
   const history = useHistory();
-  const { lookBookColorSelect, setLookBookColorSelect } = useContext(ModalContext);
+  const { lookBookColorSelect } = useContext(ModalContext);
 
-  const { lookBookColorModal, setLookBookColorModal } = useContext(ModalContext);
-  const { closetImg, setClosetImg } = useContext(ModalContext);
-  const { closetClothesId, setClosetClothesId } = useContext(ClothesIdContext);
+  const { setLookBookColorModal } = useContext(ModalContext);
+  const { closetImg } = useContext(ModalContext);
+  const { closetClothesId } = useContext(ClothesIdContext);
 
   const [modifyAnchor, setModifyAnchor] = useState(null);
-  const [shareAnchor, setShareAnchor] = useState(null);
-  const { seq } = useParams();
-  const { closetText, setClosetText } = useContext(ClosetTextContext);
+  const [setShareAnchor] = useState(null);
+  // const { seq } = useParams();
+  const { closetText } = useContext(ClosetTextContext);
 
   const captureRef = useRef();
 
@@ -206,17 +202,17 @@ export default function ClosetLookBook() {
     setModifyAnchor(event.currentTarget);
   };
 
-  const handleShareClick = (event) => {
-    setShareAnchor(event.currentTarget);
-  };
+  // const handleShareClick = (event) => {
+  //   setShareAnchor(event.currentTarget);
+  // };
 
   const handleModifyClose = () => {
     setModifyAnchor(null);
   };
 
-  const handleShareClose = () => {
-    setShareAnchor(null);
-  };
+  // const handleShareClose = () => {
+  //   setShareAnchor(null);
+  // };
 
   //   const handleEraseAllButtonClick = () => {
   //     setClosetImg({
@@ -248,19 +244,19 @@ export default function ClosetLookBook() {
       // setImgUrl(url);
       downloadURI(url, 'muindo_lookbook');
     });
-    setShareAnchor(null);
+    // setShareAnchor(null);
   };
 
   const handleUpload = async () => {
     history.push('/loading');
 
-    function downloadURI(uri, name) {
-      var link = document.createElement('a');
-      link.download = name;
-      link.href = uri;
-      document.body.appendChild(link);
-      link.click();
-    }
+    // function downloadURI(uri, name) {
+    //   var link = document.createElement('a');
+    //   link.download = name;
+    //   link.href = uri;
+    //   document.body.appendChild(link);
+    //   link.click();
+    // }
     window.scrollTo(0, 0);
     let url = '';
     await html2canvas(captureRef.current, { useCORS: true }).then(async (canvas) => {
@@ -453,86 +449,3 @@ export default function ClosetLookBook() {
     </div>
   );
 }
-
-// const LuxuryBtn = styled.button`
-//   display: inline-block;
-//   box-sizing: border-box;
-//   /* max-width: 140px; */
-//   /* min-width: 80px; */
-//   width: 90px;
-//   background: transparent;
-//   text-transform: uppercase;
-//   font-weight: 500;
-//   font-style: normal;
-//   font-size: 14px;
-//   letter-spacing: 0.3em;
-//   color: rgba(223, 190, 106, 0.7);
-//   border-radius: 0;
-//   /* padding: 15px 20px 15px 20px; */
-//   transition: all 0.7s ease-out;
-//   cursor: pointer;
-//   white-space: pre-wrap;
-//   text-align: center;
-//   background: linear-gradient(270deg, rgba(223, 190, 106, 0.8), rgba(146, 111, 52, 0.8), rgba(34, 34, 34, 0), rgba(34, 34, 34, 0));
-//   background-position: 1% 50%;
-//   background-size: 300% 300%;
-//   text-decoration: none;
-//   margin: 15px 10px 15px;
-//   border: none;
-//   border: 1px solid rgba(223, 190, 106, 0.3);
-//   :hover {
-//     color: #fff;
-//     border: 1px solid rgba(223, 190, 106, 0);
-//     color: $white;
-//     background-position: 99% 50%;
-//   }
-//   :disabled {
-//     background-position: 1% 50%;
-//     color: rgba(223, 190, 106, 0.7);
-//     border: 1px solid rgba(223, 190, 106, 0.3);
-//     cursor: default;
-//   }
-// `;
-
-const LuxuryBtn = styled.button`
-  display: inline-block;
-  box-sizing: border-box;
-  /* max-width: 150px;
-  min-width: 130px; */
-  font-family: GmarketSansMedium;
-
-  height: 65px;
-  width: 100px;
-  background: transparent;
-  text-transform: uppercase;
-  font-weight: 800;
-  font-style: normal;
-  font-size: 15px;
-  letter-spacing: 0.5px;
-  color: black;
-  border-radius: 0;
-  /* padding: 15px 20px 15px 20px; */
-  transition: all 0.25s ease-out;
-  cursor: pointer;
-  white-space: pre-wrap;
-  text-align: center;
-  /* background: linear-gradient(270deg, rgba(223, 190, 106, 0.8), rgba(146, 111, 52, 0.8), rgba(34, 34, 34, 0), rgba(34, 34, 34, 0)); */
-  background-position: 1% 50%;
-  background-size: 300% 300%;
-  text-decoration: none;
-  margin: 15px 5px 15px;
-  border: 4px solid;
-  :hover {
-    color: black;
-    border: 7px solid;
-    /* color: $white; */
-    /* background-position: 99% 50%; */
-  }
-  :disabled {
-    /* background-position: 1% 50%; */
-    /* color: rgba(223, 190, 106, 0.7); */
-    color: gray;
-    border: 1px solid;
-    cursor: default;
-  }
-`;

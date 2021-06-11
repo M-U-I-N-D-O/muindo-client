@@ -1,10 +1,7 @@
-import React, { useState, useContext, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TopComment from '../../components/AnalysisClothes/topComment';
-import styled from 'styled-components';
 import ClosetModal from '../../components/Closet/closetModal';
-import axios from 'axios';
 import { useHistory } from 'react-router';
 import TextField from '@material-ui/core/TextField';
 
@@ -189,7 +186,7 @@ function Closet() {
 
   const classes = useStyles();
 
-  const { openClosetModal, setOpenClosetModal } = useContext(ModalContext);
+  const { setOpenClosetModal } = useContext(ModalContext);
   const { modalMode, setModalMode } = useContext(ModalContext);
   const { closetImg, setClosetImg } = useContext(ModalContext);
   const { closetClothesId, setClosetClothesId } = useContext(ClothesIdContext);
@@ -221,7 +218,7 @@ function Closet() {
     });
 
     setClosetText('');
-  }, []);
+  }, [setClosetImg, setClosetClothesId, setClothesPrice, setClosetText]);
 
   const handleClothesContainerClick = (event) => {
     setModalMode(event.target.id);
@@ -330,7 +327,7 @@ function Closet() {
           fullWidth
           variant="outlined"
           rows="2"
-          multiline="true"
+          multiline
         />
       </div>
 

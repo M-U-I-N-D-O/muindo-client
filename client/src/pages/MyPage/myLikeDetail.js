@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 import { useHistory } from 'react-router';
 import MyPageDetail from '../../components/MyPage/myPageDetail';
@@ -10,7 +9,7 @@ import { ModalContext } from '../../App';
 export default function MyPageLikeDetail() {
   const history = useHistory();
   const { seq } = useParams();
-  const { closetDetailInfo, setClosetDetailInfo } = useContext(ModalContext);
+  const { setClosetDetailInfo } = useContext(ModalContext);
 
   const [myLookBookInfo, setMyLookBookInfo] = useState([]);
   const [lookBookPrice, setLookBookPrice] = useState(0);
@@ -40,7 +39,7 @@ export default function MyPageLikeDetail() {
       history.push('/error');
       console.log(err);
     }
-  }, []);
+  }, [history, seq, setClosetDetailInfo]);
 
   return <MyPageDetail lookBookPrice={lookBookPrice} myLookBookInfo={myLookBookInfo} page="myLikeDetail" goToListPath="/my_page_like_list" />;
 }

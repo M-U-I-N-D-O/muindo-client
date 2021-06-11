@@ -1,34 +1,15 @@
-import React, { useState, useCallback, useContext, useEffect, useRef } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
-import Fade from '@material-ui/core/Fade';
-import Backdrop from '@material-ui/core/Backdrop';
-import styled from 'styled-components';
-import TopComment from '../AnalysisClothes/topComment';
 
 // import ColorSelect from './colorPalette';
 import { ModalContext } from '../../App';
 
-import { createMuiTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
-import { SketchPicker, CirclePicker, ChromePicker } from 'react-color';
+import { CirclePicker } from 'react-color';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import Button from '@material-ui/core/Button';
-
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: '#e2b063',
-    },
-  },
-});
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -118,12 +99,11 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export default function ColorChangeModal({ data }) {
   const classes = useStyles();
   const { lookBookColorModal, setLookBookColorModal } = useContext(ModalContext);
-  const { lookBookColorSelect, setLookBookColorSelect } = useContext(ModalContext);
-  const { closetImg, setClosetImg } = useContext(ModalContext);
+  const { setLookBookColorSelect } = useContext(ModalContext);
 
   useEffect(() => {
     setLookBookColorSelect('#fff');
-  }, []);
+  }, [setLookBookColorSelect]);
 
   const handleLookBookColorClose = () => {
     setLookBookColorModal(false);

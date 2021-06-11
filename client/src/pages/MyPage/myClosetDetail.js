@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
 import MyPageDetail from '../../components/MyPage/myPageDetail';
 import axios from 'axios';
 import { useHistory } from 'react-router';
@@ -10,7 +9,7 @@ import { ModalContext } from '../../App';
 export default function MyPageClosetDetail() {
   const history = useHistory();
   const { seq } = useParams();
-  const { closetDetailInfo, setClosetDetailInfo } = useContext(ModalContext);
+  const { setClosetDetailInfo } = useContext(ModalContext);
 
   const [myLookBookInfo, setMyLookBookInfo] = useState([]);
   const [lookBookPrice, setLookBookPrice] = useState(0);
@@ -42,7 +41,7 @@ export default function MyPageClosetDetail() {
       history.push('/error');
       console.log(err);
     }
-  }, []);
+  }, [history, seq, setClosetDetailInfo]);
 
   console.log(lookBookPrice);
 

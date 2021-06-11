@@ -16,7 +16,7 @@ export default function MyPageLikeList() {
       history.push('/error');
       console.log(err);
     }
-  }, []);
+  }, [history]);
 
   return <MyPageList myPageListTitle="저장한 룩북 리스트" lookBookUrl={'/my_page_like_detail/'} myPageListInfo={myLikeListInfo} />;
 }

@@ -41,7 +41,7 @@ class Confirm extends Component {
           },
         })
         .then((res) => {
-          console.log('반환 결과 :', res);
+          // console.log('반환 결과 :', res);
         });
     } catch (err) {
       console.log(err);
@@ -54,25 +54,25 @@ class Confirm extends Component {
 
     if (direction === 'right') {
       this.setState({ text: 'Confirm' });
-      console.log('방금 선택 : 따봉 하나 추가요~');
+      // console.log('방금 선택 : 따봉 하나 추가요~');
 
       this.postData('like', state.data[0].element.key, localStorage.getItem('token'));
     } else {
       this.setState({ text: 'Nope' });
-      console.log('방금 선택 : 놉 하나 추가요~');
+      // console.log('방금 선택 : 놉 하나 추가요~');
 
       this.postData('nope', state.data[0].element.key, localStorage.getItem('token'));
     }
-    console.log('현재 data key', state.data[0].element.key);
-    console.log('유저 token : ', localStorage.getItem('token'));
-    console.log('데이터 :', state.data);
+    // console.log('현재 data key', state.data[0].element.key);
+    // console.log('유저 token : ', localStorage.getItem('token'));
+    // console.log('데이터 :', state.data);
     this.setState({ checked: false });
     swipe();
   };
 
   onSwipeEnd = ({ data }) => {
     this.setState({ text: '' });
-    console.log('마침 :', this.state);
+    // console.log('마침 :', this.state);
     document.getElementById('tinder-btn1').disabled = false;
     document.getElementById('tinder-btn2').disabled = false;
   };
@@ -87,7 +87,7 @@ class Confirm extends Component {
           },
         })
         .then((res) => {
-          console.log('put 결과 : ', res);
+          // console.log('put 결과 : ', res);
         });
     } catch (err) {
       console.log(err);

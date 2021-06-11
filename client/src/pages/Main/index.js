@@ -34,7 +34,7 @@ class Main extends Component {
   onBeforeSwipe = (swipe, direction, state) => {
     document.getElementById('tinder-btn1').disabled = true;
     document.getElementById('tinder-btn2').disabled = true;
-    console.log('tinderCount :', this.state.tinderCount);
+
     if (direction === 'right') {
       if (this.state.tinderCount < 5) {
         this.setState({ text: 'Confirm' });

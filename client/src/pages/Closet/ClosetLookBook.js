@@ -178,7 +178,7 @@ export default function ClosetLookBook() {
   const { closetClothesId } = useContext(ClothesIdContext);
 
   const [modifyAnchor, setModifyAnchor] = useState(null);
-  const [setShareAnchor] = useState(null);
+  // const [setShareAnchor] = useState(null);
   // const { seq } = useParams();
   const { closetText } = useContext(ClosetTextContext);
 

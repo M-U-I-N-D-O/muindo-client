@@ -45,5 +45,13 @@ export default function MyPageClosetDetail() {
 
   // console.log(lookBookPrice);
 
-  return <MyPageDetail lookBookPrice={lookBookPrice} myLookBookInfo={myLookBookInfo} page="myClosetDetail" goToListPath="/my_page_closet_list" />;
+  return (
+    <MyPageDetail
+      title="나의 룩북"
+      lookBookPrice={lookBookPrice}
+      myLookBookInfo={myLookBookInfo}
+      page="myClosetDetail"
+      goToListPath="/my_page_closet_list"
+    />
+  );
 }

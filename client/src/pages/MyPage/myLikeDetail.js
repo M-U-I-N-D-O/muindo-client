@@ -41,5 +41,13 @@ export default function MyPageLikeDetail() {
     }
   }, [history, seq, setClosetDetailInfo]);
 
-  return <MyPageDetail lookBookPrice={lookBookPrice} myLookBookInfo={myLookBookInfo} page="myLikeDetail" goToListPath="/my_page_like_list" />;
+  return (
+    <MyPageDetail
+      title="저장한 룩북"
+      lookBookPrice={lookBookPrice}
+      myLookBookInfo={myLookBookInfo}
+      page="myLikeDetail"
+      goToListPath="/my_page_like_list"
+    />
+  );
 }

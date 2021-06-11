@@ -333,9 +333,9 @@ export default function ClosetModal() {
                                 title="무신사에서 상품 보기"
                                 rel="noreferrer"
                               >
-                                <div style={{ fontSize: '14px' }}>{clothesList[i]['brand']}</div>
-                                <div>{clothesList[i]['name'].slice(0, 18)}...</div>
-                                <div style={{ fontSize: '16px' }}>{clothesList[i]['price']}\</div>
+                                <div style={{ fontSize: '14px', marginLeft: '6px' }}>{clothesList[i]['brand']}</div>
+                                <div style={{ fontSize: '16px', marginLeft: '6px' }}>{clothesList[i]['name'].slice(0, 15)}...</div>
+                                <div style={{ fontSize: '14px', marginLeft: '6px' }}>{clothesList[i]['price']}\</div>
                               </a>
                             </div>
                           </Paper>

@@ -256,6 +256,7 @@ function Closet() {
       shoes: 0,
       bag: 0,
     });
+    setModalMode('');
   };
   console.log(clothesPrice);
   const handleChangeClosetText = (event) => {

@@ -172,7 +172,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'GmarketSansMedium',
     fontSize: '16px',
 
-    width: '300px',
+    width: '320px',
     height: '55px',
     overflow: 'auto',
   },
@@ -295,7 +295,7 @@ export default function MyPageDetail(props) {
       {props.myLookBookInfo['tpo'] !== null && (
         <div className={classes.closetTextContainer}>
           <Paper elevation={4} className={classes.closetTextBox}>
-            {props.myLookBookInfo['tpo']}
+            <div style={{ margin: '8px' }}>{props.myLookBookInfo['tpo']}</div>
           </Paper>
         </div>
       )}

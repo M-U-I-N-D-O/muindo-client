@@ -15,6 +15,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
 import { ClothesIdContext } from '../../App';
+import { ClothesPriceContext } from '../../App';
 
 // import FilterData from '../../data/closetCategorization.json';
 import FilterData from '../../data/closetCategorization.json';
@@ -75,6 +76,7 @@ export default function GroupSelector() {
   const { closetClothesId, setClosetClothesId } = useContext(ClothesIdContext);
   const { closetImg, setClosetImg } = useContext(ModalContext);
   const { openClosetModal, setOpenClosetModal } = useContext(ModalContext);
+  const { clothesPrice, setClothesPrice } = useContext(ClothesPriceContext);
 
   const fetch = useEffect(() => {
     try {
@@ -126,6 +128,7 @@ export default function GroupSelector() {
     newCondition['middleCategory'] = '';
     newCondition['subCategory'] = '';
     newCondition['brand'] = '';
+
     setConditionNum(10000);
     setCondition(newCondition);
   };
@@ -136,7 +139,16 @@ export default function GroupSelector() {
     setClosetClothesId(closetClothesIdArr);
     var closetImgArr = { ...closetImg };
     closetImgArr[modalMode] = '';
+    setModalMode('');
     setClosetImg(closetImgArr);
+    setClothesPrice({
+      hat: 0,
+      top: 0,
+      bottom: 0,
+      shoes: 0,
+      bag: 0,
+    });
+
     setOpenClosetModal(false);
   };
 

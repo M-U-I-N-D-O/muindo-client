@@ -114,6 +114,7 @@ class Confirm extends Component {
           alignItems: 'center',
           msTouchAction: 'pan-y',
           touchAction: 'pan-y',
+          overflow: 'hidden',
         }}
         className="demo-wrapper"
       >
@@ -124,6 +125,7 @@ class Confirm extends Component {
             returnObj['element'] = (
               <TinderBox key={item.id}>
                 <TinderImg src={item.url} alt="img" />
+                <TpoText>{item.tpo}</TpoText>
                 <div style={{ textAlign: 'center' }}>
                   <WishButton
                     onClick={(e) => {
@@ -149,7 +151,7 @@ class Confirm extends Component {
           render={(props) => props.element}
           renderButtons={this.renderButtons}
           infinite={true}
-          springConfig={{ stiffness: 1600, damping: 80 }}
+          springConfig={{ stiffness: 2000, damping: 80 }}
         />
         <BottomContainer>
           {this.state.text === 'Nope' ? (
@@ -177,7 +179,7 @@ const CustomButton = styled.button`
   border: none;
   background: transparent;
   margin: 0 3vh;
-  margin-top: 10vh;
+  padding-top: 10vh;
   font-size: 3em;
 `;
 const BottomText = styled.h1`
@@ -216,6 +218,10 @@ const TinderImg = styled.img`
   height: auto;
   user-select: none;
   padding-top: 150px;
+`;
+const TpoText = styled.p`
+  color: white;
+  text-align: center;
 `;
 const WishButton = styled.button`
   margin: 0;

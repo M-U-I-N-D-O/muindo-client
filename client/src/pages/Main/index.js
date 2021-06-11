@@ -50,7 +50,7 @@ class Main extends Component {
     }
   };
 
-  onSwipeEnd = ({ data }) => {
+  onSwipeEnd = () => {
     this.setState({ text: '' });
     this.setState({ tinderCount: this.state.tinderCount + 1 });
     document.getElementById('tinder-btn1').disabled = false;
@@ -78,6 +78,7 @@ class Main extends Component {
           alignItems: 'center',
           msTouchAction: 'pan-y',
           touchAction: 'pan-y',
+          overflow: 'hidden',
         }}
         className="demo-wrapper"
       >
@@ -88,29 +89,60 @@ class Main extends Component {
                   var returnObj = {};
                   returnObj['id'] = index;
 
-                  returnObj['element'] = (
-                    <TinderBox key={item.id}>
-                      <TinderImg src={item.url} alt="img" />
-                      <TpoText>{item.tpo}</TpoText>
+                  if (item.id === 6) {
+                    returnObj['element'] = (
+                      <TinderBox
+                        key={item.id}
+                        onClick={() => {
+                          this.props.history.push('/confirm');
+                        }}
+                      >
+                        <TinderImg src={item.url} alt="img" />
+                        <TpoText>{item.tpo}</TpoText>
 
-                      <div style={{ textAlign: 'center' }}>
-                        <WishButton
-                          onClick={(e) => {
-                            // e.preventDefault();
-                            this.setState({ checked: !this.state.checked });
-                            var text = document.getElementById('test');
-                            if (!this.state.checked) {
-                              text.innerText = '♥';
-                            } else {
-                              text.innerText = '♡';
-                            }
-                          }}
-                        >
-                          <WishText id="test">♡</WishText>
-                        </WishButton>
-                      </div>
-                    </TinderBox>
-                  );
+                        <div style={{ textAlign: 'center' }}>
+                          <WishButton
+                            onClick={(e) => {
+                              // e.preventDefault();
+                              this.setState({ checked: !this.state.checked });
+                              var text = document.getElementById('test');
+                              if (!this.state.checked) {
+                                text.innerText = '♥';
+                              } else {
+                                text.innerText = '♡';
+                              }
+                            }}
+                          >
+                            <WishText id="test">♡</WishText>
+                          </WishButton>
+                        </div>
+                      </TinderBox>
+                    );
+                  } else {
+                    returnObj['element'] = (
+                      <TinderBox key={item.id}>
+                        <TinderImg src={item.url} alt="img" />
+                        <TpoText>{item.tpo}</TpoText>
+
+                        <div style={{ textAlign: 'center' }}>
+                          <WishButton
+                            onClick={(e) => {
+                              // e.preventDefault();
+                              this.setState({ checked: !this.state.checked });
+                              var text = document.getElementById('test');
+                              if (!this.state.checked) {
+                                text.innerText = '♥';
+                              } else {
+                                text.innerText = '♡';
+                              }
+                            }}
+                          >
+                            <WishText id="test">♡</WishText>
+                          </WishButton>
+                        </div>
+                      </TinderBox>
+                    );
+                  }
 
                   return returnObj;
                 })
@@ -123,7 +155,6 @@ class Main extends Component {
                         key={item.id}
                         onClick={() => {
                           storeDialogMode();
-                          this.props.history.push('/confirm');
                         }}
                       >
                         <TinderImg src={item.url} alt="img" />
@@ -215,6 +246,7 @@ const CustomButton = styled.button`
   margin: 0 3vw;
   margin-top: 10vh;
   font-size: 3em;
+  z-index: 1000;
 `;
 const BottomText = styled.h1`
   position: absolute;
@@ -256,7 +288,6 @@ const TpoText = styled.p`
   color: white;
   text-align: center;
   font-weight: bold;
-  margin-top: 0;
 `;
 const TinderBox = styled.div`
   padding-top: 30px;

@@ -60,7 +60,7 @@ function About() {
           role="BE"
           profileImg="/images/about/2.png"
           gitHubLink="https://github.com/su-ram"
-          notionLink="https://www.notion.so/gosi/65853100963a459faa486fa881a4112c"
+          notionLink="https://www.notion.so/c2b9a582c4624a2a918a84f83bff278c"
         />
       </ImgBox>
       <ImgBox>

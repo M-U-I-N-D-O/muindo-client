@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import reducers from './reducers'; // reducer
+import reducers from './reducers';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';

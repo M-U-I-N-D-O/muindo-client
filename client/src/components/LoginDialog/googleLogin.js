@@ -2,10 +2,12 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { dialogMode, userName, userEmail } from '../../actions';
-import firebase from 'firebase';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import axios from 'axios';
 import url from '../../url';
+
+import firebase from 'firebase/app';
+import 'firebase/auth';
 
 axios.defaults.baseURL = url;
 axios.defaults.withCredentials = true;
@@ -51,6 +53,7 @@ const GoogleLogin = () => {
     dispatch(userName(user.name));
     dispatch(userEmail(user.email));
     dispatch(dialogMode(-1));
+    history.push('/confirm');
   };
 
   const onSilentRefresh = () => {

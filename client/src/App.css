@@ -1,6 +1,12 @@
 @font-face {
   font-family: 'NanumSquare';
-  src: url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+  src: url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css') format('woff');
+}
+@font-face {
+  font-family: 'NanumSquareRound';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 @font-face {
   font-family: 'GmarketSansLight';
@@ -39,7 +45,7 @@ h3 {
 }
 p,
 text {
-  font-family: 'NanumSquare', sans-serif;
+  font-family: NanumSquareRound, sans-serif;
 }
 
 rcp.rcp-body {

@@ -12,12 +12,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-  navbar: {
-    display: 'flex',
-    flexFlow: 'row wrap',
-    justifyContent: 'space-between',
-    width: '100vw',
-  },
 }));
 
 function TopNav() {
@@ -36,6 +30,7 @@ function TopNav() {
         style={{
           backgroundColor: '#000000',
           height: '60px',
+          widht: '100%',
         }}
       >
         <Toolbar>

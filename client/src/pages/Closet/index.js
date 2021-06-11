@@ -4,6 +4,7 @@ import TopComment from '../../components/AnalysisClothes/topComment';
 import ClosetModal from '../../components/Closet/closetModal';
 import { useHistory } from 'react-router';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 import { ModalContext } from '../../App';
 import { ClothesIdContext } from '../../App';
@@ -169,7 +170,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     whiteSpace: 'pre-wrap',
-
     width: '150px',
     height: '60px',
   },
@@ -335,18 +335,23 @@ function Closet() {
         <Paper elevation={4} className={classes.eraseBtn} onClick={handleEraseAllButtonClick}>
           모두 지우기💫
         </Paper>
-
-        <Paper
-          elevation={4}
-          className={classes.makeLookBookBtn}
-          onClick={() => {
-            if (closetClothesId['hat'] || closetClothesId['top'] || closetClothesId['bottom'] || closetClothesId['shoes'] || closetClothesId['bag']) {
+        {closetClothesId['hat'] || closetClothesId['top'] || closetClothesId['bottom'] || closetClothesId['shoes'] || closetClothesId['bag'] ? (
+          <Paper
+            elevation={4}
+            className={classes.makeLookBookBtn}
+            onClick={() => {
               history.push('/closet/look_book');
-            }
-          }}
-        >
-          {'LOOKBOOK\n    만들기📸'}
-        </Paper>
+            }}
+          >
+            {'LOOKBOOK\n    만들기📸'}
+          </Paper>
+        ) : (
+          <Paper elevation={4} className={classes.makeLookBookBtn}>
+            <Button style={{ whiteSpace: 'pre-wrap', fontSize: '17px' }} disabled>
+              {'LOOKBOOK\n 만들기📸'}
+            </Button>
+          </Paper>
+        )}
       </div>
     </div>
   );

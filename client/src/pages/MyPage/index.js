@@ -16,7 +16,7 @@ import ArrowBackIosRoundedIcon from '@material-ui/icons/ArrowBackIosRounded';
 import Slide from '@material-ui/core/Slide';
 import Paper from '@material-ui/core/Paper';
 
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import { Helmet } from 'react-helmet';
 
 const useStyles = makeStyles((theme) => ({
@@ -25,9 +25,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: 'black',
     height: '60px',
   },
-  title: {
-    marginLeft: theme.spacing(2),
-    flex: 1,
+  paper: {
+    border: '5px soild red',
   },
 }));
 
@@ -112,6 +111,13 @@ function MyPage() {
             <MainText>{name}님</MainText>
             <SubText>{email}</SubText>
             <SubText>반갑습니다 :)</SubText>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <LogoutButton onClick={signOut}>
+                <Paper className={classes.paper} elevation={3}>
+                  <LogoutButtonText>로그아웃</LogoutButtonText>
+                </Paper>
+              </LogoutButton>
+            </div>
           </Container>
         ) : (
           <Container onClick={() => dispatch(dialogMode(1))}>
@@ -172,15 +178,9 @@ function MyPage() {
           </ListItem>
         </List>
 
-        {localStorage.getItem('token') && (
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <LogoutButton onClick={signOut}>
-              <Paper elevation={4}>
-                <LogoutButtonText>로그아웃</LogoutButtonText>
-              </Paper>
-            </LogoutButton>
-          </div>
-        )}
+        {/* {localStorage.getItem('token') && (
+          
+        )} */}
       </Dialog>
     </div>
   );
@@ -213,16 +213,18 @@ const ListText = styled.p`
   color: black;
 `;
 const LogoutButton = styled.button`
-  position: absolute;
-  bottom: 5%;
+  /* position: absolute;
+  bottom: 5%; */
   width: 100px;
   border: none;
   margin: 0 auto;
-  background-color: white;
+  background-color: black;
 `;
 const LogoutButtonText = styled.h3`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 5vh;
+  height: 4vh;
+  margin-top: 3vh;
+  margin-bottom: 0;
 `;

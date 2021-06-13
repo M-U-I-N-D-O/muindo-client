@@ -1,30 +1,34 @@
-import React, { useState, useContext, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TopComment from '../../components/AnalysisClothes/topComment';
-import styled from 'styled-components';
 import ClosetModal from '../../components/Closet/closetModal';
-import axios from 'axios';
 import { useHistory } from 'react-router';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 import { ModalContext } from '../../App';
+import { ClothesIdContext } from '../../App';
+import { ClothesPriceContext } from '../../App';
+import { ClosetTextContext } from '../../App';
 
-import html2canvas from 'html2canvas';
+import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    // justifyContent: 'center',
+    paddingTop: '60px',
+    paddingBottom: '56px',
+    // // justifyContent: 'center',
     flexDirection: 'column',
     alignItems: 'center',
-    width: '80vw',
-    maxWidth: '1024px',
-    minHeight: ' calc(100vh - 8.5rem)',
-    // height: '80vw',
+    // width: '80vw',
+    // maxWidth: '1024px',
+    // minHeight: ' calc(100vh - 8.5rem)',
+    // // height: '80vw',
   },
   title: {
-    marginTop: '25px',
-    marginBottom: '5px',
+    // marginTop: '25px',
+    // marginBottom: '5px',
   },
   closetImg: {
     width: '60vw',
@@ -35,85 +39,145 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    maxWidth: '600px',
-    minWidth: '90px',
-    width: '66vw',
-    border: 'solid 1px',
+    maxWidth: '340px',
+    minWidth: '310px',
+    width: '90vw',
+    height: '650px',
+    border: 'solid 4px',
     minHeight: '57vh',
-  },
-  btnBox: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
   },
   leftClothesContainer: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    marginRight: '25px',
+    // maxWidth: '150px',
+    // minWidth: '130px',
+    width: '150px',
+
+    marginRight: '15px',
   },
   hatContainer: {
     display: 'flex',
     alignItems: 'center',
-    // maxWidth: '200px',
+    // maxWidth: '90px',
 
-    minWidth: '70px',
-    minHeight: '70px',
-    width: '10vw',
+    // minWidth: '70px',
+    // minHeight: '90px',
+    // width: '40vw',
+    width: '90px',
+    height: '80px',
+
     justifyContent: 'center',
-    border: 'solid 2px',
-    margin: '20px 0px',
+    border: 'solid 3px',
+    margin: '15px 0px',
   },
   topContainer: {
     display: 'flex',
     alignItems: 'center',
     // maxWidth: '200px',
-    minWidth: '90px',
-    minHeight: '150px',
-    width: '10vw',
+    // maxWidth: '120px',
+
+    // minWidth: '90px',
+    // minHeight: '150px',
+    width: '130px',
+    height: '150px',
 
     justifyContent: 'center',
-    border: 'solid 2px',
-    margin: '20px 0px',
+    border: 'solid 3px',
+    margin: '15px 0px',
   },
   bottomContainer: {
     display: 'flex',
     alignItems: 'center',
-    // maxWidth: '200px',
-    minWidth: '90px',
-    minHeight: '180px',
-    width: '10vw',
+    // maxWidth: '120px',
+    // minWidth: '90px',
+    // minHeight: '150px',
+    // width: '30vw',
+
+    width: '120px',
+    height: '150px',
 
     justifyContent: 'center',
-    border: 'solid 2px',
-    margin: '20px 0px',
+    border: 'solid 3px',
+    margin: '15px 0px',
   },
   shoesContainer: {
     display: 'flex',
     alignItems: 'center',
-    // maxWidth: '200px',
-    minWidth: '70px',
-    minHeight: '90px',
-    width: '10vw',
+    // maxWidth: '90px',
+    // minWidth: '70px',
+    // minHeight: '90px',
+    // width: '30vw',
+
+    width: '90px',
+    height: '80px',
 
     justifyContent: 'center',
-    border: 'solid 2px',
-    margin: '20px 0px',
+    border: 'solid 3px',
+    margin: '15px 0px',
   },
   bagContainer: {
     display: 'flex',
     alignItems: 'center',
-    // maxWidth: '200px',
-    minWidth: '85px',
-    minHeight: '100px',
-    width: '10vw',
+    // maxWidth: '90px',
+    // minWidth: '70px',
+    // minHeight: '100px',
+    // width: '30vw',
+
+    width: '90px',
+    height: '120px',
 
     justifyContent: 'center',
-    border: 'solid 2px',
-    margin: '20px 0px',
+    border: 'solid 3px',
+    margin: '15px 0px',
   },
   clothesText: {
-    fontSize: '23.5px',
+    fontSize: '21px',
+  },
+  btnBox: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    height: '150px',
+    width: '350px',
+    marginTop: '30px',
+    fontFamily: 'GmarketSansMedium',
+    fontSize: '18px',
+    fontWeight: 'bold',
+  },
+
+  eraseBtn: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+
+    width: '150px',
+    height: '60px',
+  },
+  closetPriceBox: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontFamily: 'GmarketSansMedium',
+    fontWeight: 'bold',
+    fontSize: '17px',
+    marginTop: '30px',
+    width: '200px',
+    height: '50px',
+  },
+  makeLookBookBtn: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    whiteSpace: 'pre-wrap',
+    width: '150px',
+    height: '60px',
+  },
+  closetTextContainer: {
+    marginTop: '20px',
+
+    width: '250px',
+    height: '60px',
   },
 }));
 
@@ -122,28 +186,13 @@ function Closet() {
 
   const classes = useStyles();
 
-  const { openClosetModal, setOpenClosetModal } = useContext(ModalContext);
-  const { openImgDownloadModal, setOpenImgDownloadModal } = useContext(ModalContext);
+  const { setOpenClosetModal } = useContext(ModalContext);
   const { modalMode, setModalMode } = useContext(ModalContext);
   const { closetImg, setClosetImg } = useContext(ModalContext);
-  const captureRef = useRef();
-  const [shareImg, setShareImg] = useState('');
-  const { clothesList, setClothesList } = useContext(ModalContext);
-
-  // const fetch = useEffect(() => {
-  //   try {
-  //     axios.get('http://localhost:3000/data/closet.json').then((res) => {
-  //       let result = res.data.data;
-  //       console.log(result);
-  //       setClothesList(result);
-  //     });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }, []);
-  // const handleOpen = () => {
-  //   setOpenModal(true);
-  // };
+  const { closetClothesId, setClosetClothesId } = useContext(ClothesIdContext);
+  const { clothesPrice, setClothesPrice } = useContext(ClothesPriceContext);
+  const { closetText, setClosetText } = useContext(ClosetTextContext);
+  // const closetTextRef = useRef('');
   useEffect(() => {
     setClosetImg({
       hat: '',
@@ -152,14 +201,28 @@ function Closet() {
       shoes: '',
       bag: '',
     });
-  }, []);
+    setClosetClothesId({
+      hat: '',
+      top: '',
+      bottom: '',
+      shoes: '',
+      bag: '',
+    });
+    // setClothesPrice(0);
+    setClothesPrice({
+      hat: 0,
+      top: 0,
+      bottom: 0,
+      shoes: 0,
+      bag: 0,
+    });
+
+    setClosetText('');
+  }, [setClosetImg, setClosetClothesId, setClothesPrice, setClosetText]);
 
   const handleClothesContainerClick = (event) => {
     setModalMode(event.target.id);
     setOpenClosetModal(true);
-    console.log(modalMode);
-    console.log(closetImg);
-    console.log(Object.values(closetImg));
   };
 
   const handleEraseAllButtonClick = () => {
@@ -170,123 +233,128 @@ function Closet() {
       shoes: '',
       bag: '',
     });
+    setClosetClothesId({
+      hat: '',
+      top: '',
+      bottom: '',
+      shoes: '',
+      bag: '',
+    });
+    setClothesPrice({
+      hat: 0,
+      top: 0,
+      bottom: 0,
+      shoes: 0,
+      bag: 0,
+    });
+    setModalMode('');
+  };
+  const handleChangeClosetText = (event) => {
+    setClosetText(event.target.value);
   };
 
   return (
     <div className={classes.root}>
-      <ClosetModal data={modalMode} />
+      {modalMode !== '' && <ClosetModal data={modalMode} />}
 
       <div className={classes.title}>
         <TopComment comment={'옷장에 옷을 넣어보세요.'} />
       </div>
-      <div className={classes.closetContainer}>
+      <Paper elevation={5} className={classes.closetContainer}>
         <div className={classes.leftClothesContainer}>
           <div className={classes.hatContainer} onClick={handleClothesContainerClick} id="hat">
             {closetImg['hat'] ? (
-              <img style={{ maxHeight: '90px', width: '8.5vw', minWidth: '65px' }} alt="" src={closetImg['hat']} id="hat" />
+              <img style={{ width: '100%', height: '100%' }} alt="" src={closetImg['hat']} id="hat" />
             ) : (
-              <div className={classes.clothesText} id="hat">
-                모자
-              </div>
+              <h2 style={{ fontSize: '18px', whiteSpace: 'pre-wrap' }} id="hat">
+                {'모자🧢\n안경👓'}
+              </h2>
             )}
           </div>
           <div className={classes.topContainer} onClick={handleClothesContainerClick} id="top">
             {closetImg['top'] ? (
-              <img style={{ maxHeight: '230px', width: '9vw', minWidth: '90px' }} alt="" src={closetImg['top']} id="top" />
+              <img style={{ width: '100%', height: '100%' }} alt="" src={closetImg['top']} id="top" />
             ) : (
-              <div className={classes.clothesText} id="top">
-                상의
-              </div>
+              <h2 className={classes.clothesText} id="top">
+                상의👕
+              </h2>
             )}
           </div>
           <div className={classes.bottomContainer} onClick={handleClothesContainerClick} id="bottom">
             {closetImg['bottom'] ? (
-              <img style={{ maxHeight: '260px', width: '9vw', minWidth: '90px' }} alt="" src={closetImg['bottom']} id="bottom" />
+              <img style={{ width: '100%', height: '100%' }} alt="" src={closetImg['bottom']} id="bottom" />
             ) : (
-              <div className={classes.clothesText} id="bottom">
-                하의
-              </div>
+              <h2 className={classes.clothesText} id="bottom">
+                하의👖
+              </h2>
             )}
           </div>
           <div className={classes.shoesContainer} onClick={handleClothesContainerClick} id="shoes">
             {closetImg['shoes'] ? (
-              <img style={{ maxHeight: '140px', width: '9vw', minWidth: '70px' }} alt="" src={closetImg['shoes']} id="shoes" />
+              <img style={{ width: '100%', height: '100%' }} alt="" src={closetImg['shoes']} id="shoes" />
             ) : (
-              <div className={classes.clothesText} id="shoes">
-                신발
-              </div>
+              <h2 className={classes.clothesText} id="shoes">
+                신발👟
+              </h2>
             )}
           </div>
         </div>
         <div className={classes.rightClothesContainer}>
-          <div className={classes.bagContainer} onClick={handleClothesContainerClick} id="bag">
+          <div elevation={4} className={classes.bagContainer} onClick={handleClothesContainerClick} id="bag">
             {closetImg['bag'] ? (
-              <img style={{ maxHeight: '190px', width: '9vw', minWidth: '85px' }} alt="" src={closetImg['bag']} id="bag" />
+              <img style={{ width: '100%', height: '100%' }} alt="" src={closetImg['bag']} id="bag" />
             ) : (
-              <div className={classes.clothesText} id="bag">
-                가방
-              </div>
+              <h2 className={classes.clothesText} id="bag">
+                가방🎒
+              </h2>
             )}
           </div>
         </div>
+      </Paper>
+
+      <div>
+        <Paper elevation={4} className={classes.closetPriceBox}>
+          {'총 금액💰 : '} {clothesPrice.hat + clothesPrice.top + clothesPrice.bottom + clothesPrice.shoes + clothesPrice.bag}\
+        </Paper>
+      </div>
+
+      <div className={classes.closetTextContainer}>
+        <TextField
+          placeholder="ex) 데이트, 동창회, 가족 모임 등"
+          label="이 패션의 TPO💬"
+          value={closetText}
+          onChange={handleChangeClosetText}
+          fullWidth
+          variant="outlined"
+          rows="2"
+          multiline
+        />
       </div>
 
       <div className={classes.btnBox}>
-        <LuxuryBtn onClick={handleEraseAllButtonClick}>모두 지우기</LuxuryBtn>
-        <LuxuryBtn
-          onClick={() => {
-            history.push('/loading');
-            setTimeout(function () {
+        <Paper elevation={4} className={classes.eraseBtn} onClick={handleEraseAllButtonClick}>
+          모두 지우기💫
+        </Paper>
+        {closetClothesId['hat'] || closetClothesId['top'] || closetClothesId['bottom'] || closetClothesId['shoes'] || closetClothesId['bag'] ? (
+          <Paper
+            elevation={4}
+            className={classes.makeLookBookBtn}
+            onClick={() => {
               history.push('/closet/look_book');
-            }, 2000);
-          }}
-          disabled={!(closetImg['hat'] || closetImg['top'] || closetImg['bottom'] || closetImg['shoes'] || closetImg['bag'])}
-        >
-          {'LOOKBOOK \n만들기'}
-        </LuxuryBtn>
+            }}
+          >
+            {'LOOKBOOK\n    만들기📸'}
+          </Paper>
+        ) : (
+          <Paper elevation={4} className={classes.makeLookBookBtn}>
+            <Button style={{ whiteSpace: 'pre-wrap', fontSize: '17px' }} disabled>
+              {'LOOKBOOK\n 만들기📸'}
+            </Button>
+          </Paper>
+        )}
       </div>
     </div>
   );
 }
 
 export default Closet;
-
-const LuxuryBtn = styled.button`
-  display: inline-block;
-  box-sizing: border-box;
-  max-width: 190px;
-  min-width: 170px;
-  width: 8vw;
-  background: transparent;
-  text-transform: uppercase;
-  font-weight: 500;
-  font-style: normal;
-  font-size: 15px;
-  letter-spacing: 0.3em;
-  color: rgba(223, 190, 106, 0.7);
-  border-radius: 0;
-  padding: 15px 20px 15px 20px;
-  transition: all 0.7s ease-out;
-  cursor: pointer;
-  white-space: pre-wrap;
-  text-align: center;
-  background: linear-gradient(270deg, rgba(223, 190, 106, 0.8), rgba(146, 111, 52, 0.8), rgba(34, 34, 34, 0), rgba(34, 34, 34, 0));
-  background-position: 1% 50%;
-  background-size: 300% 300%;
-  text-decoration: none;
-  margin: 30px 15px 30px 20px;
-  border: none;
-  border: 1px solid rgba(223, 190, 106, 0.3);
-  :hover {
-    color: #fff;
-    border: 1px solid rgba(223, 190, 106, 0);
-    color: $white;
-    background-position: 99% 50%;
-  }
-  :disabled {
-    background-position: 1% 50%;
-    color: rgba(223, 190, 106, 0.7);
-    border: 1px solid rgba(223, 190, 106, 0.3);
-    cursor: default;
-  }
-`;

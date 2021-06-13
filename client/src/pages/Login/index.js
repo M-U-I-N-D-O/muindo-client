@@ -24,32 +24,12 @@ const theme = createMuiTheme({
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    // height: '100vh',
-    // backgroundImage: `url(${'/images/home/sherlock_wall.png'})`,
-    // backgroundRepeat: 'no-repeat',
-    // backgroundSize: 'cover',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  // container: {
-  //   display: 'flex',
-  //   height: '100%',
-  //   justifyContent: 'center',
-  // },
-  // contentsBox: {
-  //   display: 'flex',
-  //   flexDirection: 'column',
-  //   alignItems: 'center',
-  //   justifyContent: 'center',
-  //   paddingBottom: '3.5rem',
-  //   paddingTop: '5rem',
-  //   backgroundColor: 'white',
-  //   width: '80vw',
-  //   maxWidth: '1024px',
-  //   overflow: 'auto',
-  // },
+
   logoImg: {
     minHeight: '90px',
     minWidth: '70px',

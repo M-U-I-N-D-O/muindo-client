@@ -5,6 +5,35 @@ export const navbarMode = (number) => {
     number,
   };
 };
+// bottom 네비게이션 버튼 활성화
+export const bottomNavMode = (number) => {
+  return {
+    type: 'BOTTOM_BUTTON_MODE',
+    number,
+  };
+};
+
+// dialog (로그인, 마이페이지)
+export const dialogMode = (mode) => {
+  return {
+    type: 'DIALOG_MODE',
+    mode,
+  };
+};
+
+// 사용자 로그인 정보
+export const userName = (name) => {
+  return {
+    type: 'USER_NAME',
+    name,
+  };
+};
+export const userEmail = (email) => {
+  return {
+    type: 'USER_EMAIL',
+    email,
+  };
+};
 
 // 셜록의 돋보기
 export const analysisResultImg = (src) => {

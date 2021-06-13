@@ -8,7 +8,7 @@
         "sub_category": "캡/야구 모자",
         "price": 33000,
         "color": "검정색",
-        "brand": "엠엘비",
+        "brand": "이벳필드",
         "shop_url": "https://store.musinsa.com/app/goods/1882396"
       },
       {
@@ -19,7 +19,47 @@
         "sub_category": "버킷/사파리햇",
         "price": 25000,
         "color": "파란색",
-        "brand": "나이키",
+        "brand": "슬로우애시드",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_hat2.jpg",
+        "item_name": "모자C(이름)",
+        "category": "모자",
+        "sub_category": "헌팅캡/베레모",
+        "price": 25000,
+        "color": "파란색",
+        "brand": "디스이즈네버댓",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_glasses.jpg",
+        "item_name": "안경A(이름)",
+        "category": "선글라스/안경테",
+        "sub_category": "안경",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "리끌로우",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_glasses1.jpg",
+        "item_name": "안경B(이름)",
+        "category": "선글라스/안경테",
+        "sub_category": "선글라스",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "원브릴리언트",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_glasses2.jpg",
+        "item_name": "안경C(이름)",
+        "category": "선글라스/안경테",
+        "sub_category": "안경 소품",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "블루엘리펀트",
         "shop_url": "https://store.musinsa.com/app/goods/1882396"
       },
       {
@@ -29,7 +69,7 @@
         "sub_category": "캡/야구 모자",
         "price": 33000,
         "color": "검정색",
-        "brand": "엠엘비",
+        "brand": "이벳필드",
         "shop_url": "https://store.musinsa.com/app/goods/1882396"
       },
       {
@@ -40,7 +80,47 @@
         "sub_category": "버킷/사파리햇",
         "price": 25000,
         "color": "파란색",
-        "brand": "나이키",
+        "brand": "슬로우애시드",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_hat2.jpg",
+        "item_name": "모자C(이름)",
+        "category": "모자",
+        "sub_category": "헌팅캡/베레모",
+        "price": 25000,
+        "color": "파란색",
+        "brand": "디스이즈네버댓",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_glasses.jpg",
+        "item_name": "안경A(이름)",
+        "category": "선글라스/안경테",
+        "sub_category": "안경",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "리끌로우",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_glasses1.jpg",
+        "item_name": "안경B(이름)",
+        "category": "선글라스/안경테",
+        "sub_category": "선글라스",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "원브릴리언트",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_glasses2.jpg",
+        "item_name": "안경C(이름)",
+        "category": "선글라스/안경테",
+        "sub_category": "안경 소품",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "블루엘리펀트",
         "shop_url": "https://store.musinsa.com/app/goods/1882396"
       },
       {
@@ -50,7 +130,7 @@
         "sub_category": "캡/야구 모자",
         "price": 33000,
         "color": "검정색",
-        "brand": "엠엘비",
+        "brand": "이벳필드",
         "shop_url": "https://store.musinsa.com/app/goods/1882396"
       },
       {
@@ -61,7 +141,47 @@
         "sub_category": "버킷/사파리햇",
         "price": 25000,
         "color": "파란색",
-        "brand": "나이키",
+        "brand": "슬로우애시드",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_hat2.jpg",
+        "item_name": "모자C(이름)",
+        "category": "모자",
+        "sub_category": "헌팅캡/베레모",
+        "price": 25000,
+        "color": "파란색",
+        "brand": "디스이즈네버댓",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_glasses.jpg",
+        "item_name": "안경A(이름)",
+        "category": "선글라스/안경테",
+        "sub_category": "안경",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "리끌로우",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_glasses1.jpg",
+        "item_name": "안경B(이름)",
+        "category": "선글라스/안경테",
+        "sub_category": "선글라스",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "원브릴리언트",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_glasses2.jpg",
+        "item_name": "안경C(이름)",
+        "category": "선글라스/안경테",
+        "sub_category": "안경 소품",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "블루엘리펀트",
         "shop_url": "https://store.musinsa.com/app/goods/1882396"
       },
       {
@@ -71,7 +191,7 @@
         "sub_category": "캡/야구 모자",
         "price": 33000,
         "color": "검정색",
-        "brand": "엠엘비",
+        "brand": "이벳필드",
         "shop_url": "https://store.musinsa.com/app/goods/1882396"
       },
       {
@@ -82,7 +202,47 @@
         "sub_category": "버킷/사파리햇",
         "price": 25000,
         "color": "파란색",
-        "brand": "나이키",
+        "brand": "슬로우애시드",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_hat2.jpg",
+        "item_name": "모자C(이름)",
+        "category": "모자",
+        "sub_category": "헌팅캡/베레모",
+        "price": 25000,
+        "color": "파란색",
+        "brand": "디스이즈네버댓",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_glasses.jpg",
+        "item_name": "안경A(이름)",
+        "category": "선글라스/안경테",
+        "sub_category": "안경",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "리끌로우",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_glasses1.jpg",
+        "item_name": "안경B(이름)",
+        "category": "선글라스/안경테",
+        "sub_category": "선글라스",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "원브릴리언트",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_glasses2.jpg",
+        "item_name": "안경C(이름)",
+        "category": "선글라스/안경테",
+        "sub_category": "안경 소품",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "블루엘리펀트",
         "shop_url": "https://store.musinsa.com/app/goods/1882396"
       },
       {
@@ -92,7 +252,7 @@
         "sub_category": "캡/야구 모자",
         "price": 33000,
         "color": "검정색",
-        "brand": "엠엘비",
+        "brand": "이벳필드",
         "shop_url": "https://store.musinsa.com/app/goods/1882396"
       },
       {
@@ -103,7 +263,535 @@
         "sub_category": "버킷/사파리햇",
         "price": 25000,
         "color": "파란색",
-        "brand": "나이키",
+        "brand": "슬로우애시드",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_hat2.jpg",
+        "item_name": "모자C(이름)",
+        "category": "모자",
+        "sub_category": "헌팅캡/베레모",
+        "price": 25000,
+        "color": "파란색",
+        "brand": "디스이즈네버댓",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_glasses.jpg",
+        "item_name": "안경A(이름)",
+        "category": "선글라스/안경테",
+        "sub_category": "안경",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "리끌로우",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_glasses1.jpg",
+        "item_name": "안경B(이름)",
+        "category": "선글라스/안경테",
+        "sub_category": "선글라스",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "원브릴리언트",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_glasses2.jpg",
+        "item_name": "안경C(이름)",
+        "category": "선글라스/안경테",
+        "sub_category": "안경 소품",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "블루엘리펀트",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_hat.jpg",
+        "item_name": "모자A(이름)",
+        "category": "모자",
+        "sub_category": "캡/야구 모자",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "이벳필드",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_hat1.jpg",
+        "item_name": "모자B(이름)",
+        "category": "모자",
+
+        "sub_category": "버킷/사파리햇",
+        "price": 25000,
+        "color": "파란색",
+        "brand": "슬로우애시드",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_hat2.jpg",
+        "item_name": "모자C(이름)",
+        "category": "모자",
+        "sub_category": "헌팅캡/베레모",
+        "price": 25000,
+        "color": "파란색",
+        "brand": "디스이즈네버댓",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_glasses.jpg",
+        "item_name": "안경A(이름)",
+        "category": "선글라스/안경테",
+        "sub_category": "안경",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "리끌로우",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_glasses1.jpg",
+        "item_name": "안경B(이름)",
+        "category": "선글라스/안경테",
+        "sub_category": "선글라스",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "원브릴리언트",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_glasses2.jpg",
+        "item_name": "안경C(이름)",
+        "category": "선글라스/안경테",
+        "sub_category": "안경 소품",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "블루엘리펀트",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_hat.jpg",
+        "item_name": "모자A(이름)",
+        "category": "모자",
+        "sub_category": "캡/야구 모자",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "이벳필드",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_hat1.jpg",
+        "item_name": "모자B(이름)",
+        "category": "모자",
+
+        "sub_category": "버킷/사파리햇",
+        "price": 25000,
+        "color": "파란색",
+        "brand": "슬로우애시드",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_hat2.jpg",
+        "item_name": "모자C(이름)",
+        "category": "모자",
+        "sub_category": "헌팅캡/베레모",
+        "price": 25000,
+        "color": "파란색",
+        "brand": "디스이즈네버댓",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_glasses.jpg",
+        "item_name": "안경A(이름)",
+        "category": "선글라스/안경테",
+        "sub_category": "안경",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "리끌로우",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_glasses1.jpg",
+        "item_name": "안경B(이름)",
+        "category": "선글라스/안경테",
+        "sub_category": "선글라스",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "원브릴리언트",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_glasses2.jpg",
+        "item_name": "안경C(이름)",
+        "category": "선글라스/안경테",
+        "sub_category": "안경 소품",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "블루엘리펀트",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_hat.jpg",
+        "item_name": "모자A(이름)",
+        "category": "모자",
+        "sub_category": "캡/야구 모자",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "이벳필드",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_hat1.jpg",
+        "item_name": "모자B(이름)",
+        "category": "모자",
+
+        "sub_category": "버킷/사파리햇",
+        "price": 25000,
+        "color": "파란색",
+        "brand": "슬로우애시드",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_hat2.jpg",
+        "item_name": "모자C(이름)",
+        "category": "모자",
+        "sub_category": "헌팅캡/베레모",
+        "price": 25000,
+        "color": "파란색",
+        "brand": "디스이즈네버댓",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_glasses.jpg",
+        "item_name": "안경A(이름)",
+        "category": "선글라스/안경테",
+        "sub_category": "안경",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "리끌로우",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_glasses1.jpg",
+        "item_name": "안경B(이름)",
+        "category": "선글라스/안경테",
+        "sub_category": "선글라스",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "원브릴리언트",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_glasses2.jpg",
+        "item_name": "안경C(이름)",
+        "category": "선글라스/안경테",
+        "sub_category": "안경 소품",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "블루엘리펀트",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_hat.jpg",
+        "item_name": "모자A(이름)",
+        "category": "모자",
+        "sub_category": "캡/야구 모자",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "이벳필드",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_hat1.jpg",
+        "item_name": "모자B(이름)",
+        "category": "모자",
+
+        "sub_category": "버킷/사파리햇",
+        "price": 25000,
+        "color": "파란색",
+        "brand": "슬로우애시드",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_hat2.jpg",
+        "item_name": "모자C(이름)",
+        "category": "모자",
+        "sub_category": "헌팅캡/베레모",
+        "price": 25000,
+        "color": "파란색",
+        "brand": "디스이즈네버댓",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_glasses.jpg",
+        "item_name": "안경A(이름)",
+        "category": "선글라스/안경테",
+        "sub_category": "안경",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "리끌로우",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_glasses1.jpg",
+        "item_name": "안경B(이름)",
+        "category": "선글라스/안경테",
+        "sub_category": "선글라스",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "원브릴리언트",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_glasses2.jpg",
+        "item_name": "안경C(이름)",
+        "category": "선글라스/안경테",
+        "sub_category": "안경 소품",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "블루엘리펀트",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_hat.jpg",
+        "item_name": "모자A(이름)",
+        "category": "모자",
+        "sub_category": "캡/야구 모자",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "이벳필드",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_hat1.jpg",
+        "item_name": "모자B(이름)",
+        "category": "모자",
+
+        "sub_category": "버킷/사파리햇",
+        "price": 25000,
+        "color": "파란색",
+        "brand": "슬로우애시드",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_hat2.jpg",
+        "item_name": "모자C(이름)",
+        "category": "모자",
+        "sub_category": "헌팅캡/베레모",
+        "price": 25000,
+        "color": "파란색",
+        "brand": "디스이즈네버댓",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_glasses.jpg",
+        "item_name": "안경A(이름)",
+        "category": "선글라스/안경테",
+        "sub_category": "안경",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "리끌로우",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_glasses1.jpg",
+        "item_name": "안경B(이름)",
+        "category": "선글라스/안경테",
+        "sub_category": "선글라스",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "원브릴리언트",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_glasses2.jpg",
+        "item_name": "안경C(이름)",
+        "category": "선글라스/안경테",
+        "sub_category": "안경 소품",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "블루엘리펀트",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_hat.jpg",
+        "item_name": "모자A(이름)",
+        "category": "모자",
+        "sub_category": "캡/야구 모자",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "이벳필드",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_hat1.jpg",
+        "item_name": "모자B(이름)",
+        "category": "모자",
+
+        "sub_category": "버킷/사파리햇",
+        "price": 25000,
+        "color": "파란색",
+        "brand": "슬로우애시드",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_hat2.jpg",
+        "item_name": "모자C(이름)",
+        "category": "모자",
+        "sub_category": "헌팅캡/베레모",
+        "price": 25000,
+        "color": "파란색",
+        "brand": "디스이즈네버댓",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_glasses.jpg",
+        "item_name": "안경A(이름)",
+        "category": "선글라스/안경테",
+        "sub_category": "안경",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "리끌로우",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_glasses1.jpg",
+        "item_name": "안경B(이름)",
+        "category": "선글라스/안경테",
+        "sub_category": "선글라스",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "원브릴리언트",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_glasses2.jpg",
+        "item_name": "안경C(이름)",
+        "category": "선글라스/안경테",
+        "sub_category": "안경 소품",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "블루엘리펀트",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_hat.jpg",
+        "item_name": "모자A(이름)",
+        "category": "모자",
+        "sub_category": "캡/야구 모자",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "이벳필드",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_hat1.jpg",
+        "item_name": "모자B(이름)",
+        "category": "모자",
+
+        "sub_category": "버킷/사파리햇",
+        "price": 25000,
+        "color": "파란색",
+        "brand": "슬로우애시드",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_hat2.jpg",
+        "item_name": "모자C(이름)",
+        "category": "모자",
+        "sub_category": "헌팅캡/베레모",
+        "price": 25000,
+        "color": "파란색",
+        "brand": "디스이즈네버댓",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_glasses.jpg",
+        "item_name": "안경A(이름)",
+        "category": "선글라스/안경테",
+        "sub_category": "안경",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "리끌로우",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_glasses1.jpg",
+        "item_name": "안경B(이름)",
+        "category": "선글라스/안경테",
+        "sub_category": "선글라스",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "원브릴리언트",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_glasses2.jpg",
+        "item_name": "안경C(이름)",
+        "category": "선글라스/안경테",
+        "sub_category": "안경 소품",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "블루엘리펀트",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_hat.jpg",
+        "item_name": "모자A(이름)",
+        "category": "모자",
+        "sub_category": "캡/야구 모자",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "이벳필드",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_hat1.jpg",
+        "item_name": "모자B(이름)",
+        "category": "모자",
+
+        "sub_category": "버킷/사파리햇",
+        "price": 25000,
+        "color": "파란색",
+        "brand": "슬로우애시드",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_hat2.jpg",
+        "item_name": "모자C(이름)",
+        "category": "모자",
+        "sub_category": "헌팅캡/베레모",
+        "price": 25000,
+        "color": "파란색",
+        "brand": "디스이즈네버댓",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_glasses.jpg",
+        "item_name": "안경A(이름)",
+        "category": "선글라스/안경테",
+        "sub_category": "안경",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "리끌로우",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_glasses1.jpg",
+        "item_name": "안경B(이름)",
+        "category": "선글라스/안경테",
+        "sub_category": "선글라스",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "원브릴리언트",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_glasses2.jpg",
+        "item_name": "안경C(이름)",
+        "category": "선글라스/안경테",
+        "sub_category": "안경 소품",
+        "price": 33000,
+        "color": "검정색",
+        "brand": "블루엘리펀트",
         "shop_url": "https://store.musinsa.com/app/goods/1882396"
       }
     ],
@@ -112,220 +800,161 @@
         "img_url": "/images/closet/closet_top.jpg",
         "item_name": "상의A(이름)",
         "category": "상의",
-
         "sub_category": "반팔 티셔츠",
         "price": 20000,
         "color": "검정색",
-        "brand": "마크 곤잘레스",
+        "brand": "무신사 스탠다드",
         "shop_url": "https://store.musinsa.com/app/goods/1882396"
       },
       {
         "img_url": "/images/closet/closet_top1.jpg",
         "item_name": "상의B(이름)",
-        "category": "아우터",
-
-        "sub_category": "맨투맨/스웨트셔츠",
+        "category": "상의",
+        "sub_category": "피케/카라 티셔츠",
         "price": 55000,
         "color": "네이비",
-        "brand": "디스이즈네버댓",
+        "brand": "필루미네이트",
         "shop_url": "https://store.musinsa.com/app/goods/1882396"
       },
       {
-        "img_url": "/images/closet/closet_top.jpg",
-        "item_name": "상의A(이름)",
+        "img_url": "/images/closet/closet_top2.jpg",
+        "item_name": "상의C(이름)",
         "category": "상의",
 
-        "sub_category": "반팔 티셔츠",
-        "price": 20000,
-        "color": "검정색",
-        "brand": "마크 곤잘레스",
-        "shop_url": "https://store.musinsa.com/app/goods/1882396"
-      },
-      {
-        "img_url": "/images/closet/closet_top1.jpg",
-        "item_name": "상의B(이름)",
-        "category": "아우터",
-
-        "sub_category": "맨투맨/스웨트셔츠",
+        "sub_category": "긴팔 티셔츠",
         "price": 55000,
         "color": "네이비",
-        "brand": "디스이즈네버댓",
+        "brand": "마하그리드",
         "shop_url": "https://store.musinsa.com/app/goods/1882396"
       },
       {
-        "img_url": "/images/closet/closet_top.jpg",
-        "item_name": "상의A(이름)",
-        "category": "상의",
-
-        "sub_category": "반팔 티셔츠",
+        "img_url": "/images/closet/closet_outer.jpg",
+        "item_name": "아우터A(이름)",
+        "category": "아우터",
+        "sub_category": "후드 집업",
         "price": 20000,
         "color": "검정색",
-        "brand": "마크 곤잘레스",
+        "brand": "무신사 스탠다드",
         "shop_url": "https://store.musinsa.com/app/goods/1882396"
       },
       {
-        "img_url": "/images/closet/closet_top1.jpg",
-        "item_name": "상의B(이름)",
+        "img_url": "/images/closet/closet_outer1.jpg",
+        "item_name": "아우터B(이름)",
         "category": "아우터",
-
-        "sub_category": "맨투맨/스웨트셔츠",
-        "price": 55000,
-        "color": "네이비",
-        "brand": "디스이즈네버댓",
-        "shop_url": "https://store.musinsa.com/app/goods/1882396"
-      },
-      {
-        "img_url": "/images/closet/closet_top.jpg",
-        "item_name": "상의A(이름)",
-        "category": "상의",
-
-        "sub_category": "반팔 티셔츠",
+        "sub_category": "환절기 코트",
         "price": 20000,
         "color": "검정색",
-        "brand": "마크 곤잘레스",
+        "brand": "라퍼지스토어",
         "shop_url": "https://store.musinsa.com/app/goods/1882396"
       },
       {
-        "img_url": "/images/closet/closet_top1.jpg",
-        "item_name": "상의B(이름)",
+        "img_url": "/images/closet/closet_outer2.jpg",
+        "item_name": "아우터C(이름)",
         "category": "아우터",
-
-        "sub_category": "맨투맨/스웨트셔츠",
-        "price": 55000,
-        "color": "네이비",
-        "brand": "디스이즈네버댓",
-        "shop_url": "https://store.musinsa.com/app/goods/1882396"
-      },
-      {
-        "img_url": "/images/closet/closet_top.jpg",
-        "item_name": "상의A(이름)",
-        "category": "상의",
-
-        "sub_category": "반팔 티셔츠",
+        "sub_category": "블루종/MA-1",
         "price": 20000,
         "color": "검정색",
-        "brand": "마크 곤잘레스",
+        "brand": "유니폼브릿지",
         "shop_url": "https://store.musinsa.com/app/goods/1882396"
       },
       {
-        "img_url": "/images/closet/closet_top1.jpg",
-        "item_name": "상의B(이름)",
-        "category": "아우터",
+        "img_url": "/images/closet/closet_onepiece.jpg",
+        "item_name": "원피스A(이름)",
+        "category": "원피스",
+        "sub_category": "미니 원피스",
+        "price": 20000,
+        "color": "검정색",
+        "brand": "무신사 스탠다드",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_onepiece1.jpg",
+        "item_name": "원피스B(이름)",
+        "category": "원피스",
+        "sub_category": "미디 원피스",
+        "price": 20000,
+        "color": "검정색",
+        "brand": "랭앤루",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
 
-        "sub_category": "맨투맨/스웨트셔츠",
-        "price": 55000,
-        "color": "네이비",
-        "brand": "디스이즈네버댓",
+      {
+        "img_url": "/images/closet/closet_onepiece2.jpg",
+        "item_name": "원피스C(이름)",
+        "category": "원피스",
+        "sub_category": "맥시 원피스",
+        "price": 20000,
+        "color": "검정색",
+        "brand": "에잇세컨즈",
         "shop_url": "https://store.musinsa.com/app/goods/1882396"
       }
     ],
     "bottom": [
       {
         "img_url": "/images/closet/closet_bottom.jpg",
-        "item_name": "하의A(이름)",
+        "item_name": "바지A(이름)",
+        "category": "바지",
+
         "sub_category": "데님 팬츠",
         "price": 45000,
         "color": "아이보리",
-        "brand": "토피",
+        "brand": "무신사 스탠다드",
         "shop_url": "https://store.musinsa.com/app/goods/1882396"
       },
       {
         "img_url": "/images/closet/closet_bottom1.jpg",
-        "item_name": "하의B(이름)",
+        "item_name": "바지B(이름)",
+        "category": "바지",
+        "sub_category": "숏 팬츠",
+        "price": 54000,
+        "color": "검정색",
+        "brand": "하프크라이즈",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_bottom2.jpg",
+        "item_name": "바지C(이름)",
+        "category": "바지",
+
+        "sub_category": "코튼 팬츠",
+        "price": 54000,
+        "color": "검정색",
+        "brand": "유니폼브릿지",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+      {
+        "img_url": "/images/closet/closet_skirt.jpg",
+        "item_name": "치마A(이름)",
+        "category": "스커트",
+
+        "sub_category": "미니스커트",
+        "price": 54000,
+        "color": "검정색",
+        "brand": "무신사 스탠다드",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+
+      {
+        "img_url": "/images/closet/closet_skirt1.jpg",
+        "item_name": "치마B(이름)",
+        "category": "스커트",
+
+        "sub_category": "미디스커트",
+        "price": 54000,
+        "color": "검정색",
+        "brand": "로맨틱크라운",
+        "shop_url": "https://store.musinsa.com/app/goods/1882396"
+      },
+
+      {
+        "img_url": "/images/closet/closet_skirt2.jpg",
+        "item_name": "치마C(이름)",
+        "category": "스커트",
+
         "sub_category": "롱스커트",
         "price": 54000,
         "color": "검정색",
-        "brand": "슬로우무브",
-        "shop_url": "https://store.musinsa.com/app/goods/1882396"
-      },
-      {
-        "img_url": "/images/closet/closet_bottom.jpg",
-        "item_name": "하의A(이름)",
-        "sub_category": "데님 팬츠",
-        "price": 45000,
-        "color": "아이보리",
-        "brand": "토피",
-        "shop_url": "https://store.musinsa.com/app/goods/1882396"
-      },
-      {
-        "img_url": "/images/closet/closet_bottom1.jpg",
-        "item_name": "하의B(이름)",
-        "sub_category": "롱스커트",
-        "price": 54000,
-        "color": "검정색",
-        "brand": "슬로우무브",
-        "shop_url": "https://store.musinsa.com/app/goods/1882396"
-      },
-      {
-        "img_url": "/images/closet/closet_bottom.jpg",
-        "item_name": "하의A(이름)",
-        "sub_category": "데님 팬츠",
-        "price": 45000,
-        "color": "아이보리",
-        "brand": "토피",
-        "shop_url": "https://store.musinsa.com/app/goods/1882396"
-      },
-      {
-        "img_url": "/images/closet/closet_bottom1.jpg",
-        "item_name": "하의B(이름)",
-        "sub_category": "롱스커트",
-        "price": 54000,
-        "color": "검정색",
-        "brand": "슬로우무브",
-        "shop_url": "https://store.musinsa.com/app/goods/1882396"
-      },
-      {
-        "img_url": "/images/closet/closet_bottom.jpg",
-        "item_name": "하의A(이름)",
-        "sub_category": "데님 팬츠",
-        "price": 45000,
-        "color": "아이보리",
-        "brand": "토피",
-        "shop_url": "https://store.musinsa.com/app/goods/1882396"
-      },
-      {
-        "img_url": "/images/closet/closet_bottom1.jpg",
-        "item_name": "하의B(이름)",
-        "sub_category": "롱스커트",
-        "price": 54000,
-        "color": "검정색",
-        "brand": "슬로우무브",
-        "shop_url": "https://store.musinsa.com/app/goods/1882396"
-      },
-      {
-        "img_url": "/images/closet/closet_bottom.jpg",
-        "item_name": "하의A(이름)",
-        "sub_category": "데님 팬츠",
-        "price": 45000,
-        "color": "아이보리",
-        "brand": "토피",
-        "shop_url": "https://store.musinsa.com/app/goods/1882396"
-      },
-      {
-        "img_url": "/images/closet/closet_bottom1.jpg",
-        "item_name": "하의B(이름)",
-        "sub_category": "롱스커트",
-        "price": 54000,
-        "color": "검정색",
-        "brand": "슬로우무브",
-        "shop_url": "https://store.musinsa.com/app/goods/1882396"
-      },
-      {
-        "img_url": "/images/closet/closet_bottom.jpg",
-        "item_name": "하의A(이름)",
-        "sub_category": "데님 팬츠",
-        "price": 45000,
-        "color": "아이보리",
-        "brand": "토피",
-        "shop_url": "https://store.musinsa.com/app/goods/1882396"
-      },
-      {
-        "img_url": "/images/closet/closet_bottom1.jpg",
-        "item_name": "하의B(이름)",
-        "sub_category": "롱스커트",
-        "price": 54000,
-        "color": "검정색",
-        "brand": "슬로우무브",
+        "brand": "멜란지 마스터",
         "shop_url": "https://store.musinsa.com/app/goods/1882396"
       }
     ],
@@ -333,91 +962,64 @@
       {
         "img_url": "/images/closet/closet_shoes.jpg",
         "item_name": "신발A(이름)",
+        "category": "스니커즈",
         "sub_category": "캔버스/단화",
         "price": 56000,
         "color": "회색",
-        "brand": "반스",
+        "brand": "나이키",
         "shop_url": "https://store.musinsa.com/app/goods/1882396"
       },
       {
         "img_url": "/images/closet/closet_shoes1.jpg",
         "item_name": "신발B(이름)",
-        "sub_category": "구두",
+        "category": "스니커즈",
+
+        "sub_category": "농구화",
         "price": 66000,
         "color": "검정색",
-        "brand": "닥터마틴",
+        "brand": "반스",
         "shop_url": "https://store.musinsa.com/app/goods/1882396"
       },
       {
         "img_url": "/images/closet/closet_shoes.jpg",
-        "item_name": "신발A(이름)",
-        "sub_category": "캔버스/단화",
+        "item_name": "신발C(이름)",
+        "category": "스니커즈",
+
+        "sub_category": "러닝화/피트니스화",
         "price": 56000,
         "color": "회색",
-        "brand": "반스",
+        "brand": "컨버스",
         "shop_url": "https://store.musinsa.com/app/goods/1882396"
       },
       {
-        "img_url": "/images/closet/closet_shoes1.jpg",
-        "item_name": "신발B(이름)",
-        "sub_category": "구두",
-        "price": 66000,
-        "color": "검정색",
-        "brand": "닥터마틴",
-        "shop_url": "https://store.musinsa.com/app/goods/1882396"
-      },
-      {
-        "img_url": "/images/closet/closet_shoes.jpg",
+        "img_url": "/images/closet/closet_sneakers.jpg",
         "item_name": "신발A(이름)",
-        "sub_category": "캔버스/단화",
+        "category": "신발",
+        "sub_category": "구두",
         "price": 56000,
         "color": "회색",
-        "brand": "반스",
+        "brand": "피렌체 아뜨리에",
         "shop_url": "https://store.musinsa.com/app/goods/1882396"
       },
       {
-        "img_url": "/images/closet/closet_shoes1.jpg",
+        "img_url": "/images/closet/closet_sneakers1.jpg",
         "item_name": "신발B(이름)",
+        "category": "신발",
         "sub_category": "구두",
-        "price": 66000,
-        "color": "검정색",
-        "brand": "닥터마틴",
-        "shop_url": "https://store.musinsa.com/app/goods/1882396"
-      },
-      {
-        "img_url": "/images/closet/closet_shoes.jpg",
-        "item_name": "신발A(이름)",
-        "sub_category": "캔버스/단화",
         "price": 56000,
         "color": "회색",
-        "brand": "반스",
+        "brand": "라비지오네",
         "shop_url": "https://store.musinsa.com/app/goods/1882396"
       },
+
       {
-        "img_url": "/images/closet/closet_shoes1.jpg",
-        "item_name": "신발B(이름)",
+        "img_url": "/images/closet/closet_sneakers2.jpg",
+        "item_name": "신발C(이름)",
+        "category": "신발",
         "sub_category": "구두",
-        "price": 66000,
-        "color": "검정색",
-        "brand": "닥터마틴",
-        "shop_url": "https://store.musinsa.com/app/goods/1882396"
-      },
-      {
-        "img_url": "/images/closet/closet_shoes.jpg",
-        "item_name": "신발A(이름)",
-        "sub_category": "캔버스/단화",
         "price": 56000,
         "color": "회색",
-        "brand": "반스",
-        "shop_url": "https://store.musinsa.com/app/goods/1882396"
-      },
-      {
-        "img_url": "/images/closet/closet_shoes1.jpg",
-        "item_name": "신발B(이름)",
-        "sub_category": "구두",
-        "price": 66000,
-        "color": "검정색",
-        "brand": "닥터마틴",
+        "brand": "슈펜",
         "shop_url": "https://store.musinsa.com/app/goods/1882396"
       }
     ],
@@ -425,6 +1027,8 @@
       {
         "img_url": "/images/closet/closet_bag.jpg",
         "item_name": "가방A(이름)",
+        "category": "가방",
+
         "sub_category": "백팩",
         "price": 57000,
         "color": "다크 그레이",
@@ -434,100 +1038,56 @@
       {
         "img_url": "/images/closet/closet_bag1.jpg",
         "item_name": "가방B(이름)",
-        "sub_category": "메신저/크로스 백",
-        "price": 45000,
-        "color": "검정색",
-        "brand": "잔스포츠",
-        "shop_url": "https://store.musinsa.com/app/goods/1882396"
-      },
-      {
-        "img_url": "/images/closet/closet_bag.jpg",
-        "item_name": "가방A(이름)",
-        "sub_category": "백팩",
+        "category": "가방",
+
+        "sub_category": "웨이스트 백",
         "price": 57000,
         "color": "다크 그레이",
-        "brand": "커버낫",
+        "brand": "프로스펙스",
         "shop_url": "https://store.musinsa.com/app/goods/1882396"
       },
       {
-        "img_url": "/images/closet/closet_bag1.jpg",
-        "item_name": "가방B(이름)",
+        "img_url": "/images/closet/closet_bag2.jpg",
+        "item_name": "가방C(이름)",
+        "category": "가방",
+
         "sub_category": "메신저/크로스 백",
-        "price": 45000,
-        "color": "검정색",
-        "brand": "잔스포츠",
-        "shop_url": "https://store.musinsa.com/app/goods/1882396"
-      },
-      {
-        "img_url": "/images/closet/closet_bag.jpg",
-        "item_name": "가방A(이름)",
-        "sub_category": "백팩",
         "price": 57000,
         "color": "다크 그레이",
-        "brand": "커버낫",
+        "brand": "마크 곤잘레스",
         "shop_url": "https://store.musinsa.com/app/goods/1882396"
       },
       {
-        "img_url": "/images/closet/closet_bag1.jpg",
-        "item_name": "가방B(이름)",
-        "sub_category": "메신저/크로스 백",
-        "price": 45000,
-        "color": "검정색",
-        "brand": "잔스포츠",
-        "shop_url": "https://store.musinsa.com/app/goods/1882396"
-      },
-      {
-        "img_url": "/images/closet/closet_bag.jpg",
-        "item_name": "가방A(이름)",
-        "sub_category": "백팩",
+        "img_url": "/images/closet/closet_womenbag.jpg",
+        "item_name": "여성가방A(이름)",
+        "category": "여성 가방",
+
+        "sub_category": "크로스백",
         "price": 57000,
         "color": "다크 그레이",
-        "brand": "커버낫",
+        "brand": "발렌티노",
         "shop_url": "https://store.musinsa.com/app/goods/1882396"
       },
       {
-        "img_url": "/images/closet/closet_bag1.jpg",
-        "item_name": "가방B(이름)",
-        "sub_category": "메신저/크로스 백",
-        "price": 45000,
-        "color": "검정색",
-        "brand": "잔스포츠",
-        "shop_url": "https://store.musinsa.com/app/goods/1882396"
-      },
-      {
-        "img_url": "/images/closet/closet_bag.jpg",
-        "item_name": "가방A(이름)",
-        "sub_category": "백팩",
+        "img_url": "/images/closet/closet_womenbag1.jpg",
+        "item_name": "여성가방B(이름)",
+        "category": "여성 가방",
+
+        "sub_category": "파우치 백",
         "price": 57000,
         "color": "다크 그레이",
-        "brand": "커버낫",
+        "brand": "빈폴 엑세서리",
         "shop_url": "https://store.musinsa.com/app/goods/1882396"
       },
       {
-        "img_url": "/images/closet/closet_bag1.jpg",
-        "item_name": "가방B(이름)",
-        "sub_category": "메신저/크로스 백",
-        "price": 45000,
-        "color": "검정색",
-        "brand": "잔스포츠",
-        "shop_url": "https://store.musinsa.com/app/goods/1882396"
-      },
-      {
-        "img_url": "/images/closet/closet_bag.jpg",
-        "item_name": "가방A(이름)",
-        "sub_category": "백팩",
+        "img_url": "/images/closet/closet_womenbag2.jpg",
+        "item_name": "여성가방C(이름)",
+        "category": "여성 가방",
+
+        "sub_category": "토트백",
         "price": 57000,
         "color": "다크 그레이",
-        "brand": "커버낫",
-        "shop_url": "https://store.musinsa.com/app/goods/1882396"
-      },
-      {
-        "img_url": "/images/closet/closet_bag1.jpg",
-        "item_name": "가방B(이름)",
-        "sub_category": "메신저/크로스 백",
-        "price": 45000,
-        "color": "검정색",
-        "brand": "잔스포츠",
+        "brand": "메트로시티",
         "shop_url": "https://store.musinsa.com/app/goods/1882396"
       }
     ]

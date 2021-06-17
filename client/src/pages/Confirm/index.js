@@ -15,7 +15,7 @@ class Confirm extends Component {
     };
   }
 
-  fetchData = async () => {
+  fetchData = () => {
     axios
       .get(url + 'tinder/look')
       .then((res) => {
@@ -124,9 +124,7 @@ class Confirm extends Component {
             returnObj['id'] = index;
             returnObj['element'] = (
               <TinderBox key={item.id}>
-                <TinderImg src={item.url} alt="img" />
-                <TpoText>{item.tpo}</TpoText>
-                <div style={{ textAlign: 'center' }}>
+                <WishBox>
                   <WishButton
                     onClick={(e) => {
                       this.setState({ checked: !this.state.checked });
@@ -141,7 +139,9 @@ class Confirm extends Component {
                   >
                     <WishText id="test">♡</WishText>
                   </WishButton>
-                </div>
+                </WishBox>
+                <TinderImg src={item.url} alt="img" />
+                <TpoText>{item.tpo}</TpoText>
               </TinderBox>
             );
             return returnObj;
@@ -223,6 +223,12 @@ const TpoText = styled.p`
   color: white;
   text-align: center;
 `;
+const WishBox = styled.div`
+  position: absolute;
+  width: 100%;
+  text-align: right;
+  padding-top: 150px;
+`;
 const WishButton = styled.button`
   margin: 0;
   padding: 0;
@@ -231,7 +237,7 @@ const WishButton = styled.button`
 `;
 const WishText = styled.p`
   margin: 0;
-  padding: 0;
+  padding-right: 5px;
   font-size: 48px;
-  color: #ffc0cb;
+  color: #ff3e3e;
 `;

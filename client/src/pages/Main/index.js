@@ -98,33 +98,14 @@ class Main extends Component {
                         }}
                       >
                         <TinderImg src={item.url} alt="img" />
-                        <TpoText>{item.tpo}</TpoText>
 
-                        <div style={{ textAlign: 'center' }}>
-                          <WishButton
-                            onClick={(e) => {
-                              // e.preventDefault();
-                              this.setState({ checked: !this.state.checked });
-                              var text = document.getElementById('test');
-                              if (!this.state.checked) {
-                                text.innerText = '♥';
-                              } else {
-                                text.innerText = '♡';
-                              }
-                            }}
-                          >
-                            <WishText id="test">♡</WishText>
-                          </WishButton>
-                        </div>
+                        <TpoText>{item.tpo}</TpoText>
                       </TinderBox>
                     );
                   } else {
                     returnObj['element'] = (
                       <TinderBox key={item.id}>
-                        <TinderImg src={item.url} alt="img" />
-                        <TpoText>{item.tpo}</TpoText>
-
-                        <div style={{ textAlign: 'center' }}>
+                        <WishBox>
                           <WishButton
                             onClick={(e) => {
                               // e.preventDefault();
@@ -139,7 +120,10 @@ class Main extends Component {
                           >
                             <WishText id="test">♡</WishText>
                           </WishButton>
-                        </div>
+                        </WishBox>
+                        <TinderImg src={item.url} alt="img" />
+
+                        <TpoText>{item.tpo}</TpoText>
                       </TinderBox>
                     );
                   }
@@ -159,33 +143,15 @@ class Main extends Component {
                       >
                         <TinderImg src={item.url} alt="img" />
                         <TpoText>{item.tpo}</TpoText>
-
-                        <div style={{ textAlign: 'center' }}>
-                          <WishButton
-                            onClick={() => {
-                              this.setState({ checked: !this.state.checked });
-                              var text = document.getElementById('test');
-                              if (!this.state.checked) {
-                                text.innerText = '♥';
-                              } else {
-                                text.innerText = '♡';
-                              }
-                            }}
-                          >
-                            <WishText id="test">♡</WishText>
-                          </WishButton>
-                        </div>
                       </TinderBox>
                     );
                   } else {
                     returnObj['element'] = (
                       <TinderBox key={item.id}>
-                        <TinderImg src={item.url} alt="img" />
-                        <TpoText>{item.tpo}</TpoText>
-
-                        <div style={{ textAlign: 'center' }}>
+                        <WishBox>
                           <WishButton
-                            onClick={() => {
+                            onClick={(e) => {
+                              // e.preventDefault();
                               this.setState({ checked: !this.state.checked });
                               var text = document.getElementById('test');
                               if (!this.state.checked) {
@@ -197,7 +163,9 @@ class Main extends Component {
                           >
                             <WishText id="test">♡</WishText>
                           </WishButton>
-                        </div>
+                        </WishBox>
+                        <TinderImg src={item.url} alt="img" />
+                        <TpoText>{item.tpo}</TpoText>
                       </TinderBox>
                     );
                   }
@@ -293,6 +261,12 @@ const TinderBox = styled.div`
   padding-top: 30px;
   background-color: #222;
 `;
+const WishBox = styled.div`
+  position: absolute;
+  width: 100%;
+  text-align: right;
+  padding-top: 150px;
+`;
 const WishButton = styled.button`
   margin: 0;
   padding: 0;
@@ -301,7 +275,7 @@ const WishButton = styled.button`
 `;
 const WishText = styled.p`
   margin: 0;
-  padding: 0;
+  padding-right: 5px;
   font-size: 48px;
-  color: #ffc0cb;
+  color: #ff3e3e;
 `;

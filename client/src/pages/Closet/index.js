@@ -12,6 +12,7 @@ import { ClothesPriceContext } from '../../App';
 import { ClosetTextContext } from '../../App';
 
 import Paper from '@material-ui/core/Paper';
+import url from '../../url';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,8 +44,14 @@ const useStyles = makeStyles((theme) => ({
     minWidth: '310px',
     width: '90vw',
     height: '650px',
-    border: 'solid 4px',
+    border: 'solid 3px',
     minHeight: '57vh',
+    backgroundImage: `url('/images/closet/mannequin_2.png')`,
+    // opacity: '0.85',
+    backgroundSize: '165px',
+    backgroundPositionX: '30px',
+    backgroundPositionY: '100px',
+    backgroundRepeat: 'no-repeat',
   },
   leftClothesContainer: {
     display: 'flex',
@@ -68,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
     height: '80px',
 
     justifyContent: 'center',
-    border: 'solid 3px',
+    border: 'solid 2px',
     margin: '15px 0px',
   },
   topContainer: {
@@ -83,7 +90,7 @@ const useStyles = makeStyles((theme) => ({
     height: '150px',
 
     justifyContent: 'center',
-    border: 'solid 3px',
+    border: 'solid 2px',
     margin: '15px 0px',
   },
   bottomContainer: {
@@ -98,7 +105,7 @@ const useStyles = makeStyles((theme) => ({
     height: '150px',
 
     justifyContent: 'center',
-    border: 'solid 3px',
+    border: 'solid 2px',
     margin: '15px 0px',
   },
   shoesContainer: {
@@ -113,7 +120,7 @@ const useStyles = makeStyles((theme) => ({
     height: '80px',
 
     justifyContent: 'center',
-    border: 'solid 3px',
+    border: 'solid 2px',
     margin: '15px 0px',
   },
   bagContainer: {
@@ -128,7 +135,7 @@ const useStyles = makeStyles((theme) => ({
     height: '120px',
 
     justifyContent: 'center',
-    border: 'solid 3px',
+    border: 'solid 2px',
     margin: '15px 0px',
   },
   clothesText: {
@@ -140,7 +147,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-around',
     height: '150px',
     width: '350px',
-    marginTop: '30px',
+    marginTop: '55px',
     fontFamily: 'GmarketSansMedium',
     fontSize: '18px',
     fontWeight: 'bold',
@@ -161,7 +168,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'GmarketSansMedium',
     fontWeight: 'bold',
     fontSize: '17px',
-    marginTop: '30px',
+    marginTop: '40px',
     width: '200px',
     height: '50px',
   },
@@ -174,7 +181,7 @@ const useStyles = makeStyles((theme) => ({
     height: '60px',
   },
   closetTextContainer: {
-    marginTop: '20px',
+    marginTop: '40px',
 
     width: '250px',
     height: '60px',
@@ -313,7 +320,7 @@ function Closet() {
       </Paper>
 
       <div>
-        <Paper elevation={4} className={classes.closetPriceBox}>
+        <Paper variant="outlined" className={classes.closetPriceBox}>
           {'총 금액💰 : '} {clothesPrice.hat + clothesPrice.top + clothesPrice.bottom + clothesPrice.shoes + clothesPrice.bag}\
         </Paper>
       </div>

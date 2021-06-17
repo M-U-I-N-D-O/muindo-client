@@ -3,6 +3,10 @@ import styled from 'styled-components';
 import MotionStack from 'react-motion-stack';
 import 'react-motion-stack/build/motion-stack.css';
 
+import CloseIcon from '@material-ui/icons/Close';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import Paper from '@material-ui/core/Paper';
+
 import { connect } from 'react-redux';
 import { dialogMode } from '../../actions';
 
@@ -60,8 +64,24 @@ class Main extends Component {
   renderButtons(props) {
     return (
       <div style={{ display: 'flex', justifyContent: 'center' }} className="btn-group">
-        <CustomButton id="tinder-btn1" children="👎" onClick={props.reject} />
-        <CustomButton id="tinder-btn2" children="👍" onClick={props.accept} />
+        <CustomButton
+          id="tinder-btn1"
+          children={
+            <NopeSwipeButtonBox elevation={3}>
+              <CloseIcon fontSize="large" />
+            </NopeSwipeButtonBox>
+          }
+          onClick={props.reject}
+        />
+        <CustomButton
+          id="tinder-btn2"
+          children={
+            <ConfirmSwipeButtonBox elevation={3}>
+              <FavoriteIcon fontSize="large" />
+            </ConfirmSwipeButtonBox>
+          }
+          onClick={props.accept}
+        />
       </div>
     );
   }
@@ -203,7 +223,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Main);
 
 const BottomContainer = styled.div`
   display: flex;
-  height: 60px;
+  height: 6vh;
   text-align: center;
   justify-content: center;
 `;
@@ -213,8 +233,7 @@ const CustomButton = styled.button`
   background: transparent;
   margin: 0 3vw;
   margin-top: 10vh;
-  font-size: 3em;
-  z-index: 1000;
+  z-index: 100;
 `;
 const BottomText = styled.h1`
   position: absolute;
@@ -223,24 +242,23 @@ const BottomText = styled.h1`
   margin: 0;
   bottom: 55%;
   margin: 0 auto;
-  z-index: 100;
 `;
 const NopeText = styled.h1`
   position: absolute;
-  color: red;
-  border: 5px solid red;
+  color: #ec5e6f;
+  border: 5px solid #ec5e6f;
   border-radius: 5px;
-  bottom: 60%;
+  bottom: 55%;
   z-index: 100;
   transform: rotate(-20deg);
   width: 50vw;
 `;
 const LikeText = styled.h1`
   position: absolute;
-  color: #007d3f;
-  border: 5px solid #007d3f;
+  color: #76e2b3;
+  border: 5px solid #76e2b3;
   border-radius: 5px;
-  bottom: 60%;
+  bottom: 55%;
   z-index: 100;
   width: 50vw;
   transform: rotate(20deg);
@@ -258,7 +276,6 @@ const TpoText = styled.p`
   font-weight: bold;
 `;
 const TinderBox = styled.div`
-  padding-top: 30px;
   background-color: #222;
 `;
 const WishBox = styled.div`
@@ -278,4 +295,16 @@ const WishText = styled.p`
   padding-right: 5px;
   font-size: 48px;
   color: #ff3e3e;
+`;
+const NopeSwipeButtonBox = styled(Paper)`
+  background-color: #424242;
+  padding: 3vw !important;
+  border-radius: 50%;
+  color: #ec5e6f !important;
+`;
+const ConfirmSwipeButtonBox = styled(Paper)`
+  background-color: #424242;
+  padding: 3vw !important;
+  border-radius: 50%;
+  color: #76e2b3 !important;
 `;

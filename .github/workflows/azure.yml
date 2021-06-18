@@ -1,7 +1,9 @@
 name: muindo client react app CI/CD
 
-on:
-  [push]
+ on:
+  push:
+   branches:
+     - master
 
 jobs:
   build-and-deploy:

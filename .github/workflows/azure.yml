@@ -25,8 +25,8 @@ jobs:
     - name: npm install, build
       run: |
         npm install
-        CI=false npm run build --if-present
-        npm run test --if-present
+        npm run build
+        
       working-directory: ${{ env.working-directory }}
         
     - name: 'Deploy to Azure WebApp'

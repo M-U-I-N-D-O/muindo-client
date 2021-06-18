@@ -12,7 +12,7 @@ jobs:
     env:
         working-directory: ./client
         AZURE_WEBAPP_NAME: muindo    
-        AZURE_WEBAPP_PACKAGE_PATH: './build'     
+        AZURE_WEBAPP_PACKAGE_PATH: 'build'     
         NODE_VERSION: '14.x'   
         
     steps:

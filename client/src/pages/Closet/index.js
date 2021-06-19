@@ -7,12 +7,14 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import styled from 'styled-components';
 
+import { useDispatch, useSelector } from 'react-redux';
 import { ModalContext } from '../../App';
 import { ClothesIdContext } from '../../App';
 import { ClothesPriceContext } from '../../App';
 import { ClosetTextContext } from '../../App';
 
 import Paper from '@material-ui/core/Paper';
+import { closetModalOpen, closetModalMode, closetText } from '../../actions';
 
 const ClothesBoxDiv = styled.div`
   width: ${(props) => props.width};
@@ -206,13 +208,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ClothesBox(props) {
+  const dispatch = useDispatch();
   const { closetImg } = useContext(ModalContext);
-  const { setModalMode } = useContext(ModalContext);
-  const { setOpenClosetModal } = useContext(ModalContext);
+  // const { setModalMode } = useContext(ModalContext);
+  // const { setOpenClosetModal } = useContext(ModalContext);
+  // const open = useSelector((state) => state.closetModal.open);
 
   const handleClothesContainerClick = (event) => {
-    setModalMode(event.target.id);
-    setOpenClosetModal(true);
+    // setModalMode(event.target.id);
+    // setOpenClosetModal(true);
+    dispatch(closetModalOpen(true));
+    dispatch(closetModalMode(event.target.id));
   };
 
   return (
@@ -237,15 +243,18 @@ function ClothesBox(props) {
 
 function Closet() {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const classes = useStyles();
+  const mode = useSelector((state) => state.closetModal.mode);
+  // const text = useSelector((state) => state.closetModal.text);
 
   // const { setOpenClosetModal } = useContext(ModalContext);
-  const { modalMode, setModalMode } = useContext(ModalContext);
+  // const { modalMode, setModalMode } = useContext(ModalContext);
   const { setClosetImg } = useContext(ModalContext);
   const { closetClothesId, setClosetClothesId } = useContext(ClothesIdContext);
   const { clothesPrice, setClothesPrice } = useContext(ClothesPriceContext);
-  const { closetText, setClosetText } = useContext(ClosetTextContext);
+  // const { closetText, setClosetText } = useContext(ClosetTextContext);
   // const closetTextRef = useRef('');
   useEffect(() => {
     setClosetImg({
@@ -271,8 +280,9 @@ function Closet() {
       bag: 0,
     });
 
-    setClosetText('');
-  }, [setClosetImg, setClosetClothesId, setClothesPrice, setClosetText]);
+    // setClosetText('');
+    dispatch(closetText(''));
+  }, [setClosetImg, setClosetClothesId, setClothesPrice, dispatch]);
 
   // const handleClothesContainerClick = (event) => {
   //   setModalMode(event.target.id);
@@ -301,15 +311,18 @@ function Closet() {
       shoes: 0,
       bag: 0,
     });
-    setModalMode('');
+    // setModalMode('');
+    dispatch(closetModalMode(''));
   };
   const handleChangeClosetText = (event) => {
-    setClosetText(event.target.value);
+    dispatch(closetText(event.target.value));
+
+    // setClosetText(event.target.value);
   };
 
   return (
     <div className={classes.root}>
-      {modalMode !== '' && <ClosetModal data={modalMode} />}
+      {mode !== '' && <ClosetModal data={mode} />}
 
       <div className={classes.title}>
         <TopComment comment={'옷장에 옷을 넣어보세요.'} />

@@ -34,8 +34,8 @@ const ClosetTextContext = createContext({});
 
 function App() {
   const navMode = useSelector((state) => state.navbar.switch);
-  const [openClosetModal, setOpenClosetModal] = useState(false);
-  const [modalMode, setModalMode] = useState('');
+  // const [openClosetModal, setOpenClosetModal] = useState(false);
+  // const [modalMode, setModalMode] = useState('');
   const [closetImg, setClosetImg] = useLocalStorage('closetImg', {
     hat: '',
     top: '',
@@ -77,10 +77,10 @@ function App() {
     // <CookiesProvider>
     <ModalContext.Provider
       value={{
-        openClosetModal,
-        setOpenClosetModal,
-        modalMode,
-        setModalMode,
+        // openClosetModal,
+        // setOpenClosetModal,
+        // modalMode,
+        // setModalMode,
         closetImg,
         setClosetImg,
         closetClothesId,

@@ -68,3 +68,34 @@ export const solutionModalMode = (mode) => {
     mode,
   };
 };
+
+// 옷장 모달창 열기, 닫기
+export const closetModalOpen = (open) => {
+  return {
+    type: 'OPEN_MODAL',
+    open,
+  };
+};
+
+// 옷장 모달창 모드(hat,top...)
+export const closetModalMode = (mode) => {
+  return {
+    type: 'MODAL_MODE',
+    mode,
+  };
+};
+
+// 옷장 TPO 텍스트
+export const closetText = (text) => {
+  return {
+    type: 'CLOSET_TEXT',
+    text,
+  };
+};
+
+export const clothesList = (list) => {
+  return {
+    type: 'CLOTHES_LIST',
+    list,
+  };
+};

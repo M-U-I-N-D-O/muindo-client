@@ -21,8 +21,8 @@ import MyPageLikeDetail from './pages/MyPage/myLikeDetail';
 import MyPageLikeList from './pages/MyPage/myLikeList';
 
 import Progress from './components/Progress';
-// import 'slick-carousel/slick/slick.css';
-// import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import './App.css';
 
 import useLocalStorage from '../src/hook/useLocalStorage';

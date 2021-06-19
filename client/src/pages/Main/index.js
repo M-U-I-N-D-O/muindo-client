@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import MotionStack from 'react-motion-stack';
 import 'react-motion-stack/build/motion-stack.css';
 
+import InfoDialog from '../../components/Tinder/infoDialog';
+
 import CloseIcon from '@material-ui/icons/Close';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import Paper from '@material-ui/core/Paper';
@@ -209,6 +211,7 @@ class Main extends Component {
             <BottomText>{this.state.text}</BottomText>
           )}
         </BottomContainer>
+        <InfoDialog />
       </div>
     );
   }
@@ -251,7 +254,7 @@ const NopeText = styled.h1`
   bottom: 55%;
   z-index: 100;
   transform: rotate(-20deg);
-  width: 50vw;
+  padding: 0 25px;
 `;
 const LikeText = styled.h1`
   position: absolute;
@@ -260,8 +263,8 @@ const LikeText = styled.h1`
   border-radius: 5px;
   bottom: 55%;
   z-index: 100;
-  width: 50vw;
   transform: rotate(20deg);
+  padding: 0 10px;
 `;
 const TinderImg = styled.img`
   max-width: 100%;

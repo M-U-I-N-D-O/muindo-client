@@ -7,6 +7,7 @@ import analysisClothesReducer from './analysisClothes';
 import solutionReducer from './solution';
 import dialogReducer from './dialog';
 import loginReducer from './login';
+import tinderReducer from './tinder';
 
 const persistConfig = {
   key: 'root',
@@ -24,6 +25,7 @@ const allReducer = combineReducers({
   solution: solutionReducer,
   dialog: dialogReducer,
   login: loginReducer,
+  tinder: tinderReducer,
 });
 
 export default persistReducer(persistConfig, allReducer);

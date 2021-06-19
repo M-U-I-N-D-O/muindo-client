@@ -220,7 +220,7 @@ const NopeText = styled.h1`
   bottom: 55%;
   z-index: 100;
   transform: rotate(-20deg);
-  width: 50vw;
+  padding: 0 25px;
 `;
 const LikeText = styled.h1`
   position: absolute;
@@ -229,8 +229,8 @@ const LikeText = styled.h1`
   border-radius: 5px;
   bottom: 55%;
   z-index: 100;
-  width: 50vw;
   transform: rotate(20deg);
+  padding: 0 10px;
 `;
 
 const TinderBox = styled.div`

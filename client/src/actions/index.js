@@ -34,7 +34,12 @@ export const userEmail = (email) => {
     email,
   };
 };
-
+export const closeTinderInfo = (turn) => {
+  return {
+    type: 'TINDER_INFO',
+    turn,
+  };
+};
 // 셜록의 돋보기
 export const analysisResultImg = (src) => {
   return {

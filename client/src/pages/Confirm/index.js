@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import MotionStack from 'react-motion-stack';
 import 'react-motion-stack/build/motion-stack.css';
+
+import CloseIcon from '@material-ui/icons/Close';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import Paper from '@material-ui/core/Paper';
+
 import axios from 'axios';
 import url from '../../url';
 
@@ -15,7 +20,7 @@ class Confirm extends Component {
     };
   }
 
-  fetchData = async () => {
+  fetchData = () => {
     axios
       .get(url + 'tinder/look')
       .then((res) => {
@@ -97,8 +102,24 @@ class Confirm extends Component {
   renderButtons(props) {
     return (
       <div style={{ display: 'flex', justifyContent: 'center' }} className="btn-group">
-        <CustomButton id="tinder-btn1" children="👎" onClick={props.reject} />
-        <CustomButton id="tinder-btn2" children="👍" onClick={props.accept} />
+        <CustomButton
+          id="tinder-btn1"
+          children={
+            <NopeSwipeButtonBox elevation={3}>
+              <CloseIcon fontSize="large" />
+            </NopeSwipeButtonBox>
+          }
+          onClick={props.reject}
+        />
+        <CustomButton
+          id="tinder-btn2"
+          children={
+            <ConfirmSwipeButtonBox elevation={3}>
+              <FavoriteIcon fontSize="large" />
+            </ConfirmSwipeButtonBox>
+          }
+          onClick={props.accept}
+        />
       </div>
     );
   }
@@ -124,9 +145,7 @@ class Confirm extends Component {
             returnObj['id'] = index;
             returnObj['element'] = (
               <TinderBox key={item.id}>
-                <TinderImg src={item.url} alt="img" />
-                <TpoText>{item.tpo}</TpoText>
-                <div style={{ textAlign: 'center' }}>
+                <WishBox>
                   <WishButton
                     onClick={(e) => {
                       this.setState({ checked: !this.state.checked });
@@ -141,7 +160,9 @@ class Confirm extends Component {
                   >
                     <WishText id="test">♡</WishText>
                   </WishButton>
-                </div>
+                </WishBox>
+                <TinderImg src={item.url} alt="img" />
+                <TpoText>{item.tpo}</TpoText>
               </TinderBox>
             );
             return returnObj;
@@ -171,16 +192,16 @@ export default Confirm;
 
 const BottomContainer = styled.div`
   display: flex;
-  height: 60px;
+  height: 6vh;
   text-align: center;
   justify-content: center;
 `;
 const CustomButton = styled.button`
   border: none;
   background: transparent;
-  margin: 0 3vh;
-  padding-top: 10vh;
-  font-size: 3em;
+  margin: 0 3vw;
+  margin-top: 10vh;
+  z-index: 100;
 `;
 const BottomText = styled.h1`
   position: absolute;
@@ -193,26 +214,28 @@ const BottomText = styled.h1`
 `;
 const NopeText = styled.h1`
   position: absolute;
-  color: red;
-  border: 5px solid red;
+  color: #ec5e6f;
+  border: 5px solid #ec5e6f;
   border-radius: 5px;
-  bottom: 60%;
+  bottom: 55%;
   z-index: 100;
   transform: rotate(-20deg);
-  width: 50vw;
+  padding: 0 25px;
 `;
 const LikeText = styled.h1`
   position: absolute;
-  color: #007d3f;
-  border: 5px solid #007d3f;
+  color: #76e2b3;
+  border: 5px solid #76e2b3;
   border-radius: 5px;
-  bottom: 60%;
+  bottom: 55%;
   z-index: 100;
-  width: 50vw;
   transform: rotate(20deg);
+  padding: 0 10px;
 `;
 
-const TinderBox = styled.div``;
+const TinderBox = styled.div`
+  background-color: #222;
+`;
 const TinderImg = styled.img`
   max-width: 100%;
   height: auto;
@@ -223,6 +246,12 @@ const TpoText = styled.p`
   color: white;
   text-align: center;
 `;
+const WishBox = styled.div`
+  position: absolute;
+  width: 100%;
+  text-align: right;
+  padding-top: 150px;
+`;
 const WishButton = styled.button`
   margin: 0;
   padding: 0;
@@ -231,7 +260,19 @@ const WishButton = styled.button`
 `;
 const WishText = styled.p`
   margin: 0;
-  padding: 0;
+  padding-right: 5px;
   font-size: 48px;
-  color: #ffc0cb;
+  color: #ff3e3e;
+`;
+const NopeSwipeButtonBox = styled(Paper)`
+  background-color: #424242;
+  padding: 3vw !important;
+  border-radius: 50%;
+  color: #ec5e6f !important;
+`;
+const ConfirmSwipeButtonBox = styled(Paper)`
+  background-color: #424242;
+  padding: 3vw !important;
+  border-radius: 50%;
+  color: #76e2b3 !important;
 `;

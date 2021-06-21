@@ -8,12 +8,15 @@ import { useHistory } from 'react-router';
 import Paper from '@material-ui/core/Paper';
 import { ModalContext } from '../../App';
 import { ClothesIdContext } from '../../App';
-import { ClosetTextContext } from '../../App';
+// import { ClosetTextContext } from '../../App';
 
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
 import html2canvas from 'html2canvas';
+// import { closetText } from '../../actions';
+import { colorModalOpen, lookBookColor } from '../../actions';
+import { useDispatch, useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -170,17 +173,20 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ClosetLookBook() {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const history = useHistory();
-  const { lookBookColorSelect } = useContext(ModalContext);
+  // const { lookBookColorSelect } = useContext(ModalContext);
 
-  const { setLookBookColorModal } = useContext(ModalContext);
+  // const { setLookBookColorModal } = useContext(ModalContext);
   const { closetImg } = useContext(ModalContext);
   const { closetClothesId } = useContext(ClothesIdContext);
+  const text = useSelector((state) => state.closetModal.text);
+  const BackgroundColor = useSelector((state) => state.lookBook.color);
 
   const [modifyAnchor, setModifyAnchor] = useState(null);
   // const [setShareAnchor] = useState(null);
   // const { seq } = useParams();
-  const { closetText } = useContext(ClosetTextContext);
+  // const { closetText } = useContext(ClosetTextContext);
 
   const captureRef = useRef();
 
@@ -190,10 +196,11 @@ export default function ClosetLookBook() {
 
   const handleColorChangeClick = (event) => {
     // setModalMode(event.target.id);
-    setLookBookColorModal(true);
+    // setLookBookColorModal(true);
+    dispatch(colorModalOpen(true));
     setModifyAnchor(null);
 
-    // console.log(lookBookColorModal);
+    console.log(lookBookColor);
     // console.log(modalMode);
     // console.log(closetImg);
   };
@@ -266,14 +273,14 @@ export default function ClosetLookBook() {
     });
     const res = await axios
       .post(
-        `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/looks/upload`,
+        `https://muindoooapi.azurewebsites.net/looks/upload`,
         {
-          dataType: 'text',
+          dataType: 'string',
           items: closetClothesId,
           data: {
             img: url,
           },
-          tpo: closetText,
+          tpo: text,
           success: function () {
             // seq = res['id'];
           },
@@ -341,8 +348,8 @@ export default function ClosetLookBook() {
       <div className={classes.title}>
         <TopComment comment={'룩북을 만들어보세요.'} />
       </div>
-      <Paper elevation={3} className={classes.closetContainer} style={{ backgroundColor: lookBookColorSelect }}>
-        <div className={classes.modalImgContainer} style={{ backgroundColor: lookBookColorSelect }} ref={captureRef}>
+      <Paper elevation={3} className={classes.closetContainer} style={{ backgroundColor: BackgroundColor }}>
+        <div className={classes.modalImgContainer} style={{ backgroundColor: BackgroundColor }} ref={captureRef}>
           <div className={classes.modalImgBottom}>
             {closetImg['bottom'] ? <img style={{ width: '100%', height: '100%' }} alt="" src={closetImg['bottom']} id="bottom" /> : <div></div>}
           </div>

@@ -8,13 +8,15 @@ import { makeStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
 import ListItem from '@material-ui/core/ListItem';
 import List from '@material-ui/core/List';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import PhotoIcon from '@material-ui/icons/Photo';
+import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import Divider from '@material-ui/core/Divider';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowBackIosRoundedIcon from '@material-ui/icons/ArrowBackIosRounded';
 import Slide from '@material-ui/core/Slide';
-import Paper from '@material-ui/core/Paper';
 
 import firebase from 'firebase/app';
 import { Helmet } from 'react-helmet';
@@ -24,9 +26,6 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     backgroundColor: 'black',
     height: '60px',
-  },
-  paper: {
-    border: '5px soild red',
   },
 }));
 
@@ -76,8 +75,8 @@ function MyPage() {
           description: '쉽고 편한 룩북 컨펌 서비스, MUINDO',
           imageUrl: 'https://ifh.cc/g/6R44lA.png',
           link: {
-            mobileWebUrl: `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com/`,
-            webUrl: `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com/`,
+            mobileWebUrl: `https://muindoooapi.azurewebsites.net/`,
+            webUrl: `https://muindoooapi.azurewebsites.net/`,
             // mobileWebUrl: window.location.href,
             // webUrl: window.location.href,
           },
@@ -87,8 +86,8 @@ function MyPage() {
           {
             title: '나도 룩북 만들기',
             link: {
-              mobileWebUrl: `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com/`,
-              webUrl: `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com/`,
+              mobileWebUrl: `https://muindoooapi.azurewebsites.net/`,
+              webUrl: `https://muindoooapi.azurewebsites.net/`,
             },
           },
         ],
@@ -111,13 +110,6 @@ function MyPage() {
             <MainText>{name}님</MainText>
             <SubText>{email}</SubText>
             <SubText>반갑습니다 :)</SubText>
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <LogoutButton onClick={signOut}>
-                <Paper className={classes.paper} elevation={3}>
-                  <LogoutButtonText>로그아웃</LogoutButtonText>
-                </Paper>
-              </LogoutButton>
-            </div>
           </Container>
         ) : (
           <Container onClick={() => dispatch(dialogMode(1))}>
@@ -140,10 +132,14 @@ function MyPage() {
                 dispatch(dialogMode(1));
               }
             }}
+            style={{ paddingLeft: '13px' }}
           >
+            <ListIconBox>
+              <PhotoIcon />
+            </ListIconBox>
             <ListText>나의 룩북 리스트</ListText>
           </ListItem>
-          <Divider />
+
           <ListItem
             button
             onClick={() => {
@@ -154,7 +150,11 @@ function MyPage() {
                 dispatch(dialogMode(1));
               }
             }}
+            style={{ paddingLeft: '12px' }}
           >
+            <ListIconBox>
+              <BookmarkBorderIcon />
+            </ListIconBox>
             <ListText>저장한 룩북 리스트</ListText>
           </ListItem>
           <Divider />
@@ -163,9 +163,20 @@ function MyPage() {
           </Helmet>
 
           <ListItem button onClick={shareByKakao}>
-            <ListText>카카오로 공유하기</ListText>
+            <ListText>앱 공유하기</ListText>
           </ListItem>
-          <Divider />
+
+          {localStorage.getItem('token') && (
+            <ListItem
+              button
+              onClick={() => {
+                dispatch(dialogMode(-1));
+                signOut();
+              }}
+            >
+              <ListText>로그아웃</ListText>
+            </ListItem>
+          )}
 
           <ListItem
             button
@@ -177,10 +188,6 @@ function MyPage() {
             <ListText>About MUINDO</ListText>
           </ListItem>
         </List>
-
-        {/* {localStorage.getItem('token') && (
-          
-        )} */}
       </Dialog>
     </div>
   );
@@ -207,24 +214,13 @@ const SubText = styled.p`
   padding-left: 15px;
   margin: 20px 0;
 `;
-const ListText = styled.p`
-  font-size: 18px;
-  font-weight: bold;
+const ListIconBox = styled(ListItemIcon)`
   color: black;
+  min-width: 0;
+  margin-right: 8px;
 `;
-const LogoutButton = styled.button`
-  /* position: absolute;
-  bottom: 5%; */
-  width: 100px;
-  border: none;
-  margin: 0 auto;
-  background-color: black;
-`;
-const LogoutButtonText = styled.h3`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 4vh;
-  margin-top: 3vh;
-  margin-bottom: 0;
+const ListText = styled.p`
+  font-size: 16px;
+  color: black;
+  margin: 1.2vh 0;
 `;

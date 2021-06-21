@@ -93,9 +93,34 @@ export const closetText = (text) => {
   };
 };
 
-export const clothesList = (list) => {
+// 룩북 배경 색상 모달창 열기, 닫기
+export const colorModalOpen = (open) => {
   return {
-    type: 'CLOTHES_LIST',
-    list,
+    type: 'OPEN_COLOR_MODAL',
+    open,
+  };
+};
+
+// 룩북 배경 색상
+export const lookBookColor = (color) => {
+  return {
+    type: 'COLOR_SELECT',
+    color,
+  };
+};
+
+// 마이페이지 디테일페이지의 의상 정보 모달 열기, 닫기
+export const infoModalOpen = (open) => {
+  return {
+    type: 'OPEN_INFO_MODAL',
+    open,
+  };
+};
+
+// 마이페이지 디테일페이지의 의상 정보 모달 열기, 닫기
+export const detailInfo = (info) => {
+  return {
+    type: 'DETAIL_INFO',
+    info,
   };
 };

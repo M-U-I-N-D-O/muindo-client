@@ -8,6 +8,8 @@ import solutionReducer from './solution';
 import dialogReducer from './dialog';
 import loginReducer from './login';
 import closetModalReducer from './closetModal';
+import lookBookReducer from './lookBook';
+import myPageReducer from './myPage';
 
 const persistConfig = {
   key: 'root',
@@ -26,6 +28,8 @@ const allReducer = combineReducers({
   dialog: dialogReducer,
   login: loginReducer,
   closetModal: closetModalReducer,
+  lookBook: lookBookReducer,
+  myPage: myPageReducer,
 });
 
 export default persistReducer(persistConfig, allReducer);

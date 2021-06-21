@@ -9,7 +9,7 @@ export default function MyPageLikeList() {
   const [myLikeListInfo, setMyLikeListInfo] = useState([]);
   useEffect(() => {
     try {
-      axios.get(`http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/thumbs`, {}).then((res) => {
+      axios.get(`https://muindoooapi.azurewebsites.net/mypage/thumbs`, {}).then((res) => {
         setMyLikeListInfo(res.data);
       });
     } catch (err) {

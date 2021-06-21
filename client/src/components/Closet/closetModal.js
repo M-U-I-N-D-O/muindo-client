@@ -154,7 +154,7 @@ export default function ClosetModal() {
   // const { modalMode, setModalMode } = useContext(ModalContext);
   const { closetImg, setClosetImg } = useContext(ModalContext);
   const { closetClothesId, setClosetClothesId } = useContext(ClothesIdContext);
-  const { clothesList, setClothesList } = useContext(ModalContext);
+  const [clothesList, setClothesList] = useState([]);
   const { condition, setCondition } = useContext(ModalContext);
   const [filteredClothes] = useState({});
   const [page, setPage] = useState(PAGE_NUMBER);
@@ -167,7 +167,7 @@ export default function ClosetModal() {
     try {
       axios
         .get(
-          `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/looks/items?middlecategory=${condition.middleCategory}&subcategory=${condition.subCategory}&brand=${condition.brand}&type=${mode}&page=1`,
+          `https://muindoooapi.azurewebsites.net/looks/items?middlecategory=${condition.middleCategory}&subcategory=${condition.subCategory}&brand=${condition.brand}&type=${mode}&page=1`,
         )
         .then((res) => {
           setClothesList(res.data);
@@ -193,7 +193,7 @@ export default function ClosetModal() {
     setTimeout(() => {
       axios
         .get(
-          `http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/looks/items?middlecategory=${condition.middleCategory}&subcategory=${condition.subCategory}&brand=${condition.brand}&type=${mode}&page=${page}`,
+          `https://muindoooapi.azurewebsites.net/looks/items?middlecategory=${condition.middleCategory}&subcategory=${condition.subCategory}&brand=${condition.brand}&type=${mode}&page=${page}`,
         )
         .then((res) => {
           setClothesList([...clothesList, ...res.data]);

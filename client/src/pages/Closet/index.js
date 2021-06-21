@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ModalContext } from '../../App';
 import { ClothesIdContext } from '../../App';
 import { ClothesPriceContext } from '../../App';
-import { ClosetTextContext } from '../../App';
+// import { ClosetTextContext } from '../../App';
 
 import Paper from '@material-ui/core/Paper';
 import { closetModalOpen, closetModalMode, closetText } from '../../actions';
@@ -247,7 +247,7 @@ function Closet() {
 
   const classes = useStyles();
   const mode = useSelector((state) => state.closetModal.mode);
-  // const text = useSelector((state) => state.closetModal.text);
+  const text = useSelector((state) => state.closetModal.text);
 
   // const { setOpenClosetModal } = useContext(ModalContext);
   // const { modalMode, setModalMode } = useContext(ModalContext);
@@ -312,12 +312,12 @@ function Closet() {
       bag: 0,
     });
     // setModalMode('');
+    dispatch(closetText(''));
+
     dispatch(closetModalMode(''));
   };
   const handleChangeClosetText = (event) => {
     dispatch(closetText(event.target.value));
-
-    // setClosetText(event.target.value);
   };
 
   return (
@@ -345,7 +345,7 @@ function Closet() {
         <TextField
           placeholder="ex) 데이트, 동창회, 가족 모임 등"
           label="이 패션의 TPO💬"
-          value={closetText}
+          value={text}
           onChange={handleChangeClosetText}
           fullWidth
           variant="outlined"

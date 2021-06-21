@@ -10,6 +10,8 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import Slide from '@material-ui/core/Slide';
 import Button from '@material-ui/core/Button';
+import { colorModalOpen, lookBookColor } from '../../actions';
+import { useDispatch, useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -98,29 +100,35 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function ColorChangeModal({ data }) {
   const classes = useStyles();
-  const { lookBookColorModal, setLookBookColorModal } = useContext(ModalContext);
-  const { setLookBookColorSelect } = useContext(ModalContext);
+  // const { lookBookColorModal, setLookBookColorModal } = useContext(ModalContext);
+  // const { setLookBookColorSelect } = useContext(ModalContext);
+  const dispatch = useDispatch();
+  const open = useSelector((state) => state.lookBook.open);
 
   useEffect(() => {
-    setLookBookColorSelect('#fff');
-  }, [setLookBookColorSelect]);
+    // setLookBookColorSelect('#fff');
+    dispatch(lookBookColor('#fff'));
+  }, [dispatch]);
 
   const handleLookBookColorClose = () => {
-    setLookBookColorModal(false);
+    // setLookBookColorModal(false);
+    dispatch(colorModalOpen(false));
   };
 
   const handleLookBookColorReset = () => {
-    setLookBookColorSelect('#fff');
-    setLookBookColorModal(false);
+    dispatch(lookBookColor('#fff'));
+    dispatch(colorModalOpen(false));
   };
 
   const handleLookBookColorChange = (color) => {
-    setLookBookColorSelect(color.hex);
+    // setLookBookColorSelect(color.hex);
+    dispatch(lookBookColor(color.hex));
+    // console.log(backColor);
   };
 
   return (
     <div>
-      <Dialog className={classes.root} open={lookBookColorModal} TransitionComponent={Transition} keepMounted onClose={handleLookBookColorClose}>
+      <Dialog className={classes.root} open={open} TransitionComponent={Transition} keepMounted onClose={handleLookBookColorClose}>
         <DialogContent>
           <div className={classes.colorCircleBox}>
             {/* <ChromePicker /> */}

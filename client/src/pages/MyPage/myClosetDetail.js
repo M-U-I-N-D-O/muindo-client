@@ -4,19 +4,21 @@ import MyPageDetail from '../../components/MyPage/myPageDetail';
 import axios from 'axios';
 import { useHistory } from 'react-router';
 
-import { ModalContext } from '../../App';
+import { useDispatch } from 'react-redux';
+import { detailInfo } from '../../actions';
 
 export default function MyPageClosetDetail() {
   const history = useHistory();
   const { seq } = useParams();
-  const { setClosetDetailInfo } = useContext(ModalContext);
+  // const { setClosetDetailInfo } = useContext(ModalContext);
+  const dispatch = useDispatch();
 
   const [myLookBookInfo, setMyLookBookInfo] = useState([]);
   const [lookBookPrice, setLookBookPrice] = useState(0);
 
   useEffect(() => {
     try {
-      axios.get(`http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/my-looks/${seq}`, {}).then((res) => {
+      axios.get(`https://muindoooapi.azurewebsites.net/mypage/my-looks/${seq}`, {}).then((res) => {
         const detailInfoArr = [];
         detailInfoArr.push(res.data.hat, res.data.top, res.data.bottom, res.data.shoes, res.data.bag);
         // console.log(detailInfoArr);
@@ -34,14 +36,16 @@ export default function MyPageClosetDetail() {
           clothesPrice += parseInt(notNulDetailInfoArr[m]['price']);
         }
         setLookBookPrice(clothesPrice);
-        setClosetDetailInfo(notNulDetailInfoArr);
+        // setClosetDetailInfo(notNulDetailInfoArr);
+        dispatch(detailInfo(notNulDetailInfoArr));
+
         setMyLookBookInfo(res.data.my_look);
       });
     } catch (err) {
       history.push('/error');
       console.log(err);
     }
-  }, [history, seq, setClosetDetailInfo]);
+  }, [history, seq, dispatch]);
 
   // console.log(lookBookPrice);
 

@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TopComment from '../../components/AnalysisClothes/topComment';
 import MyClosetInfo from '../../components/MyPage/myClosetInfoModal';
 import { useHistory } from 'react-router';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { infoModalOpen } from '../../actions';
 
-import { ModalContext } from '../../App';
+// import { ModalContext } from '../../App';
 import Paper from '@material-ui/core/Paper';
 const useStyles = makeStyles((theme) => ({
   root: {

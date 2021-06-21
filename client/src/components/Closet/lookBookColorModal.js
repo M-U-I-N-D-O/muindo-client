@@ -1,8 +1,8 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 // import ColorSelect from './colorPalette';
-import { ModalContext } from '../../App';
+// import { ModalContext } from '../../App';
 
 import { CirclePicker } from 'react-color';
 import Dialog from '@material-ui/core/Dialog';

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 import Button from '@material-ui/core/Button';
@@ -94,7 +94,7 @@ export default function MyClosetInfo(props) {
   const info = useSelector((state) => state.myPage.info);
 
   const handleClosetInfoModalClose = () => {
-    dispatch(infoModalOpen(true));
+    dispatch(infoModalOpen(false));
   };
   return (
     <div>

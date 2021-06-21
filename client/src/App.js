@@ -71,7 +71,7 @@ function App() {
   // const [lookBookColorSelect, setLookBookColorSelect] = useState('#fff');
 
   // const [openClosetInfoModal, setOpenClosetInfoModal] = useState(false);
-  const [closetDetailInfo, setClosetDetailInfo] = useState([]);
+  // const [closetDetailInfo, setClosetDetailInfo] = useState([]);
 
   return (
     // <CookiesProvider>
@@ -95,8 +95,8 @@ function App() {
         setCondition,
         // openClosetInfoModal,
         // setOpenClosetInfoModal,
-        closetDetailInfo,
-        setClosetDetailInfo,
+        // closetDetailInfo,
+        // setClosetDetailInfo,
       }}
     >
       <ClothesIdContext.Provider value={{ closetClothesId, setClosetClothesId }}>

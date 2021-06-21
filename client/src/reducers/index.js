@@ -7,7 +7,7 @@ import analysisClothesReducer from './analysisClothes';
 import solutionReducer from './solution';
 import dialogReducer from './dialog';
 import loginReducer from './login';
-import closetModalReducer from './closetModal';
+import closetModalReducer from './closet';
 import lookBookReducer from './lookBook';
 import myPageReducer from './myPage';
 

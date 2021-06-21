@@ -130,7 +130,6 @@ class Main extends Component {
                         <WishBox>
                           <WishButton
                             onClick={(e) => {
-                              // e.preventDefault();
                               this.setState({ checked: !this.state.checked });
                               var text = document.getElementById('test');
                               if (!this.state.checked) {
@@ -173,7 +172,6 @@ class Main extends Component {
                         <WishBox>
                           <WishButton
                             onClick={(e) => {
-                              // e.preventDefault();
                               this.setState({ checked: !this.state.checked });
                               var text = document.getElementById('test');
                               if (!this.state.checked) {

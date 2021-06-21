@@ -1,3 +1,3 @@
-const url = 'https://muindoooapi.azurewebsites.net/:5000/';
+const url = 'https://muindoooapi.azurewebsites.net/';
 
 export default url;

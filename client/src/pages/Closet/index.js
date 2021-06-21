@@ -5,13 +5,28 @@ import ClosetModal from '../../components/Closet/closetModal';
 import { useHistory } from 'react-router';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import styled from 'styled-components';
 
+import { useDispatch, useSelector } from 'react-redux';
 import { ModalContext } from '../../App';
 import { ClothesIdContext } from '../../App';
 import { ClothesPriceContext } from '../../App';
-import { ClosetTextContext } from '../../App';
+// import { ClosetTextContext } from '../../App';
 
 import Paper from '@material-ui/core/Paper';
+import { closetModalOpen, closetModalMode, closetText } from '../../actions';
+
+const ClothesBoxDiv = styled.div`
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 2px;
+  position: absolute;
+  top: ${(props) => props.top || 0};
+  left: ${(props) => props.left || 0};
+`;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,6 +51,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   closetContainer: {
+    position: 'relative',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -43,8 +59,14 @@ const useStyles = makeStyles((theme) => ({
     minWidth: '310px',
     width: '90vw',
     height: '650px',
-    border: 'solid 4px',
+    border: 'solid 3px',
     minHeight: '57vh',
+    // backgroundImage: `url('/images/closet/mannequin_2.png')`,
+    // opacity: '0.85',
+    backgroundSize: '170px',
+    backgroundPositionX: '55px',
+    backgroundPositionY: '65px',
+    backgroundRepeat: 'no-repeat',
   },
   leftClothesContainer: {
     display: 'flex',
@@ -68,7 +90,7 @@ const useStyles = makeStyles((theme) => ({
     height: '80px',
 
     justifyContent: 'center',
-    border: 'solid 3px',
+    border: 'solid 2px',
     margin: '15px 0px',
   },
   topContainer: {
@@ -83,7 +105,7 @@ const useStyles = makeStyles((theme) => ({
     height: '150px',
 
     justifyContent: 'center',
-    border: 'solid 3px',
+    border: 'solid 2px',
     margin: '15px 0px',
   },
   bottomContainer: {
@@ -98,7 +120,7 @@ const useStyles = makeStyles((theme) => ({
     height: '150px',
 
     justifyContent: 'center',
-    border: 'solid 3px',
+    border: 'solid 2px',
     margin: '15px 0px',
   },
   shoesContainer: {
@@ -113,7 +135,7 @@ const useStyles = makeStyles((theme) => ({
     height: '80px',
 
     justifyContent: 'center',
-    border: 'solid 3px',
+    border: 'solid 2px',
     margin: '15px 0px',
   },
   bagContainer: {
@@ -128,7 +150,7 @@ const useStyles = makeStyles((theme) => ({
     height: '120px',
 
     justifyContent: 'center',
-    border: 'solid 3px',
+    border: 'solid 2px',
     margin: '15px 0px',
   },
   clothesText: {
@@ -140,7 +162,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-around',
     height: '150px',
     width: '350px',
-    marginTop: '30px',
+    marginTop: '55px',
     fontFamily: 'GmarketSansMedium',
     fontSize: '18px',
     fontWeight: 'bold',
@@ -161,7 +183,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'GmarketSansMedium',
     fontWeight: 'bold',
     fontSize: '17px',
-    marginTop: '30px',
+    marginTop: '40px',
     width: '200px',
     height: '50px',
   },
@@ -174,24 +196,65 @@ const useStyles = makeStyles((theme) => ({
     height: '60px',
   },
   closetTextContainer: {
-    marginTop: '20px',
+    marginTop: '40px',
 
     width: '250px',
     height: '60px',
   },
+  a: {
+    width: '550px',
+    // height: '60px',
+  },
 }));
+
+function ClothesBox(props) {
+  const dispatch = useDispatch();
+  const { closetImg } = useContext(ModalContext);
+  // const { setModalMode } = useContext(ModalContext);
+  // const { setOpenClosetModal } = useContext(ModalContext);
+  // const open = useSelector((state) => state.closetModal.open);
+
+  const handleClothesContainerClick = (event) => {
+    // setModalMode(event.target.id);
+    // setOpenClosetModal(true);
+    dispatch(closetModalOpen(true));
+    dispatch(closetModalMode(event.target.id));
+  };
+
+  return (
+    <ClothesBoxDiv
+      width={props.width}
+      height={props.height}
+      top={props.top}
+      left={props.left}
+      onClick={handleClothesContainerClick}
+      id={props.modalMode}
+    >
+      {closetImg[props.modalMode] ? (
+        <img style={{ width: '100%', height: '100%' }} alt="" src={closetImg[props.modalMode]} id={props.modalMode} />
+      ) : (
+        <h2 style={{ fontSize: '18px', whiteSpace: 'pre-wrap' }} id={props.modalMode}>
+          {props.clothesType}
+        </h2>
+      )}
+    </ClothesBoxDiv>
+  );
+}
 
 function Closet() {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const classes = useStyles();
+  const mode = useSelector((state) => state.closetModal.mode);
+  const text = useSelector((state) => state.closetModal.text);
 
-  const { setOpenClosetModal } = useContext(ModalContext);
-  const { modalMode, setModalMode } = useContext(ModalContext);
-  const { closetImg, setClosetImg } = useContext(ModalContext);
+  // const { setOpenClosetModal } = useContext(ModalContext);
+  // const { modalMode, setModalMode } = useContext(ModalContext);
+  const { setClosetImg } = useContext(ModalContext);
   const { closetClothesId, setClosetClothesId } = useContext(ClothesIdContext);
   const { clothesPrice, setClothesPrice } = useContext(ClothesPriceContext);
-  const { closetText, setClosetText } = useContext(ClosetTextContext);
+  // const { closetText, setClosetText } = useContext(ClosetTextContext);
   // const closetTextRef = useRef('');
   useEffect(() => {
     setClosetImg({
@@ -217,13 +280,14 @@ function Closet() {
       bag: 0,
     });
 
-    setClosetText('');
-  }, [setClosetImg, setClosetClothesId, setClothesPrice, setClosetText]);
+    // setClosetText('');
+    dispatch(closetText(''));
+  }, [setClosetImg, setClosetClothesId, setClothesPrice, dispatch]);
 
-  const handleClothesContainerClick = (event) => {
-    setModalMode(event.target.id);
-    setOpenClosetModal(true);
-  };
+  // const handleClothesContainerClick = (event) => {
+  //   setModalMode(event.target.id);
+  //   setOpenClosetModal(true);
+  // };
 
   const handleEraseAllButtonClick = () => {
     setClosetImg({
@@ -247,73 +311,32 @@ function Closet() {
       shoes: 0,
       bag: 0,
     });
-    setModalMode('');
+    // setModalMode('');
+    dispatch(closetText(''));
+
+    dispatch(closetModalMode(''));
   };
   const handleChangeClosetText = (event) => {
-    setClosetText(event.target.value);
+    dispatch(closetText(event.target.value));
   };
 
   return (
     <div className={classes.root}>
-      {modalMode !== '' && <ClosetModal data={modalMode} />}
+      {mode !== '' && <ClosetModal data={mode} />}
 
       <div className={classes.title}>
         <TopComment comment={'옷장에 옷을 넣어보세요.'} />
       </div>
       <Paper elevation={5} className={classes.closetContainer}>
-        <div className={classes.leftClothesContainer}>
-          <div className={classes.hatContainer} onClick={handleClothesContainerClick} id="hat">
-            {closetImg['hat'] ? (
-              <img style={{ width: '100%', height: '100%' }} alt="" src={closetImg['hat']} id="hat" />
-            ) : (
-              <h2 style={{ fontSize: '18px', whiteSpace: 'pre-wrap' }} id="hat">
-                {'모자🧢\n안경👓'}
-              </h2>
-            )}
-          </div>
-          <div className={classes.topContainer} onClick={handleClothesContainerClick} id="top">
-            {closetImg['top'] ? (
-              <img style={{ width: '100%', height: '100%' }} alt="" src={closetImg['top']} id="top" />
-            ) : (
-              <h2 className={classes.clothesText} id="top">
-                상의👕
-              </h2>
-            )}
-          </div>
-          <div className={classes.bottomContainer} onClick={handleClothesContainerClick} id="bottom">
-            {closetImg['bottom'] ? (
-              <img style={{ width: '100%', height: '100%' }} alt="" src={closetImg['bottom']} id="bottom" />
-            ) : (
-              <h2 className={classes.clothesText} id="bottom">
-                하의👖
-              </h2>
-            )}
-          </div>
-          <div className={classes.shoesContainer} onClick={handleClothesContainerClick} id="shoes">
-            {closetImg['shoes'] ? (
-              <img style={{ width: '100%', height: '100%' }} alt="" src={closetImg['shoes']} id="shoes" />
-            ) : (
-              <h2 className={classes.clothesText} id="shoes">
-                신발👟
-              </h2>
-            )}
-          </div>
-        </div>
-        <div className={classes.rightClothesContainer}>
-          <div elevation={4} className={classes.bagContainer} onClick={handleClothesContainerClick} id="bag">
-            {closetImg['bag'] ? (
-              <img style={{ width: '100%', height: '100%' }} alt="" src={closetImg['bag']} id="bag" />
-            ) : (
-              <h2 className={classes.clothesText} id="bag">
-                가방🎒
-              </h2>
-            )}
-          </div>
-        </div>
+        <ClothesBox width="90px" height="80px" modalMode="hat" top="45px" left="78px" clothesType={'모자🧢\n안경👓'} />
+        <ClothesBox width="130px" height="155px" modalMode="top" top="155px" left="60px" clothesType="상의👕" />
+        <ClothesBox width="120px" height="160px" modalMode="bottom" top="340px" left="65px" clothesType="하의👖" />
+        <ClothesBox width="100px" height="70px" modalMode="shoes" top="530px" left="75px" clothesType="신발👟" />
+        <ClothesBox width="100px" height="180px" modalMode="bag" top="220px" left="210px" clothesType="가방🎒" />
       </Paper>
 
       <div>
-        <Paper elevation={4} className={classes.closetPriceBox}>
+        <Paper variant="outlined" className={classes.closetPriceBox}>
           {'총 금액💰 : '} {clothesPrice.hat + clothesPrice.top + clothesPrice.bottom + clothesPrice.shoes + clothesPrice.bag}\
         </Paper>
       </div>
@@ -322,7 +345,7 @@ function Closet() {
         <TextField
           placeholder="ex) 데이트, 동창회, 가족 모임 등"
           label="이 패션의 TPO💬"
-          value={closetText}
+          value={text}
           onChange={handleChangeClosetText}
           fullWidth
           variant="outlined"

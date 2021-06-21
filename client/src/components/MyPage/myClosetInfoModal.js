@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 import Button from '@material-ui/core/Button';
@@ -7,8 +7,10 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import Slide from '@material-ui/core/Slide';
+import { useSelector, useDispatch } from 'react-redux';
+import { infoModalOpen } from '../../actions';
 
-import { ModalContext } from '../../App';
+// import { ModalContext } from '../../App';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -85,20 +87,22 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function MyClosetInfo(props) {
   const classes = useStyles();
-  const { openClosetInfoModal, setOpenClosetInfoModal } = useContext(ModalContext);
-  const { closetDetailInfo } = useContext(ModalContext);
-  // const { clothesPrice, setClothesPrice } = useContext(ClothesPriceContext);
+  // const { openClosetInfoModal, setOpenClosetInfoModal } = useContext(ModalContext);
+  // const { closetDetailInfo } = useContext(ModalContext);
+  const dispatch = useDispatch();
+  const open = useSelector((state) => state.myPage.open);
+  const info = useSelector((state) => state.myPage.info);
 
   const handleClosetInfoModalClose = () => {
-    setOpenClosetInfoModal(false);
+    dispatch(infoModalOpen(false));
   };
   return (
     <div>
-      <Dialog className={classes.root} open={openClosetInfoModal} TransitionComponent={Transition} keepMounted onClose={handleClosetInfoModalClose}>
+      <Dialog className={classes.root} open={open} TransitionComponent={Transition} keepMounted onClose={handleClosetInfoModalClose}>
         <DialogContent>
           <div className={classes.clothesBox}>
-            {closetDetailInfo &&
-              closetDetailInfo.map(function (item, i) {
+            {info &&
+              info.map(function (item, i) {
                 return (
                   <Paper key={i} elevation={2} className={classes.infoContainer}>
                     <img className={classes.infoImg} src={item['url']} alt="infoImg" />

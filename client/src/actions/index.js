@@ -73,3 +73,59 @@ export const solutionModalMode = (mode) => {
     mode,
   };
 };
+
+// 옷장 모달창 열기, 닫기
+export const closetModalOpen = (open) => {
+  return {
+    type: 'OPEN_MODAL',
+    open,
+  };
+};
+
+// 옷장 모달창 모드(hat,top...)
+export const closetModalMode = (mode) => {
+  return {
+    type: 'MODAL_MODE',
+    mode,
+  };
+};
+
+// 옷장 TPO 텍스트
+export const closetText = (text) => {
+  return {
+    type: 'CLOSET_TEXT',
+    text,
+  };
+};
+
+// 룩북 배경 색상 모달창 열기, 닫기
+export const colorModalOpen = (open) => {
+  return {
+    type: 'OPEN_COLOR_MODAL',
+    open,
+  };
+};
+
+// 룩북 배경 색상
+export const lookBookColor = (color) => {
+  return {
+    type: 'COLOR_SELECT',
+    color,
+  };
+};
+
+// 마이페이지 디테일페이지의 의상 정보 모달 열기, 닫기
+export const infoModalOpen = (open) => {
+  return {
+    type: 'OPEN_INFO_MODAL',
+    open,
+  };
+};
+
+// 마이페이지 디테일페이지의 의상 정보 모달 열기, 닫기
+export const detailInfo = (info) => {
+  return {
+    type: 'DETAIL_INFO',
+    info,
+  };
+};

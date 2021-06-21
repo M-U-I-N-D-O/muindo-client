@@ -7,6 +7,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import { useDispatch, useSelector } from 'react-redux';
+import { closetModalOpen, closetModalMode } from '../../actions';
 
 import { ClothesIdContext } from '../../App';
 import { ClothesPriceContext } from '../../App';
@@ -58,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
 export default function GroupSelector() {
   const classes = useStyles();
   const { condition, setCondition } = useContext(ModalContext);
-  const { modalMode, setModalMode } = useContext(ModalContext);
+  // const { modalMode, setModalMode } = useContext(ModalContext);
   const [categoryList, setCategoryList] = useState([]);
   const [categoryNumList, setCategoryNumList] = useState([]);
   const [subCategoryList, setSubCategoryList] = useState([]);
@@ -68,14 +70,16 @@ export default function GroupSelector() {
   const [conditionNum, setConditionNum] = useState(10000);
   const { closetClothesId, setClosetClothesId } = useContext(ClothesIdContext);
   const { closetImg, setClosetImg } = useContext(ModalContext);
-  const { setOpenClosetModal } = useContext(ModalContext);
+  // const { setOpenClosetModal } = useContext(ModalContext);
   const { clothesPrice, setClothesPrice } = useContext(ClothesPriceContext);
+  const dispatch = useDispatch();
+  const mode = useSelector((state) => state.closetModal.mode);
 
   useEffect(() => {
     try {
       const res = FilterData;
       let result = res.filter_query;
-      result = result[modalMode].middle_category;
+      result = result[mode].middle_category;
 
       let categoryArr = [];
       for (var i = 0; i < result.length; i++) {
@@ -113,7 +117,7 @@ export default function GroupSelector() {
     } catch (err) {
       console.log(err);
     }
-  }, [condition, modalMode]);
+  }, [condition, mode]);
 
   const handleCategoryInitialize = (event) => {
     var newCondition = { ...condition };
@@ -127,17 +131,19 @@ export default function GroupSelector() {
 
   const handleImageInitialize = (event) => {
     var closetClothesIdArr = { ...closetClothesId };
-    closetClothesIdArr[modalMode] = '';
+    closetClothesIdArr[mode] = '';
     setClosetClothesId(closetClothesIdArr);
     var closetImgArr = { ...closetImg };
-    closetImgArr[modalMode] = '';
+    closetImgArr[mode] = '';
     setClosetImg(closetImgArr);
     var newClothesPrice = { ...clothesPrice };
-    newClothesPrice[modalMode] = 0;
+    newClothesPrice[mode] = 0;
     setClothesPrice(newClothesPrice);
-    setModalMode('');
+    // setModalMode('');
+    dispatch(closetModalOpen(false));
+    dispatch(closetModalMode(''));
 
-    setOpenClosetModal(false);
+    // setOpenClosetModal(false);
   };
 
   const handleChangeCategory = (event) => {

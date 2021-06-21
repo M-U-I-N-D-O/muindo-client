@@ -9,7 +9,7 @@ export default function MyPageClosetList() {
   const [myClosetListInfo, setMyClosetListInfo] = useState([]);
   useEffect(() => {
     try {
-      axios.get(`http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/my-looks`, {}).then((res) => {
+      axios.get(`https://muindoooapi.azurewebsites.net/mypage/my-looks`, {}).then((res) => {
         setMyClosetListInfo(res.data);
       });
     } catch (err) {

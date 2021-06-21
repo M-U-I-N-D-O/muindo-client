@@ -1,10 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TopComment from '../../components/AnalysisClothes/topComment';
 import MyClosetInfo from '../../components/MyPage/myClosetInfoModal';
 import { useHistory } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { infoModalOpen } from '../../actions';
 
-import { ModalContext } from '../../App';
+// import { ModalContext } from '../../App';
 import Paper from '@material-ui/core/Paper';
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -174,7 +176,9 @@ const useStyles = makeStyles((theme) => ({
 export default function MyPageDetail(props) {
   const classes = useStyles();
   const history = useHistory();
-  const { setOpenClosetInfoModal } = useContext(ModalContext);
+  const dispatch = useDispatch();
+
+  // const { setOpenClosetInfoModal } = useContext(ModalContext);
   //   const { seq } = useParams();
   //   const { closetDetailInfo, setClosetDetailInfo } = useContext(ModalContext);
 
@@ -221,7 +225,8 @@ export default function MyPageDetail(props) {
   //   console.log(lookBookPrice);
 
   const handleOpenClosetModalClick = () => {
-    setOpenClosetInfoModal(true);
+    // setOpenClosetInfoModal(true);
+    dispatch(infoModalOpen(true));
   };
 
   // const handleImageDownloadClick = async () => {

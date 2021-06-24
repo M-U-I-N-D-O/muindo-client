@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
 import { useHistory } from 'react-router';
 import MyPageList from '../../components/MyPage/myPageList';
 
 export default function MyPageLikeList() {
   const history = useHistory();
+
   const [myLikeListInfo, setMyLikeListInfo] = useState([]);
+
   useEffect(() => {
     try {
       axios.get(`https://muindoooapi.azurewebsites.net/mypage/thumbs`, {}).then((res) => {

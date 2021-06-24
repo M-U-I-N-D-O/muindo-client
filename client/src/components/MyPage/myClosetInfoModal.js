@@ -1,6 +1,5 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Dialog from '@material-ui/core/Dialog';
@@ -10,14 +9,11 @@ import Slide from '@material-ui/core/Slide';
 import { useSelector, useDispatch } from 'react-redux';
 import { infoModalOpen } from '../../actions';
 
-// import { ModalContext } from '../../App';
-
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     paddingTop: '30px',
     paddingBottom: '66px',
-    // // justifyContent: 'center',
     flexDirection: 'column',
     alignItems: 'center',
     height: '91vh',
@@ -87,15 +83,15 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function MyClosetInfo(props) {
   const classes = useStyles();
-  // const { openClosetInfoModal, setOpenClosetInfoModal } = useContext(ModalContext);
-  // const { closetDetailInfo } = useContext(ModalContext);
   const dispatch = useDispatch();
+
   const open = useSelector((state) => state.myPage.open);
   const info = useSelector((state) => state.myPage.info);
 
   const handleClosetInfoModalClose = () => {
     dispatch(infoModalOpen(false));
   };
+
   return (
     <div>
       <Dialog className={classes.root} open={open} TransitionComponent={Transition} keepMounted onClose={handleClosetInfoModalClose}>

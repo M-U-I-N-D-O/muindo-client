@@ -19,6 +19,8 @@ import MyPageClosetDetail from './pages/MyPage/myClosetDetail';
 import MyPageClosetList from './pages/MyPage/myClosetList';
 import MyPageLikeDetail from './pages/MyPage/myLikeDetail';
 import MyPageLikeList from './pages/MyPage/myLikeList';
+import Solution from './pages/Solution';
+import SolutionResult from './pages/Solution/solutionResult';
 
 import Progress from './components/Progress';
 import 'slick-carousel/slick/slick.css';
@@ -119,6 +121,8 @@ function App() {
             <Route exact path="/my_page_closet_list" component={MyPageClosetList} />
             <Route exact path="/my_page_like_detail/:seq" component={MyPageLikeDetail} />
             <Route exact path="/my_page_like_list" component={MyPageLikeList} />
+            <Route exact path="/solution" component={Solution} />
+            <Route exact path="/solution/result" component={SolutionResult} />
 
             {navMode === 1 && <BottomNav />}
           </Router>

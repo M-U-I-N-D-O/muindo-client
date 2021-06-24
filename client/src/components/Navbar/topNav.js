@@ -49,12 +49,10 @@ function TopNav() {
 export default TopNav;
 
 const NavTitleContainer = styled.div`
-  margin: auto;
+  margin: 50% auto;
 `;
 const NavTitle = styled.h3`
   flex-grow: 1;
   color: white;
   font-size: 24px;
-  margin: 0;
-  padding-top: 8px;
 `;

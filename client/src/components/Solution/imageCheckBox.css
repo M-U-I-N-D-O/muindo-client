@@ -1,7 +1,8 @@
 ul {
   list-style-type: none;
+  padding: 0;
+  text-align: center;
 }
-
 li {
   display: inline-block;
 }
@@ -15,7 +16,7 @@ label {
   padding: 10px;
   display: block;
   position: relative;
-  margin: 10px;
+  /* margin: 2px; */
   cursor: pointer;
 }
 
@@ -38,10 +39,17 @@ label:before {
 }
 
 label img {
-  height: 128px;
-  width: 128px;
+  height: 140px;
+  width: 140px;
   transition-duration: 0.2s;
   transform-origin: 50% 50%;
+  padding: 10px;
+}
+@media only screen and (max-width: 360px) {
+  label img {
+    width: 110px;
+    height: 110px;
+  }
 }
 
 :checked + label {

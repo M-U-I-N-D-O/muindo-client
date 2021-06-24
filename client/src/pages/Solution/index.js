@@ -2,20 +2,16 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { solutionGender } from '../../actions';
-
 import styled from 'styled-components';
-
+import Paper from '@material-ui/core/Paper';
 import Slider from 'react-slick';
-import TopComment from '../../components/AnalysisClothes/topComment';
 import StylesSelecter from '../../components/Solution/stylesSelecter';
-
 import InfiniteScroll from 'react-infinite-scroll-component';
 import axios from 'axios';
 
 const PAGE_NUMBER = 1;
 
 function Solution() {
-  const comment = '당신의 스타일 취향기반으로 멋있는 룩을 추천해보겠습니다.';
   const dispatch = useDispatch();
   const buttonCounter = useSelector((state) => state.solution.count);
   const history = useHistory();
@@ -27,8 +23,6 @@ function Solution() {
     Infinite: false,
     slidesToShow: 1,
     slidesToScroll: 1,
-    // focusOnSelect: true,
-    // swipe: false,
     speed: 500,
   };
 
@@ -80,28 +74,31 @@ function Solution() {
 
   return (
     <Container>
-      <TopComment comment={comment} />
       <div className="carousel" style={{ maxWidth: '900px', margin: '0 auto' }}>
         <Slider ref={sliderRef} {...settings}>
           <SliderContainer>
             <ContentsText>성별을 선택해주세요.</ContentsText>
             <SlideBox>
-              <ContentButton onClick={onClickNext(sliderRef, '남성')}>
-                <SlideItemBox>
-                  <div style={{ margin: 'auto' }}>
-                    <img style={{ margin: '0 auto' }} src="/images/solution/man.png" alt="man-img" />
-                    <ContentsText>남성</ContentsText>
-                  </div>
-                </SlideItemBox>
-              </ContentButton>
-              <ContentButton onClick={onClickNext(sliderRef, '여성')}>
-                <SlideItemBox>
-                  <div style={{ margin: 'auto' }}>
-                    <img style={{ margin: '0 auto' }} src="/images/solution/girl.png" alt="girl-img" />
-                    <ContentsText>여성</ContentsText>
-                  </div>
-                </SlideItemBox>
-              </ContentButton>
+              <SlideItemBox>
+                <Paper style={{ margin: '10px' }} elevation={7}>
+                  <ContentButton onClick={onClickNext(sliderRef, '남성')}>
+                    <GenderBox>
+                      <GenderImg src="/images/solution/man.png" alt="man-img" />
+                      <GenderText>남성</GenderText>
+                    </GenderBox>
+                  </ContentButton>
+                </Paper>
+              </SlideItemBox>
+              <SlideItemBox>
+                <Paper style={{ margin: '10px' }} elevation={7}>
+                  <ContentButton onClick={onClickNext(sliderRef, '여성')}>
+                    <GenderBox>
+                      <GenderImg src="/images/solution/girl.png" alt="girl-img" />
+                      <GenderText>여성</GenderText>
+                    </GenderBox>
+                  </ContentButton>
+                </Paper>
+              </SlideItemBox>
             </SlideBox>
           </SliderContainer>
           <SliderContainer id="scrollableDiv">
@@ -118,14 +115,13 @@ function Solution() {
               </SlideBox>
             </InfiniteScroll>
           </SliderContainer>
-          <SliderContainer>
-            <h1>Hi~</h1>
-          </SliderContainer>
+          <SliderContainer></SliderContainer>
         </Slider>
       </div>
-      {buttonCounter > 0 && (
-        <div style={{ textAlign: 'center', paddingTop: '5vh' }}>
-          <LuxuryBtn
+      {buttonCounter > 1 && (
+        <SubmitBox>
+          <SubmitButton
+            elevation={4}
             onClick={() => {
               getCheckBoxValue();
               history.push('/loading');
@@ -134,9 +130,9 @@ function Solution() {
               }, 3000);
             }}
           >
-            결과보기
-          </LuxuryBtn>
-        </div>
+            <SubmitText>추천 룩 보기 👗</SubmitText>
+          </SubmitButton>
+        </SubmitBox>
       )}
     </Container>
   );
@@ -144,66 +140,55 @@ function Solution() {
 
 export default Solution;
 
-const Container = styled.div``;
+const Container = styled.div`
+  padding-top: 60px;
+  padding-bottom: 60px;
+`;
+const ContentsText = styled.h2`
+  text-align: center;
+  margin: 3vh 0 1vh 0;
+  font-size: 18px;
+`;
 const SliderContainer = styled.div`
-  height: 450px;
-  /* border: 2px solid black; */
+  height: 100vh;
   overflow: auto;
 `;
-const SlideBox = styled.div`
+const SlideBox = styled.div``;
+const SlideItemBox = styled.div`
   display: flex;
   justify-content: center;
 `;
-const SlideItemBox = styled.div`
-  display: flex;
-  width: 300px;
-  height: 300px;
-  /* margin: 0 1vw; */
-  /* border: 2px solid black; */
-  align-items: center;
-`;
 const ContentButton = styled.button`
   background-color: none;
-  width: 300px;
-  height: 300px;
-  margin: 0 1vw;
+  width: 70vw;
+  height: 55vw;
+  /* margin: 2vh 0; */
   &:hover {
     background-color: #e2b063;
   }
 `;
-const ContentsText = styled.h2`
-  text-align: center;
-  margin: 2vh 0;
+const GenderBox = styled.div``;
+const GenderImg = styled.img`
+  width: 100px;
+  margin: 0 auto;
 `;
-
-const LuxuryBtn = styled.button`
-  display: inline-block;
-  box-sizing: border-box;
-  width: 220px;
-  /* width: 15vw; */
-  background: transparent;
-  text-transform: uppercase;
-  font-weight: 500;
-  font-style: normal;
-  font-size: 0.625rem;
-  letter-spacing: 0.3em;
-  color: #323b48;
-  /* color: rgba(223, 190, 106, 0.7); */
-  border-radius: 0;
-  padding: 15px 20px 15px 20px;
-  transition: all 0.7s ease-out;
-  background: linear-gradient(270deg, rgba(223, 190, 106, 0.8), rgba(146, 111, 52, 0.8), rgba(34, 34, 34, 0), rgba(34, 34, 34, 0));
-  background-position: 1% 50%;
-  background-size: 300% 300%;
-  text-decoration: none;
-  margin: 0.625rem;
-  border: none;
-  border: 1px solid #323b48;
-  /* border: 1px solid rgba(223, 190, 106, 0.3); */
-  :hover {
-    color: #fff;
-    border: 1px solid rgba(223, 190, 106, 0);
-    color: $white;
-    background-position: 99% 50%;
-  }
+const GenderText = styled.h2`
+  text-align: center;
+  margin-top: 2vh;
+  margin-bottom: 0;
+`;
+const SubmitBox = styled.div`
+  position: absolute;
+  bottom: 80px;
+  width: 100vw;
+  text-align: center;
+`;
+const SubmitButton = styled(Paper)`
+  width: 170px;
+  margin: 0 auto;
+  background-color: #ffff97;
+`;
+const SubmitText = styled.h2`
+  padding: 10px;
+  font-size: 18px;
 `;

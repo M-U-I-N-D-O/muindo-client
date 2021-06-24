@@ -14,7 +14,7 @@ import { ClothesPriceContext } from '../../App';
 // import { ClosetTextContext } from '../../App';
 
 import Paper from '@material-ui/core/Paper';
-import { closetModalOpen, closetModalMode, closetText } from '../../actions';
+import { closetModalOpen, closetModalMode, closetText, closetImg, closetPrice, closetId } from '../../actions';
 
 const ClothesBoxDiv = styled.div`
   width: ${(props) => props.width};
@@ -209,10 +209,11 @@ const useStyles = makeStyles((theme) => ({
 
 function ClothesBox(props) {
   const dispatch = useDispatch();
-  const { closetImg } = useContext(ModalContext);
+  // const { closetImg } = useContext(ModalContext);
   // const { setModalMode } = useContext(ModalContext);
   // const { setOpenClosetModal } = useContext(ModalContext);
   // const open = useSelector((state) => state.closetModal.open);
+  const img = useSelector((state) => state.closet.closetImage);
 
   const handleClothesContainerClick = (event) => {
     // setModalMode(event.target.id);
@@ -221,6 +222,7 @@ function ClothesBox(props) {
     dispatch(closetModalMode(event.target.id));
   };
 
+  console.log(img);
   return (
     <ClothesBoxDiv
       width={props.width}
@@ -230,8 +232,8 @@ function ClothesBox(props) {
       onClick={handleClothesContainerClick}
       id={props.modalMode}
     >
-      {closetImg[props.modalMode] ? (
-        <img style={{ width: '100%', height: '100%' }} alt="" src={closetImg[props.modalMode]} id={props.modalMode} />
+      {img[props.modalMode] ? (
+        <img style={{ width: '100%', height: '100%' }} alt="" src={img[props.modalMode]} id={props.modalMode} />
       ) : (
         <h2 style={{ fontSize: '18px', whiteSpace: 'pre-wrap' }} id={props.modalMode}>
           {props.clothesType}
@@ -247,42 +249,50 @@ function Closet() {
 
   const classes = useStyles();
   const mode = useSelector((state) => state.closetModal.mode);
-  const text = useSelector((state) => state.closetModal.text);
+  const text = useSelector((state) => state.closet.text);
+  const price = useSelector((state) => state.closet.closetPrice);
+  const id = useSelector((state) => state.closet.closetId);
 
   // const { setOpenClosetModal } = useContext(ModalContext);
   // const { modalMode, setModalMode } = useContext(ModalContext);
-  const { setClosetImg } = useContext(ModalContext);
-  const { closetClothesId, setClosetClothesId } = useContext(ClothesIdContext);
-  const { clothesPrice, setClothesPrice } = useContext(ClothesPriceContext);
+  // const { setClosetImg } = useContext(ModalContext);
+  // const { closetClothesId, setClosetClothesId } = useContext(ClothesIdContext);
+  // const { clothesPrice, setClothesPrice } = useContext(ClothesPriceContext);
   // const { closetText, setClosetText } = useContext(ClosetTextContext);
   // const closetTextRef = useRef('');
   useEffect(() => {
-    setClosetImg({
-      hat: '',
-      top: '',
-      bottom: '',
-      shoes: '',
-      bag: '',
-    });
-    setClosetClothesId({
-      hat: '',
-      top: '',
-      bottom: '',
-      shoes: '',
-      bag: '',
-    });
+    // setClosetImg({
+    //   hat: '',
+    //   top: '',
+    //   bottom: '',
+    //   shoes: '',
+    //   bag: '',
+    // });
+
+    dispatch(closetImg({ hat: '', top: '', bottom: '', shoes: '', bag: '' }));
+
+    // setClosetClothesId({
+    //   hat: '',
+    //   top: '',
+    //   bottom: '',
+    //   shoes: '',
+    //   bag: '',
+    // });
+    dispatch(closetId({ hat: '', top: '', bottom: '', shoes: '', bag: '' }));
     // setClothesPrice(0);
-    setClothesPrice({
-      hat: 0,
-      top: 0,
-      bottom: 0,
-      shoes: 0,
-      bag: 0,
-    });
+    dispatch(closetPrice({ hat: 0, top: 0, bottom: 0, shoes: 0, bag: 0 }));
+
+    // setClothesPrice({
+    //   hat: 0,
+    //   top: 0,
+    //   bottom: 0,
+    //   shoes: 0,
+    //   bag: 0,
+    // });
 
     // setClosetText('');
     dispatch(closetText(''));
-  }, [setClosetImg, setClosetClothesId, setClothesPrice, dispatch]);
+  }, [dispatch]);
 
   // const handleClothesContainerClick = (event) => {
   //   setModalMode(event.target.id);
@@ -290,28 +300,34 @@ function Closet() {
   // };
 
   const handleEraseAllButtonClick = () => {
-    setClosetImg({
-      hat: '',
-      top: '',
-      bottom: '',
-      shoes: '',
-      bag: '',
-    });
-    setClosetClothesId({
-      hat: '',
-      top: '',
-      bottom: '',
-      shoes: '',
-      bag: '',
-    });
-    setClothesPrice({
-      hat: 0,
-      top: 0,
-      bottom: 0,
-      shoes: 0,
-      bag: 0,
-    });
+    // setClosetImg({
+    //   hat: '',
+    //   top: '',
+    //   bottom: '',
+    //   shoes: '',
+    //   bag: '',
+    // });
+    dispatch(closetImg({ hat: '', top: '', bottom: '', shoes: '', bag: '' }));
+
+    // setClosetClothesId({
+    //   hat: '',
+    //   top: '',
+    //   bottom: '',
+    //   shoes: '',
+    //   bag: '',
+    // });
+    dispatch(closetId({ hat: '', top: '', bottom: '', shoes: '', bag: '' }));
+
+    // setClothesPrice({
+    //   hat: 0,
+    //   top: 0,
+    //   bottom: 0,
+    //   shoes: 0,
+    //   bag: 0,
+    // });
     // setModalMode('');
+    dispatch(closetPrice({ hat: 0, top: 0, bottom: 0, shoes: 0, bag: 0 }));
+
     dispatch(closetText(''));
 
     dispatch(closetModalMode(''));
@@ -319,7 +335,6 @@ function Closet() {
   const handleChangeClosetText = (event) => {
     dispatch(closetText(event.target.value));
   };
-
   return (
     <div className={classes.root}>
       {mode !== '' && <ClosetModal data={mode} />}
@@ -337,7 +352,7 @@ function Closet() {
 
       <div>
         <Paper variant="outlined" className={classes.closetPriceBox}>
-          {'총 금액💰 : '} {clothesPrice.hat + clothesPrice.top + clothesPrice.bottom + clothesPrice.shoes + clothesPrice.bag}\
+          {'총 금액💰 : '} {price.hat + price.top + price.bottom + price.shoes + price.bag}\
         </Paper>
       </div>
 
@@ -358,7 +373,7 @@ function Closet() {
         <Paper elevation={4} className={classes.eraseBtn} onClick={handleEraseAllButtonClick}>
           모두 지우기💫
         </Paper>
-        {closetClothesId['hat'] || closetClothesId['top'] || closetClothesId['bottom'] || closetClothesId['shoes'] || closetClothesId['bag'] ? (
+        {id['hat'] || id['top'] || id['bottom'] || id['shoes'] || id['bag'] ? (
           <Paper
             elevation={4}
             className={classes.makeLookBookBtn}

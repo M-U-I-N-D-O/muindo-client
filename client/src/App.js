@@ -36,27 +36,27 @@ function App() {
   const navMode = useSelector((state) => state.navbar.switch);
   // const [openClosetModal, setOpenClosetModal] = useState(false);
   // const [modalMode, setModalMode] = useState('');
-  const [closetImg, setClosetImg] = useLocalStorage('closetImg', {
-    hat: '',
-    top: '',
-    bottom: '',
-    shoes: '',
-    bag: '',
-  });
-  const [closetClothesId, setClosetClothesId] = useLocalStorage('closetClothesId', {
-    hat: '',
-    top: '',
-    bottom: '',
-    shoes: '',
-    bag: '',
-  });
-  const [clothesPrice, setClothesPrice] = useState({
-    hat: 0,
-    top: 0,
-    bottom: 0,
-    shoes: 0,
-    bag: 0,
-  });
+  // const [closetImg, setClosetImg] = useLocalStorage('closetImg', {
+  //   hat: '',
+  //   top: '',
+  //   bottom: '',
+  //   shoes: '',
+  //   bag: '',
+  // });
+  // const [closetClothesId, setClosetClothesId] = useLocalStorage('closetClothesId', {
+  //   hat: '',
+  //   top: '',
+  //   bottom: '',
+  //   shoes: '',
+  //   bag: '',
+  // });
+  // const [clothesPrice, setClothesPrice] = useState({
+  //   hat: 0,
+  //   top: 0,
+  //   bottom: 0,
+  //   shoes: 0,
+  //   bag: 0,
+  // });
   // const [closetText, setClosetText] = useState('');
 
   const [condition, setCondition] = useState({
@@ -81,10 +81,10 @@ function App() {
         // setOpenClosetModal,
         // modalMode,
         // setModalMode,
-        closetImg,
-        setClosetImg,
-        closetClothesId,
-        setClosetClothesId,
+        // closetImg,
+        // setClosetImg,
+        // closetClothesId,
+        // setClosetClothesId,
         // lookBookColorModal,
         // setLookBookColorModal,
         // lookBookColorSelect,
@@ -99,32 +99,32 @@ function App() {
         // setClosetDetailInfo,
       }}
     >
-      <ClothesIdContext.Provider value={{ closetClothesId, setClosetClothesId }}>
-        <ClothesPriceContext.Provider value={{ clothesPrice, setClothesPrice }}>
-          {/* <ClosetTextContext.Provider value={{ closetText, setClosetText }}> */}
-          <Router>
-            {navMode === 1 && <TopNav />}
-            <Route exact path="/" component={Intro} />
-            <Route exact path="/main" component={Main} />
-            <Route component={LoginDialog} />
-            <Route component={MyPage} />
-            <Route exact path="/about" component={About} />
-            <Route exact path="/confirm" component={Confirm} />
-            <Route exact path="/error" component={Error} />
+      {/* <ClothesIdContext.Provider value={{ closetClothesId, setClosetClothesId }}> */}
+      {/* <ClothesPriceContext.Provider value={{ clothesPrice, setClothesPrice }}> */}
+      {/* <ClosetTextContext.Provider value={{ closetText, setClosetText }}> */}
+      <Router>
+        {navMode === 1 && <TopNav />}
+        <Route exact path="/" component={Intro} />
+        <Route exact path="/main" component={Main} />
+        <Route component={LoginDialog} />
+        <Route component={MyPage} />
+        <Route exact path="/about" component={About} />
+        <Route exact path="/confirm" component={Confirm} />
+        <Route exact path="/error" component={Error} />
 
-            <Route exact path="/loading" component={Progress} />
-            <Route exact path="/closet" component={Closet} />
-            <Route exact path="/closet/look_book" component={ClosetLookBook} />
-            <Route exact path="/my_page_closet_detail/:seq" component={MyPageClosetDetail} />
-            <Route exact path="/my_page_closet_list" component={MyPageClosetList} />
-            <Route exact path="/my_page_like_detail/:seq" component={MyPageLikeDetail} />
-            <Route exact path="/my_page_like_list" component={MyPageLikeList} />
+        <Route exact path="/loading" component={Progress} />
+        <Route exact path="/closet" component={Closet} />
+        <Route exact path="/closet/look_book" component={ClosetLookBook} />
+        <Route exact path="/my_page_closet_detail/:seq" component={MyPageClosetDetail} />
+        <Route exact path="/my_page_closet_list" component={MyPageClosetList} />
+        <Route exact path="/my_page_like_detail/:seq" component={MyPageLikeDetail} />
+        <Route exact path="/my_page_like_list" component={MyPageLikeList} />
 
-            {navMode === 1 && <BottomNav />}
-          </Router>
-          {/* </ClosetTextContext.Provider> */}
-        </ClothesPriceContext.Provider>
-      </ClothesIdContext.Provider>
+        {navMode === 1 && <BottomNav />}
+      </Router>
+      {/* </ClosetTextContext.Provider> */}
+      {/* </ClothesPriceContext.Provider> */}
+      {/* </ClothesIdContext.Provider> */}
     </ModalContext.Provider>
     // </CookiesProvider>
   );

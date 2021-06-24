@@ -8,9 +8,10 @@ import solutionReducer from './solution';
 import dialogReducer from './dialog';
 import loginReducer from './login';
 import tinderReducer from './tinder';
-import closetModalReducer from './closet';
+import closetModalReducer from './closetModal';
 import lookBookReducer from './lookBook';
 import myPageReducer from './myPage';
+import closetReducer from './closet';
 
 const persistConfig = {
   key: 'root',
@@ -30,6 +31,7 @@ const allReducer = combineReducers({
   login: loginReducer,
   tinder: tinderReducer,
   closetModal: closetModalReducer,
+  closet: closetReducer,
   lookBook: lookBookReducer,
   myPage: myPageReducer,
 });

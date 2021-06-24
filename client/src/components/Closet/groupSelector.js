@@ -8,7 +8,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { useDispatch, useSelector } from 'react-redux';
-import { closetModalOpen, closetModalMode } from '../../actions';
+import { closetModalOpen, closetModalMode, closetImg, closetPrice, closetId, categoryCondition } from '../../actions';
 
 import { ClothesIdContext } from '../../App';
 import { ClothesPriceContext } from '../../App';
@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function GroupSelector() {
   const classes = useStyles();
-  const { condition, setCondition } = useContext(ModalContext);
+  // const { condition, setCondition } = useContext(ModalContext);
   // const { modalMode, setModalMode } = useContext(ModalContext);
   const [categoryList, setCategoryList] = useState([]);
   const [categoryNumList, setCategoryNumList] = useState([]);
@@ -68,12 +68,16 @@ export default function GroupSelector() {
   const [brandList, setBrandList] = useState([]);
   const [brandEngList, setBrandEngList] = useState([]);
   const [conditionNum, setConditionNum] = useState(10000);
-  const { closetClothesId, setClosetClothesId } = useContext(ClothesIdContext);
-  const { closetImg, setClosetImg } = useContext(ModalContext);
+  // const { closetClothesId, setClosetClothesId } = useContext(ClothesIdContext);
+  // const { closetImg, setClosetImg } = useContext(ModalContext);
   // const { setOpenClosetModal } = useContext(ModalContext);
-  const { clothesPrice, setClothesPrice } = useContext(ClothesPriceContext);
+  // const { clothesPrice, setClothesPrice } = useContext(ClothesPriceContext);
   const dispatch = useDispatch();
   const mode = useSelector((state) => state.closetModal.mode);
+  const img = useSelector((state) => state.closet.closetImage);
+  const price = useSelector((state) => state.closet.closetPrice);
+  const id = useSelector((state) => state.closet.closetId);
+  const condition = useSelector((state) => state.closetModal.condition);
 
   useEffect(() => {
     try {
@@ -117,7 +121,7 @@ export default function GroupSelector() {
     } catch (err) {
       console.log(err);
     }
-  }, [condition, mode]);
+  }, [mode]);
 
   const handleCategoryInitialize = (event) => {
     var newCondition = { ...condition };
@@ -126,19 +130,23 @@ export default function GroupSelector() {
     newCondition['brand'] = '';
 
     setConditionNum(10000);
-    setCondition(newCondition);
+    // setCondition(newCondition);
+    dispatch(categoryCondition(newCondition));
   };
 
   const handleImageInitialize = (event) => {
-    var closetClothesIdArr = { ...closetClothesId };
+    var closetClothesIdArr = { ...id };
     closetClothesIdArr[mode] = '';
-    setClosetClothesId(closetClothesIdArr);
-    var closetImgArr = { ...closetImg };
+    // setClosetClothesId(closetClothesIdArr);
+    dispatch(closetId(closetClothesIdArr));
+    var closetImgArr = { ...img };
     closetImgArr[mode] = '';
-    setClosetImg(closetImgArr);
-    var newClothesPrice = { ...clothesPrice };
+    // setClosetImg(closetImgArr);
+    dispatch(closetImg(closetImgArr));
+    var newClothesPrice = { ...price };
     newClothesPrice[mode] = 0;
-    setClothesPrice(newClothesPrice);
+    // setClothesPrice(newClothesPrice);
+    dispatch(closetPrice(newClothesPrice));
     // setModalMode('');
     dispatch(closetModalOpen(false));
     dispatch(closetModalMode(''));
@@ -151,7 +159,7 @@ export default function GroupSelector() {
       var newCondition = { ...condition };
       newCondition['middleCategory'] = event.target.value;
       setConditionNum(categoryNumList.indexOf(event.target.value));
-      setCondition(newCondition);
+      dispatch(categoryCondition(newCondition));
     }
   };
 
@@ -159,14 +167,14 @@ export default function GroupSelector() {
     if (event.target.value) {
       var newCondition = { ...condition };
       newCondition['subCategory'] = event.target.value;
-      setCondition(newCondition);
+      dispatch(categoryCondition(newCondition));
     }
   };
   const handleChangeBrand = (event) => {
     if (event.target.value) {
       var newCondition = { ...condition };
       newCondition['brand'] = event.target.value;
-      setCondition(newCondition);
+      dispatch(categoryCondition(newCondition));
     }
   };
 

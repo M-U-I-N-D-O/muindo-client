@@ -129,3 +129,35 @@ export const detailInfo = (info) => {
     info,
   };
 };
+
+// 옷장 각 섹션에 들어가는 이미지 url 정보
+export const closetImg = (image) => {
+  return {
+    type: 'CLOSET_IMG',
+    image,
+  };
+};
+
+// 옷장 각 섹션에 들어가는 의상들의 가격 정보
+export const closetPrice = (price) => {
+  return {
+    type: 'CLOSET_PRICE',
+    price,
+  };
+};
+
+// 옷장 각 섹션에 들어가는 의상들의 ID 정보
+export const closetId = (id) => {
+  return {
+    type: 'CLOSET_ID',
+    id,
+  };
+};
+
+// 옷장 각 섹션에 들어가는 의상들의 ID 정보
+export const categoryCondition = (condition) => {
+  return {
+    type: 'CATEGORY_CONDITION',
+    condition,
+  };
+};

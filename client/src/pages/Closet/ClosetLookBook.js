@@ -178,10 +178,12 @@ export default function ClosetLookBook() {
   // const { lookBookColorSelect } = useContext(ModalContext);
 
   // const { setLookBookColorModal } = useContext(ModalContext);
-  const { closetImg } = useContext(ModalContext);
-  const { closetClothesId } = useContext(ClothesIdContext);
-  const text = useSelector((state) => state.closetModal.text);
+  // const { closetImg } = useContext(ModalContext);
+  // const { closetClothesId } = useContext(ClothesIdContext);
+  const text = useSelector((state) => state.closet.text);
   const BackgroundColor = useSelector((state) => state.lookBook.color);
+  const img = useSelector((state) => state.closet.closetImage);
+  const id = useSelector((state) => state.closet.closetId);
 
   const [modifyAnchor, setModifyAnchor] = useState(null);
   // const [setShareAnchor] = useState(null);
@@ -276,7 +278,7 @@ export default function ClosetLookBook() {
         `https://muindoooapi.azurewebsites.net/looks/upload`,
         {
           dataType: 'string',
-          items: closetClothesId,
+          items: id,
           data: {
             img: url,
           },
@@ -351,21 +353,21 @@ export default function ClosetLookBook() {
       <Paper elevation={3} className={classes.closetContainer} style={{ backgroundColor: BackgroundColor }}>
         <div className={classes.modalImgContainer} style={{ backgroundColor: BackgroundColor }} ref={captureRef}>
           <div className={classes.modalImgBottom}>
-            {closetImg['bottom'] ? <img style={{ width: '100%', height: '100%' }} alt="" src={closetImg['bottom']} id="bottom" /> : <div></div>}
+            {img['bottom'] ? <img style={{ width: '100%', height: '100%' }} alt="" src={img['bottom']} id="bottom" /> : <div></div>}
           </div>
           <div className={classes.modalImgBag}>
-            {closetImg['bag'] ? <img style={{ width: '100%', height: '100%' }} alt="" src={closetImg['bag']} id="bag" /> : <div></div>}
+            {img['bag'] ? <img style={{ width: '100%', height: '100%' }} alt="" src={img['bag']} id="bag" /> : <div></div>}
           </div>
 
           <div className={classes.modalImgTop}>
-            {closetImg['top'] ? <img style={{ width: '100%', height: '100%' }} alt="" src={closetImg['top']} id="top" /> : <div></div>}
+            {img['top'] ? <img style={{ width: '100%', height: '100%' }} alt="" src={img['top']} id="top" /> : <div></div>}
           </div>
           <div className={classes.modalImgHat}>
-            {closetImg['hat'] ? <img style={{ width: '100%', height: '100%' }} alt="" src={closetImg['hat']} id="hat" /> : <div></div>}
+            {img['hat'] ? <img style={{ width: '100%', height: '100%' }} alt="" src={img['hat']} id="hat" /> : <div></div>}
           </div>
 
           <div className={classes.modalImgShoes}>
-            {closetImg['shoes'] ? <img style={{ width: '100%', height: '100%' }} alt="" src={closetImg['shoes']} id="shoes" /> : <div></div>}
+            {img['shoes'] ? <img style={{ width: '100%', height: '100%' }} alt="" src={img['shoes']} id="shoes" /> : <div></div>}
           </div>
         </div>
       </Paper>

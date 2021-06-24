@@ -12,7 +12,7 @@ import Paper from '@material-ui/core/Paper';
 
 import GroupSelector from './groupSelector';
 import { useSelector, useDispatch } from 'react-redux';
-import { closetModalOpen, closetModalMode } from '../../actions';
+import { closetModalOpen, closetModalMode, closetImg, closetPrice, closetId, categoryCondition } from '../../actions';
 
 import { ModalContext } from '../../App';
 import { ClothesIdContext } from '../../App';
@@ -141,6 +141,10 @@ export default function ClosetModal() {
   const dispatch = useDispatch();
   const open = useSelector((state) => state.closetModal.open);
   const mode = useSelector((state) => state.closetModal.mode);
+  const img = useSelector((state) => state.closet.closetImage);
+  const price = useSelector((state) => state.closet.closetPrice);
+  const id = useSelector((state) => state.closet.closetId);
+  const condition = useSelector((state) => state.closetModal.condition);
 
   // const { openClosetModal, setOpenClosetModal } = useContext(ModalContext);
   // const { modalMode, setModalMode } = useContext(ModalContext);
@@ -152,13 +156,13 @@ export default function ClosetModal() {
 
   // const { openClosetModal, setOpenClosetModal } = useContext(ModalContext);
   // const { modalMode, setModalMode } = useContext(ModalContext);
-  const { closetImg, setClosetImg } = useContext(ModalContext);
-  const { closetClothesId, setClosetClothesId } = useContext(ClothesIdContext);
+  // const { closetImg, setClosetImg } = useContext(ModalContext);
+  // const { closetClothesId, setClosetClothesId } = useContext(ClothesIdContext);
   const [clothesList, setClothesList] = useState([]);
-  const { condition, setCondition } = useContext(ModalContext);
+  // const { condition, setCondition } = useContext(ModalContext);
   const [filteredClothes] = useState({});
   const [page, setPage] = useState(PAGE_NUMBER);
-  const { clothesPrice, setClothesPrice } = useContext(ClothesPriceContext);
+  // const { clothesPrice, setClothesPrice } = useContext(ClothesPriceContext);
 
   // const [lastClothesId, setLastClothesId] = useState('1');
 
@@ -217,16 +221,19 @@ export default function ClosetModal() {
     newCondition['subCategory'] = '';
     newCondition['brand'] = '';
     // setConditionNum(10000);
-    setCondition(newCondition);
+    dispatch(categoryCondition(newCondition));
   };
 
   const handleImageSelect = (event) => {
-    setClosetImg({
-      ...closetImg,
-      [mode]: event.target.src,
-    });
-    setClosetClothesId({ ...closetClothesId, [mode]: event.target.alt });
-    setClothesPrice({ ...clothesPrice, [mode]: parseInt(event.target['title']) });
+    // setClosetImg({
+    //   ...closetImg,
+    //   [mode]: event.target.src,
+    // });
+    dispatch(closetImg({ ...img, [mode]: event.target.src }));
+    // setClosetClothesId({ ...closetClothesId, [mode]: event.target.alt });
+    dispatch(closetId({ ...id, [mode]: event.target.alt }));
+    // setClothesPrice({ ...clothesPrice, [mode]: parseInt(event.target['title']) });
+    dispatch(closetPrice({ ...price, [mode]: parseInt(event.target['title']) }));
     // var selectedClothesPrice = parseInt(event.target['title']);
     // var newPrice = clothesPrice + selectedClothesPrice;
     // setClothesPrice(newPrice);
@@ -234,7 +241,7 @@ export default function ClosetModal() {
 
     handleClose();
   };
-
+  console.log(price);
   return (
     <div>
       <Modal

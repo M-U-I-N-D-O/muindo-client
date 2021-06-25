@@ -51,7 +51,7 @@ function AllItemsModal() {
         <DialogTitle style={{ textAlign: 'center' }} id="scroll-dialog-title">
           추천 룩(Look) 리스트
         </DialogTitle>
-        <DialogContent dividers={true} id="scrollableDiv">
+        <MyDialogContent dividers={true} id="scrollableDiv">
           {Array.isArray(allItems) && allItems.length !== 0 && (
             <InfiniteScroll
               dataLength={allItems.length}
@@ -75,7 +75,7 @@ function AllItemsModal() {
               })}
             </InfiniteScroll>
           )}
-        </DialogContent>
+        </MyDialogContent>
         <DialogActions>
           <Button
             onClick={() => {
@@ -119,13 +119,21 @@ const ItemBox = styled.div`
     border-bottom: 2px solid red;
   }
 `;
+const MyDialogContent = styled(DialogContent)`
+  padding: 1ch 1vw;
+  text-align: center;
+`;
+
 const ItemImage = styled.img`
-  width: 70px;
+  width: 75px;
   height: 100px;
   margin-top: 1vh;
   margin-bottom: 1vh;
   margin-left: 1vw;
   margin-right: 1vw;
+  @media only screen and (min-width: 375px) {
+    width: 90px;
+  }
 `;
 const ItemText = styled.h1`
   font-size: 1vw;

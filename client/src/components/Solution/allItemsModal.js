@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import Paper from '@material-ui/core/Paper';
 
 import InfiniteScroll from 'react-infinite-scroll-component';
 
@@ -40,17 +40,8 @@ function AllItemsModal() {
 
   return (
     <div>
-      <Dialog
-        open={modalMode === 1}
-        // onClose={handleClose}
-        scroll={'paper'}
-        aria-labelledby="scroll-dialog-title"
-        aria-describedby="scroll-dialog-description"
-        maxWidth="md"
-      >
-        <DialogTitle style={{ textAlign: 'center' }} id="scroll-dialog-title">
-          추천 룩(Look) 리스트
-        </DialogTitle>
+      <Dialog open={modalMode === 1} scroll={'paper'} maxWidth="md">
+        <MyDialogTitle>추천 룩(Look) 리스트</MyDialogTitle>
         <MyDialogContent dividers={true} id="scrollableDiv">
           {Array.isArray(allItems) && allItems.length !== 0 && (
             <InfiniteScroll
@@ -79,14 +70,6 @@ function AllItemsModal() {
         <DialogActions>
           <Button
             onClick={() => {
-              dispatch(solutionModalMode(2));
-            }}
-            color="primary"
-          >
-            상세보기
-          </Button>
-          <Button
-            onClick={() => {
               dispatch(solutionModalMode(0));
             }}
             color="primary"
@@ -101,29 +84,25 @@ function AllItemsModal() {
 
 export default AllItemsModal;
 
-const Container = styled.div`
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
-`;
+const Container = styled.div``;
 const ItemBox = styled.div`
   display: inline-block;
   box-sizing: border-box;
   text-align: center;
   cursor: pointer;
   padding: 1vh 0;
-  :hover {
-    box-sizing: border-box;
-    /* border: 2px solid red; */
-    /* border-top: 2px solid red; */
-    border-bottom: 2px solid red;
-  }
 `;
 const MyDialogContent = styled(DialogContent)`
-  padding: 1ch 1vw;
+  padding: 2vh 1vw;
   text-align: center;
 `;
-
+const MyDialogTitle = styled.h2`
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 2vh 5vw;
+  margin: 0;
+`;
 const ItemImage = styled.img`
   width: 75px;
   height: 100px;

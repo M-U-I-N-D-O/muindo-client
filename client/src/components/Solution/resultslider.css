@@ -1,11 +1,4 @@
 .thumbnail-slider-wrap {
   width: 300px;
-  padding: 0 1vw;
-  margin: 0 auto;
-}
-.thumbnail-slider-wrap .slick-track .slick-slide {
-  text-align: center;
-}
-.thumbnail-slider-wrap .slick-track .slick-slide img {
-  /* width: 40%; */
+  margin: 3vh auto;
 }

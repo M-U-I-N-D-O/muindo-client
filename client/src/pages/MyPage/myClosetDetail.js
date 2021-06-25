@@ -46,6 +46,8 @@ export default function MyPageClosetDetail() {
       myLookBookInfo={myLookBookInfo}
       page="myClosetDetail"
       goToListPath="/my_page_closet_list"
+      delete="require"
+      solution="require"
     />
   );
 }

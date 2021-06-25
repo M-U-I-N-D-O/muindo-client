@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TopComment from '../../components/AnalysisClothes/topComment';
 import MyClosetInfo from '../../components/MyPage/myClosetInfoModal';
 import { useHistory } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { infoModalOpen } from '../../actions';
+import Dialog from '@material-ui/core/Dialog';
+import Button from '@material-ui/core/Button';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import Paper from '@material-ui/core/Paper';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -133,7 +141,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'space-around',
     marginTop: '35px',
-    marginBottom: '55px',
+    marginBottom: '45px',
     width: '330px',
   },
   closetTextContainer: {
@@ -154,15 +162,49 @@ const useStyles = makeStyles((theme) => ({
     height: '55px',
     overflow: 'auto',
   },
+  deleteBtn: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontFamily: 'GmarketSansMedium',
+    fontSize: '14px',
+    width: '120px',
+    height: '35px',
+    marginBottom: '20px',
+    color: 'red',
+  },
 }));
 
 export default function MyPageDetail(props) {
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
+  const { seq } = useParams();
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   const handleOpenClosetModalClick = () => {
     dispatch(infoModalOpen(true));
+  };
+
+  const handleDialogClose = () => {
+    setDialogOpen(false);
+  };
+
+  const handleDialogOpen = () => {
+    setDialogOpen(true);
+  };
+
+  const handleLookBookDelete = () => {
+    try {
+      axios.delete(`https://muindoooapi.azurewebsites.net/looks/remove/${seq}`).then(() => {
+        setDialogOpen(false);
+        console.log('Successfully Deleted Lookbook');
+        history.push(props.goToListPath);
+      });
+    } catch (err) {
+      console.log(err);
+      history.push('/error');
+    }
   };
 
   return (
@@ -231,11 +273,34 @@ export default function MyPageDetail(props) {
           {props.page === 'myClosetDetail' ? '다시 \n 만들기' : '나도 \n 컨펌받기'}
         </Paper>
       </div>
+      {props.delete && (
+        <>
+          {' '}
+          <Paper className={classes.deleteBtn} variant="outlined" onClick={handleDialogOpen}>
+            룩북 삭제하기
+          </Paper>
+          <Dialog open={dialogOpen} onClose={handleDialogClose}>
+            <DialogTitle style={{ fontFamily: 'GmarketSansMedium' }}>룩북을 삭제하시겠습니까?</DialogTitle>
+            <DialogContent>
+              <DialogContentText style={{ fontFamily: 'GmarketSansMedium' }}>삭제된 룩북은 복구가 불가합니다.</DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleDialogClose} color="primary">
+                취소
+              </Button>
+              <Button onClick={handleLookBookDelete} color="secondary" autoFocus>
+                삭제
+              </Button>
+            </DialogActions>
+          </Dialog>
+        </>
+      )}
 
-      {/* <a href="/solution" className={classes.confirmLink} style={{ color: '#000' }} target="_blank" rel="noreferrer">
-        컨펌을 못 받으셨나요?
-      </a> */}
-      {}
+      {props.solution && (
+        <a href="/solution" className={classes.confirmLink} style={{ color: '#000' }} target="_blank" rel="noreferrer">
+          컨펌을 못 받으셨나요?
+        </a>
+      )}
     </div>
   );
 }

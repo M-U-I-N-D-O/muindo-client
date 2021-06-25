@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { solutionModalMode } from '../../actions';
 import Slider from 'react-slick';
+
+import Paper from '@material-ui/core/Paper';
 import './resultslider.css';
 
 function ResultSlider() {
@@ -43,6 +45,7 @@ function ResultSlider() {
     slidesToScroll: 1,
     asNavFor: '.slider-for',
     dots: false,
+    arrows: false,
     centerMode: true,
     swipeToSlide: true,
     focusOnSelect: true,
@@ -56,7 +59,8 @@ function ResultSlider() {
           {slidesData.map((slide, index) => (
             <SlideContainer key={index}>
               <SlideBox>
-                <SlideButton
+                <LookPaper
+                  elevation={10}
                   onClick={() => {
                     console.log('클릭');
                     dispatch(solutionModalMode(2));
@@ -67,8 +71,8 @@ function ResultSlider() {
 
                     {/* <h2 className="slick-slide-title">{slide.title}</h2> */}
                   </SlideItemBox>
-                  <label className="slick-slide-label">{slide[1]}</label>
-                </SlideButton>
+                  <LookLabel className="slick-slide-label">{slide[1]}</LookLabel>
+                </LookPaper>
               </SlideBox>
             </SlideContainer>
           ))}
@@ -78,7 +82,9 @@ function ResultSlider() {
             {slidesData.map((slide, index) => (
               <SlideBox key={index}>
                 <ThumbnailSlideBox>
-                  <img className="slick-slide-image" src={`${slide[0]}`} alt={`${slide[1]}`} width="50px" height="80px" />
+                  <ThumbnailSlidePaper elevation={4}>
+                    <img className="slick-slide-image" src={`${slide[0]}`} alt={`${slide[1]}`} width="80px" height="100px" />
+                  </ThumbnailSlidePaper>
                 </ThumbnailSlideBox>
               </SlideBox>
             ))}
@@ -158,27 +164,39 @@ const SlideItemBox = styled.div`
   display: flex;
   width: 235px;
   height: 335px;
+  margin: 0 auto;
   /* border: 10px solid black; */
   justify-content: center;
   align-items: center;
   cursor: pointer;
   overflow: hidden;
 `;
-const SlideButton = styled.button`
+const LookPaper = styled(Paper)`
   background-color: white;
-  width: 250px;
+  width: 280px;
   height: 350px;
-  border: 7px solid black;
+  /* border: 7px solid black; */
   z-index: 1;
   :hover {
     border-color: red;
   }
 `;
+const LookLabel = styled.p`
+  text-align: center;
+  font-weight: bold;
+  margin-top: 25px;
+  margin-bottom: 0;
+`;
 const ThumbnailSlideBox = styled.div`
   display: flex;
+  /* border: 1px solid black; */
   width: 220px;
   height: 130px;
   /* border: 2px solid black; */
   justify-content: center;
   align-items: center;
+`;
+const ThumbnailSlidePaper = styled(Paper)`
+  width: 80px;
+  height: 100px;
 `;

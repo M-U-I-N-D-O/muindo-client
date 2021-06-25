@@ -3,8 +3,7 @@ import { NavLink as Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { solutionModalMode } from '../../actions';
 import styled from 'styled-components';
-
-import TopComment from '../../components/AnalysisClothes/topComment';
+import Paper from '@material-ui/core/Paper';
 import ResultSlider from '../../components/Solution/resultSlider';
 import AllItemsModal from '../../components/Solution/allItemsModal';
 import DetailItemModal from '../../components/Solution/detailItemModal';
@@ -28,67 +27,53 @@ function SolutionResult() {
 
   if (allItems.length === 0) return null;
   return (
-    <div>
-      <TopComment comment="당신의 취향을 분석한 추천 룩입니다." />
-
+    <Container>
       <ResultSlider />
 
       {modalMode === 1 && <AllItemsModal />}
       {modalMode === 2 && <DetailItemModal />}
       <ButtonContainer>
         <div>
-          <LuxuryBtn
+          <ButtonPaper
+            elevation={5}
             onClick={() => {
               dispatch(solutionModalMode(1));
             }}
           >
-            한번에 보기
-          </LuxuryBtn>
+            <ButtonText>룩 모아보기 📕</ButtonText>
+          </ButtonPaper>
         </div>
         <div>
-          <Link to="/solution">
-            <LuxuryBtn>스타일 재설정</LuxuryBtn>
+          <Link style={{ textDecoration: 'none' }} to="/solution">
+            <ButtonPaper elevation={5}>
+              <ButtonText>스타일 재설정 💫</ButtonText>
+            </ButtonPaper>
           </Link>
         </div>
       </ButtonContainer>
-    </div>
+    </Container>
   );
 }
 
 export default SolutionResult;
 
+const Container = styled.div`
+  padding-top: 80px;
+  padding-bottom: 60px;
+`;
 const ButtonContainer = styled.div`
-  padding-top: 5vh;
+  padding-top: 2vh;
+  height: 100%;
   text-align: center;
 `;
-const LuxuryBtn = styled.button`
-  display: inline-block;
-  box-sizing: border-box;
-  width: 250px;
-  /* width: 15vw; */
-  background: transparent;
-  text-transform: uppercase;
-  font-weight: 500;
-  font-style: normal;
-  font-size: 0.625rem;
-  letter-spacing: 0.3em;
-  color: #323b48;
-  /* color: rgba(223, 190, 106, 0.7); */
-  border-radius: 0;
-  padding: 15px 20px 15px 20px;
-  transition: all 0.7s ease-out;
-  background: linear-gradient(270deg, rgba(223, 190, 106, 0.8), rgba(146, 111, 52, 0.8), rgba(34, 34, 34, 0), rgba(34, 34, 34, 0));
-  background-position: 1% 50%;
-  background-size: 300% 300%;
-  text-decoration: none;
-  margin: 0.625rem;
-  border: none;
-  border: 1px solid #323b48;
-  /* border: 1px solid rgba(223, 190, 106, 0.3); */
-  :hover {
-    color: #fff;
-    border: 1px solid rgba(223, 190, 106, 0);
-    color: $white;
-    background-position: 99% 50%;
-  }
+const ButtonPaper = styled(Paper)`
+  width: 200px;
+  margin: 0 auto;
+  margin-bottom: 1vh;
+`;
+const ButtonText = styled.p`
+  font-size: 17px;
+  font-weight: bold;
+  margin-top: 0;
+  padding: 1vh 0;
 `;

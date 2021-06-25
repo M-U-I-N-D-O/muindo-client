@@ -5,6 +5,7 @@ import { solutionCounter } from '../../actions';
 import axios from 'axios';
 import styled from 'styled-components';
 import Paper from '@material-ui/core/Paper';
+import url from '../../url';
 
 import './imageCheckBox.css';
 
@@ -48,10 +49,10 @@ function StylesSelecter(props) {
           props.styleList.map((listItem, index) => {
             return (
               <li key={index}>
-                <input type="checkbox" id={`myCheckbox${index}`} name="style" value={`${listItem[1]}`} onClick={() => countCheckedBox()} />
+                <input type="checkbox" id={`myCheckbox${index}`} name="style" value={`${listItem.type}`} onClick={() => countCheckedBox()} />
                 <label htmlFor={`myCheckbox${index}`}>
                   <Paper elevation={3}>
-                    <img src={`${listItem[0]}`} alt={`${listItem[0]}`} />
+                    <img src={`https:${listItem.url}`} alt={`${listItem.url}`} />
                   </Paper>
                 </label>
               </li>

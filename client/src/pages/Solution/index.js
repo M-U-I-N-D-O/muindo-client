@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { solutionGender } from '../../actions';
+import { solutionGender, solutionCounter } from '../../actions';
 import styled from 'styled-components';
 import Paper from '@material-ui/core/Paper';
 import Slider from 'react-slick';
 import StylesSelecter from '../../components/Solution/stylesSelecter';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import axios from 'axios';
+import url from '../../url';
 
 const PAGE_NUMBER = 1;
 
@@ -29,16 +30,27 @@ function Solution() {
   const [styleList, setStyleList] = useState([]);
   const [page, setPage] = useState(PAGE_NUMBER);
 
+  // useEffect(() => {
+  //   try {
+  //     axios.get('http://localhost:3000/data/solution.json').then((response) => {
+  //       console.log('page :', page);
+  //       setStyleList([...styleList, ...response.data.data]);
+  //     });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }, [page]);
+
   useEffect(() => {
     try {
-      axios.get('http://localhost:3000/data/solution.json').then((response) => {
-        console.log('page :', page);
-        setStyleList([...styleList, ...response.data.data]);
+      axios.get(url + 'solution/samples').then((response) => {
+        console.log(response.data);
+        setStyleList([...styleList, ...response.data]);
       });
     } catch (err) {
       console.log(err);
     }
-  }, [page]);
+  }, []);
 
   const scrollToEnd = () => {
     console.log('마지막');
@@ -125,6 +137,7 @@ function Solution() {
             onClick={() => {
               getCheckBoxValue();
               history.push('/loading');
+              dispatch(solutionCounter(0));
               setTimeout(function () {
                 history.push('/solution/result');
               }, 3000);

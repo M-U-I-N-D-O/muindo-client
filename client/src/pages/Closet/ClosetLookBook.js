@@ -8,8 +8,11 @@ import Paper from '@material-ui/core/Paper';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import html2canvas from 'html2canvas';
-import { colorModalOpen, lookBookColor } from '../../actions';
+import { colorModalOpen } from '../../actions';
 import { useDispatch, useSelector } from 'react-redux';
+import url from '../../url';
+
+axios.defaults.baseURL = url;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -157,7 +160,7 @@ export default function ClosetLookBook() {
       url = url.replace('data:image/png;base64,', '');
     });
     const res = await axios
-      .post(`https://muindoooapi.azurewebsites.net/looks/upload`, {
+      .post(`/looks/upload`, {
         dataType: 'string',
         items: id,
         data: {

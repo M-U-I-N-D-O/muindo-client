@@ -11,6 +11,9 @@ import Paper from '@material-ui/core/Paper';
 import GroupSelector from './groupSelector';
 import { useSelector, useDispatch } from 'react-redux';
 import { closetModalOpen, closetModalMode, closetImg, closetPrice, closetId, categoryCondition } from '../../actions';
+import url from '../../url';
+
+axios.defaults.baseURL = url;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -119,7 +122,7 @@ export default function ClosetModal() {
     try {
       axios
         .get(
-          `https://muindoooapi.azurewebsites.net/looks/items?middlecategory=${condition.middleCategory}&subcategory=${condition.subCategory}&brand=${condition.brand}&type=${mode}&page=1`,
+          `/looks/items?middlecategory=${condition.middleCategory}&subcategory=${condition.subCategory}&brand=${condition.brand}&type=${mode}&page=1`,
         )
         .then((res) => {
           setClothesList(res.data);
@@ -138,7 +141,7 @@ export default function ClosetModal() {
     setTimeout(() => {
       axios
         .get(
-          `https://muindoooapi.azurewebsites.net/looks/items?middlecategory=${condition.middleCategory}&subcategory=${condition.subCategory}&brand=${condition.brand}&type=${mode}&page=${page}`,
+          `/looks/items?middlecategory=${condition.middleCategory}&subcategory=${condition.subCategory}&brand=${condition.brand}&type=${mode}&page=${page}`,
         )
         .then((res) => {
           setClothesList([...clothesList, ...res.data]);

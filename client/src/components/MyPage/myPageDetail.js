@@ -14,6 +14,9 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Paper from '@material-ui/core/Paper';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import url from '../../url';
+
+axios.defaults.baseURL = url;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -207,7 +210,7 @@ export default function MyPageDetail(props) {
 
   const handleMyLookBookDelete = () => {
     try {
-      axios.delete(`https://muindoooapi.azurewebsites.net/looks/${seq}`).then(() => {
+      axios.delete(`/looks/${seq}`).then(() => {
         setDialogOpen(false);
         console.log('Successfully Deleted my Lookbook');
         history.push(props.goToListPath);
@@ -220,7 +223,7 @@ export default function MyPageDetail(props) {
 
   const handleLikeLookBookDelete = () => {
     try {
-      axios.delete(`https://muindoooapi.azurewebsites.net/tinder/thumbs/${seq}`).then(() => {
+      axios.delete(`/tinder/thumbs/${seq}`).then(() => {
         setDialogOpen(false);
         console.log('Successfully Deleted liked-Lookbook');
         history.push(props.goToListPath);

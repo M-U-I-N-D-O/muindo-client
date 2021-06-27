@@ -5,6 +5,9 @@ import { useHistory } from 'react-router';
 import MyPageDetail from '../../components/MyPage/myPageDetail';
 import { useDispatch } from 'react-redux';
 import { detailInfo } from '../../actions';
+import url from '../../url';
+
+axios.defaults.baseURL = url;
 
 export default function MyPageLikeDetail() {
   const history = useHistory();
@@ -16,7 +19,7 @@ export default function MyPageLikeDetail() {
 
   useEffect(() => {
     try {
-      axios.get(`https://muindoooapi.azurewebsites.net/mypage/my-looks/${seq}`, {}).then((res) => {
+      axios.get(`/mypage/my-looks/${seq}`, {}).then((res) => {
         const detailInfoArr = [];
         detailInfoArr.push(res.data.hat, res.data.top, res.data.bottom, res.data.shoes, res.data.bag);
         const notNulDetailInfoArr = [];

@@ -2,13 +2,16 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router';
 import MyPageList from '../../components/MyPage/myPageList';
+import url from '../../url';
+
+axios.defaults.baseURL = url;
 
 export default function MyPageClosetList() {
   const history = useHistory();
   const [myClosetListInfo, setMyClosetListInfo] = useState([]);
   useEffect(() => {
     try {
-      axios.get(`https://muindoooapi.azurewebsites.net/mypage/my-looks`).then((res) => {
+      axios.get(`/mypage/my-looks`).then((res) => {
         setMyClosetListInfo(res.data);
       });
     } catch (err) {

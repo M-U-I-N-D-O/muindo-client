@@ -1,13 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TopComment from '../../components/AnalysisClothes/topComment';
 import MyClosetInfo from '../../components/MyPage/myClosetInfoModal';
 import { useHistory } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { infoModalOpen } from '../../actions';
-
-// import { ModalContext } from '../../App';
+import Dialog from '@material-ui/core/Dialog';
+import Button from '@material-ui/core/Button';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import Paper from '@material-ui/core/Paper';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import url from '../../url';
+
+axios.defaults.baseURL = url;
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -22,7 +32,6 @@ const useStyles = makeStyles((theme) => ({
     width: '340px',
     border: 'solid 4px',
     height: '380px',
-    // marginTop: '20px',
     position: 'relative',
   },
   likeNoContainer: {
@@ -55,7 +64,6 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '18px',
     fontWeight: 'bold',
   },
-
   lookBookInfoBtnContainer: {
     display: 'flex',
     width: '325px',
@@ -66,17 +74,6 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 'bold',
     justifyContent: 'space-around',
   },
-  // listBtn: {
-  //   display: 'flex',
-  //   width: '130px',
-  //   height: '40px',
-
-  //   alignItems: 'center',
-  //   justifyContent: 'center',
-  //   fontSize: '20px',
-  //   fontWeight: 'bold',
-  //   border: 'solid 4px',
-  // },
   confirmLink: {
     marginTop: '10px',
     marginBottom: '20px',
@@ -92,7 +89,6 @@ const useStyles = makeStyles((theme) => ({
     zIndex: 100,
     position: 'absolute',
     width: '50px',
-
     top: '16px',
     right: '24px',
   },
@@ -120,36 +116,35 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     whiteSpace: 'pre-wrap',
-
-    fontSize: '15px',
+    fontSize: '14px',
     width: '90px',
-    height: '40px',
+    height: '45px',
     fontFamily: 'GmarketSansMedium',
   },
   listBtn: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    fontSize: '14px',
+    fontSize: '16px',
     width: '90px',
-    height: '40px',
+    height: '45px',
     fontFamily: 'GmarketSansMedium',
   },
   restartBtn: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    fontSize: '13px',
+    fontSize: '13.5px',
     width: '90px',
-    height: '40px',
+    height: '45px',
     fontFamily: 'GmarketSansMedium',
   },
   ectBtnContainer: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-around',
-    marginTop: '35px',
-    marginBottom: '55px',
+    marginTop: '40px',
+    marginBottom: '40px',
     width: '330px',
   },
   closetTextContainer: {
@@ -166,10 +161,31 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     fontFamily: 'GmarketSansMedium',
     fontSize: '16px',
-
     width: '320px',
     height: '55px',
     overflow: 'auto',
+  },
+  deleteMyLookBookBtn: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontFamily: 'GmarketSansMedium',
+    fontSize: '14px',
+    width: '120px',
+    height: '35px',
+    marginBottom: '20px',
+    color: 'red',
+  },
+  deleteLikeLookBookBtn: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontFamily: 'GmarketSansMedium',
+    fontSize: '14px',
+    width: '150px',
+    height: '35px',
+    marginBottom: '40px',
+    color: 'red',
   },
 }));
 
@@ -177,61 +193,46 @@ export default function MyPageDetail(props) {
   const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
+  const { seq } = useParams();
+  const [dialogOpen, setDialogOpen] = useState(false);
 
-  // const { setOpenClosetInfoModal } = useContext(ModalContext);
-  //   const { seq } = useParams();
-  //   const { closetDetailInfo, setClosetDetailInfo } = useContext(ModalContext);
-
-  //   const [myLookBookInfo, setMyLookBookInfo] = useState([]);
-  //   const [lookBookPrice, setLookBookPrice] = useState(0);
-
-  //   useEffect(() => {
-  //     try {
-  //       axios
-  //         .get(`http://elice-kdt-ai-track-vm-distribute-12.koreacentral.cloudapp.azure.com:5000/mypage/my-looks/${seq}`, {
-  //           // headers: {
-  //           //   Authorization:
-  //           //     'Bearer ' +
-  //           //     'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNjIyODMyODkxLCJqdGkiOiI5ODQ3YmIyOC1kNTg3LTQ1ZmEtOTE1Yi1iMjIwNTI1OTFiNzAiLCJ0eXBlIjoiYWNjZXNzIiwic3ViIjoxMCwibmJmIjoxNjIyODMyODkxLCJleHAiOjE2MjU0MjQ4OTF9.yp8IslBjQNWukhJ6FzJ4q0H31rWzSqg2XMwAJ95038k',
-  //           // },
-  //         })
-  //         .then((res) => {
-  //           const detailInfoArr = [];
-  //           detailInfoArr.push(res.data.hat, res.data.top, res.data.bottom, res.data.shoes, res.data.bag);
-  //           console.log(detailInfoArr);
-
-  //           const notNulDetailInfoArr = [];
-  //           for (var i = 0; i < detailInfoArr.length; i++) {
-  //             if (detailInfoArr[i] !== null) {
-  //               notNulDetailInfoArr.push(detailInfoArr[i]);
-  //             }
-  //           }
-  //           console.log(notNulDetailInfoArr);
-
-  //           var clothesPrice = 0;
-  //           for (var m = 0; m < notNulDetailInfoArr.length; m++) {
-  //             clothesPrice += parseInt(notNulDetailInfoArr[m]['price']);
-  //           }
-  //           setLookBookPrice(clothesPrice);
-  //           setClosetDetailInfo(notNulDetailInfoArr);
-  //           setMyLookBookInfo(res.data.my_look);
-  //         });
-  //     } catch (err) {
-  //       history.push('/error');
-  //       console.log(err);
-  //     }
-  //   }, []);
-
-  //   console.log(lookBookPrice);
-
-  const handleOpenClosetModalClick = () => {
-    // setOpenClosetInfoModal(true);
+  const handleOpenInfoModalClick = () => {
     dispatch(infoModalOpen(true));
   };
 
-  // const handleImageDownloadClick = async () => {
-  //   // setShareAnchor(null);
-  // };
+  const handleDialogClose = () => {
+    setDialogOpen(false);
+  };
+
+  const handleDialogOpen = () => {
+    setDialogOpen(true);
+  };
+
+  const handleMyLookBookDelete = () => {
+    try {
+      axios.delete(`/looks/${seq}`).then(() => {
+        setDialogOpen(false);
+        console.log('Successfully Deleted my Lookbook');
+        history.push(props.goToListPath);
+      });
+    } catch (err) {
+      console.log(err);
+      history.push('/error');
+    }
+  };
+
+  const handleLikeLookBookDelete = () => {
+    try {
+      axios.delete(`/tinder/thumbs/${seq}`).then(() => {
+        setDialogOpen(false);
+        console.log('Successfully Deleted liked-Lookbook');
+        history.push(props.goToListPath);
+      });
+    } catch (err) {
+      console.log(err);
+      history.push('/error');
+    }
+  };
 
   return (
     <div className={classes.root}>
@@ -269,55 +270,17 @@ export default function MyPageDetail(props) {
       </div>
 
       <div className={classes.lookBookInfoBtnContainer}>
-        {/* <LuxuryBtn2 onClick={handleOpenClosetModalClick}>{'LookBook \n 정보보기'}</LuxuryBtn2>{' '} */}
-        <Paper elevation={4} className={classes.lookBookBtn} onClick={handleOpenClosetModalClick}>
+        <Paper elevation={4} className={classes.lookBookBtn} onClick={handleOpenInfoModalClick}>
           {' LookBook \n 정보보기📃'}
         </Paper>{' '}
       </div>
 
       <div className={classes.ectBtnContainer}>
-        {/* <LuxuryBtn1 className={classes.shareBtn} onClick={handleShareClick}>
-          {'공유하기'}
-        </LuxuryBtn1> */}
         <Paper elevation={4} className={classes.shareBtn}>
           <a href={props.myLookBookInfo['url']} style={{ color: '#000000', textDecoration: 'none' }}>
             {' 이미지 \n다운로드'}
           </a>
         </Paper>
-        {/* <Menu
-          id="simple-menu"
-          anchorEl={shareAnchor}
-          getContentAnchorEl={null | undefined}
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'center',
-          }}
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'center',
-          }}
-          keepMounted
-          open={Boolean(shareAnchor)}
-          onClose={handleShareClose}
-        >
-          <a href={props.myLookBookInfo['url']} style={{ color: '#000000', textDecoration: 'none' }}>
-            <MenuItem onClick={handleImageDownloadClick}>이미지 다운로드 </MenuItem>
-          </a>
-          <Helmet>
-            <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-          </Helmet>
-
-          <MenuItem onClick={shareByKakao}>카카오톡 공유하기</MenuItem>
-        </Menu> */}
-
-        {/* <LuxuryBtn1
-          className={classes.shareBtn}
-          onClick={() => {
-            history.push('/my_page_closet_list');
-          }}
-        >
-          목록으로
-        </LuxuryBtn1> */}
         <Paper
           elevation={4}
           className={classes.listBtn}
@@ -327,43 +290,63 @@ export default function MyPageDetail(props) {
         >
           목록으로
         </Paper>
-        {/* <LuxuryBtn1
-          className={classes.shareBtn}
-          onClick={() => {
-            history.push('/closet');
-            setClosetClothesId({
-              hat: '',
-              top: '',
-              bottom: '',
-              shoes: '',
-              bag: '',
-            });
-          }}
-        >
-          {'다시 \n 만들기'}
-        </LuxuryBtn1> */}
         <Paper
           elevation={4}
           className={classes.restartBtn}
           onClick={() => {
             history.push('/closet');
-            // setClosetClothesId({
-            //   hat: '',
-            //   top: '',
-            //   bottom: '',
-            //   shoes: '',
-            //   bag: '',
-            // });
           }}
         >
           {props.page === 'myClosetDetail' ? '다시 \n 만들기' : '나도 \n 컨펌받기'}
         </Paper>
       </div>
 
-      {/* <a href="/solution" className={classes.confirmLink} style={{ color: '#000' }} target="_blank" rel="noreferrer">
-        컨펌을 못 받으셨나요?
-      </a> */}
-      {}
+      {props.delete === 'myLookBookDelete' ? (
+        <>
+          <Paper className={classes.deleteMyLookBookBtn} variant="outlined" onClick={handleDialogOpen}>
+            룩북 삭제하기
+          </Paper>
+          <Dialog open={dialogOpen} onClose={handleDialogClose}>
+            <DialogTitle style={{ fontFamily: 'GmarketSansMedium' }}>룩북을 삭제하시겠습니까?</DialogTitle>
+            <DialogContent>
+              <DialogContentText style={{ fontFamily: 'GmarketSansMedium' }}>삭제된 룩북은 복구가 불가합니다.</DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleDialogClose} color="primary">
+                취소
+              </Button>
+              <Button onClick={handleMyLookBookDelete} color="secondary" autoFocus>
+                삭제
+              </Button>
+            </DialogActions>
+          </Dialog>
+        </>
+      ) : (
+        <>
+          <Paper className={classes.deleteLikeLookBookBtn} variant="outlined" onClick={handleDialogOpen}>
+            목록에서 제거하기
+          </Paper>
+          <Dialog open={dialogOpen} onClose={handleDialogClose}>
+            <DialogContent>
+              <DialogContentText style={{ fontFamily: 'GmarketSansMedium' }}>목록에서 제거하시겠습니까?</DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleDialogClose} color="primary">
+                취소
+              </Button>
+              <Button onClick={handleLikeLookBookDelete} color="secondary" autoFocus>
+                제거
+              </Button>
+            </DialogActions>
+          </Dialog>
+        </>
+      )}
+
+      {props.solution && (
+        <a href="/solution" className={classes.confirmLink} style={{ color: '#000' }} target="_blank" rel="noreferrer">
+          컨펌을 못 받으셨나요?
+        </a>
+      )}
     </div>
   );
 }

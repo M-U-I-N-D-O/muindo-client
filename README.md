@@ -1,65 +1,150 @@
-## 1. 웹 서비스 소개
+![img](https://cdn.discordapp.com/attachments/841879813371592717/858759305489285120/4.jpg)
 
-셜록 옷즈
- 무신사를 활용한 패션 정보 제공 및 정보 교류 서비스
+# MUINDO
 
-선정배경: 패션능력치 향상을 위해 들어야하는 노력이 많으므로, 이에 대해 도움을 주고자함
+<!-- [(Back to top)](#title-contents) -->
 
-문제정의: 패션 조합의 톤앤매너를 맞추기 어려우므로, 이를 도와주기 위해 유사한 아이템 소개, 색조합 평가, 피어 평가등이 필요함.
+<!-- 1. Describe your project in brief (필수) -->
 
-## 2. 스토리보드
-
-https://www.figma.com/team_invite/redeem/bVTVmrw5JbqSa2dRVMeNPj
+<br />
+<br />
 
 
-## 3. 프로젝트 구성
-1. 필요한 데이터셋
-    무신사 상품정보
-    딥패션
+## Demo
 
-2. 기술 스택 및 라이브러리
-    - 웹 서비스 제작을 위해 필요한 tool을 정리합니다.
+<!-- [(Back to top)](#Demo-contents) -->
 
-    | 분류 | Tools | 목적 |
-    | ------ | ------ | ------ |
-    |  Server | Flask | 웹 서버 구동 |
-    |  Client | React | 프론트엔드 |
-    |  AI model | pytorch | AI |
+<!-- 2. Add a demo for your project(**URL/video/gif/screenshots** ) (필수) -->
+
+[🚀 Go To Demo](https://muindo.azurewebsites.net/)
+
+<table>
+  <tr>
+    <td align="center"><img width="100%" src="https://user-images.githubusercontent.com/50790145/123557030-8e41b000-d7c9-11eb-9a85-acde78f7aa24.gif" alt="tinder" /><p><b>컨펌하기 🔍</b></p><sub><b>메인기능</b></sub></td>
+     <td align="center"> <img width="100%" src="https://user-images.githubusercontent.com/50790145/123557051-aadde800-d7c9-11eb-8db8-017026f5d8b2.gif" alt="closet" /><p><b>컨펌받기 👗</b></p><sub><b>메인기능</b></sub></td>
+  </tr>
+</table>
 
 
-
-## 4. 구현 기능
-
-1. **필수 구현**
-    - 1순위 : 옷 분석 및 카테고리, 특성 추출
-    - 2순위 : 룩 완성 및 공유기능
-    - 3순위 : 패션스타일 추천 기능
+<br />
+<br />
 
 
 
-## 5. 와이어프레임
-- 디자인 혹은 개발을 시작하기 전, 발생될 문제를 미리 확인하기 위해 각 페이지별로 세부적으로 어떤 정보가 어떻게 들어갈지(구성 방식, 콘텐츠, 기능 등) 구성합니다.
-https://www.figma.com/team_invite/redeem/bVTVmrw5JbqSa2dRVMeNPj
+## Install
+
+<!-- 3. write a instructions to installation (필수) -->
+<!-- [(Back to top)](#installation-contents) -->
+
+1. Clone the repository
+
+```
+git clone https://github.com/M-U-I-N-D-O/muindo-client.git
+```
+
+2. Change the working directory
+
+```
+cd client
+```
+
+<br />
+<br />
+
+
+## Usage
+
+<!-- 4. This is used to give the user info on how to use the project after installation. This could be added in the Installation section also. (필수) -->
+
+<!-- [(Back to top)](#usage-contents) -->
+
+1.  npm install
+
+```
+npm i
+```
+
+2.  run
+
+```
+npm start
+```
+
+<br />
+<br />
+
+
+## Development
+
+<!-- (4.5). 필수 맞죠 ?? 시스템 구성도 같은 것 (필수) -->
+<!-- [(Back to top)](#Development-contents) -->
+
++ <h4><b>System Architecture</b></h4>
+
+<img src="https://media.discordapp.net/attachments/841879813371592717/858779849916547072/muindo_.png" alt style="zoom:80%;" />
 
 
 
-## 6. 세부 일정
-- 효율적인 프로젝트 수행을 위해 구현 기능의 우선순위를 바탕으로 주차별 세부 일정을 기획합니다.
-- 일정은 수정될 수 있으며, 수정 시에 기획서 반영 및 팀원 공유 등을 통해 업무 관리를 합니다.
-
-https://www.notion.so/f9a0e3342af9421494c190784322dd66
-
-## 7. 역할
-
-| 이름 | 역할 |
-| ------ | ------ |
-| 정성헌 |  Back-End & AI |
-| 김수람  | Back-End |
-| 민유지 | PM &Front-End |
-| 위영민 | Front-End |
 
 
+<!-- This is the place where you give instructions to developers on how to modify the code.
+You could give **instructions in depth** of **how the code works** and how everything is put together. -->
 
-## 8. 배운 점
-0513 개발일지
-    옷에 색깔을 학습시키기는 쉽지않음. 세그멘테이션 및 rgb추출을 할 수 있지만, 어디서부터 어디까지 무슨색으로 할것이냐가 문제가 될 수 있기 때문!
+<!-- ** 코드 작동 방식 **과 모든 요소가 결합되는 방식에 대한 ** 심층적 인 지침 **을 제공 할 수 있습니다 -->
+
+<!-- You could also give specific instructions to how they can setup their development environment. -->
+
+<!-- 또한 개발 환경을 설정하는 방법에 대한 구체적인 지침을 제공 할 수도 있습니다. -->
+
+<!-- Ideally, you should keep the README simple. If you need to add more complex explanations, use a wiki. Check out [this wiki](https://github.com/navendu-pottekkat/nsfw-filter/wiki) for inspiration. -->
+
+<!-- 이상적으로는 README를 간단하게 유지해야합니다. 더 복잡한 설명을 추가해야하는 경우 위키를 사용하십시오. -->
+
+
+<br />
+<br />
+
+## Contributor
+
+<!-- 5. 공동 작업자 / 팀 구성원 (깃헙 프로필 테이블 형식 좋을 듯) (필수) -->
+
+<!-- [(Back to top)](#Contributor-contents) -->
+
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/Heon4856"><img src="https://avatars.githubusercontent.com/u/13060192?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Sungheon Jeong
+</b></sub></a><br /><sub><b>Back-End</b></sub><br /><sub><h3>🦥</h3></sub></td>
+     <td align="center"><a href="https://github.com/su-ram"><img src="https://avatars.githubusercontent.com/u/20367043?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Suram Kim</b></sub></a><br /><sub><b>Back-End</b></sub><br /><sub><h3>🦌</h3></sub></td>
+    <td align="center"><a href="https://github.com/nvrtmd"><img src="https://avatars.githubusercontent.com/u/67324487?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Yuji Min</b></sub></a><br /><sub><b>Front-End</b></sub><br /><sub><h3>🐥</h3></sub></td>
+      <td align="center"><a href="https://github.com/youngminss"><img src="https://avatars.githubusercontent.com/u/50790145?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Youngmin Wi</b></sub></a><br /><sub><b>Front-End</b></sub><br /><sub><h3>🦍</h3></sub></td>
+  </tr>
+</table>
+
+
+<br />
+<br />
+
+
+## FAQ
+
+<!-- 6. 개인적으로는 (필수), 사전에 골치아플만한 질문 제한 용도 -->
+
+<!-- [(Back to top)](#FAQ-contents) -->
+
+
+<br />
+<br />
+
+
+
+## License
+
+<!-- 7. 라이선스 (간지..해보고 싶음 MIT..) (반필수 ?)  -->
+<!-- [(Back to top)](#License-contents) -->
+
+https://choosealicense.com/ (작성 시, 참고링크)
+
+
+
+
+

@@ -82,7 +82,7 @@ export default function MyPageList(props) {
                 {item['ok'] > 5 && item['no'] * 2 > item['ok'] && (
                   <img className={classes.confirmedThumb} src="/images/myPage/confirmed_thumb_down.png" alt="notConfirmed" />
                 )}
-                {(item['ok'] < 1 && item['no'] < 1) || item['ok'] === item['no'] || item['ok'] < 5 ? (
+                {(item['ok'] < 1 && item['no'] < 1) || (item['ok'] <= 5 && item['ok'] === item['no']) || item['ok'] <= 5 ? (
                   <img className={classes.confirmedThumb} src="/images/myPage/question.png" alt="confirmed" />
                 ) : (
                   <div></div>

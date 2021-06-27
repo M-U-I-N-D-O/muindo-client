@@ -45,6 +45,7 @@ export default function MyPageLikeDetail() {
       lookBookPrice={lookBookPrice}
       myLookBookInfo={myLookBookInfo}
       page="myLikeDetail"
+      delete="likeLookBookDelete"
       goToListPath="/my_page_like_list"
     />
   );

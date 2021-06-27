@@ -113,35 +113,35 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     whiteSpace: 'pre-wrap',
-    fontSize: '15px',
+    fontSize: '14px',
     width: '90px',
-    height: '40px',
+    height: '45px',
     fontFamily: 'GmarketSansMedium',
   },
   listBtn: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    fontSize: '14px',
+    fontSize: '16px',
     width: '90px',
-    height: '40px',
+    height: '45px',
     fontFamily: 'GmarketSansMedium',
   },
   restartBtn: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    fontSize: '13px',
+    fontSize: '13.5px',
     width: '90px',
-    height: '40px',
+    height: '45px',
     fontFamily: 'GmarketSansMedium',
   },
   ectBtnContainer: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-around',
-    marginTop: '35px',
-    marginBottom: '45px',
+    marginTop: '40px',
+    marginBottom: '40px',
     width: '330px',
   },
   closetTextContainer: {
@@ -162,7 +162,7 @@ const useStyles = makeStyles((theme) => ({
     height: '55px',
     overflow: 'auto',
   },
-  deleteBtn: {
+  deleteMyLookBookBtn: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -171,6 +171,17 @@ const useStyles = makeStyles((theme) => ({
     width: '120px',
     height: '35px',
     marginBottom: '20px',
+    color: 'red',
+  },
+  deleteLikeLookBookBtn: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontFamily: 'GmarketSansMedium',
+    fontSize: '14px',
+    width: '150px',
+    height: '35px',
+    marginBottom: '40px',
     color: 'red',
   },
 }));
@@ -182,7 +193,7 @@ export default function MyPageDetail(props) {
   const { seq } = useParams();
   const [dialogOpen, setDialogOpen] = useState(false);
 
-  const handleOpenClosetModalClick = () => {
+  const handleOpenInfoModalClick = () => {
     dispatch(infoModalOpen(true));
   };
 
@@ -194,11 +205,24 @@ export default function MyPageDetail(props) {
     setDialogOpen(true);
   };
 
-  const handleLookBookDelete = () => {
+  const handleMyLookBookDelete = () => {
     try {
-      axios.delete(`https://muindoooapi.azurewebsites.net/looks/remove/${seq}`).then(() => {
+      axios.delete(`https://muindoooapi.azurewebsites.net/looks/${seq}`).then(() => {
         setDialogOpen(false);
-        console.log('Successfully Deleted Lookbook');
+        console.log('Successfully Deleted my Lookbook');
+        history.push(props.goToListPath);
+      });
+    } catch (err) {
+      console.log(err);
+      history.push('/error');
+    }
+  };
+
+  const handleLikeLookBookDelete = () => {
+    try {
+      axios.delete(`https://muindoooapi.azurewebsites.net/tinder/thumbs/${seq}`).then(() => {
+        setDialogOpen(false);
+        console.log('Successfully Deleted liked-Lookbook');
         history.push(props.goToListPath);
       });
     } catch (err) {
@@ -243,7 +267,7 @@ export default function MyPageDetail(props) {
       </div>
 
       <div className={classes.lookBookInfoBtnContainer}>
-        <Paper elevation={4} className={classes.lookBookBtn} onClick={handleOpenClosetModalClick}>
+        <Paper elevation={4} className={classes.lookBookBtn} onClick={handleOpenInfoModalClick}>
           {' LookBook \n 정보보기📃'}
         </Paper>{' '}
       </div>
@@ -273,10 +297,10 @@ export default function MyPageDetail(props) {
           {props.page === 'myClosetDetail' ? '다시 \n 만들기' : '나도 \n 컨펌받기'}
         </Paper>
       </div>
-      {props.delete && (
+
+      {props.delete === 'myLookBookDelete' ? (
         <>
-          {' '}
-          <Paper className={classes.deleteBtn} variant="outlined" onClick={handleDialogOpen}>
+          <Paper className={classes.deleteMyLookBookBtn} variant="outlined" onClick={handleDialogOpen}>
             룩북 삭제하기
           </Paper>
           <Dialog open={dialogOpen} onClose={handleDialogClose}>
@@ -288,8 +312,27 @@ export default function MyPageDetail(props) {
               <Button onClick={handleDialogClose} color="primary">
                 취소
               </Button>
-              <Button onClick={handleLookBookDelete} color="secondary" autoFocus>
+              <Button onClick={handleMyLookBookDelete} color="secondary" autoFocus>
                 삭제
+              </Button>
+            </DialogActions>
+          </Dialog>
+        </>
+      ) : (
+        <>
+          <Paper className={classes.deleteLikeLookBookBtn} variant="outlined" onClick={handleDialogOpen}>
+            목록에서 제거하기
+          </Paper>
+          <Dialog open={dialogOpen} onClose={handleDialogClose}>
+            <DialogContent>
+              <DialogContentText style={{ fontFamily: 'GmarketSansMedium' }}>목록에서 제거하시겠습니까?</DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleDialogClose} color="primary">
+                취소
+              </Button>
+              <Button onClick={handleLikeLookBookDelete} color="secondary" autoFocus>
+                제거
               </Button>
             </DialogActions>
           </Dialog>

@@ -10,7 +10,7 @@ export default function MyPageLikeList() {
 
   useEffect(() => {
     try {
-      axios.get(`https://muindoooapi.azurewebsites.net/mypage/thumbs`, {}).then((res) => {
+      axios.get(`https://muindoooapi.azurewebsites.net/mypage/thumbs`).then((res) => {
         setMyLikeListInfo(res.data);
       });
     } catch (err) {

@@ -20,8 +20,8 @@
 
 <table>
   <tr>
-    <td align="center"><img width="100%" src="https://user-images.githubusercontent.com/50790145/123557030-8e41b000-d7c9-11eb-9a85-acde78f7aa24.gif" alt="tinder" /><p><b>컨펌하기 🔍</b></p><sub><b>메인기능</b></sub></td>
-     <td align="center"> <img width="100%" src="https://user-images.githubusercontent.com/50790145/123557051-aadde800-d7c9-11eb-8db8-017026f5d8b2.gif" alt="closet" /><p><b>컨펌받기 👗</b></p><sub><b>메인기능</b></sub></td>
+    <td align="center"><img width="100%" src="https://ifh.cc/g/q97m6z.gif" alt="tinder" /><p><b>컨펌하기 🔍</b></p><sub><b>메인기능</b></sub></td>
+     <td align="center"> <img width="100%" src="https://ifh.cc/g/dZmcND.gif" alt="closet" /><p><b>컨펌받기 👗</b></p><sub><b>메인기능</b></sub></td>
   </tr>
 </table>
 

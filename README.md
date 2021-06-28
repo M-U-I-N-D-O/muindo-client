@@ -28,7 +28,7 @@
 
 <table>
   <tr>
-    <td align="center"><img src="https://user-images.githubusercontent.com/50790145/123632006-6185ab00-d852-11eb-93d7-f753d2cea6c5.gif" alt="tinder" width='300' height='650' /><p><b>컨펌하기 🔍</b></p><sub><b>메인기능</b></sub></td>
+    <td align="center"><img width='98%' src="https://user-images.githubusercontent.com/50790145/123632006-6185ab00-d852-11eb-93d7-f753d2cea6c5.gif" alt="tinder" /><p><b>컨펌하기 🔍</b></p><sub><b>메인기능</b></sub></td>
      <td align="center"> <img src="https://ifh.cc/g/dZmcND.gif" alt="closet" /><p><b>컨펌받기 👗</b></p><sub><b>메인기능</b></sub></td>
   </tr>
 </table>

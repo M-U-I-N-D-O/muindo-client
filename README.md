@@ -11,6 +11,7 @@
  MUINDO는 옷에 큰 에너지 쏟고 싶진 않지만 패션 테러리스트가 되고 싶지는 않은, '사람답게'만 입고 싶은 사람들을 위한 서비스입니다.  
  이를 위해 취향이 확립되지 않은 모두가 직접 룩북을 만들어 업로드하고 컨펌 받으면서 더 나은 패션을 지향하도록 도와줍니다.  
  자세한 기능은 아래 Demo 에서 확인하실 수 있습니다. 🙂
+
 <br />
 
 ## Demo
@@ -140,7 +141,7 @@ You could give **instructions in depth** of **how the code works** and how every
 <!-- 7. 라이선스 (간지..해보고 싶음 MIT..) (반필수 ?)  -->
 <!-- [(Back to top)](#License-contents) -->
 
-https://choosealicense.com/ (작성 시, 참고링크)
+The project is available under the [MIT license](https://opensource.org/licenses/MIT)
 
 
 

@@ -123,6 +123,7 @@ export default function GroupSelector() {
     dispatch(closetImg(closetImgArr));
     var newClothesPrice = { ...price };
     newClothesPrice[mode] = 0;
+    handleCategoryInitialize();
     dispatch(closetPrice(newClothesPrice));
     dispatch(closetModalOpen(false));
     dispatch(closetModalMode(''));

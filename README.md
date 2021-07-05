@@ -80,11 +80,14 @@ npm start
 <!-- (4.5). 필수 맞죠 ?? 시스템 구성도 같은 것 (필수) -->
 <!-- [(Back to top)](#Development-contents) -->
 
-+ <h4><b>System Architecture</b></h4>
+### System Architecture
 
 <img src="https://media.discordapp.net/attachments/841879813371592717/858779849916547072/muindo_.png" alt style="zoom:80%;" />
 
+### Tech Report
 
+ - [MUINDO-Client](https://github.com/M-U-I-N-D-O/README/blob/master/MUINDO-Client.md)
+ - [MUINDO-Server](https://github.com/M-U-I-N-D-O/README/blob/master/MUINDO-Server.md)
 
 
 

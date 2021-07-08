@@ -298,13 +298,13 @@ const WishText = styled.p`
   color: #ff3e3e;
 `;
 const NopeSwipeButtonBox = styled(Paper)`
-  background-color: #424242;
+  background-color: #424242 !important;
   padding: 3vw !important;
   border-radius: 50%;
   color: #ec5e6f !important;
 `;
 const ConfirmSwipeButtonBox = styled(Paper)`
-  background-color: #424242;
+  background-color: #424242 !important;
   padding: 3vw !important;
   border-radius: 50%;
   color: #76e2b3 !important;

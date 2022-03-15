@@ -3,15 +3,12 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useHistory } from 'react-router';
 import MyPageDetail from '../../components/MyPage/myPageDetail';
-
-// import { ModalContext } from '../../App';
 import { useDispatch } from 'react-redux';
 import { detailInfo } from '../../actions';
 
 export default function MyPageLikeDetail() {
   const history = useHistory();
   const { seq } = useParams();
-  // const { setClosetDetailInfo } = useContext(ModalContext);
   const dispatch = useDispatch();
 
   const [myLookBookInfo, setMyLookBookInfo] = useState([]);
@@ -22,7 +19,6 @@ export default function MyPageLikeDetail() {
       axios.get(`https://muindoooapi.azurewebsites.net/mypage/my-looks/${seq}`, {}).then((res) => {
         const detailInfoArr = [];
         detailInfoArr.push(res.data.hat, res.data.top, res.data.bottom, res.data.shoes, res.data.bag);
-        // console.log(detailInfoArr);
         const notNulDetailInfoArr = [];
         for (var i = 0; i < detailInfoArr.length; i++) {
           if (detailInfoArr[i] !== null) {
@@ -35,7 +31,6 @@ export default function MyPageLikeDetail() {
           clothesPrice += parseInt(notNulDetailInfoArr[m]['price']);
         }
         setLookBookPrice(clothesPrice);
-        // setClosetDetailInfo(notNulDetailInfoArr);
         dispatch(detailInfo(notNulDetailInfoArr));
         setMyLookBookInfo(res.data.my_look);
       });

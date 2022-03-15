@@ -71,7 +71,6 @@ function LoginDialog() {
           localStorage.setItem('token', response.data.access_token);
         });
     } catch (err) {
-      // console.log(err);
       history.push('/error');
     }
   };

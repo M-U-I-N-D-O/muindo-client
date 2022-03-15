@@ -169,12 +169,6 @@ function Login() {
         <FirebaseLogIn />
       </div>
     </div>
-    // <div className={classes.root}>
-    //   <div className={classes.container}>
-    //     <div className={classes.contentsBox}>
-    //     </div>
-    //   </div>
-    // </div>
   );
 }
 

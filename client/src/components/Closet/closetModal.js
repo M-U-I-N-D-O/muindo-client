@@ -18,47 +18,26 @@ import { ModalContext } from '../../App';
 import { ClothesIdContext } from '../../App';
 import { ClothesPriceContext } from '../../App';
 
-// const Transition = React.forwardRef(function Transition(props, ref) {
-//   return <Slide direction="up" ref={ref} {...props} />;
-// });
-
 const useStyles = makeStyles((theme) => ({
   root: {
-    // display: 'flex',
-    // justifyContent: 'center',
-    // // flexDirection: 'column',
-    // alignItems: 'center',
-    // // width: '100px',
-    // // maxWidth: '1024px',
-    // // minHeight: ' calc(100vh - 8.5rem)',
-    // // backgroundColor: '#ececec',
-    // // height: '80vw',
     fontFamily: 'GmarketSansMedium',
-
     display: 'flex',
     paddingTop: '60px',
     paddingBottom: '66px',
-    // // justifyContent: 'center',
     flexDirection: 'column',
     alignItems: 'center',
-    // overflow: 'hidden',
+   
   },
   modal: {
     backgroundColor: 'white',
     maxWidth: '350px',
-    // minWidth: '340px',
-    // minHeight: '73vh',
     height: '100vh',
     width: '100vw',
     flexDirection: 'column',
-    // marginTop: '50px',
     border: 'solid 3px',
     borderRadius: '15px',
-    // overflow: 'auto',
   },
   modalCloseBtn: {
-    // width: '25px',
-    // height: '25px',
     marginTop: '10px',
     display: 'flex',
     justifyContent: 'flex-end',
@@ -80,10 +59,8 @@ const useStyles = makeStyles((theme) => ({
   modalBottomContent: {
     display: 'flex',
     flexDirection: 'column',
-    // overflow: 'auto',
     height: '62vh',
     marginTop: '28px',
-    // justifyContent: 'center',
     alignItems: 'center',
   },
   box: { overflow: 'auto', width: '100%' },
@@ -92,20 +69,15 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     width: '100vw',
     maxWidth: '350px',
-    // height: '70vh',
     flexWrap: 'wrap',
     alignItems: 'center',
     marginTop: '20px',
     justifyContent: 'center',
-    // width: '100%',
-    // flexDirection: 'column',
   },
   individualClothesContainer: {
     display: 'flex',
-    // alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
-    // border: 'solid 2px',
     fontSize: '18px',
     width: '160px',
     height: '300px',
@@ -141,17 +113,8 @@ export default function ClosetModal() {
   const dispatch = useDispatch();
   const open = useSelector((state) => state.closetModal.open);
   const mode = useSelector((state) => state.closetModal.mode);
-
-  // const { openClosetModal, setOpenClosetModal } = useContext(ModalContext);
-  // const { modalMode, setModalMode } = useContext(ModalContext);
-  // const { closetImg, setClosetImg } = useContext(ModalContext);
-  // const { clothesList, setClothesList } = useContext(ModalContext);
-  // const { condition, setCondition } = useContext(ModalContext);
-  // const [filteredClothes, setFilteredClothes] = useState({});
   const PAGE_NUMBER = 1;
 
-  // const { openClosetModal, setOpenClosetModal } = useContext(ModalContext);
-  // const { modalMode, setModalMode } = useContext(ModalContext);
   const { closetImg, setClosetImg } = useContext(ModalContext);
   const { closetClothesId, setClosetClothesId } = useContext(ClothesIdContext);
   const [clothesList, setClothesList] = useState([]);
@@ -159,10 +122,8 @@ export default function ClosetModal() {
   const [filteredClothes] = useState({});
   const [page, setPage] = useState(PAGE_NUMBER);
   const { clothesPrice, setClothesPrice } = useContext(ClothesPriceContext);
-
-  // const [lastClothesId, setLastClothesId] = useState('1');
-
   const history = useHistory();
+
   useEffect(() => {
     try {
       axios
@@ -178,13 +139,6 @@ export default function ClosetModal() {
     }
   }, [mode, condition, history, setClothesList]);
 
-  // const setLastId = () => {
-  //   // if (clothesList.length !== 0) {
-  //   //   setLastClothesId(clothesList[clothesList.length - 1]['id']);
-  //   // }
-  //   // console.log(lastClothesId);
-  //   setPage(page + 1);
-  // };
   useEffect(() => {
     setPage((p) => p + 1);
   }, [clothesList, condition]);
@@ -200,15 +154,11 @@ export default function ClosetModal() {
         })
         .catch((err) => {
           console.log(err);
-          // history.push('/error');
         });
     }, 1000);
   };
   const handleClose = () => {
     setClothesList([]);
-    // setModalMode('');
-    // setLastClothesId('1');
-    // setOpenClosetModal(false);
     dispatch(closetModalMode(''));
     dispatch(closetModalOpen(false));
 
@@ -216,7 +166,6 @@ export default function ClosetModal() {
     newCondition['middleCategory'] = '';
     newCondition['subCategory'] = '';
     newCondition['brand'] = '';
-    // setConditionNum(10000);
     setCondition(newCondition);
   };
 
@@ -227,9 +176,6 @@ export default function ClosetModal() {
     });
     setClosetClothesId({ ...closetClothesId, [mode]: event.target.alt });
     setClothesPrice({ ...clothesPrice, [mode]: parseInt(event.target['title']) });
-    // var selectedClothesPrice = parseInt(event.target['title']);
-    // var newPrice = clothesPrice + selectedClothesPrice;
-    // setClothesPrice(newPrice);
     setPage(0);
 
     handleClose();

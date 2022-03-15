@@ -33,7 +33,7 @@ function InfoDialog() {
 
   return (
     <DialogContainer>
-      <MyDialog open={mode} onClose={handleClose}>
+      <Dialog open={mode} onClose={handleClose}>
         <MyDialogTitle>컨펌하기 Guide</MyDialogTitle>
         <MyDialogContent dividers={true}>
           <Slider {...settings}>
@@ -52,7 +52,7 @@ function InfoDialog() {
         <MyDialogActions>
           <Button onClick={handleClose}>시작하기</Button>
         </MyDialogActions>
-      </MyDialog>
+      </Dialog>
     </DialogContainer>
   );
 }
@@ -62,9 +62,6 @@ export default InfoDialog;
 const DialogContainer = styled.div`
   display: flex;
   justify-content: center;
-`;
-const MyDialog = styled(Dialog)`
-  /* max-width: 375px; */
 `;
 const MyDialogTitle = styled.h2`
   text-align: center;

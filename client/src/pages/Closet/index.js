@@ -11,7 +11,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ModalContext } from '../../App';
 import { ClothesIdContext } from '../../App';
 import { ClothesPriceContext } from '../../App';
-// import { ClosetTextContext } from '../../App';
 
 import Paper from '@material-ui/core/Paper';
 import { closetModalOpen, closetModalMode, closetText } from '../../actions';
@@ -33,17 +32,11 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     paddingTop: '60px',
     paddingBottom: '56px',
-    // // justifyContent: 'center',
     flexDirection: 'column',
     alignItems: 'center',
-    // width: '80vw',
-    // maxWidth: '1024px',
-    // minHeight: ' calc(100vh - 8.5rem)',
-    // // height: '80vw',
   },
   title: {
-    // marginTop: '25px',
-    // marginBottom: '5px',
+
   },
   closetImg: {
     width: '60vw',
@@ -61,8 +54,6 @@ const useStyles = makeStyles((theme) => ({
     height: '650px',
     border: 'solid 3px',
     minHeight: '57vh',
-    // backgroundImage: `url('/images/closet/mannequin_2.png')`,
-    // opacity: '0.85',
     backgroundSize: '170px',
     backgroundPositionX: '55px',
     backgroundPositionY: '65px',
@@ -72,8 +63,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    // maxWidth: '150px',
-    // minWidth: '130px',
     width: '150px',
 
     marginRight: '15px',
@@ -81,14 +70,8 @@ const useStyles = makeStyles((theme) => ({
   hatContainer: {
     display: 'flex',
     alignItems: 'center',
-    // maxWidth: '90px',
-
-    // minWidth: '70px',
-    // minHeight: '90px',
-    // width: '40vw',
     width: '90px',
     height: '80px',
-
     justifyContent: 'center',
     border: 'solid 2px',
     margin: '15px 0px',
@@ -96,11 +79,6 @@ const useStyles = makeStyles((theme) => ({
   topContainer: {
     display: 'flex',
     alignItems: 'center',
-    // maxWidth: '200px',
-    // maxWidth: '120px',
-
-    // minWidth: '90px',
-    // minHeight: '150px',
     width: '130px',
     height: '150px',
 
@@ -111,14 +89,8 @@ const useStyles = makeStyles((theme) => ({
   bottomContainer: {
     display: 'flex',
     alignItems: 'center',
-    // maxWidth: '120px',
-    // minWidth: '90px',
-    // minHeight: '150px',
-    // width: '30vw',
-
     width: '120px',
     height: '150px',
-
     justifyContent: 'center',
     border: 'solid 2px',
     margin: '15px 0px',
@@ -126,14 +98,8 @@ const useStyles = makeStyles((theme) => ({
   shoesContainer: {
     display: 'flex',
     alignItems: 'center',
-    // maxWidth: '90px',
-    // minWidth: '70px',
-    // minHeight: '90px',
-    // width: '30vw',
-
     width: '90px',
     height: '80px',
-
     justifyContent: 'center',
     border: 'solid 2px',
     margin: '15px 0px',
@@ -141,11 +107,6 @@ const useStyles = makeStyles((theme) => ({
   bagContainer: {
     display: 'flex',
     alignItems: 'center',
-    // maxWidth: '90px',
-    // minWidth: '70px',
-    // minHeight: '100px',
-    // width: '30vw',
-
     width: '90px',
     height: '120px',
 
@@ -203,20 +164,14 @@ const useStyles = makeStyles((theme) => ({
   },
   a: {
     width: '550px',
-    // height: '60px',
   },
 }));
 
 function ClothesBox(props) {
   const dispatch = useDispatch();
   const { closetImg } = useContext(ModalContext);
-  // const { setModalMode } = useContext(ModalContext);
-  // const { setOpenClosetModal } = useContext(ModalContext);
-  // const open = useSelector((state) => state.closetModal.open);
 
   const handleClothesContainerClick = (event) => {
-    // setModalMode(event.target.id);
-    // setOpenClosetModal(true);
     dispatch(closetModalOpen(true));
     dispatch(closetModalMode(event.target.id));
   };
@@ -249,13 +204,10 @@ function Closet() {
   const mode = useSelector((state) => state.closetModal.mode);
   const text = useSelector((state) => state.closetModal.text);
 
-  // const { setOpenClosetModal } = useContext(ModalContext);
-  // const { modalMode, setModalMode } = useContext(ModalContext);
   const { setClosetImg } = useContext(ModalContext);
   const { closetClothesId, setClosetClothesId } = useContext(ClothesIdContext);
   const { clothesPrice, setClothesPrice } = useContext(ClothesPriceContext);
-  // const { closetText, setClosetText } = useContext(ClosetTextContext);
-  // const closetTextRef = useRef('');
+
   useEffect(() => {
     setClosetImg({
       hat: '',
@@ -271,7 +223,6 @@ function Closet() {
       shoes: '',
       bag: '',
     });
-    // setClothesPrice(0);
     setClothesPrice({
       hat: 0,
       top: 0,
@@ -280,14 +231,8 @@ function Closet() {
       bag: 0,
     });
 
-    // setClosetText('');
     dispatch(closetText(''));
   }, [setClosetImg, setClosetClothesId, setClothesPrice, dispatch]);
-
-  // const handleClothesContainerClick = (event) => {
-  //   setModalMode(event.target.id);
-  //   setOpenClosetModal(true);
-  // };
 
   const handleEraseAllButtonClick = () => {
     setClosetImg({
@@ -311,9 +256,7 @@ function Closet() {
       shoes: 0,
       bag: 0,
     });
-    // setModalMode('');
     dispatch(closetText(''));
-
     dispatch(closetModalMode(''));
   };
   const handleChangeClosetText = (event) => {

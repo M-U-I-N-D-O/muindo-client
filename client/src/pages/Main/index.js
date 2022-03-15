@@ -93,6 +93,7 @@ class Main extends Component {
     return (
       <div
         style={{
+          position: 'relative',
           backgroundColor: '#222',
           height: '100vh',
           width: '100%',
@@ -236,34 +237,38 @@ const CustomButton = styled.button`
   margin-top: 10vh;
   z-index: 100;
 `;
+
 const BottomText = styled.h1`
   position: absolute;
   width: 50%;
   color: white;
   margin: 0;
-  bottom: 55%;
+  top: 225px;
   margin: 0 auto;
 `;
+
 const NopeText = styled.h1`
   position: absolute;
   color: #ec5e6f;
   border: 5px solid #ec5e6f;
   border-radius: 5px;
-  bottom: 55%;
+  top: 225px;
   z-index: 100;
   transform: rotate(-20deg);
   padding: 0 25px;
 `;
+
 const LikeText = styled.h1`
   position: absolute;
   color: #76e2b3;
   border: 5px solid #76e2b3;
   border-radius: 5px;
-  bottom: 55%;
+  top: 225px;
   z-index: 100;
   transform: rotate(20deg);
   padding: 0 10px;
 `;
+
 const TinderImg = styled.img`
   max-width: 100%;
   height: auto;
@@ -299,13 +304,13 @@ const WishText = styled.p`
 `;
 const NopeSwipeButtonBox = styled(Paper)`
   background-color: #424242 !important;
-  padding: 3vw !important;
+  padding: 15px !important;
   border-radius: 50%;
   color: #ec5e6f !important;
 `;
 const ConfirmSwipeButtonBox = styled(Paper)`
   background-color: #424242 !important;
-  padding: 3vw !important;
+  padding: 15px !important;
   border-radius: 50%;
   color: #76e2b3 !important;
 `;

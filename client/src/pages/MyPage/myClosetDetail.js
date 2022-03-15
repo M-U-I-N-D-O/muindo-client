@@ -10,7 +10,6 @@ import { detailInfo } from '../../actions';
 export default function MyPageClosetDetail() {
   const history = useHistory();
   const { seq } = useParams();
-  // const { setClosetDetailInfo } = useContext(ModalContext);
   const dispatch = useDispatch();
 
   const [myLookBookInfo, setMyLookBookInfo] = useState([]);
@@ -21,7 +20,6 @@ export default function MyPageClosetDetail() {
       axios.get(`https://muindoooapi.azurewebsites.net/mypage/my-looks/${seq}`, {}).then((res) => {
         const detailInfoArr = [];
         detailInfoArr.push(res.data.hat, res.data.top, res.data.bottom, res.data.shoes, res.data.bag);
-        // console.log(detailInfoArr);
 
         const notNulDetailInfoArr = [];
         for (var i = 0; i < detailInfoArr.length; i++) {
@@ -29,14 +27,12 @@ export default function MyPageClosetDetail() {
             notNulDetailInfoArr.push(detailInfoArr[i]);
           }
         }
-        // console.log(notNulDetailInfoArr);
 
         var clothesPrice = 0;
         for (var m = 0; m < notNulDetailInfoArr.length; m++) {
           clothesPrice += parseInt(notNulDetailInfoArr[m]['price']);
         }
         setLookBookPrice(clothesPrice);
-        // setClosetDetailInfo(notNulDetailInfoArr);
         dispatch(detailInfo(notNulDetailInfoArr));
 
         setMyLookBookInfo(res.data.my_look);
@@ -46,8 +42,6 @@ export default function MyPageClosetDetail() {
       console.log(err);
     }
   }, [history, seq, dispatch]);
-
-  // console.log(lookBookPrice);
 
   return (
     <MyPageDetail

@@ -3,8 +3,6 @@ import styled from 'styled-components';
 
 const ContainerBox = styled.div`
   display: flex;
-  /* padding-bottom: 66px; */
-  /* padding-top: 70px; */
   justify-content: center;
   align-items: center;
   height: 100vh;

@@ -8,9 +8,6 @@ function ResultListBox(props) {
     ['/images/analysisClothes/jeans.png', '데님 팬츠', '블루', 'https://bit.ly/3i0cvvl'],
     ['/images/analysisClothes/shoes.png', '스니커즈', '화이트', 'https://bit.ly/3f9hwzM'],
     ['/images/analysisClothes/backpack.png', '백팩', '블랙', 'https://bit.ly/3wm028W'],
-    // ['/images/analysisClothes/outer.png', '아우터', '블랙', 'https://bit.ly/2QJpeXX'],
-    // ['/images/analysisClothes/dress.png', '원피스', '화이트', 'https://bit.ly/3bNrXad'],
-    // ['/images/analysisClothes/skirt.png', '스커트', '블랙', 'https://bit.ly/3fIyJ23'],
   ];
 
   return (
@@ -65,9 +62,7 @@ const LuxuryLinkBtn = styled.a`
   font-size: 0.625rem;
   letter-spacing: 0.3em;
   color: #323b48;
-  /* color: rgba(223, 190, 106, 0.7); */
   border-radius: 0;
-  /* padding: 15px 20px 15px 20px; */
   padding-top: 10px;
   padding-bottom: 10px;
   transition: all 0.7s ease-out;
@@ -78,7 +73,6 @@ const LuxuryLinkBtn = styled.a`
   margin: 1vh 0;
   border: none;
   border: 1px solid #323b48;
-  /* border: 1px solid rgba(223, 190, 106, 0.3); */
   :hover {
     color: #fff;
     border: 1px solid rgba(223, 190, 106, 0);

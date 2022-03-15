@@ -12,24 +12,15 @@ import { closetModalOpen, closetModalMode } from '../../actions';
 
 import { ClothesIdContext } from '../../App';
 import { ClothesPriceContext } from '../../App';
-
-// import FilterData from '../../data/closetCategorization.json';
 import FilterData from '../../data/closetCategorization.json';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    // paddingTop: '60px',
-    // paddingBottom: '56px',
-    // justifyContent: 'center',
-    // marginTop: '10px',
     flexDirection: 'column',
     alignItems: 'center',
     width: '350px',
     height: '105px',
-    // maxWidth: '1024px',
-    // minHeight: ' calc(100vh - 8.5rem)',
-    // // height: '80vw',
   },
   selector: {
     width: '90px',
@@ -53,14 +44,12 @@ const useStyles = makeStyles((theme) => ({
     height: '45px',
     border: 'solid 1px',
     fontFamily: 'GmarketSansMedium',
-    // marginRight: '10px',
   },
 }));
 
 export default function GroupSelector() {
   const classes = useStyles();
   const { condition, setCondition } = useContext(ModalContext);
-  // const { modalMode, setModalMode } = useContext(ModalContext);
   const [categoryList, setCategoryList] = useState([]);
   const [categoryNumList, setCategoryNumList] = useState([]);
   const [subCategoryList, setSubCategoryList] = useState([]);
@@ -70,7 +59,6 @@ export default function GroupSelector() {
   const [conditionNum, setConditionNum] = useState(10000);
   const { closetClothesId, setClosetClothesId } = useContext(ClothesIdContext);
   const { closetImg, setClosetImg } = useContext(ModalContext);
-  // const { setOpenClosetModal } = useContext(ModalContext);
   const { clothesPrice, setClothesPrice } = useContext(ClothesPriceContext);
   const dispatch = useDispatch();
   const mode = useSelector((state) => state.closetModal.mode);
@@ -139,11 +127,8 @@ export default function GroupSelector() {
     var newClothesPrice = { ...clothesPrice };
     newClothesPrice[mode] = 0;
     setClothesPrice(newClothesPrice);
-    // setModalMode('');
     dispatch(closetModalOpen(false));
     dispatch(closetModalMode(''));
-
-    // setOpenClosetModal(false);
   };
 
   const handleChangeCategory = (event) => {

@@ -77,8 +77,6 @@ function MyPage() {
           link: {
             mobileWebUrl: `https://muindoooapi.azurewebsites.net/`,
             webUrl: `https://muindoooapi.azurewebsites.net/`,
-            // mobileWebUrl: window.location.href,
-            // webUrl: window.location.href,
           },
         },
 

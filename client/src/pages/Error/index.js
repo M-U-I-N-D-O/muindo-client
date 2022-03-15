@@ -51,7 +51,6 @@ const ErrorMidText = styled.h2`
 const ErrorSubText = styled.p`
   margin-top: 16px;
   margin-bottom: 5vh;
-  /* font-weight: bold; */
 `;
 const ErrorImg = styled.img``;
 

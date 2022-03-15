@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { createContext, useState } from 'react';
-// import { CookiesProvider } from 'react-cookie';
 
 import Intro from './pages/Intro';
 import Main from './pages/Main';
@@ -34,8 +33,6 @@ const ClosetTextContext = createContext({});
 
 function App() {
   const navMode = useSelector((state) => state.navbar.switch);
-  // const [openClosetModal, setOpenClosetModal] = useState(false);
-  // const [modalMode, setModalMode] = useState('');
   const [closetImg, setClosetImg] = useLocalStorage('closetImg', {
     hat: '',
     top: '',
@@ -57,7 +54,6 @@ function App() {
     shoes: 0,
     bag: 0,
   });
-  // const [closetText, setClosetText] = useState('');
 
   const [condition, setCondition] = useState({
     middleCategory: '',
@@ -65,43 +61,19 @@ function App() {
     brand: '',
   });
 
-  // const [clothesList, setClothesList] = useState([]);
-
-  // const [lookBookColorModal, setLookBookColorModal] = useState(false);
-  // const [lookBookColorSelect, setLookBookColorSelect] = useState('#fff');
-
-  // const [openClosetInfoModal, setOpenClosetInfoModal] = useState(false);
-  // const [closetDetailInfo, setClosetDetailInfo] = useState([]);
-
   return (
-    // <CookiesProvider>
     <ModalContext.Provider
       value={{
-        // openClosetModal,
-        // setOpenClosetModal,
-        // modalMode,
-        // setModalMode,
         closetImg,
         setClosetImg,
         closetClothesId,
         setClosetClothesId,
-        // lookBookColorModal,
-        // setLookBookColorModal,
-        // lookBookColorSelect,
-        // setLookBookColorSelect,
-        // clothesList,
-        // setClothesList,
         condition,
         setCondition,
-        // openClosetInfoModal,
-        // setOpenClosetInfoModal,
-        // closetDetailInfo,
-        // setClosetDetailInfo,
       }}
     >
       <ClothesIdContext.Provider value={{ closetClothesId, setClosetClothesId }}>
         <ClothesPriceContext.Provider value={{ clothesPrice, setClothesPrice }}>
-          {/* <ClosetTextContext.Provider value={{ closetText, setClosetText }}> */}
           <Router>
             {navMode === 1 && <TopNav />}
             <Route exact path="/" component={Intro} />
@@ -122,11 +94,9 @@ function App() {
 
             {navMode === 1 && <BottomNav />}
           </Router>
-          {/* </ClosetTextContext.Provider> */}
         </ClothesPriceContext.Provider>
       </ClothesIdContext.Provider>
     </ModalContext.Provider>
-    // </CookiesProvider>
   );
 }
 export { ModalContext };

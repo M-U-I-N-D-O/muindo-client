@@ -39,15 +39,11 @@ class Confirm extends Component {
   postData = (opinion, id, token) => {
     const json = JSON.stringify({ id: id, opinion: opinion, token: token });
     try {
-      axios
-        .post(url + 'tinder/confirm', json, {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        })
-        .then((res) => {
-          // console.log('반환 결과 :', res);
-        });
+      axios.post(url + 'tinder/confirm', json, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
     } catch (err) {
       console.log(err);
     }
@@ -59,25 +55,18 @@ class Confirm extends Component {
 
     if (direction === 'right') {
       this.setState({ text: 'Confirm' });
-      // console.log('방금 선택 : 따봉 하나 추가요~');
-
       this.postData('like', state.data[0].element.key, localStorage.getItem('token'));
     } else {
       this.setState({ text: 'Nope' });
-      // console.log('방금 선택 : 놉 하나 추가요~');
-
       this.postData('nope', state.data[0].element.key, localStorage.getItem('token'));
     }
-    // console.log('현재 data key', state.data[0].element.key);
-    // console.log('유저 token : ', localStorage.getItem('token'));
-    // console.log('데이터 :', state.data);
+
     this.setState({ checked: false });
     swipe();
   };
 
   onSwipeEnd = ({ data }) => {
     this.setState({ text: '' });
-    // console.log('마침 :', this.state);
     document.getElementById('tinder-btn1').disabled = false;
     document.getElementById('tinder-btn2').disabled = false;
   };
@@ -85,15 +74,11 @@ class Confirm extends Component {
   putData = (value, id) => {
     const json = JSON.stringify({ value: value });
     try {
-      axios
-        .put(url + `tinder/thumbs/${id}`, json, {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        })
-        .then((res) => {
-          // console.log('put 결과 : ', res);
-        });
+      axios.put(url + `tinder/thumbs/${id}`, json, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
     } catch (err) {
       console.log(err);
     }
@@ -128,6 +113,7 @@ class Confirm extends Component {
     return (
       <div
         style={{
+          position: 'relative',
           backgroundColor: '#222',
           height: '100vh',
           width: '100%',
@@ -141,15 +127,15 @@ class Confirm extends Component {
       >
         <MotionStack
           data={this.state.ItemList.map((item, index) => {
-            var returnObj = {};
+            let returnObj = {};
             returnObj['id'] = index;
             returnObj['element'] = (
               <TinderBox key={item.id}>
                 <WishBox>
                   <WishButton
-                    onClick={(e) => {
+                    onClick={() => {
                       this.setState({ checked: !this.state.checked });
-                      var text = document.getElementById('test');
+                      let text = document.getElementById('test');
                       if (!this.state.checked) {
                         text.innerText = '♥';
                       } else {
@@ -208,7 +194,7 @@ const BottomText = styled.h1`
   width: 50%;
   color: white;
   margin: 0;
-  bottom: 55%;
+  top: 225px;
   margin: 0 auto;
   z-index: 100;
 `;
@@ -217,7 +203,7 @@ const NopeText = styled.h1`
   color: #ec5e6f;
   border: 5px solid #ec5e6f;
   border-radius: 5px;
-  bottom: 55%;
+  top: 225px;
   z-index: 100;
   transform: rotate(-20deg);
   padding: 0 25px;
@@ -227,7 +213,7 @@ const LikeText = styled.h1`
   color: #76e2b3;
   border: 5px solid #76e2b3;
   border-radius: 5px;
-  bottom: 55%;
+  top: 225px;
   z-index: 100;
   transform: rotate(20deg);
   padding: 0 10px;
@@ -266,13 +252,13 @@ const WishText = styled.p`
 `;
 const NopeSwipeButtonBox = styled(Paper)`
   background-color: #424242;
-  padding: 3vw !important;
+  padding: 15px;
   border-radius: 50%;
-  color: #ec5e6f !important;
+  color: #ec5e6f;
 `;
 const ConfirmSwipeButtonBox = styled(Paper)`
   background-color: #424242;
-  padding: 3vw !important;
+  padding: 15px;
   border-radius: 50%;
-  color: #76e2b3 !important;
+  color: #76e2b3;
 `;

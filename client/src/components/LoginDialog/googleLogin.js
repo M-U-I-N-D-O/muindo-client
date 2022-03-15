@@ -5,7 +5,6 @@ import { dialogMode, userName, userEmail } from '../../actions';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import axios from 'axios';
 import url from '../../url';
-
 import firebase from 'firebase/app';
 import 'firebase/auth';
 
@@ -21,9 +20,8 @@ var uiConfig = {
       if (userInfo.isNewUser && userInfo.providerId === 'password') {
         try {
           await authResult.user.sendEmailVerification();
-          // console.log('Check Email');
         } catch (e) {
-          // console.log('Error!');
+          console.log(e.message);
         }
       }
       return false;
@@ -34,19 +32,14 @@ var uiConfig = {
 const JWT_EXPIRY_TIME = 3600 * 1000;
 
 const GoogleLogin = () => {
-  // const [user, setUser] = useState(null);
   const dispatch = useDispatch();
   const history = useHistory();
 
   const onLoginSuccess = (response, user) => {
-    // console.log('post 결과 : ', response);
-    // console.log('user :', user);
     axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.access_token}`;
     localStorage.setItem('token', response.data.access_token);
     localStorage.setItem('refresh', response.data.refresh_token);
-    // console.log('access token : ', localStorage.getItem('token'));
-    // console.log('refresh token : ', localStorage.getItem('refresh'));
-
+  
     setTimeout(() => {
       onSilentRefresh();
     }, JWT_EXPIRY_TIME - 60000);
@@ -68,26 +61,15 @@ const GoogleLogin = () => {
         })
         .then((response) => {
           localStorage.setItem('token', response.data.access_token);
-
-          // console.log('new_access_token : ', response.data.access_token);
-          // console.log('new_refresh_token : ', response.data.refresh_token);
         });
     } catch (err) {
-      // console.log(err);
       history.push('/error');
     }
   };
 
   useEffect(() => {
     const authObserver = firebase.auth().onAuthStateChanged((user) => {
-      // setUser(user);
-      // console.log('user info', user);
       if (user) {
-        // console.log('provide_Id : ', user.providerData[0].providerId);
-        // console.log('user name : ', user.providerData[0].displayName);
-        // console.log('user email : ', user.providerData[0].email);
-        // console.log('user uid : ', user.providerData[0].uid);
-
         const userInfo = {
           provider: user.providerData[0].providerId,
           name: user.providerData[0].displayName,
@@ -103,10 +85,9 @@ const GoogleLogin = () => {
               },
             })
             .then((res) => onLoginSuccess(res, userInfo));
-        } catch (err) {
-          // console.log(err);
+        } catch (e) {
+          console.log(e.message);
         }
-        // console.log('firebase auth : ', firebase.auth());
       }
     });
     return authObserver;
